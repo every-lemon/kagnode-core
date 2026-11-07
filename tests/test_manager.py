@@ -177,6 +177,25 @@ class ManagerTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 m.validate_manifest(invalid)
 
+    def test_github_api_and_release_downloads_use_their_supported_media_types(self):
+        for url, accept in [
+            (
+                "https://api.github.com/repos/every-lemon/kagnode-core/releases?per_page=50",
+                "application/vnd.github+json",
+            ),
+            (
+                "https://github.com/every-lemon/kagnode-core/releases/download/v1.0.1/core-manifest.json",
+                "application/octet-stream",
+            ),
+        ]:
+            with patch.object(m.urllib.request, "build_opener") as opener:
+                response = opener.return_value.open.return_value.__enter__.return_value
+                response.url = url
+                response.read.return_value = b"{}"
+                self.assertEqual(m.fetch(url), b"{}")
+                request = opener.return_value.open.call_args.args[0]
+                self.assertEqual(request.get_header("Accept"), accept)
+
     def test_unknown_hosts_and_state_symlinks_rejected(self):
         for url in [
             "http://github.com/x",
