@@ -796,3 +796,18 @@ html[data-core-shell="inactive"] .kn-core-mobile-toggle {
     animation: none;
   }
 }
+
+.kn-core-sidebar-heading {
+  position: relative;
+  gap: 8px;
+}
+.kn-core-sidebar-heading .brand-copy strong {
+  color: var(--kn-text) !important;
+}
+.kn-core-sidebar-heading :is([data-dismiss-nav], #sidebar-close) {
+  margin-left: auto;
+  flex: none;
+}
+.kn-core-sidebar-navigation > .sidebar-header:empty {
+  display: none !important;
+}

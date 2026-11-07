@@ -157,15 +157,23 @@
       image.alt = "";
       brand.append(image, element("strong", "", "KagNode."));
     }
+    const brandContainer = [...sidebar.children].find(
+      (child) => child === brand || child.contains(brand),
+    );
     const heading = element("div", "kn-core-sidebar-heading");
     heading.append(brand);
+    const close = brandContainer?.querySelector(
+      "[data-dismiss-nav],#sidebar-close",
+    );
+    if (close) heading.append(close);
     const nav = element("div", "kn-core-sidebar-navigation");
     nav.setAttribute("aria-label", "Workspace pages");
     const legacy = element("div");
     legacy.hidden = true;
     legacy.dataset.coreLegacyMetadata = "";
     for (const child of [...sidebar.children]) {
-      if (child === brand || child.contains(brand)) continue;
+      if (child === brand || child === brandContainer || child.contains(brand))
+        continue;
       if (
         child.matches(".sidebar-footer,.sidebar-bottom,.kn-product-signature")
       ) {
