@@ -35,6 +35,7 @@
     accountTrigger = null,
     lastFocus;
   const groups = new WeakMap();
+  let desktopCollapsed = saved("kagnode.core.sidebar.collapsed") === "true";
   function element(tag, cls, text) {
     const el = document.createElement(tag);
     if (cls) el.className = cls;
@@ -96,6 +97,8 @@
     }
   }
   function setCollapsed(value) {
+    desktopCollapsed = !!value;
+    value = !mobile() && desktopCollapsed;
     root.dataset.coreCollapsed = String(!!value);
     root.classList.toggle("collapsed", !!value);
     if (toggle) {
@@ -106,7 +109,7 @@
       );
       toggle.title = value ? "Expand sidebar" : "Collapse sidebar";
     }
-    store("kagnode.core.sidebar.collapsed", String(!!value));
+    store("kagnode.core.sidebar.collapsed", String(desktopCollapsed));
     if (value)
       for (const d of all("details", sidebar)) {
         groups.get(d)?.motion?.cancel();
@@ -126,6 +129,7 @@
   function drawer(open) {
     root.dataset.coreDrawer = String(open);
     scrim.hidden = !open;
+    sidebar.inert = mobile() && !open;
     all("[data-mobile],#mobile-menu,[data-core-mobile]").forEach((b) =>
       b.setAttribute("aria-expanded", String(open)),
     );
@@ -201,6 +205,7 @@
       mobileButton.setAttribute("aria-controls", sidebar.id);
       document.body.append(mobileButton);
     }
+    sidebar.inert = mobile();
     shellActive();
   }
   function groupToggle(d) {
@@ -551,6 +556,10 @@
   });
   addEventListener("resize", () => {
     closeAccount();
+    if (sidebar) {
+      setCollapsed(desktopCollapsed);
+      sidebar.inert = mobile() && root.dataset.coreDrawer !== "true";
+    }
     if (!mobile() && scrim) {
       root.dataset.coreDrawer = "false";
       scrim.hidden = true;
@@ -632,6 +641,8 @@
         old?.authenticated !== !!value.authenticated ||
         old?.subject !== String(value.subject || "")
       ) {
+        closeAccount();
+        $("#kn-core-account-menu")?.remove();
         window.KagNodeTheme?.setSession(value);
         document.dispatchEvent(
           new CustomEvent("kagnode:core-session", { detail: value }),
