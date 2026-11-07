@@ -481,12 +481,12 @@
       const target = e.target instanceof Element ? e.target : null;
       if (!target) return;
       const button = target.closest(
-        "[data-core-toggle],[data-mobile],#mobile-menu,[data-core-mobile],[data-dismiss-nav],.kn-navigation-toggle",
+        "[data-core-toggle],[data-mobile],#mobile-menu,[data-core-mobile],[data-dismiss-nav],#sidebar-close,.kn-navigation-toggle",
       );
       if (button && sidebar) {
         e.preventDefault();
         e.stopImmediatePropagation();
-        if (button.matches("[data-dismiss-nav]")) drawer(false);
+        if (button.matches("[data-dismiss-nav],#sidebar-close")) drawer(false);
         else if (mobile()) drawer(root.dataset.coreDrawer !== "true");
         else setCollapsed(root.dataset.coreCollapsed !== "true");
         return;
