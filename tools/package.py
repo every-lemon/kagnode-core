@@ -99,6 +99,7 @@ def build(destination, signing_key=None):
         "index.mjs": (ROOT / "dist/node/kagnode-core.mjs").read_bytes(),
         "index.d.mts": (ROOT / "dist/node/kagnode-core.d.mts").read_bytes(),
         "LICENSE": (ROOT / "LICENSE").read_bytes(),
+        "ARTWORK-LICENSE": (ROOT / "assets/ARTWORK-LICENSE").read_bytes(),
         "README.md": (ROOT / "README.md").read_bytes(),
         "package.json": json.dumps(
             {
@@ -126,6 +127,9 @@ def build(destination, signing_key=None):
         metadata
         + "/WHEEL": b"Wheel-Version: 1.0\nGenerator: KagNode Core\nRoot-Is-Purelib: true\nTag: py3-none-any\n",
         metadata + "/licenses/LICENSE": (ROOT / "LICENSE").read_bytes(),
+        metadata + "/licenses/ARTWORK-LICENSE": (
+            ROOT / "assets/ARTWORK-LICENSE"
+        ).read_bytes(),
     }
     records = []
     for name, data in sorted(wheel.items()):
@@ -179,6 +183,12 @@ def build(destination, signing_key=None):
         (destination / (prefix + "-source." + kind)).write_bytes(
             archive(source, prefix, kind, epoch)
         )
+    for filename, source in [
+        ("LICENSE.txt", "LICENSE"),
+        ("ARTWORK-LICENSE.txt", "assets/ARTWORK-LICENSE"),
+        ("INSTALL.md", "docs/OPERATIONS.md"),
+    ]:
+        (destination / filename).write_bytes((ROOT / source).read_bytes())
     checks = {
         p.name: digest(p.read_bytes())
         for p in sorted(destination.iterdir())
