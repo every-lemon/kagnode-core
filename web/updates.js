@@ -31,7 +31,7 @@
         document.querySelector("input[name=_csrf]")?.value || "";
     return result;
   }
-  async function request(action = "status", data = {}) {
+  async function request(action = "status", data = {}, allowReauth = true) {
     const r = await fetch("/api/v1/kagnode-core/" + action, {
       method: action === "status" ? "GET" : "POST",
       credentials: "same-origin",
@@ -45,6 +45,16 @@
     const v = await r
       .json()
       .catch(() => ({ error: "Core status is unavailable." }));
+    if (
+      r.status === 403 &&
+      v.code === "reauth_required" &&
+      allowReauth &&
+      window.KagNodeCoreHost?.reauthenticate
+    ) {
+      core.loading.hide();
+      await window.KagNodeCoreHost.reauthenticate();
+      return request(action, data, false);
+    }
     if (!r.ok) {
       const e = Error(v.error || "Core request failed.");
       e.status = r.status;
@@ -63,7 +73,7 @@
       document.querySelector("[data-core-admin-host],.kn-account-settings") ||
       document.querySelector("[data-core-preferences-panel]")?.parentElement;
     if (!host || host.closest("[hidden]")) return;
-    if (!panel) {
+    if (!panel?.isConnected) {
       panel = el("section");
       panel.className = "kn-core-preferences";
       panel.dataset.coreUpdatesPanel = "";
