@@ -12,7 +12,7 @@ The initial 1.0 interface contract supports compatible stable UI patches. Applic
 
 ## Features
 
-- One manual 260/57px sidebar, mobile drawer, icon account menu and restrained motion.
+- One shared 260/57px sidebar, mobile drawer, icon account menu and restrained motion.
 - Native wheel, touch and trackpad scrolling with accessible draggable rails.
 - Shared fields, selectors, calendars, dialogs, loading, search, dashboard presentation and account preferences.
 - Browser-to-account appearance connections with PKCE and origin-bound, revocable appearance-only grants.

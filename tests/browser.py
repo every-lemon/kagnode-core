@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 s = importlib.util.spec_from_file_location("core", ROOT / "dist/python/kagnode_core.py")
 core = importlib.util.module_from_spec(s)
 s.loader.exec_module(core)
-HTML = """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body data-authenticated="true"><aside id="sidebar" class="sidebar"><a class="brand" href="/"><img src="/kagnode-core/1.0.0/mark.svg"><span class="brand-copy"><strong>KagNode.</strong><small>Example</small></span></a><nav class="sidebar-nav"><a href="/" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Overview</span></a><details class="nav-group" data-group="products"><summary><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Products</span></summary><div class="submenu"><a href="#section">A long section title that should wrap rather than change the width</a></div></details></nav></aside><div class="workspace"><header style="display:flex;justify-content:flex-end;height:60px;align-items:center;padding:12px"><button data-account-menu><span class="avatar">C</span><span class="header-account-name">Example Person</span></button><div id="account-menu" class="account-menu hidden" hidden inert><div class="account-identity"><strong>Example Person</strong></div><a href="/settings">Manage account</a><button>Sign out</button></div></header><main style="padding:24px"><h1>Shared components</h1><label for="choice">Choose</label><select id="choice"><option>First</option><option>Second</option></select><label for="number">Number</label><input id="number" type="number" min="1" max="9" value="2"><label for="date">Date</label><input id="date" type="date"><div id="nested" aria-label="Nested example" style="height:140px;overflow:auto"><div style="height:800px">Nested content</div></div><div style="height:1500px"></div><section id="section">Destination</section></main></div></body></html>"""
+HTML = """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0" data-authenticated="true"><aside id="sidebar" class="sidebar"><a class="brand" href="/"><img src="/kagnode-core/1.0.0/mark.svg"><span class="brand-copy"><strong>KagNode.</strong><small>Example</small></span></a><nav class="sidebar-nav"><a href="/" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Overview</span></a><details class="nav-group" data-group="products"><summary><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Products</span></summary><div class="submenu"><a href="#section">A long section title that should wrap rather than change the width</a></div></details></nav></aside><div class="workspace"><header style="display:flex;justify-content:flex-end;height:60px;align-items:center;padding:12px"><button data-account-menu><span class="avatar">C</span><span class="header-account-name">Example Person</span></button><div id="account-menu" class="account-menu hidden" hidden inert><div class="account-identity"><strong>Example Person</strong></div><a href="/settings">Manage account</a><button>Sign out</button></div></header><main style="padding:24px"><h1>Shared components</h1><label for="choice">Choose</label><select id="choice"><option>First</option><option>Second</option></select><label for="number">Number</label><input id="number" type="number" min="1" max="9" value="2"><label for="date">Date</label><input id="date" type="date"><div id="nested" aria-label="Nested example" style="height:140px;overflow:auto"><div style="height:800px">Nested content</div></div><div style="height:1500px"></div><section id="section">Destination</section></main></div></body></html>"""
 
 HTML = HTML.replace(
     "/kagnode-core/1.0.0/", "/kagnode-core/" + core.BUNDLE["version"] + "/"
@@ -49,7 +49,7 @@ try:
         browser = getattr(p, engine).launch(
             headless=True, **({"executable_path": executable} if executable else {})
         )
-        for width in [390, 768, 950, 1440]:
+        for width in [390, 768, 950, 1100, 1440]:
             for scheme in ["light", "dark"]:
                 page = browser.new_page(
                     viewport={"width": width, "height": 900}, color_scheme=scheme
@@ -58,10 +58,30 @@ try:
                 page.goto("http://127.0.0.1:" + str(server.server_port))
                 page.wait_for_function("!!window.KagNodeCore")
                 page.wait_for_timeout(150)
+                assert page.locator("html").evaluate("e=>e.classList.contains('js')")
                 assert page.locator("[data-core-sidebar]").count() == 1
                 assert page.locator(".brand img").evaluate(
                     "e=>e.complete&&e.naturalWidth>0"
                 )
+                if width == 1100:
+                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    page.wait_for_function(
+                        "Math.abs(document.querySelector('.workspace').getBoundingClientRect().x-57)<1"
+                    )
+                    before = page.locator(".workspace").bounding_box()["x"]
+                    page.locator("#sidebar").hover()
+                    page.wait_for_timeout(450)
+                    assert (
+                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
+                    )
+                    assert (
+                        abs(page.locator(".workspace").bounding_box()["x"] - before) < 1
+                    )
+                    page.mouse.move(800, 80)
+                    page.wait_for_timeout(500)
+                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    page.locator("[data-core-toggle]").click()
+                    page.wait_for_timeout(300)
                 if width >= 1024:
                     assert (
                         round(page.locator("#sidebar").bounding_box()["width"]) == 260
@@ -117,6 +137,10 @@ try:
                     "()=>{window.__changes=0;document.querySelector('#choice').addEventListener('change',()=>window.__changes++);document.querySelector('#choice').selectedIndex=1;KagNodeControls.sync();}"
                 )
                 assert page.evaluate("window.__changes") == 0
+                page.evaluate(
+                    "()=>{const a=document.createElement('a');a.id='wrapped-icon-fixture';a.href='/passwords';a.innerHTML='<span data-icon=key><svg viewBox=\"0 0 24 24\"><path d=\"M4 4h16\"/></svg></span>Passwords';document.querySelector('.kn-core-sidebar-navigation').append(a);KagNodeCore.refresh()}"
+                )
+                assert page.locator("#wrapped-icon-fixture svg").count() == 1
                 before = page.locator(".kn-core-rail").count()
                 page.evaluate("KagNodeScroll.refresh();KagNodeScroll.refresh()")
                 page.wait_for_timeout(150)
@@ -134,7 +158,7 @@ try:
     print(
         "PASS: "
         + engine
-        + " shared shell, repeated animation, account menu, native wheel, rails, loading and anonymous system theme across 8 layouts"
+        + " shared shell, repeated animation, account menu, native wheel, rails, loading and anonymous system theme across 10 layouts"
     )
 finally:
     server.shutdown()
