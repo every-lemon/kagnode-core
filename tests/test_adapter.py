@@ -45,7 +45,12 @@ class AdapterTests(unittest.TestCase):
             response.headers["Cross-Origin-Opener-Policy"], "same-origin-allow-popups"
         )
         name = sdk.BUNDLE["entrypoints"]["script"]
-        self.assertEqual(client.get("/kagnode-core/1.0.0/" + name).status_code, 200)
+        self.assertEqual(
+            client.get(
+                "/kagnode-core/" + sdk.BUNDLE["version"] + "/" + name
+            ).status_code,
+            200,
+        )
         self.assertEqual(client.get("/kagnode-core/1.0.0/secret.py").status_code, 404)
         self.assertEqual(client.get("/api/v1/kagnode-core/status").status_code, 401)
         self.assertEqual(
