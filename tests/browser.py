@@ -49,7 +49,7 @@ try:
         browser = getattr(p, engine).launch(
             headless=True, **({"executable_path": executable} if executable else {})
         )
-        for width in [390, 768, 950, 1440]:
+        for width in [390, 768, 950, 1100, 1440]:
             for scheme in ["light", "dark"]:
                 page = browser.new_page(
                     viewport={"width": width, "height": 900}, color_scheme=scheme
@@ -58,10 +58,27 @@ try:
                 page.goto("http://127.0.0.1:" + str(server.server_port))
                 page.wait_for_function("!!window.KagNodeCore")
                 page.wait_for_timeout(150)
+                assert page.locator("html").evaluate("e=>e.classList.contains('js')")
                 assert page.locator("[data-core-sidebar]").count() == 1
                 assert page.locator(".brand img").evaluate(
                     "e=>e.complete&&e.naturalWidth>0"
                 )
+                if width == 1100:
+                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    before = page.locator(".workspace").bounding_box()["x"]
+                    page.locator("#sidebar").hover()
+                    page.wait_for_timeout(450)
+                    assert (
+                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
+                    )
+                    assert (
+                        abs(page.locator(".workspace").bounding_box()["x"] - before) < 1
+                    )
+                    page.mouse.move(800, 80)
+                    page.wait_for_timeout(500)
+                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    page.locator("[data-core-toggle]").click()
+                    page.wait_for_timeout(300)
                 if width >= 1024:
                     assert (
                         round(page.locator("#sidebar").bounding_box()["width"]) == 260
@@ -117,6 +134,10 @@ try:
                     "()=>{window.__changes=0;document.querySelector('#choice').addEventListener('change',()=>window.__changes++);document.querySelector('#choice').selectedIndex=1;KagNodeControls.sync();}"
                 )
                 assert page.evaluate("window.__changes") == 0
+                page.evaluate(
+                    "()=>{const a=document.createElement('a');a.id='wrapped-icon-fixture';a.href='/passwords';a.innerHTML='<span data-icon=key><svg viewBox=\"0 0 24 24\"><path d=\"M4 4h16\"/></svg></span>Passwords';document.querySelector('.kn-core-sidebar-navigation').append(a);KagNodeCore.refresh()}"
+                )
+                assert page.locator("#wrapped-icon-fixture svg").count() == 1
                 before = page.locator(".kn-core-rail").count()
                 page.evaluate("KagNodeScroll.refresh();KagNodeScroll.refresh()")
                 page.wait_for_timeout(150)
@@ -134,7 +155,7 @@ try:
     print(
         "PASS: "
         + engine
-        + " shared shell, repeated animation, account menu, native wheel, rails, loading and anonymous system theme across 8 layouts"
+        + " shared shell, repeated animation, account menu, native wheel, rails, loading and anonymous system theme across 10 layouts"
     )
 finally:
     server.shutdown()

@@ -2,6 +2,7 @@
 (() => {
   if (window.KagNodeTheme) return;
   const root = document.documentElement;
+  root.classList.add("js");
   root.dataset.knCore = "1.0.0";
   const system = matchMedia("(prefers-color-scheme: dark)");
   let session = { authenticated: false, subject: "" },

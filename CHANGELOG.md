@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.3
+
+- Restore progressive plan loading after retiring the old bootstrap and ignore hidden targets in contents tracking; track nested scroll containers.
+
+- Correct wrapped navigation icons and linked-profile names in account menus.
+- Adapt navigation to available screen space and input capabilities; keep touch drawers and keyboard access. Temporary rail expansion does not move page content.
+- Retire duplicate header sign-out controls when the shared account menu is available.
+
 ## 1.0.2
 
 - Use GitHub's JSON media type when checking releases. Binary manifest/archive downloads retain their binary request type. This fixes real server checks returning HTTP 415.
