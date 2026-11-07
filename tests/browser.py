@@ -65,6 +65,9 @@ try:
                 )
                 if width == 1100:
                     assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    page.wait_for_function(
+                        "Math.abs(document.querySelector('.workspace').getBoundingClientRect().x-57)<1"
+                    )
                     before = page.locator(".workspace").bounding_box()["x"]
                     page.locator("#sidebar").hover()
                     page.wait_for_timeout(450)
