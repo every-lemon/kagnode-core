@@ -251,7 +251,9 @@
     if (popup && accountTrigger === button) return closeAccount(true);
     closeAccount();
     accountTrigger = button;
-    let menu = $("#account-menu,[data-core-menu-content]");
+    let menu = $(
+      "#account-menu,[data-core-menu-content],#kn-core-account-menu",
+    );
     if (!menu) {
       menu = element("section", "kn-core-account-menu");
       menu.id = "kn-core-account-menu";
@@ -260,15 +262,23 @@
         element(
           "strong",
           "",
-          $("[data-kn-account-name]")?.textContent.trim() || "Your account",
+          config.name ||
+            $("[data-kn-account-name]")?.textContent.trim() ||
+            "Your account",
         ),
       );
+      const email =
+        config.email ||
+        (window.KagNodeTheme?.session.subject.includes("@")
+          ? window.KagNodeTheme.session.subject
+          : "");
+      if (email) identity.append(element("small", "", email));
       menu.append(identity);
       const settings = element("a", "", "Account & preferences");
       settings.href =
         document.body.dataset.coreSettings ||
         (document.body.dataset.knAccountApp === "mail"
-          ? "#settings"
+          ? "#account"
           : document.body.dataset.knAccountApp === "httpboot"
             ? "/access"
             : document.body.dataset.knAccountApp === "vpn"
@@ -611,6 +621,12 @@
     closeAccount,
     refresh: normalize,
     setSession(value) {
+      config.name = value.authenticated
+        ? String(value.name || config.name || "")
+        : "";
+      config.email = value.authenticated
+        ? String(value.email || config.email || "")
+        : "";
       const old = window.KagNodeTheme?.session;
       if (
         old?.authenticated !== !!value.authenticated ||
