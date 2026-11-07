@@ -137,6 +137,7 @@
       lastFocus = document.activeElement;
       $("a,button,summary", sidebar)?.focus();
     } else lastFocus?.focus?.({ preventScroll: true });
+    requestAnimationFrame(() => window.KagNodeScroll?.refresh());
   }
   function installSidebar() {
     sidebar = $("#sidebar,.sidebar");
