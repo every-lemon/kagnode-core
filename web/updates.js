@@ -2,6 +2,7 @@
 (() => {
   const core = window.KagNodeCore;
   if (!core) return;
+  let generation = 0;
   let current,
     checking = false,
     checked = 0,
@@ -205,8 +206,11 @@
     )
       return;
     checking = true;
+    const epoch = generation;
     try {
-      current = await request();
+      const value = await request();
+      if (epoch !== generation) return;
+      current = value;
       render();
     } catch (e) {
       if ([401, 403, 404].includes(e.status)) {
@@ -220,6 +224,7 @@
     }
   }
   document.addEventListener("kagnode:core-session", () => {
+    generation++;
     current = null;
     panel?.remove();
     panel = null;
