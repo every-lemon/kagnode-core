@@ -1,0 +1,18 @@
+[Unit]
+Description=KagNode shared UI patch manager
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/kagnode core serve
+User=root
+UMask=0022
+Restart=on-failure
+TimeoutStopSec=240
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/srv/kagnode/core
+ProtectHome=read-only
+[Install]
+WantedBy=multi-user.target
