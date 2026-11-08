@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Start Up-arrow navigation at the last quick-search result when no result is selected. Server helper behavior is unchanged.
+
 ## 1.1.1
 
 - Preserve JSON and plain-text responses containing HTML-like text in the Node adapter. Server adapter updates remain reviewed separately from automatic UI patches.

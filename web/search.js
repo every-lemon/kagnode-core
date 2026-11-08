@@ -223,7 +223,11 @@
       if (e.isComposing) return;
       if (["ArrowDown", "ArrowUp"].includes(e.key)) {
         e.preventDefault();
-        active(index + (e.key === "ArrowDown" ? 1 : -1));
+        active(
+          index < 0 && e.key === "ArrowUp"
+            ? rows.length - 1
+            : index + (e.key === "ArrowDown" ? 1 : -1),
+        );
       } else if (e.key === "Enter") {
         e.preventDefault();
         if (rows[index]) location.assign(rows[index].url);
