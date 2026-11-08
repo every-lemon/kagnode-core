@@ -101,6 +101,7 @@ class ManagerTests(unittest.TestCase):
             result = self.manager.install("example", 7)
         self.assertEqual(result["version"], "1.0.1")
         self.assertEqual(result["previous"], "1.0.0")
+        self.assertFalse(result["candidate"]["changed"])
         self.assertFalse(self.manager.rollback("example")["automatic"])
         self.assertEqual(self.manager.state("example")["version"], "1.0.0")
 
@@ -270,6 +271,7 @@ class ManagerTests(unittest.TestCase):
                     7,
                     True,
                     {"action": "status"},
+                    {"action": "adopt", "lock_file": "/unreviewed/core.lock.json"},
                 ]:
                     connection = Connection("localhost", timeout=3)
                     try:
@@ -282,9 +284,10 @@ class ManagerTests(unittest.TestCase):
                         response = connection.getresponse()
                         result = json.loads(response.read())
                         self.assertEqual(
-                            response.status, 200 if isinstance(body, dict) else 400
+                            response.status,
+                            200 if body == {"action": "status"} else 400,
                         )
-                        if isinstance(body, dict):
+                        if body == {"action": "status"}:
                             self.assertEqual(result["version"], state["version"])
                         else:
                             self.assertIn("error", result)
