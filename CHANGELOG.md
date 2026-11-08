@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.7
+
+- Keep closed sidebar groups announced as collapsed after manual sidebar collapse and repeated expansion. Backport the scoped UI accessibility repair without changing server helpers.
+
 ## 1.1.6
 
 - Backport quick-search intent, IME Escape and request deadline fixes with Chromium/WebKit regressions. This compatible UI patch preserves existing 1.1.x baseline ranges and does not replace the separately installed server manager.
