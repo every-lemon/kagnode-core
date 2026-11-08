@@ -72,6 +72,16 @@ try:
                 assert target.evaluate("e=>e.validity.valid"), (
                     "Aligned date/time must be accepted"
                 )
+                for outside in {
+                    "date": ["2026-11-06", "2026-11-14"],
+                    "time": ["2026-11-08T08:45", "2026-11-08T10:15"],
+                }.get(field, []):
+                    target.fill(outside)
+                    assert not target.evaluate("e=>e.validity.valid"), (
+                        "Step-aligned values outside the range must remain invalid"
+                    )
+                target.fill(valid_value)
+                assert target.evaluate("e=>e.validity.valid")
                 step = target.get_attribute("step")
                 target.evaluate("(e,step)=>e.setAttribute('step',step)", changed_step)
                 page.wait_for_function(
