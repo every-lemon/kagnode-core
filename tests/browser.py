@@ -128,6 +128,38 @@ try:
                 page.keyboard.press("Escape")
                 page.locator(".kn-core-search").wait_for(state="hidden")
 
+                if width == 1440:
+                    for motion in ["reduce", "no-preference"]:
+                        page.emulate_media(reduced_motion=motion)
+                        for _ in range(3):
+                            page.evaluate("KagNodeCore.navigation.collapse(false)")
+                            page.locator("details summary").click()
+                            page.wait_for_timeout(240)
+                            assert page.locator("details").evaluate("d=>d.open")
+                            assert (
+                                page.locator("details summary").get_attribute(
+                                    "aria-expanded"
+                                )
+                                == "true"
+                            )
+                            page.evaluate("KagNodeCore.navigation.collapse(true)")
+                            assert not page.locator("details").evaluate("d=>d.open")
+                            assert (
+                                page.locator("details summary").get_attribute(
+                                    "aria-expanded"
+                                )
+                                == "false"
+                            )
+                            assert page.locator("details > div").evaluate("e=>e.inert")
+                            page.evaluate("KagNodeCore.navigation.collapse(false)")
+                            assert (
+                                page.locator("details summary").get_attribute(
+                                    "aria-expanded"
+                                )
+                                == "false"
+                            )
+                    page.emulate_media(reduced_motion="no-preference")
+
                 if width < 1024:
                     page.evaluate("KagNodeCore.navigation.open()")
                 page.evaluate("""()=>{
@@ -217,8 +249,9 @@ try:
                 assert page.locator("#account-menu").is_hidden()
                 page.locator("#nested").hover()
                 page.mouse.wheel(0, 400)
-                page.wait_for_timeout(100)
-                assert page.locator("#nested").evaluate("(e)=>e.scrollTop") > 0
+                page.wait_for_function(
+                    "document.querySelector('#nested').scrollTop>0", timeout=2000
+                )
                 page.evaluate(
                     "()=>{window.__changes=0;document.querySelector('#choice').addEventListener('change',()=>window.__changes++);document.querySelector('#choice').selectedIndex=1;KagNodeControls.sync();}"
                 )
