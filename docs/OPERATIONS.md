@@ -14,7 +14,7 @@ Background checks skip applications while a manual operation holds the update lo
 
 ## Reviewed application upgrades
 
-Before replacing an application's source, run `kagnode core check APP` and `sudo kagnode core apply APP` to verify/cache its current compatible UI. Manual apply also caches a current release without changing its activation or discarding the previous rollback pointer. Keep the application's own source/database rollback copy.
+Before replacing an application's source, run `sudo kagnode core check APP` and `sudo kagnode core apply APP` to verify/cache its current compatible UI. Manual apply also caches a current release without changing its activation or discarding the previous rollback pointer. Keep the application's own source/database rollback copy.
 
 After reviewing and installing the application upgrade, inspect its `core.lock.json` and the current `kagnode core status APP`. Adopt its declared baseline explicitly:
 
