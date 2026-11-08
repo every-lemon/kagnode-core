@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.11
+
+- Keep a newly reopened quick search active when the previous native close event arrives late. Its debounce/request and focus remain current; normal dismissal still cancels pending work and restores focus.
+- Add repeated native close/reopen and cancellation regressions for Chromium/WebKit across phone, tablet and desktop layouts.
+
 ## 1.1.10
 
 - Preserve native date/date-time interval, precision and range validity in custom fields, including dynamic step changes. Invalid interval values block form submission; valid seconds remain accepted.
