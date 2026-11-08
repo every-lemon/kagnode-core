@@ -67,7 +67,9 @@ try:
                   d.innerHTML='<input aria-label="Modal input">';document.body.append(d);
                   d.showModal();d.querySelector('input').focus();
                 }""")
-                page.wait_for_timeout(180)
+                page.wait_for_function(
+                    "()=>document.documentElement.dataset.coreDrawer!=='true'"
+                )
                 assert page.locator("#modal-focus-test input").evaluate(
                     "e=>e===document.activeElement"
                 )
