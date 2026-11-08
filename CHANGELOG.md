@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2
+
+- Invalidate quick-search selection and full-search destinations immediately when typing a new query, before debounce. Keep IME Escape inside composition and bind each request deadline to its own abort controller. Add Chromium/WebKit regressions for stale navigation, composition, request cancellation and late responses.
+
 ## 1.2.1
 
 - Recover abandoned update journals using the operation lock, offline signed-cache verification and ownership-marked scratch cleanup. Preserve activation, policies, live operations and unrelated files. Reviewed manager installation is required; UI patches cannot replace server helpers.
