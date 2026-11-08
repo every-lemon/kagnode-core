@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
@@ -9,7 +9,7 @@
     "script": "core.b600e056512d57fd.js",
     "style": "core.a4b9acdcc8bc67f3.css"
   },
-  "source_commit": "e7e6135b02d64a54de333a0976587fb3372f5a5a",
+  "source_commit": "612a3b141b9b4de88ef61bdd3ece4612bffab61b",
   "repository": "every-lemon/kagnode-core",
   "icons": {
     "link": "<path d=\"m10 8 2-2a4.25 4.25 0 0 1 6 6l-2 2m-2 2-2 2a4.25 4.25 0 0 1-6-6l2-2m1 5 6-6\"/>",

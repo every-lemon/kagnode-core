@@ -1,6 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { inject, asset, active } from "../dist/node/kagnode-core.mjs";
+import {
+  inject,
+  asset,
+  active,
+  installCore,
+} from "../dist/node/kagnode-core.mjs";
 test("Core serves only integrity checked local assets", () => {
   const m = active("example");
   assert.match(m.version, /^1\.[01]\.\d+$/);
@@ -38,4 +43,36 @@ test("canonical server partials accept only known templates", async () => {
     /Authorized links/,
   );
   assert.throws(() => renderTemplate("private-config"));
+});
+
+test("JSON and plain text containing literal HTML are not rewritten by the server adapter", () => {
+  let middleware;
+  const app = {
+    use(fn) {
+      middleware = fn;
+    },
+  };
+  installCore(app, { appId: "example" });
+  for (const mime of ["application/json; charset=utf-8", "text/plain"]) {
+    let actual;
+    const response = {
+      get: () => mime,
+      send(value) {
+        actual = value;
+        return this;
+      },
+      set() {
+        throw Error("Non-HTML response was modified");
+      },
+    };
+    middleware({ path: "/api/v1/search" }, response, () => {});
+    const body = JSON.stringify({
+      results: [
+        { title: "Literal <head> text and </head> in a search result" },
+      ],
+    });
+    response.send(body);
+    assert.equal(actual, body);
+    assert.deepEqual(JSON.parse(actual), JSON.parse(body));
+  }
 });
