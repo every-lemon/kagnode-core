@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.4
+
+- Preserve deliberate keyboard browsing when an overflowing contents list itself has visible focus and headings load or resize. Continue centering focused links and resume active-heading tracking after focus leaves. Add Chromium/WebKit container/anchor/resize regressions with normal and reduced motion.
+
 ## 1.2.3
 
 - Keep sidebar group accessibility states synchronized when collapsing the sidebar cancels submenu animation. Repeated collapse/expand cycles retain closed, unfocusable children and announce groups correctly in Chromium and WebKit, with normal and reduced motion.
