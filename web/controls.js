@@ -446,10 +446,14 @@
           e.preventDefault();
           const buttons = [...grid.querySelectorAll("button")],
             i = buttons.indexOf(b);
-          const target =
-            buttons[Math.max(0, Math.min(buttons.length - 1, i + jump))];
+          let index = Math.max(0, Math.min(buttons.length - 1, i + jump));
+          // Disabled dates cannot receive focus. Keep the current enabled tab stop
+          // when the requested direction reaches the allowed range boundary.
+          while (buttons[index]?.disabled) index += Math.sign(jump);
+          const target = buttons[index];
+          if (!target) return;
           buttons.forEach((x) => (x.tabIndex = x === target ? 0 : -1));
-          target?.focus();
+          target.focus();
         }
       });
       if (mode === "datetime-local") {
