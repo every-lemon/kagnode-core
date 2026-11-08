@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.5
+
+- Return structured validation errors for non-object JSON sent to the private manager socket, retaining a working status interface after malformed requests.
+- Record the actual reviewed adapter version when refreshing pinned fallbacks, while preserving the installation’s automatic-update policy. Server helper installation remains separate from UI-only automatic patches.
+
 ## 1.1.4
 
 - Add the shared KagNode split-orbit spinner: a stationary canonical mark with an orbiting separated accent, reduced-motion and forced-color support. Adopt existing application loading screens without replacing their status or recovery controls.
