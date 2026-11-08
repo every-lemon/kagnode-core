@@ -12,6 +12,8 @@ Rollback validates the previous release (or returns to the embedded baseline) an
 
 Background checks skip applications while a manual operation holds the update lock. Failure status is recorded only after acquiring that same lock and reading the current state. Busy operations are retried on the next scheduled cycle; they are not reported as update failures. This manager change requires reviewed server-side installation and is not applied by a UI-only patch.
 
+Privileged status and daemon startup reconcile interrupted update journals only after acquiring the update lock. A live updater's journal and staging files remain untouched. If activation already finished, recovery verifies the signed local cache offline before reporting completion; otherwise it reports interruption and retains the selected UI and update policy. Recovery never activates a downloaded release. Retry check/apply, or repeat the reviewed adoption for a baseline upgrade. Only temporary directories carrying this manager's matching ownership marker are removed; unmarked directories, symlinks and release caches are retained. Unprivileged CLI status requests privileged verification without modifying root-owned state.
+
 ## Reviewed application upgrades
 
 Before replacing an application's source, run `sudo kagnode core check APP` and `sudo kagnode core apply APP` to verify/cache its current compatible UI. Manual apply also caches a current release without changing its activation or discarding the previous rollback pointer. Keep the application's own source/database rollback copy.
