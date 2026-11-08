@@ -272,6 +272,8 @@
       }
     });
     dialog.addEventListener("close", () => {
+      // Native close events can arrive after another showModal().
+      if (dialog.open) return;
       cancel();
       input.removeAttribute("aria-busy");
       const target =

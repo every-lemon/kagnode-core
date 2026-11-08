@@ -9,3 +9,7 @@ Use `KagNodeLoading.spinner()` for a decorative spinner node beside an accessibl
 ## Date and time constraints
 
 Use semantic `date` or `datetime-local` fields with the application’s `min`, `max`, `step` and `required` constraints. Core preserves native date/precision/interval validity, including the value-based step origin, while presenting its calendar and editable field. Constraint changes refresh validation; valid seconds remain accepted when the declared step allows them. Invalid values block form submission. Applications must still validate submitted values on the server.
+
+## Quick-search reopening
+
+The palette can be reopened immediately after dismissal without an artificial delay. Queued native close events from an earlier opening do not cancel the current query or move its focus. Normal dismissal still cancels pending work and restores focus. Applications continue supplying authorized destinations and provider results.
