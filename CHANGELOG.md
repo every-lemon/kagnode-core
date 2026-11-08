@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.5
+
+- Preserve an enabled calendar keyboard stop at minimum/maximum date boundaries. Arrow navigation skips disabled dates without changing the selected value; Enter remains the explicit selection action.
+- Add Chromium/WebKit date and date-time range, selection and focus-restoration regressions across phone, tablet and desktop layouts.
+
 ## 1.2.4
 
 - Preserve deliberate keyboard browsing when an overflowing contents list itself has visible focus and headings load or resize. Continue centering focused links and resume active-heading tracking after focus leaves. Add Chromium/WebKit container/anchor/resize regressions with normal and reduced motion.
