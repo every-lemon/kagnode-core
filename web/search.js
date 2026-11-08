@@ -107,6 +107,7 @@
       url.searchParams.set("q", term);
       const response = await fetch(url.pathname + url.search, {
         headers: { Accept: "application/json" },
+        redirect: "error",
         signal: request.signal,
       });
       if (
