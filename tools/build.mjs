@@ -53,6 +53,7 @@ entrypoints.script = compile(
     JSON.stringify(icons) +
     ";\n" +
     [
+      "loading.js",
       "core.js",
       "scroll.js",
       "toc.js",
@@ -73,7 +74,9 @@ entrypoints.style = compile(
     "\n" +
     read("core.css") +
     "\n" +
-    read("search.css"),
+    read("search.css") +
+    "\n" +
+    read("loading.css"),
   "css",
 );
 const mark = fs.readFileSync(path.join(root, "assets/mark.svg"));

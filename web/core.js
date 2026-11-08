@@ -421,6 +421,7 @@
     $("a,button", menu)?.focus({ preventScroll: true });
   }
   function normalize() {
+    window.KagNodeLoading?.enhance();
     if (!sidebar || !sidebar.isConnected) {
       scrim?.remove();
       document.querySelector(".kn-core-mobile-toggle")?.remove();
@@ -723,14 +724,10 @@
         el = element("div", "kn-core-loading");
         el.id = "kn-core-loading";
         el.role = "status";
-        const image = element("img");
-        image.src = config.mark || (config.base || "") + "mark.svg";
-        image.alt = "KagNode.";
+        el.setAttribute("aria-live", "polite");
         el.append(
-          element("div", "kn-core-loading-strip"),
-          image,
+          window.KagNodeLoading.spinner(),
           element("span", "kn-core-loading-label"),
-          element("span", "kn-core-loading-dots", "•••"),
         );
         document.body.append(el);
       }

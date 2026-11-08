@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.4
+
+- Add the shared KagNode split-orbit spinner: a stationary canonical mark with an orbiting separated accent, reduced-motion and forced-color support. Adopt existing application loading screens without replacing their status or recovery controls.
+
 ## 1.1.3
 
 - Keep background update error recording inside the operation lock. Busy manual updates no longer trigger unlocked state writes or false failure status. Installing the manager helper still requires administrator review; automatic patches only activate UI assets.

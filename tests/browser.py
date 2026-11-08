@@ -234,7 +234,41 @@ try:
                 page.evaluate('KagNodeCore.loading.show("Opening example…")')
                 page.wait_for_timeout(50)
                 assert page.locator(".kn-core-rail:visible").count() == 0
+                assert page.locator("#kn-core-loading .kn-core-spinner").count() == 1
+                assert (
+                    page.locator("#kn-core-loading .kn-core-loading-label").inner_text()
+                    == "Opening example…"
+                )
+                assert (
+                    page.locator(".kn-core-spinner-rotor").evaluate(
+                        "e=>getComputedStyle(e).animationName"
+                    )
+                    == "kn-core-orbit"
+                )
+                page.emulate_media(reduced_motion="reduce")
+                assert (
+                    page.locator(".kn-core-spinner-rotor").evaluate(
+                        "e=>getComputedStyle(e).animationName"
+                    )
+                    == "none"
+                )
+                page.emulate_media(reduced_motion="no-preference")
                 page.evaluate("KagNodeCore.loading.hide()")
+                page.evaluate(
+                    """()=>{const host=document.createElement('div');host.id='loading';host.className='loading';host.hidden=true;host.innerHTML='<img class="loading-logo"><div class="loading-strip"></div><span id="loading-label">Opening vault…</span><button id="retry-test">Try again</button>';document.body.append(host);KagNodeCore.refresh();KagNodeCore.refresh()}"""
+                )
+                assert page.locator("#loading > .kn-core-spinner").count() == 1
+                assert (
+                    page.locator("#loading #loading-label").inner_text()
+                    == "Opening vault…"
+                )
+                assert page.locator("#retry-test").inner_text() == "Try again"
+                page.evaluate(
+                    "document.querySelector('#loading').replaceChildren(Object.assign(document.createElement('span'),{textContent:'Retrying…'}));KagNodeCore.refresh()"
+                )
+                assert page.locator("#loading > .kn-core-spinner").count() == 1
+                assert "Retrying…" in page.locator("#loading").inner_text()
+                page.evaluate("document.querySelector('#loading').remove()")
                 assert page.locator("body").evaluate("(e)=>e.scrollWidth<=innerWidth+1")
                 page.evaluate("KagNodeCore.setSession({authenticated:false})")
                 assert page.locator("html").get_attribute("data-theme") == scheme
