@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- Keep modal input focus when closing mobile navigation and suspend sidebar hover previews behind dialogs.
+
 ## 1.0.3
 
 - Restore progressive plan loading after retiring the old bootstrap and ignore hidden targets in contents tracking; track nested scroll containers.

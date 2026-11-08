@@ -45,7 +45,13 @@
     hoverTimer;
   function preview(open) {
     clearTimeout(hoverTimer);
-    if (!sidebar || mobile() || !desktopCollapsed) open = false;
+    if (
+      !sidebar ||
+      mobile() ||
+      !desktopCollapsed ||
+      document.querySelector("dialog[open]")
+    )
+      open = false;
     previewExpanded = !!open;
     root.dataset.corePreview = String(previewExpanded);
     root.dataset.coreCollapsed = String(
@@ -178,7 +184,7 @@
     );
     window.KagNodeScroll?.refresh();
   }
-  function drawer(open) {
+  function drawer(open, restore = true) {
     root.dataset.coreDrawer = String(open);
     scrim.hidden = !open;
     sidebar.inert = mobile() && !open;
@@ -188,7 +194,7 @@
     if (open) {
       lastFocus = document.activeElement;
       $("a,button,summary", sidebar)?.focus();
-    } else lastFocus?.focus?.({ preventScroll: true });
+    } else if (restore) lastFocus?.focus?.({ preventScroll: true });
     requestAnimationFrame(() => window.KagNodeScroll?.refresh());
   }
   function installSidebar() {
@@ -428,7 +434,9 @@
       root.dataset.coreDrawer === "true" &&
       document.querySelector("dialog[open]")
     )
-      drawer(false);
+      drawer(false, false);
+    if (previewExpanded && document.querySelector("dialog[open]"))
+      preview(false);
     if (sidebar?.closest("[hidden]") && root.dataset.coreDrawer === "true")
       drawer(false);
     all(

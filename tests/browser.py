@@ -60,6 +60,24 @@ try:
                 page.wait_for_timeout(150)
                 assert page.locator("html").evaluate("e=>e.classList.contains('js')")
                 assert page.locator("[data-core-sidebar]").count() == 1
+                if width < 1024:
+                    page.evaluate("KagNodeCore.navigation.open()")
+                page.evaluate("""()=>{
+                  const d=document.createElement('dialog');d.id='modal-focus-test';
+                  d.innerHTML='<input aria-label="Modal input">';document.body.append(d);
+                  d.showModal();d.querySelector('input').focus();
+                }""")
+                page.wait_for_function(
+                    "()=>document.documentElement.dataset.coreDrawer!=='true'"
+                )
+                assert page.locator("#modal-focus-test input").evaluate(
+                    "e=>e===document.activeElement"
+                )
+                assert page.locator("html").get_attribute("data-core-drawer") != "true"
+                page.evaluate(
+                    "()=>{const d=document.getElementById('modal-focus-test');d.close();d.remove()}"
+                )
+
                 assert page.locator(".brand img").evaluate(
                     "e=>e.complete&&e.naturalWidth>0"
                 )
