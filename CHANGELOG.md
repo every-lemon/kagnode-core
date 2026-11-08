@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.10
+
+- Preserve native date/date-time interval, precision and range validity in custom fields, including dynamic step changes. Invalid interval values block form submission; valid seconds remain accepted.
+- Add Chromium/WebKit date-constraint and submission regressions across phone, tablet and desktop layouts.
+
 ## 1.1.9
 
 - Preserve an enabled calendar keyboard stop at minimum/maximum date boundaries. Arrow navigation skips disabled dates without changing the selected value; Enter remains the explicit selection action.
