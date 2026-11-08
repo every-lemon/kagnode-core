@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5
+
+- Backport the shared split-orbit loading spinner, reduced-motion/forced-color support and adoption of existing loading surfaces. Preserve compatible 1.0.x update policies; this release does not add the 1.1 search API or update server helpers.
+
 ## 1.0.4
 
 - Keep modal input focus when closing mobile navigation and suspend sidebar hover previews behind dialogs.
