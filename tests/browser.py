@@ -16,6 +16,15 @@ HTML = HTML.replace(
 )
 
 
+def assert_sidebar_width(page, expected):
+    page.wait_for_function(
+        "width=>Math.abs(document.querySelector('#sidebar').getBoundingClientRect().width-width)<0.5",
+        arg=expected,
+        timeout=2000,
+    )
+    assert round(page.locator("#sidebar").bounding_box()["width"]) == expected
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *_):
         pass
@@ -114,38 +123,32 @@ try:
                     "e=>e.complete&&e.naturalWidth>0"
                 )
                 if width == 1100:
-                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    assert_sidebar_width(page, 57)
                     page.wait_for_function(
                         "Math.abs(document.querySelector('.workspace').getBoundingClientRect().x-57)<1"
                     )
                     before = page.locator(".workspace").bounding_box()["x"]
                     page.locator("#sidebar").hover()
                     page.wait_for_timeout(450)
-                    assert (
-                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
-                    )
+                    assert_sidebar_width(page, 260)
                     assert (
                         abs(page.locator(".workspace").bounding_box()["x"] - before) < 1
                     )
                     page.mouse.move(800, 80)
                     page.wait_for_timeout(500)
-                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    assert_sidebar_width(page, 57)
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                 if width >= 1024:
-                    assert (
-                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
-                    )
+                    assert_sidebar_width(page, 260)
                     for _ in range(10):
                         page.locator("[data-core-toggle]").click()
                         page.wait_for_timeout(35)
                     page.wait_for_timeout(300)
-                    assert (
-                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
-                    )
+                    assert_sidebar_width(page, 260)
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
-                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    assert_sidebar_width(page, 57)
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                     for _ in range(5):
