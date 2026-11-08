@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Preserve JSON and plain-text responses containing HTML-like text in the Node adapter. Server adapter updates remain reviewed separately from automatic UI patches.
+
 ## 1.1.0
 
 - Add shared quick search with authorized host results, cancellable requests, keyboard navigation and responsive modal layout.
