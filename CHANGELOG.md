@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- Require an explicit application declaration or baseline when creating bindings; remove the silent 1.0.x default.
+- Add root-reviewed CLI baseline adoption with signed current/target caches, conflict checks, source verification and recoverable UI rollback. Preserve paused update policies and newer compatible patches. Ordinary web update operations remain patch-only.
+- Cache an unchanged current UI on manual apply without losing its prior rollback pointer. Report rollback status accurately. Manager installation requires explicit review; automatic UI patches cannot install these helpers or change existing baseline lines.
+
 ## 1.1.5
 
 - Return structured validation errors for non-object JSON sent to the private manager socket, retaining a working status interface after malformed requests.
