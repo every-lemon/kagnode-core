@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.3
+
+- Keep sidebar group accessibility states synchronized when collapsing the sidebar cancels submenu animation. Repeated collapse/expand cycles retain closed, unfocusable children and announce groups correctly in Chromium and WebKit, with normal and reduced motion.
+
 ## 1.2.2
 
 - Invalidate quick-search selection and full-search destinations immediately when typing a new query, before debounce. Keep IME Escape inside composition and bind each request deadline to its own abort controller. Add Chromium/WebKit regressions for stale navigation, composition, request cancellation and late responses.
