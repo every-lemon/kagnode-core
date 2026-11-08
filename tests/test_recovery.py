@@ -184,6 +184,24 @@ class RecoveryTests(unittest.TestCase):
             self.manager.status("example")["operation"]["phase"], "interrupted"
         )
 
+    def test_adoption_requires_committed_declaration_even_if_ui_is_already_cached(self):
+        process, candidate, blob = self.child("activated")
+        self.kill(process)
+        m.atomic(
+            self.manager.app("example") / "operation.json",
+            {
+                "phase": "downloading",
+                "action": "adopt",
+                "version": "1.0.1",
+                "declaration_sha256": "b" * 64,
+            },
+        )
+        before = self.manager.state("example")
+        with patch.object(m, "verify_signature"):
+            result = self.manager.status("example")
+        self.assertEqual(result["operation"]["phase"], "interrupted")
+        self.assertEqual(self.manager.state("example"), before)
+
     def test_unprivileged_status_does_not_repair_root_owned_journal(self):
         m.atomic(
             self.manager.app("example") / "operation.json",
