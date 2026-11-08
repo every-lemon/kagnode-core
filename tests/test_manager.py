@@ -99,6 +99,37 @@ class ManagerTests(unittest.TestCase):
         self.assertFalse(self.manager.rollback("example")["automatic"])
         self.assertEqual(self.manager.state("example")["version"], "1.0.0")
 
+    def test_background_check_respects_an_active_manual_operation(self):
+        before = self.manager.state("example")
+        with self.manager.lock():
+            self.manager.cycle()
+            self.assertEqual(self.manager.state("example"), before)
+
+    def test_background_failure_is_recorded_under_the_operation_lock(self):
+        original = m.atomic
+
+        def guarded_atomic(path, value):
+            with self.assertRaisesRegex(ValueError, "Another Core operation"):
+                with self.manager.lock():
+                    pass
+            original(path, value)
+
+        with (
+            patch.object(self.manager, "check", side_effect=ValueError("Offline")),
+            patch.object(m, "atomic", side_effect=guarded_atomic),
+        ):
+            self.manager.cycle()
+        self.assertEqual(self.manager.state("example")["last_error"], "Offline")
+
+    def test_background_failure_does_not_overwrite_a_new_manual_operation(self):
+        before = self.manager.state("example")
+        with (
+            patch.object(self.manager, "check", side_effect=ValueError("Offline")),
+            patch.object(self.manager, "lock", side_effect=m.OperationBusy("Busy")),
+        ):
+            self.manager.cycle()
+        self.assertEqual(self.manager.state("example"), before)
+
     def test_stale_review_and_unsafe_archive_leave_current_untouched(self):
         candidate, blob = self.candidate(unsafe=True)
         with (

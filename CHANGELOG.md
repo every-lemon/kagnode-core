@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3
+
+- Keep background update error recording inside the operation lock. Busy manual updates no longer trigger unlocked state writes or false failure status. Installing the manager helper still requires administrator review; automatic patches only activate UI assets.
+
 ## 1.1.2
 
 - Start Up-arrow navigation at the last quick-search result when no result is selected. Server helper behavior is unchanged.
