@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.6
+
+- Backport quick-search intent, IME Escape and request deadline fixes with Chromium/WebKit regressions. This compatible UI patch preserves existing 1.1.x baseline ranges and does not replace the separately installed server manager.
+
 ## 1.1.5
 
 - Return structured validation errors for non-object JSON sent to the private manager socket, retaining a working status interface after malformed requests.
