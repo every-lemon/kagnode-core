@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Recover abandoned update journals using the operation lock, offline signed-cache verification and ownership-marked scratch cleanup. Preserve activation, policies, live operations and unrelated files. Reviewed manager installation is required; UI patches cannot replace server helpers.
+
 ## 1.2.0
 
 - Require an explicit application declaration or baseline when creating bindings; remove the silent 1.0.x default.
