@@ -12,6 +12,11 @@ s.loader.exec_module(core)
 HTML = """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0" data-authenticated="true"><aside id="sidebar" class="sidebar"><a class="brand" href="/"><img src="/kagnode-core/1.0.0/mark.svg"><span class="brand-copy"><strong>KagNode.</strong><small>Example</small></span></a><nav class="sidebar-nav"><a href="/" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Overview</span></a><details class="nav-group" data-group="products"><summary><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Products</span></summary><div class="submenu"><a href="#section">A long section title that should wrap rather than change the width</a></div></details></nav></aside><div class="workspace"><header style="display:flex;justify-content:flex-end;height:60px;align-items:center;padding:12px"><button data-account-menu><span class="avatar">C</span><span class="header-account-name">Example Person</span></button><div id="account-menu" class="account-menu hidden" hidden inert><div class="account-identity"><strong>Example Person</strong></div><a href="/settings">Manage account</a><button>Sign out</button></div></header><main style="padding:24px"><h1>Shared components</h1><label for="choice">Choose</label><select id="choice"><option>First</option><option>Second</option></select><label for="number">Number</label><input id="number" type="number" min="1" max="9" value="2"><label for="date">Date</label><input id="date" type="date"><div id="nested" aria-label="Nested example" style="height:140px;overflow:auto"><div style="height:800px">Nested content</div></div><div style="height:1500px"></div><section id="section">Destination</section></main></div></body></html>"""
 
 HTML = HTML.replace(
+    "</body>",
+    '<div hidden data-core-search-source data-endpoint="/api/v1/search"><a href="/settings" data-description="Your preferences">Account settings</a></div></body>',
+)
+
+HTML = HTML.replace(
     "/kagnode-core/1.0.0/", "/kagnode-core/" + core.BUNDLE["version"] + "/"
 )
 
@@ -21,6 +26,31 @@ class Handler(BaseHTTPRequestHandler):
         pass
 
     def do_GET(self):
+        if self.path.startswith("/api/v1/search"):
+            from urllib.parse import urlsplit, parse_qs
+
+            term = parse_qs(urlsplit(self.path).query).get("q", [""])[0]
+            data = json.dumps(
+                {
+                    "results": []
+                    if term == "empty"
+                    else [
+                        {
+                            "id": "plan:one",
+                            "title": "A long matching plan " + term * 20,
+                            "description": "Useful details " * 20,
+                            "type": "Plan",
+                            "url": "/#section",
+                        }
+                    ],
+                    "moreUrl": "/search?q=" + term,
+                }
+            ).encode()
+            self.send_response(503 if term == "failure" else 200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(data)
+            return
         result = core.asset(self.path)
         data, mime = (
             result
@@ -60,6 +90,28 @@ try:
                 page.wait_for_timeout(150)
                 assert page.locator("html").evaluate("e=>e.classList.contains('js')")
                 assert page.locator("[data-core-sidebar]").count() == 1
+                page.keyboard.press("Control+k")
+                field = page.locator(".kn-core-search-input")
+                field.wait_for(state="visible")
+                field.fill("planning")
+                page.locator(".kn-core-search-row").first.wait_for()
+                page.wait_for_function(
+                    '()=>!document.querySelector(".kn-core-search-input").hasAttribute("aria-busy")'
+                )
+                assert page.locator(".kn-core-search").evaluate(
+                    "e=>e.scrollWidth<=e.clientWidth+1"
+                )
+                page.keyboard.press("ArrowDown")
+                assert field.get_attribute("aria-activedescendant")
+                field.fill("failure")
+                page.locator(".kn-core-search-footer button").wait_for(state="visible")
+                field.fill("empty")
+                page.get_by_text(
+                    "No matching results. Try another phrase.", exact=True
+                ).wait_for()
+                page.keyboard.press("Escape")
+                page.locator(".kn-core-search").wait_for(state="hidden")
+
                 if width < 1024:
                     page.evaluate("KagNodeCore.navigation.open()")
                 page.evaluate("""()=>{

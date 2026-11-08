@@ -59,6 +59,7 @@ entrypoints.script = compile(
       "controls.js",
       "appearance.js",
       "updates.js",
+      "search.js",
     ]
       .map(read)
       .join("\n"),
@@ -66,7 +67,13 @@ entrypoints.script = compile(
 );
 entrypoints.style = compile(
   "core",
-  read("controls.css") + "\n" + read("dashboard.css") + "\n" + read("core.css"),
+  read("controls.css") +
+    "\n" +
+    read("dashboard.css") +
+    "\n" +
+    read("core.css") +
+    "\n" +
+    read("search.css"),
   "css",
 );
 const mark = fs.readFileSync(path.join(root, "assets/mark.svg"));
