@@ -578,6 +578,8 @@ def serve(manager, stop=None):
                     ):
                         raise ValueError("Invalid Core manager request")
                     data = json.loads(self.rfile.read(length))
+                    if not isinstance(data, dict):
+                        raise ValueError("Core manager requests must be JSON objects")
                     action = data.get("action")
                     if action == "status":
                         result = manager.status(name)

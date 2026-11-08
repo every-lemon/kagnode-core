@@ -54,6 +54,7 @@ def vendor(name, directory, package):
     )
     bundle = json.loads((ROOT / "dist/bundle.json").read_text())
     value["baseline"] = bundle["version"]
+    value["adapter"] = bundle["version"]
     value["patch_range"] = ".".join(bundle["version"].split(".")[:2]) + ".x"
     value["fallback_manifest_sha256"] = hashlib.sha256(
         (ROOT / "dist/bundle.json").read_bytes()

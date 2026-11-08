@@ -2,6 +2,11 @@ import base64
 import hashlib
 import importlib.util
 import io
+import http.client
+import os
+import socket
+import threading
+import time
 import json
 from pathlib import Path
 import subprocess
@@ -226,6 +231,70 @@ class ManagerTests(unittest.TestCase):
                 self.assertEqual(m.fetch(url), b"{}")
                 request = opener.return_value.open.call_args.args[0]
                 self.assertEqual(request.get_header("Accept"), accept)
+
+    def test_socket_requests_reject_non_object_json_without_dropping_connection(self):
+        state = self.manager.state("example")
+        m.atomic(
+            self.manager.app("example") / "state.json",
+            {**state, "uid": os.getuid(), "gid": os.getgid()},
+        )
+        stop = threading.Event()
+        address = self.manager.root / "run/example.sock"
+        errors = []
+
+        def run():
+            try:
+                m.serve(self.manager, stop)
+            except Exception as error:
+                errors.append(error)
+
+        class Connection(http.client.HTTPConnection):
+            def connect(connection):
+                connection.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+                connection.sock.settimeout(3)
+                connection.sock.connect(str(address))
+
+        with patch.object(m.os, "chown"), patch.object(self.manager, "cycle"):
+            thread = threading.Thread(target=run)
+            thread.start()
+            try:
+                deadline = time.monotonic() + 3
+                while not address.exists() and time.monotonic() < deadline:
+                    time.sleep(0.01)
+                self.assertTrue(address.exists(), errors)
+                for body in [
+                    [],
+                    ["status"],
+                    "status",
+                    None,
+                    7,
+                    True,
+                    {"action": "status"},
+                ]:
+                    connection = Connection("localhost", timeout=3)
+                    try:
+                        connection.request(
+                            "POST",
+                            "/",
+                            json.dumps(body),
+                            {"Content-Type": "application/json"},
+                        )
+                        response = connection.getresponse()
+                        result = json.loads(response.read())
+                        self.assertEqual(
+                            response.status, 200 if isinstance(body, dict) else 400
+                        )
+                        if isinstance(body, dict):
+                            self.assertEqual(result["version"], state["version"])
+                        else:
+                            self.assertIn("error", result)
+                    finally:
+                        connection.close()
+            finally:
+                stop.set()
+                thread.join(timeout=5)
+            self.assertFalse(thread.is_alive())
+            self.assertEqual(errors, [])
 
     def test_unknown_hosts_and_state_symlinks_rejected(self):
         for url in [
