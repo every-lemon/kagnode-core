@@ -105,7 +105,7 @@ try:
                 page.keyboard.press("Control+k")
                 field = page.locator(".kn-core-search-input")
                 field.wait_for(state="visible")
-                field.fill("planning")
+                field.fill("Account")
                 page.locator(".kn-core-search-row").first.wait_for()
                 page.wait_for_function(
                     '()=>!document.querySelector(".kn-core-search-input").hasAttribute("aria-busy")'
@@ -113,6 +113,10 @@ try:
                 assert page.locator(".kn-core-search").evaluate(
                     "e=>e.scrollWidth<=e.clientWidth+1"
                 )
+                page.keyboard.press("ArrowUp")
+                assert field.get_attribute("aria-activedescendant") == page.locator(
+                    ".kn-core-search-row"
+                ).last.get_attribute("id")
                 page.keyboard.press("ArrowDown")
                 assert field.get_attribute("aria-activedescendant")
                 field.fill("failure")
