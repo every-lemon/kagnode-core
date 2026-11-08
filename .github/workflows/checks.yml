@@ -43,3 +43,6 @@ jobs:
       - run: python tests/browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+      - run: python tests/toc_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
