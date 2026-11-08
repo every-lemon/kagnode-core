@@ -15,3 +15,9 @@ Use native semantic inputs; Core enhances selects, date and number inputs while 
 Generate a pinned vendor fallback with `tools/vendor.py --project APP --target PATH --python-package PACKAGE` (omit the last flag for Node/static hosts). The lock and vendored corresponding source must travel with the application. CLI and Logos builds embed Core locally; the downloaded Logos viewer requires no Core network request.
 
 Canonical server partials live in `packages/templates.json`. Node `renderTemplate` and Python `render_template` fill trusted slots with already-escaped, authorized host markup. Escape labels and identity fields before filling slots; these helpers intentionally do not sanitize arbitrary HTML. Keep request-specific permissions in the host. The skeleton and dialog partials are presentation-only.
+
+## Quick search (Core 1.1)
+
+Add one hidden `[data-core-search-source]` element with `data-endpoint` set to a same-origin JSON search endpoint. Child links are the authorized navigation shortcuts; `data-description` supplies supporting text. Existing `[data-command]` buttons and Ctrl/Cmd+K open the shared modal.
+
+The endpoint accepts `q` and returns `{results:[{id,title,description,type,url}],moreUrl}`. Return only content the current user may see and canonical page URLs. The browser rejects external result URLs, cancels stale requests and serves every component asset locally. An application without a search source does not install a search dialog or shortcut handler.

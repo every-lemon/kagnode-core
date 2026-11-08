@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { inject, asset, active } from "../dist/node/kagnode-core.mjs";
 test("Core serves only integrity checked local assets", () => {
   const m = active("example");
-  assert.match(m.version, /^1\.0\.\d+$/);
+  assert.match(m.version, /^1\.[01]\.\d+$/);
   for (const file of Object.keys(m.files))
     assert.ok(asset("/kagnode-core/" + m.version + "/" + file));
   for (const p of [

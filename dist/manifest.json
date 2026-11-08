@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "version": "1.0.4",
+  "version": "1.1.0",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.59858a18c8bbcee2.js",
-    "script": "core.7d02c77e551be8c6.js",
-    "style": "core.7c2423aabcda5b45.css"
+    "script": "core.b600e056512d57fd.js",
+    "style": "core.a4b9acdcc8bc67f3.css"
   },
-  "source_commit": "bd75ed5368056c864b64741dab3320b9b51c70ac",
+  "source_commit": "e7e6135b02d64a54de333a0976587fb3372f5a5a",
   "repository": "every-lemon/kagnode-core",
   "icons": {
     "link": "<path d=\"m10 8 2-2a4.25 4.25 0 0 1 6 6l-2 2m-2 2-2 2a4.25 4.25 0 0 1-6-6l2-2m1 5 6-6\"/>",
@@ -79,13 +79,13 @@
       "sha256": "59858a18c8bbcee204cf71ed2a62a41af316186766f9be5f1500e0702e6a4ecb",
       "size": 1402
     },
-    "core.7d02c77e551be8c6.js": {
-      "sha256": "7d02c77e551be8c66888c9a1bb9959dac02792ae09e696549514b6d3a2e89a00",
-      "size": 59603
+    "core.b600e056512d57fd.js": {
+      "sha256": "b600e056512d57fd1be12fade0664e9be6573dd0f353495fe40fb8c53e157443",
+      "size": 65600
     },
-    "core.7c2423aabcda5b45.css": {
-      "sha256": "7c2423aabcda5b45d81737582a71b8884caa8a7ed6d781516afc1d1dc4d591da",
-      "size": 29544
+    "core.a4b9acdcc8bc67f3.css": {
+      "sha256": "a4b9acdcc8bc67f36706d3e6265a12d8e5a5d0b2915de5d1d1675196815f78e0",
+      "size": 32500
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

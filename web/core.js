@@ -666,7 +666,14 @@
     if (popup && !popup.contains(e.target) && e.target !== accountTrigger)
       closeAccount();
   });
+  let layoutWidth = innerWidth;
   addEventListener("resize", () => {
+    if (innerWidth === layoutWidth) {
+      window.KagNodeScroll?.refresh();
+      return;
+    }
+    layoutWidth = innerWidth;
+    delete root.dataset.coreReady;
     closeAccount();
     if (sidebar) {
       setCollapsed(manualChoice ? desktopCollapsed : compactDefault(), false);
@@ -676,6 +683,8 @@
       root.dataset.coreDrawer = "false";
       scrim.hidden = true;
     }
+    void document.body.offsetWidth;
+    requestAnimationFrame(() => (root.dataset.coreReady = "true"));
     window.KagNodeScroll?.refresh();
   });
   hover.addEventListener("change", () => {
@@ -787,5 +796,7 @@
     theme: root.dataset.accountTheme || undefined,
   });
   normalize();
+  void document.body.offsetWidth;
+  requestAnimationFrame(() => (root.dataset.coreReady = "true"));
   document.dispatchEvent(new Event("kagnode:core-ready"));
 })();
