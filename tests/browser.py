@@ -16,6 +16,15 @@ HTML = HTML.replace(
 )
 
 
+def assert_sidebar_width(page, expected):
+    page.wait_for_function(
+        "width=>Math.abs(document.querySelector('#sidebar').getBoundingClientRect().width-width)<0.5",
+        arg=expected,
+        timeout=2000,
+    )
+    assert round(page.locator("#sidebar").bounding_box()["width"]) == expected
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *_):
         pass
@@ -60,6 +69,38 @@ try:
                 page.wait_for_timeout(150)
                 assert page.locator("html").evaluate("e=>e.classList.contains('js')")
                 assert page.locator("[data-core-sidebar]").count() == 1
+                if width == 1440:
+                    for motion in ["reduce", "no-preference"]:
+                        page.emulate_media(reduced_motion=motion)
+                        for _ in range(3):
+                            page.evaluate("KagNodeCore.navigation.collapse(false)")
+                            page.locator("details summary").click()
+                            page.wait_for_timeout(240)
+                            assert page.locator("details").evaluate("d=>d.open")
+                            assert (
+                                page.locator("details summary").get_attribute(
+                                    "aria-expanded"
+                                )
+                                == "true"
+                            )
+                            page.evaluate("KagNodeCore.navigation.collapse(true)")
+                            assert not page.locator("details").evaluate("d=>d.open")
+                            assert (
+                                page.locator("details summary").get_attribute(
+                                    "aria-expanded"
+                                )
+                                == "false"
+                            )
+                            assert page.locator("details > div").evaluate("e=>e.inert")
+                            page.evaluate("KagNodeCore.navigation.collapse(false)")
+                            assert (
+                                page.locator("details summary").get_attribute(
+                                    "aria-expanded"
+                                )
+                                == "false"
+                            )
+                    page.emulate_media(reduced_motion="no-preference")
+
                 if width < 1024:
                     page.evaluate("KagNodeCore.navigation.open()")
                 page.evaluate("""()=>{
@@ -82,38 +123,32 @@ try:
                     "e=>e.complete&&e.naturalWidth>0"
                 )
                 if width == 1100:
-                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    assert_sidebar_width(page, 57)
                     page.wait_for_function(
                         "Math.abs(document.querySelector('.workspace').getBoundingClientRect().x-57)<1"
                     )
                     before = page.locator(".workspace").bounding_box()["x"]
                     page.locator("#sidebar").hover()
                     page.wait_for_timeout(450)
-                    assert (
-                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
-                    )
+                    assert_sidebar_width(page, 260)
                     assert (
                         abs(page.locator(".workspace").bounding_box()["x"] - before) < 1
                     )
                     page.mouse.move(800, 80)
                     page.wait_for_timeout(500)
-                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    assert_sidebar_width(page, 57)
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                 if width >= 1024:
-                    assert (
-                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
-                    )
+                    assert_sidebar_width(page, 260)
                     for _ in range(10):
                         page.locator("[data-core-toggle]").click()
                         page.wait_for_timeout(35)
                     page.wait_for_timeout(300)
-                    assert (
-                        round(page.locator("#sidebar").bounding_box()["width"]) == 260
-                    )
+                    assert_sidebar_width(page, 260)
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
-                    assert round(page.locator("#sidebar").bounding_box()["width"]) == 57
+                    assert_sidebar_width(page, 57)
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                     for _ in range(5):
@@ -149,8 +184,9 @@ try:
                 assert page.locator("#account-menu").is_hidden()
                 page.locator("#nested").hover()
                 page.mouse.wheel(0, 400)
-                page.wait_for_timeout(100)
-                assert page.locator("#nested").evaluate("(e)=>e.scrollTop") > 0
+                page.wait_for_function(
+                    "document.querySelector('#nested').scrollTop>0", timeout=2000
+                )
                 page.evaluate(
                     "()=>{window.__changes=0;document.querySelector('#choice').addEventListener('change',()=>window.__changes++);document.querySelector('#choice').selectedIndex=1;KagNodeControls.sync();}"
                 )

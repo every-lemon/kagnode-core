@@ -173,6 +173,7 @@
         groups.get(d)?.motion?.cancel();
         groups.delete(d);
         d.open = false;
+        $("summary", d)?.setAttribute("aria-expanded", "false");
         if (d.children[1]) {
           d.children[1].style.removeProperty("height");
           d.children[1].style.removeProperty("overflow");
