@@ -90,6 +90,18 @@ try:
                 page.wait_for_timeout(150)
                 assert page.locator("html").evaluate("e=>e.classList.contains('js')")
                 assert page.locator("[data-core-sidebar]").count() == 1
+                if width >= 1024:
+                    page.wait_for_function(
+                        '()=>document.documentElement.dataset.coreReady==="true"'
+                    )
+                    page.set_viewport_size({"width": width, "height": 1200})
+                    page.wait_for_timeout(80)
+                    expected = 57 if width < 1360 else 260
+                    assert (
+                        page.locator(".workspace").bounding_box()["x"] >= expected - 1
+                    )
+                    page.set_viewport_size({"width": width, "height": 900})
+
                 page.keyboard.press("Control+k")
                 field = page.locator(".kn-core-search-input")
                 field.wait_for(state="visible")

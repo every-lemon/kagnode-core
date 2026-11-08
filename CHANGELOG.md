@@ -3,6 +3,7 @@
 ## 1.1.0
 
 - Add shared quick search with authorized host results, cancellable requests, keyboard navigation and responsive modal layout.
+- Avoid initial content slides beneath navigation and ignore height-only sidebar state resets.
 - Retain the 1.0.4 modal focus repairs. Applications explicitly review this minor baseline upgrade.
 
 ## 1.0.4
