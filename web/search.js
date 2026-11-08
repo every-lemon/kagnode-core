@@ -247,7 +247,12 @@
       }
     });
     dialog.addEventListener("keydown", (e) => {
-      if (e.isComposing || e.keyCode === 229) return;
+      if (e.isComposing || e.keyCode === 229) {
+        // WebKit can still run the dialog's native Escape dismissal even
+        // when our close handler returns during composition.
+        if (e.key === "Escape") e.preventDefault();
+        return;
+      }
       if (e.key === "Escape") {
         e.preventDefault();
         e.stopPropagation();
