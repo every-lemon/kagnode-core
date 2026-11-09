@@ -8,6 +8,7 @@ import fcntl
 import hashlib
 import http.server
 import json
+import logging
 import os
 from pathlib import Path, PurePosixPath
 import pwd
@@ -870,6 +871,9 @@ class Manager:
                 except OperationBusy:
                     # A new operation started after the failed check. Leave its
                     # state untouched and retry at the next scheduled cycle.
+                    continue
+                except (OSError, ValueError):
+                    logging.warning("Core update error could not be recorded safely")
                     continue
 
 

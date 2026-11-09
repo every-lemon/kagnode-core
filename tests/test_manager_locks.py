@@ -195,6 +195,32 @@ class ManagerLockTests(unittest.TestCase):
                 self.assertEqual(self.metadata(path), before)
                 self.assertEqual(path.read_bytes(), b"Held control\n")
 
+    def test_cycle_lock_fault_keeps_state_and_can_retry_after_explicit_repair(self):
+        app = self.manager.app("example")
+        app.mkdir()
+        state = app / "state.json"
+        m.atomic(state, {"fixture": "Keep unchanged"})
+        original = state.read_bytes(), self.metadata(state)
+        lock = self.target("operation")
+        os.mkfifo(lock, 0o600)
+        lock_before = self.metadata(lock)
+        with self.assertLogs(level="WARNING"):
+            self.manager.cycle()
+        self.assertEqual((state.read_bytes(), self.metadata(state)), original)
+        self.assertEqual(self.metadata(lock), lock_before)
+        # Explicit fixture-owner repair, never an automatic manager replacement.
+        lock.unlink()
+        lock.write_bytes(b"Repaired fixture control")
+        lock.chmod(0o600)
+        with self.manager.lock():
+            pass
+        with patch.object(
+            self.manager, "check", return_value={"automatic": False}
+        ) as check:
+            self.manager.cycle()
+        check.assert_called_once_with("example")
+        self.assertEqual((state.read_bytes(), self.metadata(state)), original)
+
     def test_startup_failure_releases_daemon_lock_with_retained_traceback(self):
         stop = threading.Event()
         stop.set()
