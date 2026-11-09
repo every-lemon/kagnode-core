@@ -29,3 +29,11 @@ This root-only CLI operation verifies the current and exact target stable UI rel
 `rollback APP` restores the prior verified UI and pauses automatic updates. It does not undo application code or data migrations. The reviewed new baseline remains recorded; resuming automatic updates may return to that reviewed line. To roll back application code as well, restore its reviewed deployment and explicitly adopt its matching lock declaration. Older signed bundles remain cached for open pages and subsequent recovery.
 
 Core 1.2.0's server manager must be installed through reviewed deployment or an updated CLI. Publishing a Core UI release cannot install this helper automatically. Existing application bindings and their patch lines are unchanged until an explicit adoption.
+
+## Backend manager lock preview (1.2.8)
+
+This preview requires explicit local-administrator review and installation, separate from compatible automatic UI patches. It does not run backend hooks, migrate application data or qualify native services. GitHub prerelease selection keeps it outside automatic stable UI activation.
+
+The operation and daemon locks use nonblocking, no-follow descriptors and validate regular type, single link, current ownership and absence of group/other write permissions. The descriptor is validated again after opening. New controls are created with mode 0600. Safe existing regular controls, including legacy 0644 files, keep their bytes, inode and permissions. Unsafe controls are rejected rather than replaced, truncated, chmodded or repaired. A lock file belongs in protected manager storage; this is recovery robustness, not a claim that an unprivileged remote user can alter that storage.
+
+A failed daemon startup closes its lock even while an exception traceback remains referenced. An unrecordable lock/state error is logged without writing state or terminating the scheduler, allowing a later retry after explicit repair. Existing exclusive contention stays busy; no lock is bypassed or broken. Do not remove an active lock to force an update. Tests use bounded disposable subprocesses for FIFOs and preserve existing targets, with no running manager or application changes.

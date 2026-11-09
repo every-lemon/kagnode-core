@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.8 — backend-manager preview
+
+- Reject FIFO, linked, nonregular, foreign-owned and writable lock controls without blocking or modifying their targets. New regular controls use mode 0600; safe existing controls retain their contents, inode and mode.
+- Close daemon lock descriptors on startup failure as well as shutdown, retaining real contention behavior. Keep the scheduler alive when an unsafe control prevents recording an update error.
+- Publish for explicit backend review; browser assets and automatic stable UI patch policy are unchanged.
+
 ## 1.2.7
 
 - Keep a newly reopened quick search active when the previous native close event arrives late. Its debounce/request and focus remain current; normal dismissal still cancels pending work and restores focus.

@@ -8,6 +8,7 @@ import fcntl
 import hashlib
 import http.server
 import json
+import logging
 import os
 from pathlib import Path, PurePosixPath
 import pwd
@@ -34,6 +35,43 @@ LIMIT = 64 * 1024 * 1024
 
 class OperationBusy(ValueError):
     """A manual or background Core mutation already holds the operation lock."""
+
+
+@contextlib.contextmanager
+def _lock_descriptor(path):
+    """Open a stable regular control without waiting on a corrupted FIFO."""
+
+    def validate(info):
+        if (
+            not stat.S_ISREG(info.st_mode)
+            or info.st_nlink != 1
+            or info.st_uid != os.geteuid()
+            or info.st_mode & 0o022
+        ):
+            raise ValueError("Unsafe Core lock")
+
+    try:
+        before = path.lstat()
+    except FileNotFoundError:
+        before = None
+    if before is not None:
+        validate(before)
+    descriptor = os.open(
+        path,
+        os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW | os.O_NONBLOCK | os.O_CLOEXEC,
+        0o600,
+    )
+    try:
+        current = os.fstat(descriptor)
+        validate(current)
+        if before is not None and (before.st_dev, before.st_ino) != (
+            current.st_dev,
+            current.st_ino,
+        ):
+            raise ValueError("Core lock changed while opening")
+        yield descriptor
+    finally:
+        os.close(descriptor)
 
 
 def version(value):
@@ -275,12 +313,9 @@ class Manager:
     @contextlib.contextmanager
     def lock(self):
         self.ensure()
-        target = self.root / ".operation.lock"
-        if target.is_symlink():
-            raise ValueError("Unsafe Core lock")
-        with target.open("a") as stream:
+        with _lock_descriptor(self.root / ".operation.lock") as descriptor:
             try:
-                fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
             except BlockingIOError:
                 raise OperationBusy("Another Core operation is running")
             yield
@@ -837,16 +872,20 @@ class Manager:
                     # A new operation started after the failed check. Leave its
                     # state untouched and retry at the next scheduled cycle.
                     continue
+                except (OSError, ValueError):
+                    logging.warning("Core update error could not be recorded safely")
+                    continue
 
 
 def serve(manager, stop=None):
     manager.ensure()
     stop = stop or threading.Event()
-    lock_path = manager.root / ".daemon.lock"
-    if lock_path.is_symlink():
-        raise ValueError("Unsafe Core daemon lock")
-    stream = lock_path.open("a")
-    fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    with _lock_descriptor(manager.root / ".daemon.lock") as descriptor:
+        fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        _serve_locked(manager, stop)
+
+
+def _serve_locked(manager, stop):
     manager.recover_pending()
     servers = []
 
@@ -956,7 +995,6 @@ def serve(manager, stop=None):
             address.unlink(missing_ok=True)
         if "thread" in locals():
             thread.join(timeout=180)
-        stream.close()
 
 
 def main():
