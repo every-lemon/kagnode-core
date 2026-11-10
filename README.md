@@ -8,6 +8,8 @@ Core provides the common interface for KagNode websites and independently hosted
 
 ## Release status
 
+**1.3.0 is a shared-login UI preview**, distributed as a prerelease for explicit application review. It adds the opt-in [login frame](docs/LOGIN.md), scoped scroll refresh and account-menu fixes. Existing compatible stable channels and backend installation policies remain unchanged.
+
 **1.2.8 is a backend-manager preview**, distributed as a GitHub prerelease for explicit local-administrator review. It repairs unsafe lock-file handling without changing browser components. Compatible stable UI channels remain separate; automatic UI patching does not install this preview or upgrade backend helpers.
 
 The initial 1.0 interface contract supports compatible stable UI patches. Application integrations are previews until their own checks and rollout are complete. Core release status does not qualify VPN networking, Mail delivery, Media codecs, HTTP Boot images or Bitwarden compatibility.

@@ -55,6 +55,7 @@ entrypoints.script = compile(
     [
       "loading.js",
       "core.js",
+      "login.js",
       "scroll.js",
       "toc.js",
       "controls.js",
@@ -68,7 +69,9 @@ entrypoints.script = compile(
 );
 entrypoints.style = compile(
   "core",
-  read("controls.css") +
+  read("login.css") +
+    "\n" +
+    read("controls.css") +
     "\n" +
     read("dashboard.css") +
     "\n" +

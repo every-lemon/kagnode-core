@@ -127,7 +127,7 @@ html[data-kn-core] [data-core-account-menu] :is(a, button) {
   text-align: left;
   text-decoration: none;
   font: inherit;
-  border-radius: 6px !important;
+  border-radius: var(--kn-radius-control) !important;
 }
 html[data-kn-core] [data-core-account-menu] :is(a, button):hover {
   background: var(--kn-panel);
