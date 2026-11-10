@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 (preview)
+
+- Add an opt-in server-rendered login frame and shared provider CTA/status presentation and optional host-adapted approval/cancel controller, preserving authorized local forms and routes.
+- Batch scroll discovery and scope sidebar refresh to its changed subtree.
+- Refresh generated account identity email, skip hidden menu actions during keyboard navigation and close account popovers for modal dialogs.
+- Keep account action controls at the shared 8px radius.
+
 ## 1.2.8 — backend-manager preview
 
 - Reject FIFO, linked, nonregular, foreign-owned and writable lock controls without blocking or modifying their targets. New regular controls use mode 0600; safe existing controls retain their contents, inode and mode.
