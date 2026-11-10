@@ -30,12 +30,13 @@ Node.js 24 for Node hosts/builds; Python 3.10+ for Python adapters. Flask is opt
 
 ## Installation and downloads
 
-| Package                                       | Platform       | Purpose                                                             |
-| --------------------------------------------- | -------------- | ------------------------------------------------------------------- |
-| `kagnode-core-V-node.tgz`                     | Node.js 24     | npm-compatible local adapter and pinned fallback                    |
-| `kagnode_core-V-py3-none-any.whl`             | Python 3.10+   | Python adapter, manager and pinned fallback                         |
-| `kagnode-core-V-ui.tar.gz`, `.tar.xz`, `.zip` | Browser assets | Versioned assets; only the signed tar.gz is installed automatically |
-| `kagnode-core-V-source.*`                     | Any            | Editable source, tests, licenses and documentation                  |
+| Package                                                   | Platform          | Purpose                                                             |
+| --------------------------------------------------------- | ----------------- | ------------------------------------------------------------------- |
+| `kagnode-core-V-node.tgz`                                 | Node.js 24        | npm-compatible local adapter and pinned fallback                    |
+| `kagnode_core-V-py3-none-any.whl`                         | Python 3.10+      | Python adapter, manager and pinned fallback                         |
+| `kagnode-core-V-ui.tar.gz`, `.tar.xz`, `.zip`             | Browser assets    | Versioned assets; only the signed tar.gz is installed automatically |
+| `kagnode-core-V-source.*`                                 | Any               | Editable source, tests, licenses and documentation                  |
+| `kagnode-core-V-icons.tgz`, `-icons.tar.gz`, `-icons.zip` | Optional UI icons | Typed glyph modules, individual SVGs and standalone local gallery   |
 
 Use [releases](https://github.com/every-lemon/kagnode-core/releases). Verify `SHA256SUMS`; the manager additionally verifies the detached Ed25519 signature on `core-manifest.json`. Never substitute a third-party repository or an unverified manifest.
 

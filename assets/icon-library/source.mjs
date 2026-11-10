@@ -318,7 +318,11 @@ const groups = {
       p("M12 19H3V5h18v7M3 6l9 7 9-7") + badge.clock,
       "scheduled deferred",
     ],
-    ["mail-warning", envelope + p("M12 14v2m0 1h.01"), "delivery failed alert"],
+    [
+      "mail-warning",
+      p("M12 19H3V5h18v7M3 6l9 7 9-7") + p("m18 13 5 9H13ZM18 16v2m0 2h.01"),
+      "delivery failed alert",
+    ],
     [
       "inbox-tray",
       p("m3 13 3-9h12l3 9v8H3Zm0 0h5l2 3h4l2-3h5"),
