@@ -18,7 +18,7 @@ jobs:
           python-version: "3.12"
       - run: npm ci
       - run: pip install flask==3.1.2 ruff==0.14.4
-      - run: npm run build && npm test && npm run check && npm run format:check
+      - run: npm run build && npm test && npm run check && node tools/icon-cost.mjs && npm run format:check
       - run: python3 tools/package.py --output /tmp/core-first && python3 tools/package.py --output /tmp/core-second && diff -r /tmp/core-first /tmp/core-second
   browser:
     name: Browser checks (${{ matrix.engine }})
@@ -59,5 +59,8 @@ jobs:
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
       - run: python tests/login_performance_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+      - run: python tests/icons_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}

@@ -8,6 +8,8 @@ Core provides the common interface for KagNode websites and independently hosted
 
 ## Release status
 
+**1.4.0 is an optional icon-library preview**, with [320 original UI icons](docs/ICONS.md), typed individual/category imports, local SVG downloads and a searchable gallery. It adds no bytes to the default UI script. The separate icon package requires explicit application integration.
+
 The **1.3 UI line** adds the opt-in [login frame](docs/LOGIN.md), scoped scroll refresh and viewport-safe account menus. Application adoption requires explicit review; prereleases are excluded from automatic updates. After adoption, automatic stable UI patches remain limited to the configured minor line. Backend installation policies remain separate.
 
 **1.2.8 is a backend-manager preview**, distributed as a GitHub prerelease for explicit local-administrator review. It repairs unsafe lock-file handling without changing browser components. Compatible stable UI channels remain separate; automatic UI patching does not install this preview or upgrade backend helpers.
@@ -28,12 +30,13 @@ Node.js 24 for Node hosts/builds; Python 3.10+ for Python adapters. Flask is opt
 
 ## Installation and downloads
 
-| Package                                       | Platform       | Purpose                                                             |
-| --------------------------------------------- | -------------- | ------------------------------------------------------------------- |
-| `kagnode-core-V-node.tgz`                     | Node.js 24     | npm-compatible local adapter and pinned fallback                    |
-| `kagnode_core-V-py3-none-any.whl`             | Python 3.10+   | Python adapter, manager and pinned fallback                         |
-| `kagnode-core-V-ui.tar.gz`, `.tar.xz`, `.zip` | Browser assets | Versioned assets; only the signed tar.gz is installed automatically |
-| `kagnode-core-V-source.*`                     | Any            | Editable source, tests, licenses and documentation                  |
+| Package                                                   | Platform          | Purpose                                                             |
+| --------------------------------------------------------- | ----------------- | ------------------------------------------------------------------- |
+| `kagnode-core-V-node.tgz`                                 | Node.js 24        | npm-compatible local adapter and pinned fallback                    |
+| `kagnode_core-V-py3-none-any.whl`                         | Python 3.10+      | Python adapter, manager and pinned fallback                         |
+| `kagnode-core-V-ui.tar.gz`, `.tar.xz`, `.zip`             | Browser assets    | Versioned assets; only the signed tar.gz is installed automatically |
+| `kagnode-core-V-source.*`                                 | Any               | Editable source, tests, licenses and documentation                  |
+| `kagnode-core-V-icons.tgz`, `-icons.tar.gz`, `-icons.zip` | Optional UI icons | Typed glyph modules, individual SVGs and standalone local gallery   |
 
 Use [releases](https://github.com/every-lemon/kagnode-core/releases). Verify `SHA256SUMS`; the manager additionally verifies the detached Ed25519 signature on `core-manifest.json`. Never substitute a third-party repository or an unverified manifest.
 
@@ -64,6 +67,7 @@ Build release archives with `python3 tools/package.py`. Signing is a separate tr
 - [Appearance connection protocol](docs/APPEARANCE.md)
 - [Update operations and rollback](docs/OPERATIONS.md)
 - [Artwork provenance](assets/provenance.json)
+- [Original UI icons and gallery](docs/ICONS.md)
 - [Component example](examples/server.mjs)
 - [Changelog](CHANGELOG.md)
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0 — optional icon library preview
+
+- Add 320 original outline UI icons in 16 searchable categories, each with a stable ID, title, tags and locally downloadable SVG.
+- Ship a separate optional icon package with typed single-glyph imports, tree-shakable category exports and accessible decorative/titled rendering. Default UI assets and embedded adapter payloads do not load the expanded library.
+- Include a responsive local gallery comparing 16/20/24 pixels, closed-grammar SVG validation, safety/geometry tests and Chromium/WebKit keyboard/mobile checks. Preserve KagNode Logos attribution separately.
+
 ## 1.3.1
 
 - Keep account popovers inside the viewport when an application places its trigger near either edge. Size the shared component independently of host box-sizing rules.

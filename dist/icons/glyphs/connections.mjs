@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"connections","title":"Connections","category":"network","tags":Object.freeze(["peers","topology"]),"body":"<circle cx=\"12\" cy=\"4\" r=\"2\"/><circle cx=\"4\" cy=\"18\" r=\"2\"/><circle cx=\"20\" cy=\"18\" r=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M12 6v4m-2 3-5 3m9-3 5 3\"/>","viewBox":"0 0 24 24"});

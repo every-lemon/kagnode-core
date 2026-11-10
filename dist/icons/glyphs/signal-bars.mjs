@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"signal-bars","title":"Signal Bars","category":"network","tags":Object.freeze(["cellular","reception"]),"body":"<rect x=\"3\" y=\"16\" width=\"3\" height=\"6\" rx=\"0\"/><rect x=\"8\" y=\"12\" width=\"3\" height=\"10\" rx=\"0\"/><rect x=\"13\" y=\"7\" width=\"3\" height=\"15\" rx=\"0\"/><rect x=\"18\" y=\"2\" width=\"3\" height=\"20\" rx=\"0\"/>","viewBox":"0 0 24 24"});

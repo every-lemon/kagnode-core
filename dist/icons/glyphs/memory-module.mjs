@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"memory-module","title":"Memory Module","category":"devices","tags":Object.freeze(["ram","dimm"]),"body":"<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><rect x=\"5\" y=\"8\" width=\"5\" height=\"7\" rx=\"0\"/><rect x=\"14\" y=\"8\" width=\"5\" height=\"7\" rx=\"0\"/><path d=\"M5 19v3m4-3v3m6-3v3m4-3v3\"/>","viewBox":"0 0 24 24"});

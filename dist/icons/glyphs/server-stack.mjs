@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"server-stack","title":"Server Stack","category":"cloud","tags":Object.freeze(["rack","cluster"]),"body":"<rect x=\"3\" y=\"2\" width=\"18\" height=\"6\" rx=\"1\"/><rect x=\"3\" y=\"9\" width=\"18\" height=\"6\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"18\" height=\"6\" rx=\"1\"/><path d=\"M6 5h.01M6 12h.01M6 19h.01m4-14h8m-8 7h8m-8 7h8\"/>","viewBox":"0 0 24 24"});

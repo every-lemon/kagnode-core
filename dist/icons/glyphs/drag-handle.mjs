@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"drag-handle","title":"Drag Handle","category":"actions","tags":Object.freeze(["grip","move","reorder"]),"body":"<circle cx=\"8\" cy=\"5\" r=\"1\"/><circle cx=\"16\" cy=\"5\" r=\"1\"/><circle cx=\"8\" cy=\"12\" r=\"1\"/><circle cx=\"16\" cy=\"12\" r=\"1\"/><circle cx=\"8\" cy=\"19\" r=\"1\"/><circle cx=\"16\" cy=\"19\" r=\"1\"/>","viewBox":"0 0 24 24"});

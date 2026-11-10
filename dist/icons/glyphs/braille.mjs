@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"braille","title":"Braille","category":"accessibility","tags":Object.freeze(["tactile","reading"]),"body":"<circle cx=\"5\" cy=\"5\" r=\"1\"/><circle cx=\"5\" cy=\"12\" r=\"1\"/><circle cx=\"5\" cy=\"19\" r=\"1\"/><circle cx=\"11\" cy=\"5\" r=\"1\"/><circle cx=\"11\" cy=\"19\" r=\"1\"/><circle cx=\"18\" cy=\"5\" r=\"1\"/><circle cx=\"18\" cy=\"12\" r=\"1\"/>","viewBox":"0 0 24 24"});

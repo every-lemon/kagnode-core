@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"palette","title":"Palette","category":"layout","tags":Object.freeze(["colors","theme"]),"body":"<path d=\"M12 2a10 10 0 1 0 0 20h2a3 3 0 0 0 0-6h-1a2 2 0 0 1 0-4h4a5 5 0 0 0 5-5c0-3-5-5-10-5Z\"/><circle cx=\"6\" cy=\"11\" r=\"0.8\"/><circle cx=\"8\" cy=\"6\" r=\"0.8\"/><circle cx=\"14\" cy=\"6\" r=\"0.8\"/>","viewBox":"0 0 24 24"});

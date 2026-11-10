@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"pipeline","title":"Pipeline","category":"developer","tags":Object.freeze(["workflow","automation","ci"]),"body":"<rect x=\"1\" y=\"9\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"9\" y=\"2\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"17\" y=\"9\" width=\"6\" height=\"6\" rx=\"1\"/><path d=\"M7 12h5V8m0 0v4h5M12 12v9\"/>","viewBox":"0 0 24 24"});
