@@ -181,7 +181,18 @@
       if (!el.isConnected || !active()) remove(el, state);
     if (active()) {
       mount(root);
-      const nodes = [container, ...(container.querySelectorAll?.("*") || [])];
+      const ancestors = [];
+      for (
+        let parent = container.parentElement;
+        parent;
+        parent = parent.parentElement
+      )
+        ancestors.push(parent);
+      const nodes = [
+        container,
+        ...ancestors,
+        ...(container.querySelectorAll?.("*") || []),
+      ];
       for (const el of nodes)
         if (
           !el.closest?.(".kn-core-rail") &&

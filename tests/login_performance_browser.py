@@ -193,6 +193,17 @@ try:
                 )
                 page.locator(".kn-core-nav-group summary").click()
                 assert page.locator(".kn-core-nav-group").get_attribute("open") is None
+            page.evaluate("""() => {
+              const region=document.createElement('div');region.id='dynamic-scroll';region.style='height:80px;overflow:auto';
+              region.innerHTML='<div id="dynamic-child"></div>';document.querySelector('main').prepend(region);
+            }""")
+            page.wait_for_function("document.querySelector('#dynamic-child')!==null")
+            page.evaluate(
+                "document.querySelector('#dynamic-child').innerHTML='<div style=height:1000px>Added content</div>'"
+            )
+            page.wait_for_function(
+                "document.querySelector('.kn-core-rail[aria-controls=dynamic-scroll]')!==null"
+            )
             trigger = page.locator("[data-core-account-trigger]")
             trigger.click()
             assert (
