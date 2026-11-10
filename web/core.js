@@ -418,9 +418,11 @@
     button.setAttribute("aria-controls", menu.id);
     button.setAttribute("aria-expanded", "true");
     const box = button.getBoundingClientRect();
+    const maximumRight = Math.max(12, innerWidth - menu.offsetWidth - 12);
     Object.assign(menu.style, {
       top: Math.min(innerHeight - 100, box.bottom + 8) + "px",
-      right: Math.max(12, innerWidth - box.right) + "px",
+      right:
+        Math.min(maximumRight, Math.max(12, innerWidth - box.right)) + "px",
     });
     if (!reduce.matches)
       menu.animate(
@@ -684,6 +686,9 @@
     if (popup && !popup.contains(e.target) && e.target !== accountTrigger)
       closeAccount();
   });
+  // Pointer events inside embedded documents do not reach this document.
+  // Dismiss without taking focus back from the frame or another window.
+  addEventListener("blur", () => closeAccount());
   let layoutWidth = innerWidth;
   addEventListener("resize", () => {
     if (innerWidth === layoutWidth) {

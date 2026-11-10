@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1
+
+- Keep account popovers inside the viewport when an application places its trigger near either edge. Size the shared component independently of host box-sizing rules.
+- Dismiss the account menu when focus moves into an embedded document without stealing focus back from it.
+- Add Chromium/WebKit regressions for left/right trigger placement, outside-click and iframe dismissal across phone, tablet and desktop widths.
+
 ## 1.3.0 (preview)
 
 - Add an opt-in server-rendered login frame and shared provider CTA/status presentation and optional host-adapted approval/cancel controller, preserving authorized local forms and routes.

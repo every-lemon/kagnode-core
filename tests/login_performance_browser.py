@@ -238,6 +238,33 @@ try:
                 page.locator(".kn-core-account-identity small").inner_text()
                 == "after@example.test"
             )
+            page.keyboard.press("Escape")
+            for edge in ["left", "right"]:
+                trigger.evaluate(
+                    "(node,edge)=>{node.style.position='fixed';node.style.top='80px';node.style.zIndex='13000';node.style.left=edge==='left'?'12px':'auto';node.style.right=edge==='right'?'12px':'auto'}",
+                    edge,
+                )
+                trigger.click()
+                box = page.locator("#kn-core-account-menu").bounding_box()
+                assert box["x"] >= 11, (width, edge, box)
+                assert box["x"] + box["width"] <= width - 11, (width, edge, box)
+                page.mouse.click(width // 2, 880)
+                page.wait_for_function(
+                    'document.querySelector("#kn-core-account-menu").hidden'
+                )
+            trigger.evaluate("node=>node.removeAttribute('style')")
+            trigger.click()
+            page.evaluate(
+                """() => {const frame=document.createElement('iframe');frame.id='outside-frame';frame.title='Outside interaction fixture';frame.srcdoc='<button>Outside frame</button>';frame.style='position:fixed;left:12px;bottom:12px;width:160px;height:60px;z-index:14000';document.body.append(frame)}"""
+            )
+            page.frame_locator("#outside-frame").get_by_role(
+                "button", name="Outside frame"
+            ).click()
+            page.wait_for_function(
+                'document.querySelector("#kn-core-account-menu").hidden'
+            )
+            assert page.evaluate("document.activeElement.tagName==='IFRAME'")
+            trigger.click()
             page.evaluate('document.querySelector("dialog").showModal()')
             page.wait_for_function(
                 'document.querySelector("#kn-core-account-menu").hidden'
