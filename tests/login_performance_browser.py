@@ -153,6 +153,20 @@ try:
             )
             page.locator("[data-core-login-provider]").click()
             page.wait_for_function("window.loginCompleted===true")
+            assert page.locator("[data-core-login-provider]").is_disabled()
+            page.evaluate(
+                "KagNodeLogin.reset(document.querySelector('[data-core-login-provider]'))"
+            )
+            assert page.locator("[data-core-login-provider]").is_enabled()
+            page.evaluate(
+                "KagNodeLoginHost.request=async(action,data)=>{loginCalls.push({action,data});return {pending:true,attempt_id:'expiry-fixture',user_code:'ABCD',verification_uri:'https://issuer.example.test/approve',expires_in:1,interval:1}}"
+            )
+            page.locator("[data-core-login-provider]").click()
+            page.wait_for_function(
+                "loginCalls.some(x=>x.action==='cancel'&&x.data.attempt_id==='expiry-fixture')"
+            )
+            assert "expired" in page.locator("[data-core-login-status]").inner_text()
+            assert page.locator("[data-core-login-provider]").is_enabled()
             page.goto(origin + "/login-local")
             assert page.locator("[data-core-login-provider]").count() == 0
             assert page.locator("form").is_visible()

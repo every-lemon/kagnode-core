@@ -15,9 +15,19 @@
   function status(state, message) {
     state.status.replaceChildren(document.createTextNode(message));
   }
+  function cancelAttempt(state) {
+    if (!state?.attempt || state.cancelled) return;
+    state.cancelled = true;
+    try {
+      Promise.resolve(
+        state.host.request("cancel", { attempt_id: state.attempt }),
+      ).catch(() => {});
+    } catch {}
+  }
   function terminal(state, message) {
     if (current !== state) return;
     generation++;
+    cancelAttempt(state);
     status(state, message);
     clear();
   }
@@ -93,15 +103,11 @@
       cancel.textContent = "Cancel connection";
       cancel.addEventListener("click", () => {
         if (current !== state) return;
-        const attempt = state.attempt;
         terminal(
           state,
           "Connection cancelled. You can try again or sign in locally.",
         );
         state.button.focus({ preventScroll: true });
-        Promise.resolve()
-          .then(() => state.host.request("cancel", { attempt_id: attempt }))
-          .catch(() => {});
       });
       state.status.append(
         code,
@@ -174,11 +180,34 @@
         button.disabled =
           completed.has(button) || host.state?.()?.enabled === false;
   }
-  window.KagNodeLogin = { refresh };
+  function reset(container = document) {
+    const buttons = [
+      ...(container.matches?.("button[data-core-login-provider]")
+        ? [container]
+        : []),
+      ...(container.querySelectorAll?.("button[data-core-login-provider]") ||
+        []),
+    ];
+    if (current && buttons.includes(current.button)) {
+      generation++;
+      cancelAttempt(current);
+      clear();
+    }
+    for (const button of buttons) {
+      completed.delete(button);
+      button
+        .closest("[data-core-login]")
+        ?.querySelector("[data-core-login-status]")
+        ?.replaceChildren();
+    }
+    refresh();
+  }
+  window.KagNodeLogin = { refresh, reset };
   document.addEventListener("kagnode:login-ready", refresh);
   refresh();
   addEventListener("pagehide", () => {
     generation++;
+    cancelAttempt(current);
     clear();
   });
 })();
