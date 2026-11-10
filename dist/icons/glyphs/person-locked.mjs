@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"person-locked","title":"Person Locked","category":"accounts","tags":Object.freeze(["private","protected"]),"body":"<circle cx=\"10\" cy=\"7\" r=\"3\"/><path d=\"M3 20v-2a7 7 0 0 1 14 0v2\"/><rect x=\"15\" y=\"16\" width=\"7\" height=\"6\" rx=\"1\"/><path d=\"M17 16v-2a1.5 1.5 0 0 1 3 0v2\"/>","viewBox":"0 0 24 24"});

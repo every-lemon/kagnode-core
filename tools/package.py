@@ -70,6 +70,19 @@ def build(destination, signing_key=None):
         (destination / (prefix + "-ui." + kind)).write_bytes(
             archive(files, prefix, kind, epoch)
         )
+    # Optional icon assets are deliberately outside the automatic UI manifest.
+    icon_files = {
+        str(p.relative_to(ROOT / "dist/icons")): p.read_bytes()
+        for p in (ROOT / "dist/icons").rglob("*")
+        if p.is_file() and not p.is_symlink()
+    }
+    for kind in ["tar.gz", "zip"]:
+        (destination / (prefix + "-icons." + kind)).write_bytes(
+            archive(icon_files, prefix + "-icons", kind, epoch)
+        )
+    (destination / (prefix + "-icons.tgz")).write_bytes(
+        archive(icon_files, "package", "tar.gz", epoch)
+    )
     primary = destination / (prefix + "-ui.tar.gz")
     manifest["archive"] = {
         "name": primary.name,

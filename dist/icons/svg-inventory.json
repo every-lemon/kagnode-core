@@ -1,0 +1,1282 @@
+{
+  "accessibility-person.svg": {
+    "size": 363,
+    "sha256": "fd673fcc03e1de4dc96ba3ae0e5938f96958164a4b24180d7e2e04e3e6278c32"
+  },
+  "account-switch.svg": {
+    "size": 384,
+    "sha256": "e43042c62770813d30bf6e2c6b340021953a7348a84bf768b9dc82938f6f0222"
+  },
+  "add.svg": {
+    "size": 282,
+    "sha256": "585a0c759ccb07ee2f619cc4822338eec45ae79a3401acc85f2bdba81a48910b"
+  },
+  "alarm-clock.svg": {
+    "size": 360,
+    "sha256": "2d9f63b6f3394de54b894b2b1ca8508469b261602ce3ff5d8caf19a0e044442c"
+  },
+  "align-center.svg": {
+    "size": 314,
+    "sha256": "b8029d6348ea8b467bcfbc4249fdd8af35c9482fa0b0bc6d9c272d6924c5a03a"
+  },
+  "align-left.svg": {
+    "size": 316,
+    "sha256": "d6cf4d60ce51134098d169ade35f3feb7b4ca0ac6f9f69db5586c8e6a92d1d66"
+  },
+  "align-right.svg": {
+    "size": 319,
+    "sha256": "38a98dddcf3cf7ca2b0091b6bfbb4cb372e7de02c174a3707ebbde84f7a82a36"
+  },
+  "announcement.svg": {
+    "size": 327,
+    "sha256": "be88d0bd67c4b53ce0a207b18704226c0c766d3d22abd0fea4a93eff080105de"
+  },
+  "anonymous.svg": {
+    "size": 387,
+    "sha256": "03a4d22dd1f64a2719af2a543d8c6ece37b63e45782841d0f6a4b4a628546920"
+  },
+  "antenna.svg": {
+    "size": 399,
+    "sha256": "38964281f1fc2a4b91d476bb02763342f9405daf573f3bbfbc93b393183fc815"
+  },
+  "api.svg": {
+    "size": 397,
+    "sha256": "81e4bb4ddeabe16206dd0acee297d0d0a74bee77de7b845c28ab31d6a16a25b3"
+  },
+  "archive-box.svg": {
+    "size": 349,
+    "sha256": "1c8a47782de3aa22e914e884927d69b271a41a0978c9783acafcb0eb2680a858"
+  },
+  "arrow-down.svg": {
+    "size": 301,
+    "sha256": "f217c55750b38f8b8d7f089b3b729d49d83de1eadbf73d1c1bc1cfa1be6b3255"
+  },
+  "arrow-left.svg": {
+    "size": 300,
+    "sha256": "4ce0978246ec7632319c78b12cd113ea48f40ad11612fd71201820bf4bb2f2bd"
+  },
+  "arrow-right.svg": {
+    "size": 303,
+    "sha256": "a3af7f51491714d98ad2e0d4a67572be0eac2b4bd4ba3f1413a97183a583e4d4"
+  },
+  "arrow-up.svg": {
+    "size": 297,
+    "sha256": "5d3e99f495e95e42ce2f574124f2d6f5d10b800796d155f940027ffdf95df446"
+  },
+  "attachment.svg": {
+    "size": 347,
+    "sha256": "bdcdcb668e2880eed444ba5112ac7576c57077e2dcc32672003e5f4664600dd7"
+  },
+  "audit-log.svg": {
+    "size": 366,
+    "sha256": "c63238f9f8c3c71106e7350ebcc1b288da3f7866d45e918b4fa2b783296dd135"
+  },
+  "ban.svg": {
+    "size": 308,
+    "sha256": "bf634ca7abe145a6c756bd9c7312da417a32ea9a1566b943b4b6ce535f802fe8"
+  },
+  "bank.svg": {
+    "size": 324,
+    "sha256": "29b9da256b7537de6ab0748186523b68e60eb6c71517db059cb7e6a8ddab23f7"
+  },
+  "basket.svg": {
+    "size": 319,
+    "sha256": "60222e394a2efb1772124c46ab5a0bf365e22e5aa6dd6a1767670b141581a4ba"
+  },
+  "battery-charging.svg": {
+    "size": 354,
+    "sha256": "fd90aff3add536b3d9efffecf8407b0e4ed1fb1c105d0b93a337e03f837f971b"
+  },
+  "battery-full.svg": {
+    "size": 370,
+    "sha256": "0fe756aaf689089588cd5c3bcefcfc369b2dd64a74a6f911075d15e42451b28a"
+  },
+  "battery-low.svg": {
+    "size": 350,
+    "sha256": "30740a2410c87bc5f29487c7e37da811dfc898c025d1e897275fbfc3bd87ffae"
+  },
+  "bidirectional.svg": {
+    "size": 326,
+    "sha256": "35453e8124f4ae19aada491f0f9dfadf772d019bad169873d6c2bccb6feddc59"
+  },
+  "binary.svg": {
+    "size": 327,
+    "sha256": "7fd9c93fb83f8340dda6d37cdf1c94c2a73284ae9b3b5ce2dc352f73f4ec871c"
+  },
+  "bluetooth.svg": {
+    "size": 303,
+    "sha256": "d0988afbeeb5846a5933de0c02d4fb55970115c9fa8cca94a6e46927f1b5ffe8"
+  },
+  "booking.svg": {
+    "size": 384,
+    "sha256": "8b5ed1d33b7507721269ce3174b7d2452901c890e6371c06e498a6363bacd400"
+  },
+  "bookmark.svg": {
+    "size": 296,
+    "sha256": "949c24641aaad5e6939957882f4a5fd770c8061b1a97447567f47b6a9debef5b"
+  },
+  "box-open.svg": {
+    "size": 336,
+    "sha256": "4e8226e1a5280e99c485112b306c4f1af8516a861d22e0da90df894de8ca4446"
+  },
+  "braces.svg": {
+    "size": 315,
+    "sha256": "853eb34aa20476bcc30ba14640c9869e51a1d053ed11e1c1dd1524adabf6c515"
+  },
+  "braille.svg": {
+    "size": 473,
+    "sha256": "9741454b9e59df675b1ea6c36a1bbd00d72a7b223a13936f88eb50ce832d926d"
+  },
+  "breakpoint.svg": {
+    "size": 329,
+    "sha256": "f6d234d14b042605f07404898242d878263d706e1b8dc77f6d5be5b7939f96bd"
+  },
+  "briefcase.svg": {
+    "size": 359,
+    "sha256": "83ff9ea416ab54f6a792fe34de40f581d53c1c969b1cc50572eac2c3e1155230"
+  },
+  "broadcast.svg": {
+    "size": 366,
+    "sha256": "b2c33a696b49eb96bd89eb1f435afac54bb50cee477e855d14d1a67bc1725daf"
+  },
+  "bug.svg": {
+    "size": 383,
+    "sha256": "b2c53b0112a71960d1e831efd4245c3c06ff513fe485be4dda61818c3203ff1f"
+  },
+  "building.svg": {
+    "size": 387,
+    "sha256": "d82b28c7b990ca8282b45fc8b51c236c367f876b57a1ccc687d1297def5b1939"
+  },
+  "calendar-add.svg": {
+    "size": 347,
+    "sha256": "265d10779f37eaadc6a35ec2877bc1c65fa793871feee9c302cd32d113d25779"
+  },
+  "calendar-check.svg": {
+    "size": 350,
+    "sha256": "c87cc07dc6b17acd3e60a9661152544450f2d4ecace660f4dc8640fd9841bd69"
+  },
+  "calendar-clock.svg": {
+    "size": 379,
+    "sha256": "404dcbc18c24c8c2ad2aa5007b4e513e07ce2abb98b0189b887471e7c3c10843"
+  },
+  "calendar-day.svg": {
+    "size": 402,
+    "sha256": "454c4cd1e6e66b6abc8431909972f3bc49bc63d383634a11c7c0f6dacccd5f4a"
+  },
+  "calendar-grid.svg": {
+    "size": 418,
+    "sha256": "1fb8eb0731feecc066c4c5ed043a1da129d6fa55d63a15f0285bd2e3aac35c88"
+  },
+  "calendar-range.svg": {
+    "size": 385,
+    "sha256": "a6135615fcd5bb66c8c0bef1ee848b5c1e73644574d950ec602200b4791c5e6c"
+  },
+  "calendar-remove.svg": {
+    "size": 346,
+    "sha256": "f15a830d68bccb1e8e967ee2c92578e04c5344474c244fc3d21dce1c636d240d"
+  },
+  "calendar-repeat.svg": {
+    "size": 356,
+    "sha256": "995e55da3e110b136bd3c65c62a6af053375653cf1fbb1d85390f825e230887d"
+  },
+  "calendar-week.svg": {
+    "size": 392,
+    "sha256": "a420aad2fe675a74d8c65015d83736d064ca361d57399f68d819cd82bfd69dad"
+  },
+  "camera.svg": {
+    "size": 327,
+    "sha256": "a233529eda7d64e82a948a0fb465900acd01820ac3c323dd87d18fd63b0655f9"
+  },
+  "cancel.svg": {
+    "size": 292,
+    "sha256": "bc2aaeeb164ab33aa8233aa220a267b7870040ef8acb760b9cc3856eb957d9a0"
+  },
+  "captcha.svg": {
+    "size": 356,
+    "sha256": "fc7c48066af41c1a005416a7c0bc01d07e15acd32b710d4b9a2f21d5de9d5099"
+  },
+  "captions.svg": {
+    "size": 347,
+    "sha256": "1c6036581b6a93e78d9039369000e6d5457ffd46002f74dbe90583afecdbf15e"
+  },
+  "cart.svg": {
+    "size": 349,
+    "sha256": "37cbb122d7d868bdb5266ef1419558097c0e582e7b4ca6fe6b3ff20908a5ab06"
+  },
+  "certificate.svg": {
+    "size": 326,
+    "sha256": "dbce4f6c83ea83f0419cd1848b20f428b0d784b6085954642c5d43b18306c825"
+  },
+  "chart-bars.svg": {
+    "size": 323,
+    "sha256": "066da7f23cd32cb89de38e42607099fba35bd5bace1a55a535eb393e6713262c"
+  },
+  "chart-line.svg": {
+    "size": 307,
+    "sha256": "300f7a680217929c295155afd85e84e542b0c88d938f3c648495b7fde91a957d"
+  },
+  "chart-pie.svg": {
+    "size": 365,
+    "sha256": "f2be58a8ce149b0a3313053f035b07a9187bb1fa41a84b2d93e52badecd796d5"
+  },
+  "chat-bubble.svg": {
+    "size": 327,
+    "sha256": "3848c513f1f74629cf651a19e38472a72b2492bd5302f86dc884d6e9a4a410e4"
+  },
+  "chat-typing.svg": {
+    "size": 398,
+    "sha256": "aac632cc58b852fffc3cdc9dc9caa9a394d85641f268e91c428d11c5b008762a"
+  },
+  "chevron-down.svg": {
+    "size": 296,
+    "sha256": "63417824881d339bee50c99101b6eb7d1faac62d9d7e4538b9b8f4d6739ca3c0"
+  },
+  "chevron-left.svg": {
+    "size": 297,
+    "sha256": "093cb83d213e4dac70334b4f832a3bfe84c6efdf42c87c847d6f345e4c5a8261"
+  },
+  "chevron-right.svg": {
+    "size": 298,
+    "sha256": "cfa32d64bf55f387902f6a1e1d1eac02593ba1933d9e306fb9f4a2c2aff0be7c"
+  },
+  "chevron-up.svg": {
+    "size": 293,
+    "sha256": "9d4a0a9018b057532b2e566e176e845760ba5697cb1a545f1eb049a45c4fe159"
+  },
+  "clock-face.svg": {
+    "size": 323,
+    "sha256": "6291ca40758df038f202bc02acbbbfb4eb8c58988e6e34c882c56c7b38c311d2"
+  },
+  "cloud-check.svg": {
+    "size": 357,
+    "sha256": "447d180f03137e7c54791de5dd93d757ee3998094085dc76b9c01032ed69b16d"
+  },
+  "cloud-download.svg": {
+    "size": 364,
+    "sha256": "17ac02e2e0f888207057365ae30b364413890cc58707c003a73e7f60fa01a5f2"
+  },
+  "cloud-off.svg": {
+    "size": 342,
+    "sha256": "02ce32bbd72db294f0d1e9ae0359d9c9df1cf54cef350fac9c6dad5ef1c5be68"
+  },
+  "cloud-queue.svg": {
+    "size": 410,
+    "sha256": "9d981bf70300ae451bafd0b49bc26937fb7ec795d610aafd6f18d36b8f805078"
+  },
+  "cloud-settings.svg": {
+    "size": 365,
+    "sha256": "7dcc602394858cb45f018c3b44b5519dfbada6513471e0a4dd51b82f901887c7"
+  },
+  "cloud-upload.svg": {
+    "size": 360,
+    "sha256": "86d3c732685f477c8abf9e75d1947cc18a5c9d69ef20fc6c3aa147b9eb3d7ec5"
+  },
+  "cloud.svg": {
+    "size": 320,
+    "sha256": "efeaa9b82e080357ae0e9a96633e67ea9e30f57dcabb93867d33164b60b5d053"
+  },
+  "code-brackets.svg": {
+    "size": 322,
+    "sha256": "87e19f149845c114708d86de8aa3af2ff3be4c2bfd4e9396cd49fe73d58de1fc"
+  },
+  "coins.svg": {
+    "size": 423,
+    "sha256": "10751703664a5602d3f227837883e833280855e004b6eb7b71ed872a59981a83"
+  },
+  "collapse.svg": {
+    "size": 313,
+    "sha256": "5c3009bac28b95ec9645269a32c0585313a947167e678b3585dcc5f7d9d1c95e"
+  },
+  "columns.svg": {
+    "size": 338,
+    "sha256": "26ea410e69bc3b0f495c0383c0c8afc8989e5421a466476d7fb966ff9c374fae"
+  },
+  "compass.svg": {
+    "size": 323,
+    "sha256": "6481c902f89fbe1c4a4cda7a2453e22967044045d93443c7a8097e795e8b58a6"
+  },
+  "compose.svg": {
+    "size": 317,
+    "sha256": "9b8f8fe52e544efbcd966a6ac43365964cf41e81a6e4865b5f828ba9b399d332"
+  },
+  "confirm.svg": {
+    "size": 288,
+    "sha256": "623463daffd5d102a9ce06947f057f551c1d3382945a8036e52c67a4b4e84bac"
+  },
+  "connections.svg": {
+    "size": 428,
+    "sha256": "379192f58ee5ba2e8f514c6ef050ea34945f1c0d84c058702e556f7e6a6c7e41"
+  },
+  "contact-card.svg": {
+    "size": 395,
+    "sha256": "29b9e471cd008c9903ff18e85c4b41d4bce15785a03b02701ff424718fead7e7"
+  },
+  "container.svg": {
+    "size": 333,
+    "sha256": "bcdbee25efa25acfced6c087d0d7f140a288de53b69499b43173777409b13bbf"
+  },
+  "contrast.svg": {
+    "size": 344,
+    "sha256": "275e9144f7d7277265827bac1195746c4dca5d0199fda4f485d2d39e4c00ff5f"
+  },
+  "conversation.svg": {
+    "size": 315,
+    "sha256": "c3e15b20fdc748242763580580e4245e16f1a96598c28f03c0e9b1426af7f4e5"
+  },
+  "copy.svg": {
+    "size": 331,
+    "sha256": "e6cfadefe12f2d8f008efe420ebae555c322fa31406d3a631e0547af989fa182"
+  },
+  "credit-card.svg": {
+    "size": 351,
+    "sha256": "5f1b7da77a1836c4da530c6a7470699f86dcc47d5ac6dadf40172d6ed8f29d06"
+  },
+  "crop.svg": {
+    "size": 297,
+    "sha256": "b70718520962fc247cd54502cb38f2d531db1b2b1e531b3cda10554e60e39399"
+  },
+  "crown.svg": {
+    "size": 306,
+    "sha256": "309c2c21400d129de91516d8974c94ea2958554a7766d53c447515a6825f2d51"
+  },
+  "cut.svg": {
+    "size": 345,
+    "sha256": "d1bee9e1b9eab4dab77c0ed5fdf4db5124bccf54c6777cb3a9bd7c52ac87aefc"
+  },
+  "dashboard.svg": {
+    "size": 460,
+    "sha256": "bc0ed51fb46c1b21c5a3fb7e0860dd74499a90fd248463012d02f691ea1281d9"
+  },
+  "database-backup.svg": {
+    "size": 425,
+    "sha256": "599041a6770b44c410ca468d9899f3f1e2fa50ea0577397c2112bf6d524611a8"
+  },
+  "database.svg": {
+    "size": 357,
+    "sha256": "736fdd4f5e5359cb4d81a498fa41e3c1c66ded3aef9e929fd128d0e957019a80"
+  },
+  "deadline.svg": {
+    "size": 356,
+    "sha256": "daee82ea01c24519e8748c916db731e2703f33773de0a3d4841a7385fd63acb3"
+  },
+  "deploy.svg": {
+    "size": 360,
+    "sha256": "5496c77aff192b791ef9ca739118fe84c31a4cf6c65a4c4ed8f6d6f28baa1e8f"
+  },
+  "desktop.svg": {
+    "size": 337,
+    "sha256": "bf3ea1fc88c5e90a4bed6919df286739881babdd28bb85cad4a45b4a66fcac2e"
+  },
+  "diff.svg": {
+    "size": 338,
+    "sha256": "f4566a8372ce2adeee85d70ead0197a527cad0d98c50b368665e1d0f3fb8041f"
+  },
+  "dns.svg": {
+    "size": 403,
+    "sha256": "ed1fc9a48c36290ae09d1df7dd7f2efe6ad320ada00cf54464e24ced31d89891"
+  },
+  "document-add.svg": {
+    "size": 339,
+    "sha256": "d630292248b89b0bca4e07b7468af3ce956acf776db30ba49fb68f06a65eacce"
+  },
+  "document-audio.svg": {
+    "size": 381,
+    "sha256": "bbcff40c25bce2ed4acf66e244d3d8711fed20114399f5f919bd01ac3bc9b4db"
+  },
+  "document-check.svg": {
+    "size": 342,
+    "sha256": "caa7860946080b8419e6bd7ec200e0aa198bb9310cf55fc672f3708e72752b51"
+  },
+  "document-code.svg": {
+    "size": 348,
+    "sha256": "d542efbce702b9435b60797ad08f2fbcc87e0a092d72d201ad2e471eea438158"
+  },
+  "document-download.svg": {
+    "size": 355,
+    "sha256": "187670bc0bf6f2b923035f1ffc9465dc3c34ea91ed61b33d465e2e2fc3828555"
+  },
+  "document-image.svg": {
+    "size": 376,
+    "sha256": "5a81ac0033110582e2a8c1468dfa5c90c3374da7ea68024754645af9013e0972"
+  },
+  "document-lock.svg": {
+    "size": 404,
+    "sha256": "61311ef1fdd94860a88357bc68f61aaced84f731929afa8da3f42b6fe7dbdb26"
+  },
+  "document-upload.svg": {
+    "size": 352,
+    "sha256": "b09a25eea09cf0c77ba5150ef97da53862cb06da0d68fa11860abd17b23bd341"
+  },
+  "document-zip.svg": {
+    "size": 352,
+    "sha256": "60a60f821d4ef562b4a584bd823dc6b680a4d54d7f7ed0ffca6b26d7cd4570da"
+  },
+  "document.svg": {
+    "size": 327,
+    "sha256": "2ebe8e2dccccd34f1d37446c814a60d45c135d48fd548f7f43300b5f378d2010"
+  },
+  "drag-handle.svg": {
+    "size": 451,
+    "sha256": "fe47740e942925e483e9a08c16d911c14b727cdcb526b8d8e8df9fd0e9ba9d7e"
+  },
+  "edge-node.svg": {
+    "size": 462,
+    "sha256": "8f77db65d30affb414953d17c32a205139e96f0f8690828891824f807fdee079"
+  },
+  "envelope-open.svg": {
+    "size": 335,
+    "sha256": "d3597312d1c101959ec7b165a8acdd38bb5c2755540142d67a09a7fb3d40e91b"
+  },
+  "envelope.svg": {
+    "size": 337,
+    "sha256": "a75010238cd0a5d034c4686be785ebf56d8f38bf7ecf281f6d0c00f5b832b92b"
+  },
+  "erase.svg": {
+    "size": 311,
+    "sha256": "09412599fac6e74a57e7777d7886d89f29537b9fb5634f37287811e8b26b2dfc"
+  },
+  "error-circle.svg": {
+    "size": 333,
+    "sha256": "cf7051088d586e32bf4d88adbc259b9407965b6f059134fc4a3429206f14e0b6"
+  },
+  "ethernet.svg": {
+    "size": 335,
+    "sha256": "16fd178e9d2cef1f1086af320e946efd540c325923297d4669cf32b15f693cea"
+  },
+  "expand.svg": {
+    "size": 306,
+    "sha256": "d4e1fecc1a7659753dbdddf104443deae4a040abf945953f070af59616b27b42"
+  },
+  "eye-off.svg": {
+    "size": 340,
+    "sha256": "b155defb7bbaa1cef3988c0e74137f82983afd195f2892d12af3c881db34e5f3"
+  },
+  "eye.svg": {
+    "size": 325,
+    "sha256": "58a32efba87b5f7c79e9b22afc55d911befd086b868ed957beedf2df81327f0d"
+  },
+  "fast-forward.svg": {
+    "size": 315,
+    "sha256": "db2f006fe762657bf8ebfb40b2d0234a51adfe9f08403187630d7afb79d6d93c"
+  },
+  "film-strip.svg": {
+    "size": 386,
+    "sha256": "5711899be3e296d142798f7fab05ebb4cd34b45a1f0090a265eef06043e04d90"
+  },
+  "filter.svg": {
+    "size": 295,
+    "sha256": "f4af10502ff67df391ff2364d1dda7c2b82edb2f03d48f4fc386ff321739fdb9"
+  },
+  "fingerprint.svg": {
+    "size": 374,
+    "sha256": "ac4d0062f1535c38a576138cced6077d00288ed0b047d26b7d6dc71b620109b4"
+  },
+  "firewall.svg": {
+    "size": 323,
+    "sha256": "169eb0491e600c199e49c6b2b783c18fdd63116b301729ba8c2760b4048d8925"
+  },
+  "flag.svg": {
+    "size": 293,
+    "sha256": "2e6777f12d4e9d3c9ef94181921ebe20487ea666dafb8efb12480552002c873b"
+  },
+  "focus.svg": {
+    "size": 335,
+    "sha256": "c1f9df202bf676cc9f83fbe0ab927cd46266fadd6e552aa4ef8f3e664b320659"
+  },
+  "folder-add.svg": {
+    "size": 325,
+    "sha256": "c000dc2ffa9226c557e5273ebb817da8ddf683fbe8c9ebbe052e9b246d7608bc"
+  },
+  "folder-checked.svg": {
+    "size": 332,
+    "sha256": "c1be1ba9075f7f4fed2ae051d14c307037a1d9124214d326019b58dd4a3abcd6"
+  },
+  "folder-closed.svg": {
+    "size": 306,
+    "sha256": "6dc45d644e53f05b3008755333d742e25a6f8e9dc87b5782f52eb00b1fb3bc2b"
+  },
+  "folder-download.svg": {
+    "size": 341,
+    "sha256": "5a031520e0c5e61ddc84cb265771b9d3f23cf38a292d07d1b093ae85e8996ff6"
+  },
+  "folder-locked.svg": {
+    "size": 394,
+    "sha256": "d8bd763bf73c332d35b6667c58b5ce6c80eef86780d059f6aca10a48af1a0be6"
+  },
+  "folder-open.svg": {
+    "size": 316,
+    "sha256": "0fc19e42b4f8c4e03b461f0f94ce72776ccae654816324c412ffd24c9720e312"
+  },
+  "forward-message.svg": {
+    "size": 319,
+    "sha256": "c6c1031d036325fa144f778f47c5fd36222501bf67db03f4d14364dc62b691e1"
+  },
+  "game-controller.svg": {
+    "size": 370,
+    "sha256": "572dbd92d5e720e8a84988ff9f4001675d12fafb215497b7b98fa9c572180478"
+  },
+  "gift.svg": {
+    "size": 369,
+    "sha256": "79f1d07405ac4b7bd726f8341b1d4ad729724d20e68988d4ba15461a606f4b24"
+  },
+  "git-branch.svg": {
+    "size": 396,
+    "sha256": "246c2786596a605a83d37ed837ad71b6f2ede6b7c6b206c088907b16eca3ac17"
+  },
+  "git-commit.svg": {
+    "size": 324,
+    "sha256": "e33ef173923ccc4063f48d0d4556db2cb7efaddc7d2b70e139f8f04d1061bf9e"
+  },
+  "git-merge.svg": {
+    "size": 397,
+    "sha256": "642d340aeb1829377b63f57a2de0048a377360237b44d923b268b9e3f0b96f16"
+  },
+  "globe.svg": {
+    "size": 366,
+    "sha256": "06449271cdc73b47c33bb96d0b29a0f8ae9a10606b194e04da6ada7a419ccf24"
+  },
+  "graduation.svg": {
+    "size": 329,
+    "sha256": "eb6a82234f80ea3d12db8150dc84dbed43a5c9fe0275b43b474af645a87ce092"
+  },
+  "grid.svg": {
+    "size": 448,
+    "sha256": "026375a3d6abd5b1c8759049535159498b221b6c42cf362b8d4ca883442f1319"
+  },
+  "hammer.svg": {
+    "size": 318,
+    "sha256": "3ff23434a896e40766876acb148584b341c24a730b9ab1265ef5da9ee1e0a944"
+  },
+  "hand.svg": {
+    "size": 368,
+    "sha256": "36e3a772975bcbaaaa37e3efe6d93ef5b2ec96de690e299537bfc7388c4f187e"
+  },
+  "handshake.svg": {
+    "size": 356,
+    "sha256": "cc5f79b3b4595e41b28e4cbf53d30691eafa77595ca9d7f61791415d1700d7f2"
+  },
+  "hard-drive.svg": {
+    "size": 327,
+    "sha256": "aaefcb904018236041deb361d81f50a6a5675b6cc1d60075b10113c94d5e9339"
+  },
+  "headphones.svg": {
+    "size": 402,
+    "sha256": "593540701886808b4515a5e11d2cd638aec7c198990b41293e6c48610a7a2b3d"
+  },
+  "hearing-off.svg": {
+    "size": 368,
+    "sha256": "ba53797f93f1579647d13413d4a479f134ced391e33b806fd5abef58a05f9d26"
+  },
+  "hearing.svg": {
+    "size": 351,
+    "sha256": "ff1343b6a8a608c594faa9394f66139f17fac08edec5e2ef3dd5df36e6244da5"
+  },
+  "heart-outline.svg": {
+    "size": 325,
+    "sha256": "5d5d37adcee9e642f4a00ed03274b33d0b9c564f91f8479cb78c5f6f8c06d88c"
+  },
+  "history.svg": {
+    "size": 312,
+    "sha256": "636657c4c33d7e686e9d2b42cabba581e3deb6d2de1a36b846f792772d7fdf41"
+  },
+  "home-door.svg": {
+    "size": 317,
+    "sha256": "b6efbb2a74c7901197c5b6d77c10a63cb469612b8df36bdcc7bc20b9e1b40589"
+  },
+  "hourglass.svg": {
+    "size": 342,
+    "sha256": "d32f7817594cf9f1300aeface536362811411c5c41581e61178b4a44e742f8e6"
+  },
+  "identity-badge.svg": {
+    "size": 410,
+    "sha256": "7b6383e920e4e28b9a013e8b8f21773abe8a9b6b947ec365e1fdbe886737f444"
+  },
+  "image-landscape.svg": {
+    "size": 389,
+    "sha256": "3227c1c2cff407b7a5e3a4982cc5e9eb0b7a1ded8729393f8578ce96f8c4cad0"
+  },
+  "inbox-tray.svg": {
+    "size": 319,
+    "sha256": "8265b1ae8ed3e999e7e5e8199f890ef2aae9c10b3952e5bbe0e577a2e85eae35"
+  },
+  "information.svg": {
+    "size": 331,
+    "sha256": "a317e2731721a777961a44d33ce292e3da7bfcb197059498fa760f0689633032"
+  },
+  "justify.svg": {
+    "size": 304,
+    "sha256": "ea8bd81c42ad8e8793712a8d4ce0b5099aa88a0b60d747881dc08cc8ffb8bf7d"
+  },
+  "key-card.svg": {
+    "size": 377,
+    "sha256": "a843472e96895f0f0a2bc34f361517f377f98e5a473e789dc1bfe752bc7d736e"
+  },
+  "key.svg": {
+    "size": 325,
+    "sha256": "7a6d38bcacec0d8826953d636a16cab7b57f9ce09edf5fa37839c69c299cd561"
+  },
+  "keyboard-key.svg": {
+    "size": 358,
+    "sha256": "149f33db3d2edc2d6410530f6af654d2697b1d6b7e8e4864ae0d595e7f8a0d41"
+  },
+  "keyboard.svg": {
+    "size": 399,
+    "sha256": "d4d2c6ddbf8de4a74f9f79eead690fd0b2194ed54611305710e77dc55710aae1"
+  },
+  "language.svg": {
+    "size": 337,
+    "sha256": "e96f05e44d3b59cd3b07929a799c99921ffac50d165806d570ac3efdebc8bd66"
+  },
+  "laptop.svg": {
+    "size": 345,
+    "sha256": "d6e42e266b94a6b7ad2aa5c65bd6d6cef3638c922beb5e7f3a17b510cfad39f9"
+  },
+  "latency.svg": {
+    "size": 336,
+    "sha256": "15b50b8488b3cfef6517f8529bf776c6456d17c5f4df5904a64995b941604a43"
+  },
+  "layers.svg": {
+    "size": 321,
+    "sha256": "876a3dcec61b07fb6aa7b15ba070cf5bc83d63ac22baa0d583a47804b98686b6"
+  },
+  "link-broken.svg": {
+    "size": 376,
+    "sha256": "135d74d39fc051055abd5986169524cb57029b065c6efd49c6cdaffe9cfe572a"
+  },
+  "link-chain.svg": {
+    "size": 343,
+    "sha256": "e1375aa8fdfed15258fc96779738be5262d0a4a42e76494c22fefa296367f13e"
+  },
+  "list.svg": {
+    "size": 386,
+    "sha256": "6eb3c4aeee01079dac0248c59e04e0d492303f997d879a0344ce4a1853d228bd"
+  },
+  "load-balancer.svg": {
+    "size": 499,
+    "sha256": "4619a8b93cd25060ab84a8d2bf1163cb36c1b17f9970e9f679c630c6ecb21e11"
+  },
+  "loading.svg": {
+    "size": 297,
+    "sha256": "88debf847643690759a6ca2189330f7ac1f2956547ccd10880bde70e265c4512"
+  },
+  "login-door.svg": {
+    "size": 314,
+    "sha256": "c5234c9079ad6cf6999e9a9679c1bfac5b423f89238a5c0649fcb13b62781407"
+  },
+  "logout-door.svg": {
+    "size": 315,
+    "sha256": "6c02157889b0393d4ccb1ece21d0e5b4a9bb7db7b91240dfbab650ca68f17cc2"
+  },
+  "mail-add.svg": {
+    "size": 330,
+    "sha256": "dac04b3680f0784155518df212b96cc37d9117ce792226db75e8b6807a0f09d4"
+  },
+  "mail-check.svg": {
+    "size": 333,
+    "sha256": "ec1fcb44794e89d6e59f24b75f039879122c7ad6ec3ac39865aa6c71abdcc9c0"
+  },
+  "mail-clock.svg": {
+    "size": 362,
+    "sha256": "c15b1f5f7f2c630e15463cd7d7b3c960d51e440aacee88ca4f8e5decd8417293"
+  },
+  "mail-lock.svg": {
+    "size": 395,
+    "sha256": "d4276960a5079b06b1bd66aa40bd6ce0b860c8badc4eb1d55ad256d1c682171d"
+  },
+  "mail-warning.svg": {
+    "size": 373,
+    "sha256": "4423f5006abfbdc0788e95e4683c83af424d7ea21d87f577594f4c30db93603f"
+  },
+  "mailbox.svg": {
+    "size": 351,
+    "sha256": "2a8e5977ff047be51f18f4fa4313d708995425fcf56c5823d5c5c6e173b9bd65"
+  },
+  "map-pin.svg": {
+    "size": 351,
+    "sha256": "a1bf4ea35382b97f3574f414c6d27b2be2187588f622cb5f05fd09b0c607a02e"
+  },
+  "map.svg": {
+    "size": 314,
+    "sha256": "a19b6efc6564a377da99eb03e94f8ade40bb4732ca014ed725a44b7b3f8d932f"
+  },
+  "memory-module.svg": {
+    "size": 455,
+    "sha256": "afa1b33a082b5e382f3a035e6292e634ffdfbda09b98d8708231f086a82e1f8e"
+  },
+  "menu-lines.svg": {
+    "size": 303,
+    "sha256": "c5363c6690d57b9c7b4c52a6f0ea2c8c5aa41d6805182680172ffcf0c725a151"
+  },
+  "microphone-off.svg": {
+    "size": 382,
+    "sha256": "045688d0024d2344ccd6d2804fe96a3d86c9d16b3d8c664c9d2927fc6abd9af4"
+  },
+  "microphone.svg": {
+    "size": 368,
+    "sha256": "7d71f097225becf4499efcac7953e93af3f9fefbf4aa3ba6a51f43327e6cdddb"
+  },
+  "mouse.svg": {
+    "size": 334,
+    "sha256": "bd2cbee67bef18975fa52b781bfd4c062e90d9921ce1ee08a0f4e6623a12af76"
+  },
+  "music-note.svg": {
+    "size": 383,
+    "sha256": "e32c7357340dc31c7a0480b0f6f08384715fa4f65ddcbbf304350af87e0546dd"
+  },
+  "network-download.svg": {
+    "size": 321,
+    "sha256": "6a3123cf14cb6ce443bbe4e36b551ebef9cd459c89f63e87abfee6d486e254ff"
+  },
+  "network-upload.svg": {
+    "size": 317,
+    "sha256": "66b28147f04962df70a466ddb1c17780242cc6e330fe0d02abe8b7614b69e28e"
+  },
+  "newsletter.svg": {
+    "size": 406,
+    "sha256": "dfeb3b1a95fad02416cf25a663522611eee82c63198dc1b11b3348378f614d03"
+  },
+  "night.svg": {
+    "size": 323,
+    "sha256": "660b9f00c38e602fdc248869f872087d37a8448d5341a8e4f82d7c298edb9532"
+  },
+  "notification-off.svg": {
+    "size": 344,
+    "sha256": "f76776440c54c91015e5472ace1809cdf2129fb24668380d07e9668c49a15cf8"
+  },
+  "notification.svg": {
+    "size": 323,
+    "sha256": "982ea37de62bb619ce2844b8df497ca4d2ef73bc8d884cdcf08d5e841d73c137"
+  },
+  "offline-dot.svg": {
+    "size": 350,
+    "sha256": "0f25fa09373b9debc46d42757656e6e177a15aa15b54adba4e31b554d7d4fcf5"
+  },
+  "open-external.svg": {
+    "size": 321,
+    "sha256": "9c1c06668593c0042be62f310673001e0e76d969b0466caa6309e6b7bb67d4d0"
+  },
+  "organization.svg": {
+    "size": 448,
+    "sha256": "9a711b5f03c89f0439a8599c5a83f2d4366e6a364389ff4044a658cf8968d5ff"
+  },
+  "outbox-tray.svg": {
+    "size": 335,
+    "sha256": "53b66d7532f17a2f767585b6b712302848700a21acbc4c043791e340f5754d40"
+  },
+  "overflow-horizontal.svg": {
+    "size": 384,
+    "sha256": "cdee6f74c52809e3c611f5612596f0361245a5745760a0906eb98b71bd6c7375"
+  },
+  "overflow-vertical.svg": {
+    "size": 380,
+    "sha256": "a2ce95881a6054fc3f38dede1e30499ebce709958db35944dc141b2f45a39750"
+  },
+  "package-box.svg": {
+    "size": 345,
+    "sha256": "62526df8a97aaeb52d4992adbb426689abafcdfd6e2331280454214739082bff"
+  },
+  "padlock-open.svg": {
+    "size": 363,
+    "sha256": "9380756f0cf1fbab03c9f8618b591063f15c0c5fdd60752c39ec4d32c4da95f4"
+  },
+  "padlock.svg": {
+    "size": 355,
+    "sha256": "2de52eb1e6af77d24a38fbdb1e8238c4247ad3951c3c8d4f7c2bebf266c963f2"
+  },
+  "palette.svg": {
+    "size": 454,
+    "sha256": "2c0e88832af73713397e35f684a0906421d668d8cbe9757d2cc2c4e03496e268"
+  },
+  "paper-plane.svg": {
+    "size": 308,
+    "sha256": "62b0d59f4d22e7fd57c1fd7ecf544ae6745e8b6dcb823fd41f05be520c751364"
+  },
+  "password.svg": {
+    "size": 360,
+    "sha256": "e352eb3088c168cbcdfe0965ca444a42981aa1fb1c7265879c74465bf29e53d2"
+  },
+  "paste.svg": {
+    "size": 356,
+    "sha256": "f729a24231661d714dd49ad73a7efb3b7dadca05a2e650d67b36d15c1301508d"
+  },
+  "pause.svg": {
+    "size": 355,
+    "sha256": "0641a8137687bfd44a4642b12de6a08ce58ad2362a3cfb6929ba18b7d105b4cd"
+  },
+  "pending.svg": {
+    "size": 314,
+    "sha256": "617b10f287a3b13ba722a061781732c3e35e8340f698c8162b1bb98d3db882ef"
+  },
+  "people.svg": {
+    "size": 365,
+    "sha256": "31698635e05e39f8210c4836442fe7cb7ab3b1dc464ca40fdf013955f544f409"
+  },
+  "percent.svg": {
+    "size": 344,
+    "sha256": "369a0d006a84807218ff484f774c7067fcde39b2fda30b26f06ba1f21cc63c44"
+  },
+  "person-add.svg": {
+    "size": 362,
+    "sha256": "c148c906dc0287e5e3843c3783dc7aa07657334c80c30cc5f8b3abcbd50689bb"
+  },
+  "person-blocked.svg": {
+    "size": 374,
+    "sha256": "eaee49268049da7a13f413574352530173a8039ddbfda381a3f64d01c617f2a8"
+  },
+  "person-favorite.svg": {
+    "size": 423,
+    "sha256": "9a6fdf42761b426312bedb296699b2d91aa3263c08fbb2487696c39d3e466b77"
+  },
+  "person-history.svg": {
+    "size": 398,
+    "sha256": "7a94539465fbbd66f92de94cc69d2873c1207ed4672dba9b94b88c90b0f1552c"
+  },
+  "person-locked.svg": {
+    "size": 431,
+    "sha256": "a0dab3a9dadd43adb5dfd32e9693fea3bfa0afbdc92daeb2678ac7e8c09d60fd"
+  },
+  "person-remove.svg": {
+    "size": 361,
+    "sha256": "c4f915dc7c0a469b850af0bd5b8b103256847516299f0c84d30e2b9aa82e43eb"
+  },
+  "person-verified.svg": {
+    "size": 371,
+    "sha256": "f548de91f521f240b4de36b06ae052f349d2ff30270f7d55fc48e4f3cd475f03"
+  },
+  "person.svg": {
+    "size": 327,
+    "sha256": "0cc5208bc2d0e6304620dec753551930b032ff5ee62fa782dfd75d8d49b6140c"
+  },
+  "phone.svg": {
+    "size": 334,
+    "sha256": "b46d8aeb544e174b232b2d7c052c94e10fd05192b16b5f4d92c6cc3391de32a7"
+  },
+  "picture-in-picture.svg": {
+    "size": 382,
+    "sha256": "625e6d12589835f01bd0fdc8e52616bcb299806422888f209d4e8208402a3b60"
+  },
+  "pipeline.svg": {
+    "size": 443,
+    "sha256": "713103610cf90d5f0a9db74d8f40dbfe4262f0ef2707faf05cde64027388ee14"
+  },
+  "play.svg": {
+    "size": 283,
+    "sha256": "3f0c6bb02fb37993e5df48bd319f0263c0783712005d22431dda2febd8aa8370"
+  },
+  "plug.svg": {
+    "size": 312,
+    "sha256": "cdf820e9fbda0535bf736f2c9fbedb0160ab8e29431fafece790c8e04d6e47e1"
+  },
+  "power-button.svg": {
+    "size": 311,
+    "sha256": "836b44bce7e887cdd48fd38c0d415e4d7920948362f3067fbc1ce29ecfde3cc2"
+  },
+  "printer.svg": {
+    "size": 323,
+    "sha256": "eae965626216d1690f98ff073f882fac4ee179bfe980106a2e6faedf718fd273"
+  },
+  "processor.svg": {
+    "size": 426,
+    "sha256": "22047be61f7a8cab74e59394c998cefdee7e313cb0b699b075c47907917d8e1e"
+  },
+  "progress.svg": {
+    "size": 320,
+    "sha256": "129756e3177db2cad2de257960e49b9f86f4108c60aabb3035d22fbc1e59ec1e"
+  },
+  "projector.svg": {
+    "size": 394,
+    "sha256": "441c79c6337d0bc5db6d60d8fd0d6eec7f27887fe92ee4cc286556ac1436d6aa"
+  },
+  "pull-request.svg": {
+    "size": 417,
+    "sha256": "8aae51598ca0b5a23866fd6c511fb74a8c1b4954a7bc5efc13487bed6621fc2b"
+  },
+  "puzzle.svg": {
+    "size": 349,
+    "sha256": "448e02a25faaef2a8411a9d7bef7525807d2973e136a03795e4a0bf59421bb16"
+  },
+  "question.svg": {
+    "size": 347,
+    "sha256": "a8d99df3234c3794c6b3efa4dda75d674469d7a5819a95aa9ffc89fcae9d42a9"
+  },
+  "read-aloud.svg": {
+    "size": 331,
+    "sha256": "fb55c271f62125710b531d7764c728eda49754d89595886f427e0418d4847c32"
+  },
+  "reading-mode.svg": {
+    "size": 352,
+    "sha256": "874579fb814c80cbac3d9ea43f3ccd4be0b1cbda097ec780b039406eba123aff"
+  },
+  "receipt.svg": {
+    "size": 335,
+    "sha256": "7fc5f249cdbc2494cf4eb94e572335d7a6371748db500ffe72f9b8c0a4b387f5"
+  },
+  "record.svg": {
+    "size": 291,
+    "sha256": "1aad5c9dfe25ccb4c27d8aac4ebb8d043cef03e3a16b4e0530ff965db574e346"
+  },
+  "redo.svg": {
+    "size": 304,
+    "sha256": "853b79f1e8ed92f70fcbed6d9aae7554fe55389a54597252159ba9b56837d0ec"
+  },
+  "reduced-motion.svg": {
+    "size": 349,
+    "sha256": "ec6913a1c567c93aab39e478f8993900f619f64032601b8ed1cae5530864ea4f"
+  },
+  "refresh-cycle.svg": {
+    "size": 351,
+    "sha256": "203aaadd6b85e01def678163141f11e6b082bb4a40b97e1380bfa1df9623d618"
+  },
+  "regex.svg": {
+    "size": 351,
+    "sha256": "ab66a13980b4360def7ce329c267a7d21fa0e1f882cc1d6fb2dd8cd18b987340"
+  },
+  "region.svg": {
+    "size": 382,
+    "sha256": "def73dbe84e83e85a9bd47817e7c734b80c11b3d77259420713c345e37671b1c"
+  },
+  "repeat.svg": {
+    "size": 314,
+    "sha256": "13f1de145883dddd1413010c80adc11215c83039c834719e9255689a934b5dff"
+  },
+  "replication.svg": {
+    "size": 424,
+    "sha256": "db9ae7f1ae0de13c06ecc3250286fccb3620d43e96d4f9440c46996066596837"
+  },
+  "reply-all.svg": {
+    "size": 318,
+    "sha256": "424eab4c9346e280cb242fe238901e9931ae4eb98db19c022bfd0e4c33c9fc8a"
+  },
+  "reply.svg": {
+    "size": 298,
+    "sha256": "806df8d410c074c231c6faf44abe05ae14f6cf4459baa55f7408f2a8b2f313a9"
+  },
+  "rewind.svg": {
+    "size": 304,
+    "sha256": "277b91ba14501cf91fee55f1380c038354130e0184127ad0aa4b779674a59d5d"
+  },
+  "route.svg": {
+    "size": 368,
+    "sha256": "4635d485cc707fb5fb39e247cc64f0f98d34b9f5c08dd9dc00764f973773d907"
+  },
+  "router.svg": {
+    "size": 359,
+    "sha256": "723a08db3e73ac8d861371b6b8e5ea3f39a4040260552c0f3b2e996b64ee74f2"
+  },
+  "rows.svg": {
+    "size": 332,
+    "sha256": "a5bfecca9b246f09f030a4bfdc665226a09d26038802597d38d38dccc18a2304"
+  },
+  "ruler.svg": {
+    "size": 323,
+    "sha256": "ba040ea34ee2d2a513b460d4c5ada85e93abcc679c32139183b826b361a7478e"
+  },
+  "satellite.svg": {
+    "size": 359,
+    "sha256": "2c268d6283c39411b72c1988b30e07fc5e569c397dd3c83fa6f865b07628b603"
+  },
+  "save.svg": {
+    "size": 309,
+    "sha256": "e974a13b6dc1e0b2bd590cdd3ead2100e3933230e20cecd48f935abf16655f63"
+  },
+  "scale-balance.svg": {
+    "size": 360,
+    "sha256": "2ccc7cc9b02d0f175c19f029d1373f1f71e51013f3c964b4e6e63f1a3fdb0c8f"
+  },
+  "scan-code.svg": {
+    "size": 343,
+    "sha256": "432b1fd2059fb7287ca5212804701e60dadef8baa29a251e6a715a44d608203c"
+  },
+  "scan-face.svg": {
+    "size": 344,
+    "sha256": "16c36096be6507c249c30d7f5b64f3186e052132d361c4eaf84fe707ed383f53"
+  },
+  "scanner.svg": {
+    "size": 316,
+    "sha256": "bfa998feeeb52823e474bd6ffcb24d8792d07a77f4de91ddd54b878d9130d0c4"
+  },
+  "sd-card.svg": {
+    "size": 323,
+    "sha256": "db7c768ad73ff6304213504ad597b3a26e6e15827719a1c884f5fa9c636b8bc8"
+  },
+  "select-all.svg": {
+    "size": 342,
+    "sha256": "8d87e895d16ad6db85797058c194bec83497bcbbb005cf8fca491603f2df1faa"
+  },
+  "server-stack.svg": {
+    "size": 476,
+    "sha256": "2f739a5032a7bf2d3d0027d84f59b4b7ad1440955755c82083715dbe8d8f8a75"
+  },
+  "server.svg": {
+    "size": 401,
+    "sha256": "b685a51171d3c47923ee49e4c318ee5f77bd87f850e4cc866448ab7176c83f80"
+  },
+  "service.svg": {
+    "size": 384,
+    "sha256": "cf966ec34c93ee0fecce02d8831bdb2875309b57980cdcaf0e79fc42ff7424a4"
+  },
+  "share.svg": {
+    "size": 379,
+    "sha256": "fad8577f61c8b19591cb00386aeb1712a4a0ea6b8236810b3c640d9097d9abc3"
+  },
+  "shield-alert.svg": {
+    "size": 345,
+    "sha256": "a122f4e3c7265b63c099f9eb227e22a9a8d026ded36f029b9d93be51842ad87a"
+  },
+  "shield-check.svg": {
+    "size": 343,
+    "sha256": "04c10bc56601ce446241a55acbe4ff500d184727c8c8842ff49ed8d1a580e16b"
+  },
+  "shield-cross.svg": {
+    "size": 347,
+    "sha256": "5196410a74cbe1713fdcf88d660ce18c8f984e374d02101728f2f416d0fd7e7c"
+  },
+  "shield-key.svg": {
+    "size": 376,
+    "sha256": "348d3ac14d0b7d58df5d0f76d9cbb9c182cb2af18b32c4338a7285806c6fdd31"
+  },
+  "shield.svg": {
+    "size": 306,
+    "sha256": "23342d8631b6b83fef1485d566ad881597c55fb2c4afa141f01adbe910d1ef89"
+  },
+  "shuffle.svg": {
+    "size": 329,
+    "sha256": "169c46873b2ef67768e32d01703ea77003cd946d07c640c2168d037d66ded106"
+  },
+  "sidebar-left.svg": {
+    "size": 360,
+    "sha256": "410a24ba73c608b419a7c67359c3a1891020a83fd3636897d0403d106a5582ab"
+  },
+  "sidebar-right.svg": {
+    "size": 364,
+    "sha256": "2822c8ffe6a64d38592c1020aa75bdf1b98e60e2cb9a824aba402a2b06b59b88"
+  },
+  "signal-bars.svg": {
+    "size": 465,
+    "sha256": "77fc55456afbf6944a7f3ffa42373f7e864850f5adfe70c8f597c35b2b081515"
+  },
+  "signpost.svg": {
+    "size": 322,
+    "sha256": "290b45d44ff3fadb99c3f04ae4cbdee0e7d2cfe4225f20eba987b4ecc3fd4669"
+  },
+  "siren.svg": {
+    "size": 346,
+    "sha256": "122af562ab59bb499907a303b7828891c61e62bcb28d8ef957af2a976791c0a6"
+  },
+  "skip-end.svg": {
+    "size": 299,
+    "sha256": "980ba284a8be0ef8a3743fed27b60ef8a705f6b8e9eeda571fc1028888b89461"
+  },
+  "skip-start.svg": {
+    "size": 304,
+    "sha256": "45636279ba21984c450c3fca299eb3177c9aeeff2ab65c5143591f0cad7e450f"
+  },
+  "sliders.svg": {
+    "size": 349,
+    "sha256": "6c4a20230b53bc9e960925917031625cf3d3e667e66432dc6864f9fe17d86531"
+  },
+  "snapshot.svg": {
+    "size": 330,
+    "sha256": "6514087eea64c349c793721350572103ee00fcafe9599bff75e9287c7fe5d2b2"
+  },
+  "sort.svg": {
+    "size": 309,
+    "sha256": "8d63bfcd9518d9ab74b66f20372791ed3a91250620f7c362c4c9b6c5787882e9"
+  },
+  "split-horizontal.svg": {
+    "size": 349,
+    "sha256": "f5bbb54921f9bb3d6386db959bc600e9213a8a1aeab8e2fcb4090fef24957854"
+  },
+  "split-vertical.svg": {
+    "size": 345,
+    "sha256": "107b01fbe84cec77c2c6bc59acf0a7c80c4331de95b1b1b553969bf6b66de0fb"
+  },
+  "stack-documents.svg": {
+    "size": 339,
+    "sha256": "56d07dad9b3879e518fa7d90c2b2f93ff220b4d311f082687daa16d85c28a08c"
+  },
+  "star-outline.svg": {
+    "size": 326,
+    "sha256": "1d8193d34af101a542de4ff09b56a928500a42c0d97a6cc4d66a13d352ab8531"
+  },
+  "stop.svg": {
+    "size": 305,
+    "sha256": "82198493f757e64a38c8fd81b86252fe4158569729599182a8c7bd88276b2843"
+  },
+  "stopwatch.svg": {
+    "size": 342,
+    "sha256": "b0ebf0f627c71096f997a17ed84933e7c99f4e94d065b11a1c8fe1b9fe5aeb13"
+  },
+  "storefront.svg": {
+    "size": 345,
+    "sha256": "da78b90d69ccdefc56a30754ca82dfee8d1f3ca0dca6f380215eb717e52a0bc2"
+  },
+  "subtract.svg": {
+    "size": 284,
+    "sha256": "807a52e6eee1f6e9de9fd875e2d765b41f4df0d46e47d64ba2dd7e60298761eb"
+  },
+  "success-circle.svg": {
+    "size": 333,
+    "sha256": "5f682f886250460e7b04117338c466305b64b17ae559a9d3c44ecebb281a099d"
+  },
+  "sunrise.svg": {
+    "size": 348,
+    "sha256": "9b941eacfe4df5763dca25b413ebb7b2148003052042381c19694fe753911dcc"
+  },
+  "sunset.svg": {
+    "size": 346,
+    "sha256": "e5b6bbe0005cace642038bcc264c8e34aeb2fc071789ecabca7fb1c2a3735cbb"
+  },
+  "switch-network.svg": {
+    "size": 398,
+    "sha256": "ea7fcb4a95634a5f98e4e916d3b6c75fc4298e719efeb12f3176ac6017d7a93d"
+  },
+  "table.svg": {
+    "size": 349,
+    "sha256": "20449f368d98349ab24327040735dba1a6c72d7061b718be483cab7504a70341"
+  },
+  "tablet.svg": {
+    "size": 342,
+    "sha256": "deec6676d405385c27707511c150c7f736a8e38d3be2d6eb932ed4e2e35987e1"
+  },
+  "tag.svg": {
+    "size": 322,
+    "sha256": "fa40438a3ad728b0b28a5e0fab0fdd6f38f5ba3b3eb307c82df905ebaca251d5"
+  },
+  "target.svg": {
+    "size": 354,
+    "sha256": "fd9ee7e94029128e33dd4f8c25bef00e94921cf91ad3a9ad7e23bce5276501a9"
+  },
+  "terminal.svg": {
+    "size": 343,
+    "sha256": "99292d0854a9481bb48eec737270ed04b5a1b03f7e1eaa539725465fa8748f08"
+  },
+  "test-tube.svg": {
+    "size": 342,
+    "sha256": "bf50e3cb65efe6a5caab19c29c1450e138af752dec2172f3272c1e81da77dfe6"
+  },
+  "text-cursor.svg": {
+    "size": 319,
+    "sha256": "ddef943c890e6a1f5c323433a59c510a6375ae203d53774a3ac01a1e8c7b640f"
+  },
+  "text-size.svg": {
+    "size": 327,
+    "sha256": "32b48000299af11c4917f2b91a897d5360b43266433f68013b69f8e6beae2f04"
+  },
+  "thumb-down.svg": {
+    "size": 318,
+    "sha256": "66269042f25f2664cc696918dd3181fa95afa057f7147a9c108a67b0f67fb09a"
+  },
+  "thumb-up.svg": {
+    "size": 314,
+    "sha256": "94e28847d8ba7bbf8e0c27529def80b517d62a28c3db6d733014e1a0cd6f001f"
+  },
+  "time-zone.svg": {
+    "size": 396,
+    "sha256": "121b07d4ca0925cc57936c135c00a3c3ff02e8c1a15fdf48fd6fb957505df779"
+  },
+  "touch-tap.svg": {
+    "size": 358,
+    "sha256": "7e01db391dbeae1a0588b0ce7fe94e74c2c9e69f2c561fea17646ee633205888"
+  },
+  "trash-bin.svg": {
+    "size": 326,
+    "sha256": "519af752f08a1ea4d5ee62ee1c279da1ee20514195136179ca2872b5f38bcb77"
+  },
+  "truck.svg": {
+    "size": 369,
+    "sha256": "d7030a9faff7d8067889f4e86aba07a149a02f6d7cdfb099a49d630cbd0d381f"
+  },
+  "two-factor.svg": {
+    "size": 363,
+    "sha256": "9899da7ed223a061511ba8982a3072536ad598f890da05b561d224362b72ba71"
+  },
+  "undo.svg": {
+    "size": 305,
+    "sha256": "49747b12b9c8b8ef9640fb2e4e6b58169eb640c28973bebfc3e67767d2c2ae36"
+  },
+  "unsubscribe.svg": {
+    "size": 329,
+    "sha256": "ea51e056b8600868728e5f99bd92abbd9304b24e8af28f8771121c565bb5572b"
+  },
+  "uptime.svg": {
+    "size": 294,
+    "sha256": "1570b904ad0ddf51070db80d3ff9bd28e00c74561955a0fbeb87f498fffa38b4"
+  },
+  "usb-drive.svg": {
+    "size": 354,
+    "sha256": "aca8ea10edc3f9baba673fb2e32f19617d777f6367155f32349fcb3f6b568b1a"
+  },
+  "verified-seal.svg": {
+    "size": 377,
+    "sha256": "2da54a26a37e6163faad396867f26bf6a9473c7162a44387e51c7aaaca93c43f"
+  },
+  "video-camera.svg": {
+    "size": 352,
+    "sha256": "9c7ce1b9c7312c424a105ed3b3da891d4591667a2ffd5b4600477c2f05c0aff9"
+  },
+  "voice.svg": {
+    "size": 313,
+    "sha256": "32f4dce2e1e60766d3361f2d0fca8d80b02a685bfe23e5daca1959f2e15a25b5"
+  },
+  "volume-low.svg": {
+    "size": 320,
+    "sha256": "3cd7ab8d7e5ed33cca3ff8f2ff96914f990fd5e26babf33227c95eb6c4cc2a59"
+  },
+  "volume-mute.svg": {
+    "size": 321,
+    "sha256": "e5c79b85de789874035b6559909676575c8e403dc81044b465065b3e888b116a"
+  },
+  "volume.svg": {
+    "size": 321,
+    "sha256": "9233eb5a8665a68cc9989f6ac35b130c21644e1eb655b6890ca5105683ef6711"
+  },
+  "vpn-tunnel.svg": {
+    "size": 360,
+    "sha256": "43743ed8c3d4741e1747626a1d8063557ca3827e36feaeaea7eaea4ea9536ffb"
+  },
+  "wallet.svg": {
+    "size": 381,
+    "sha256": "3d32f5aa9a65762016d60c83b5e12a1977b25112bef9adf8cb2017abbaf01a82"
+  },
+  "warning-triangle.svg": {
+    "size": 321,
+    "sha256": "327e4dbea246180184900a4cf7033aec81a2cd3f629a4aa22d16d33b4beea151"
+  },
+  "watch.svg": {
+    "size": 352,
+    "sha256": "2fdd8de24db9f668b1771ce1dd30e9db00720b90518c172497ceb7fb69404d87"
+  },
+  "webhook.svg": {
+    "size": 386,
+    "sha256": "af35c448651fd1fcf60ef5187355008db5d52aa081eb6a0b635caa3db98b4f02"
+  },
+  "wheelchair.svg": {
+    "size": 349,
+    "sha256": "5dff0f311e86efbe4514148a0f05b430da2d888d5da4efe3d9ddeb8708e18d2f"
+  },
+  "wifi-off.svg": {
+    "size": 393,
+    "sha256": "1bec04de847e7620fad48b552a7f4a1688ad0ab0517c5563d662e2336c9ce2e5"
+  },
+  "wifi.svg": {
+    "size": 361,
+    "sha256": "44e8c9f366da5c94a58dce3cd57aaf85f4aef49460c7cccdb26a49fcbc41cc9c"
+  },
+  "window.svg": {
+    "size": 354,
+    "sha256": "e87af73478295d9dfcdf1eb7ef13e68843be4ebfbd9c2150834cb57359577b98"
+  },
+  "wrench.svg": {
+    "size": 338,
+    "sha256": "bb34ec2f375a367bb1fb8abb864f42920832ab21d146088030805efa0d5f80fe"
+  },
+  "zoom-in.svg": {
+    "size": 329,
+    "sha256": "6686d5e860c6870f57db05edf6e70bf4f9189b7604197534413541b24c45609b"
+  },
+  "zoom-out.svg": {
+    "size": 324,
+    "sha256": "17f73abd8708970c2ac90b105e993a7c6cb7253c3f9e067ad2e395178ded5133"
+  }
+}

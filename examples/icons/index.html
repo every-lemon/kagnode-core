@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- WebKit native select labels use exactly text-overflow:inherit. This hash permits only that harmless style attribute. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-hashes' 'sha256-3oFxofzq3N//6J8H86e9ul4WT2OkJrtonB66gn/TLJw='; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    />
+    <title>KagNode Core icons</title>
+    <link rel="stylesheet" href="gallery.css" />
+    <script type="module" src="gallery.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#icons">Skip to icons</a>
+    <header>
+      <p class="eyebrow">KagNode Core · original UI symbols</p>
+      <h1>Small shapes. Many possibilities.</h1>
+      <p>
+        320 editable outline icons, drawn on a 24-unit grid. Compare 16, 20 and
+        24 pixels, then download a local SVG.
+      </p>
+      <div class="filters">
+        <label
+          >Search icons<input
+            type="search"
+            id="search"
+            placeholder="Try: security, cloud, date…"
+            autocomplete="off" /></label
+        ><label
+          >Category<select id="category">
+            <option value="">All categories</option>
+          </select></label
+        ><label
+          >Appearance<select id="appearance">
+            <option value="auto">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select></label
+        >
+      </div>
+      <p id="count" role="status" aria-live="polite">Loading catalog…</p>
+    </header>
+    <main id="icons" tabindex="-1">
+      <div class="grid" id="grid"></div>
+      <p id="empty" hidden>
+        No matching icons. Try another search or category.
+      </p>
+    </main>
+    <footer>
+      <a href="README.md">Usage and license</a> ·
+      <a href="catalog.json" download>Download metadata</a> · Original Core UI
+      artwork: AGPL-3.0-only. Brand artwork remains in KagNode Logos.
+    </footer>
+  </body>
+</html>

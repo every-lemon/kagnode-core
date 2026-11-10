@@ -1,0 +1,24 @@
+{
+  "name": "@kagnode/core-icons",
+  "version": "1.4.0",
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "sideEffects": false,
+  "exports": {
+    "./render": {
+      "types": "./render.d.mts",
+      "import": "./render.mjs"
+    },
+    "./glyphs/*": {
+      "types": "./glyphs/*.d.mts",
+      "import": "./glyphs/*.mjs"
+    },
+    "./categories/*": {
+      "types": "./categories/*.d.mts",
+      "import": "./categories/*.mjs"
+    },
+    "./catalog.json": "./catalog.json",
+    "./catalog": "./catalog.d.mts",
+    "./svg/*": "./svg/*"
+  }
+}

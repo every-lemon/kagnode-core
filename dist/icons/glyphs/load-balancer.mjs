@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"load-balancer","title":"Load Balancer","category":"cloud","tags":Object.freeze(["traffic","distribution"]),"body":"<rect x=\"8\" y=\"2\" width=\"8\" height=\"5\" rx=\"2\"/><rect x=\"1\" y=\"17\" width=\"6\" height=\"5\" rx=\"2\"/><rect x=\"9\" y=\"17\" width=\"6\" height=\"5\" rx=\"2\"/><rect x=\"17\" y=\"17\" width=\"6\" height=\"5\" rx=\"2\"/><path d=\"M12 7v10M4 17v-5h16v5\"/>","viewBox":"0 0 24 24"});

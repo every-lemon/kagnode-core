@@ -8,6 +8,8 @@ Core provides the common interface for KagNode websites and independently hosted
 
 ## Release status
 
+**1.4.0 is an optional icon-library preview**, with [320 original UI icons](docs/ICONS.md), typed individual/category imports, local SVG downloads and a searchable gallery. It adds no bytes to the default UI script. The separate icon package requires explicit application integration.
+
 The **1.3 UI line** adds the opt-in [login frame](docs/LOGIN.md), scoped scroll refresh and viewport-safe account menus. Application adoption requires explicit review; prereleases are excluded from automatic updates. After adoption, automatic stable UI patches remain limited to the configured minor line. Backend installation policies remain separate.
 
 **1.2.8 is a backend-manager preview**, distributed as a GitHub prerelease for explicit local-administrator review. It repairs unsafe lock-file handling without changing browser components. Compatible stable UI channels remain separate; automatic UI patching does not install this preview or upgrade backend helpers.
@@ -64,6 +66,7 @@ Build release archives with `python3 tools/package.py`. Signing is a separate tr
 - [Appearance connection protocol](docs/APPEARANCE.md)
 - [Update operations and rollback](docs/OPERATIONS.md)
 - [Artwork provenance](assets/provenance.json)
+- [Original UI icons and gallery](docs/ICONS.md)
 - [Component example](examples/server.mjs)
 - [Changelog](CHANGELOG.md)
 

@@ -1,0 +1,2 @@
+// AGPL-3.0-only; original KagNode Core geometry.
+export default Object.freeze({"id":"edge-node","title":"Edge Node","category":"cloud","tags":Object.freeze(["distributed","delivery"]),"body":"<circle cx=\"12\" cy=\"12\" r=\"3\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/><circle cx=\"20\" cy=\"4\" r=\"2\"/><circle cx=\"4\" cy=\"20\" r=\"2\"/><circle cx=\"20\" cy=\"20\" r=\"2\"/><path d=\"m6 6 4 4m4 4 4 4M6 18l4-4m4-4 4-4\"/>","viewBox":"0 0 24 24"});

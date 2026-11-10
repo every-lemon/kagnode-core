@@ -1,0 +1,3605 @@
+{
+  "schema": 1,
+  "grid": 24,
+  "strokeWidth": 1.7,
+  "count": 320,
+  "license": "AGPL-3.0-only",
+  "icons": [
+    {
+      "id": "add",
+      "title": "Add",
+      "category": "actions",
+      "tags": [
+        "create",
+        "new",
+        "plus"
+      ],
+      "svg": "svg/add.svg",
+      "module": "glyphs/add.mjs"
+    },
+    {
+      "id": "subtract",
+      "title": "Subtract",
+      "category": "actions",
+      "tags": [
+        "remove",
+        "minus"
+      ],
+      "svg": "svg/subtract.svg",
+      "module": "glyphs/subtract.mjs"
+    },
+    {
+      "id": "confirm",
+      "title": "Confirm",
+      "category": "actions",
+      "tags": [
+        "accept",
+        "done",
+        "check"
+      ],
+      "svg": "svg/confirm.svg",
+      "module": "glyphs/confirm.mjs"
+    },
+    {
+      "id": "cancel",
+      "title": "Cancel",
+      "category": "actions",
+      "tags": [
+        "dismiss",
+        "close",
+        "x"
+      ],
+      "svg": "svg/cancel.svg",
+      "module": "glyphs/cancel.mjs"
+    },
+    {
+      "id": "compose",
+      "title": "Compose",
+      "category": "actions",
+      "tags": [
+        "write",
+        "pencil",
+        "edit"
+      ],
+      "svg": "svg/compose.svg",
+      "module": "glyphs/compose.mjs"
+    },
+    {
+      "id": "erase",
+      "title": "Erase",
+      "category": "actions",
+      "tags": [
+        "eraser",
+        "clear"
+      ],
+      "svg": "svg/erase.svg",
+      "module": "glyphs/erase.mjs"
+    },
+    {
+      "id": "cut",
+      "title": "Cut",
+      "category": "actions",
+      "tags": [
+        "scissors",
+        "clipboard"
+      ],
+      "svg": "svg/cut.svg",
+      "module": "glyphs/cut.mjs"
+    },
+    {
+      "id": "copy",
+      "title": "Copy",
+      "category": "actions",
+      "tags": [
+        "duplicate",
+        "clipboard"
+      ],
+      "svg": "svg/copy.svg",
+      "module": "glyphs/copy.mjs"
+    },
+    {
+      "id": "paste",
+      "title": "Paste",
+      "category": "actions",
+      "tags": [
+        "clipboard",
+        "insert"
+      ],
+      "svg": "svg/paste.svg",
+      "module": "glyphs/paste.mjs"
+    },
+    {
+      "id": "save",
+      "title": "Save",
+      "category": "actions",
+      "tags": [
+        "disk",
+        "commit"
+      ],
+      "svg": "svg/save.svg",
+      "module": "glyphs/save.mjs"
+    },
+    {
+      "id": "undo",
+      "title": "Undo",
+      "category": "actions",
+      "tags": [
+        "revert",
+        "back"
+      ],
+      "svg": "svg/undo.svg",
+      "module": "glyphs/undo.mjs"
+    },
+    {
+      "id": "redo",
+      "title": "Redo",
+      "category": "actions",
+      "tags": [
+        "repeat",
+        "forward"
+      ],
+      "svg": "svg/redo.svg",
+      "module": "glyphs/redo.mjs"
+    },
+    {
+      "id": "refresh-cycle",
+      "title": "Refresh Cycle",
+      "category": "actions",
+      "tags": [
+        "reload",
+        "sync"
+      ],
+      "svg": "svg/refresh-cycle.svg",
+      "module": "glyphs/refresh-cycle.mjs"
+    },
+    {
+      "id": "filter",
+      "title": "Filter",
+      "category": "actions",
+      "tags": [
+        "funnel",
+        "refine"
+      ],
+      "svg": "svg/filter.svg",
+      "module": "glyphs/filter.mjs"
+    },
+    {
+      "id": "sort",
+      "title": "Sort",
+      "category": "actions",
+      "tags": [
+        "order",
+        "ascending"
+      ],
+      "svg": "svg/sort.svg",
+      "module": "glyphs/sort.mjs"
+    },
+    {
+      "id": "expand",
+      "title": "Expand",
+      "category": "actions",
+      "tags": [
+        "fullscreen",
+        "maximize"
+      ],
+      "svg": "svg/expand.svg",
+      "module": "glyphs/expand.mjs"
+    },
+    {
+      "id": "collapse",
+      "title": "Collapse",
+      "category": "actions",
+      "tags": [
+        "minimize",
+        "contract"
+      ],
+      "svg": "svg/collapse.svg",
+      "module": "glyphs/collapse.mjs"
+    },
+    {
+      "id": "select-all",
+      "title": "Select All",
+      "category": "actions",
+      "tags": [
+        "selection",
+        "checkbox"
+      ],
+      "svg": "svg/select-all.svg",
+      "module": "glyphs/select-all.mjs"
+    },
+    {
+      "id": "drag-handle",
+      "title": "Drag Handle",
+      "category": "actions",
+      "tags": [
+        "grip",
+        "move",
+        "reorder"
+      ],
+      "svg": "svg/drag-handle.svg",
+      "module": "glyphs/drag-handle.mjs"
+    },
+    {
+      "id": "share",
+      "title": "Share",
+      "category": "actions",
+      "tags": [
+        "distribute",
+        "connections"
+      ],
+      "svg": "svg/share.svg",
+      "module": "glyphs/share.mjs"
+    },
+    {
+      "id": "arrow-left",
+      "title": "Arrow Left",
+      "category": "navigation",
+      "tags": [
+        "back",
+        "previous",
+        "west"
+      ],
+      "svg": "svg/arrow-left.svg",
+      "module": "glyphs/arrow-left.mjs"
+    },
+    {
+      "id": "arrow-right",
+      "title": "Arrow Right",
+      "category": "navigation",
+      "tags": [
+        "next",
+        "forward",
+        "east"
+      ],
+      "svg": "svg/arrow-right.svg",
+      "module": "glyphs/arrow-right.mjs"
+    },
+    {
+      "id": "arrow-up",
+      "title": "Arrow Up",
+      "category": "navigation",
+      "tags": [
+        "north",
+        "top"
+      ],
+      "svg": "svg/arrow-up.svg",
+      "module": "glyphs/arrow-up.mjs"
+    },
+    {
+      "id": "arrow-down",
+      "title": "Arrow Down",
+      "category": "navigation",
+      "tags": [
+        "south",
+        "bottom"
+      ],
+      "svg": "svg/arrow-down.svg",
+      "module": "glyphs/arrow-down.mjs"
+    },
+    {
+      "id": "chevron-left",
+      "title": "Chevron Left",
+      "category": "navigation",
+      "tags": [
+        "previous",
+        "back"
+      ],
+      "svg": "svg/chevron-left.svg",
+      "module": "glyphs/chevron-left.mjs"
+    },
+    {
+      "id": "chevron-right",
+      "title": "Chevron Right",
+      "category": "navigation",
+      "tags": [
+        "next",
+        "forward"
+      ],
+      "svg": "svg/chevron-right.svg",
+      "module": "glyphs/chevron-right.mjs"
+    },
+    {
+      "id": "chevron-up",
+      "title": "Chevron Up",
+      "category": "navigation",
+      "tags": [
+        "open",
+        "above"
+      ],
+      "svg": "svg/chevron-up.svg",
+      "module": "glyphs/chevron-up.mjs"
+    },
+    {
+      "id": "chevron-down",
+      "title": "Chevron Down",
+      "category": "navigation",
+      "tags": [
+        "disclosure",
+        "below"
+      ],
+      "svg": "svg/chevron-down.svg",
+      "module": "glyphs/chevron-down.mjs"
+    },
+    {
+      "id": "skip-start",
+      "title": "Skip Start",
+      "category": "navigation",
+      "tags": [
+        "first",
+        "beginning"
+      ],
+      "svg": "svg/skip-start.svg",
+      "module": "glyphs/skip-start.mjs"
+    },
+    {
+      "id": "skip-end",
+      "title": "Skip End",
+      "category": "navigation",
+      "tags": [
+        "last",
+        "ending"
+      ],
+      "svg": "svg/skip-end.svg",
+      "module": "glyphs/skip-end.mjs"
+    },
+    {
+      "id": "home-door",
+      "title": "Home Door",
+      "category": "navigation",
+      "tags": [
+        "house",
+        "dashboard"
+      ],
+      "svg": "svg/home-door.svg",
+      "module": "glyphs/home-door.mjs"
+    },
+    {
+      "id": "compass",
+      "title": "Compass",
+      "category": "navigation",
+      "tags": [
+        "explore",
+        "direction"
+      ],
+      "svg": "svg/compass.svg",
+      "module": "glyphs/compass.mjs"
+    },
+    {
+      "id": "map",
+      "title": "Map",
+      "category": "navigation",
+      "tags": [
+        "location",
+        "route"
+      ],
+      "svg": "svg/map.svg",
+      "module": "glyphs/map.mjs"
+    },
+    {
+      "id": "map-pin",
+      "title": "Map Pin",
+      "category": "navigation",
+      "tags": [
+        "location",
+        "place"
+      ],
+      "svg": "svg/map-pin.svg",
+      "module": "glyphs/map-pin.mjs"
+    },
+    {
+      "id": "route",
+      "title": "Route",
+      "category": "navigation",
+      "tags": [
+        "directions",
+        "journey"
+      ],
+      "svg": "svg/route.svg",
+      "module": "glyphs/route.mjs"
+    },
+    {
+      "id": "signpost",
+      "title": "Signpost",
+      "category": "navigation",
+      "tags": [
+        "wayfinding",
+        "directions"
+      ],
+      "svg": "svg/signpost.svg",
+      "module": "glyphs/signpost.mjs"
+    },
+    {
+      "id": "menu-lines",
+      "title": "Menu Lines",
+      "category": "navigation",
+      "tags": [
+        "hamburger",
+        "navigation"
+      ],
+      "svg": "svg/menu-lines.svg",
+      "module": "glyphs/menu-lines.mjs"
+    },
+    {
+      "id": "overflow-horizontal",
+      "title": "Overflow Horizontal",
+      "category": "navigation",
+      "tags": [
+        "more",
+        "ellipsis"
+      ],
+      "svg": "svg/overflow-horizontal.svg",
+      "module": "glyphs/overflow-horizontal.mjs"
+    },
+    {
+      "id": "overflow-vertical",
+      "title": "Overflow Vertical",
+      "category": "navigation",
+      "tags": [
+        "more",
+        "kebab"
+      ],
+      "svg": "svg/overflow-vertical.svg",
+      "module": "glyphs/overflow-vertical.mjs"
+    },
+    {
+      "id": "open-external",
+      "title": "Open External",
+      "category": "navigation",
+      "tags": [
+        "new",
+        "window",
+        "link"
+      ],
+      "svg": "svg/open-external.svg",
+      "module": "glyphs/open-external.mjs"
+    },
+    {
+      "id": "person",
+      "title": "Person",
+      "category": "accounts",
+      "tags": [
+        "user",
+        "profile"
+      ],
+      "svg": "svg/person.svg",
+      "module": "glyphs/person.mjs"
+    },
+    {
+      "id": "person-add",
+      "title": "Person Add",
+      "category": "accounts",
+      "tags": [
+        "invite",
+        "signup",
+        "create"
+      ],
+      "svg": "svg/person-add.svg",
+      "module": "glyphs/person-add.mjs"
+    },
+    {
+      "id": "person-remove",
+      "title": "Person Remove",
+      "category": "accounts",
+      "tags": [
+        "remove",
+        "member"
+      ],
+      "svg": "svg/person-remove.svg",
+      "module": "glyphs/person-remove.mjs"
+    },
+    {
+      "id": "person-verified",
+      "title": "Person Verified",
+      "category": "accounts",
+      "tags": [
+        "approved",
+        "member"
+      ],
+      "svg": "svg/person-verified.svg",
+      "module": "glyphs/person-verified.mjs"
+    },
+    {
+      "id": "person-blocked",
+      "title": "Person Blocked",
+      "category": "accounts",
+      "tags": [
+        "suspend",
+        "deny"
+      ],
+      "svg": "svg/person-blocked.svg",
+      "module": "glyphs/person-blocked.mjs"
+    },
+    {
+      "id": "person-locked",
+      "title": "Person Locked",
+      "category": "accounts",
+      "tags": [
+        "private",
+        "protected"
+      ],
+      "svg": "svg/person-locked.svg",
+      "module": "glyphs/person-locked.mjs"
+    },
+    {
+      "id": "person-history",
+      "title": "Person History",
+      "category": "accounts",
+      "tags": [
+        "activity",
+        "last",
+        "seen"
+      ],
+      "svg": "svg/person-history.svg",
+      "module": "glyphs/person-history.mjs"
+    },
+    {
+      "id": "person-favorite",
+      "title": "Person Favorite",
+      "category": "accounts",
+      "tags": [
+        "preferred",
+        "contact"
+      ],
+      "svg": "svg/person-favorite.svg",
+      "module": "glyphs/person-favorite.mjs"
+    },
+    {
+      "id": "people",
+      "title": "People",
+      "category": "accounts",
+      "tags": [
+        "group",
+        "team"
+      ],
+      "svg": "svg/people.svg",
+      "module": "glyphs/people.mjs"
+    },
+    {
+      "id": "contact-card",
+      "title": "Contact Card",
+      "category": "accounts",
+      "tags": [
+        "address",
+        "book",
+        "identity"
+      ],
+      "svg": "svg/contact-card.svg",
+      "module": "glyphs/contact-card.mjs"
+    },
+    {
+      "id": "identity-badge",
+      "title": "Identity Badge",
+      "category": "accounts",
+      "tags": [
+        "employee",
+        "credential"
+      ],
+      "svg": "svg/identity-badge.svg",
+      "module": "glyphs/identity-badge.mjs"
+    },
+    {
+      "id": "login-door",
+      "title": "Login Door",
+      "category": "accounts",
+      "tags": [
+        "sign",
+        "in",
+        "enter"
+      ],
+      "svg": "svg/login-door.svg",
+      "module": "glyphs/login-door.mjs"
+    },
+    {
+      "id": "logout-door",
+      "title": "Logout Door",
+      "category": "accounts",
+      "tags": [
+        "sign",
+        "out",
+        "exit"
+      ],
+      "svg": "svg/logout-door.svg",
+      "module": "glyphs/logout-door.mjs"
+    },
+    {
+      "id": "account-switch",
+      "title": "Account Switch",
+      "category": "accounts",
+      "tags": [
+        "change",
+        "user",
+        "impersonate"
+      ],
+      "svg": "svg/account-switch.svg",
+      "module": "glyphs/account-switch.mjs"
+    },
+    {
+      "id": "fingerprint",
+      "title": "Fingerprint",
+      "category": "accounts",
+      "tags": [
+        "biometric",
+        "identity"
+      ],
+      "svg": "svg/fingerprint.svg",
+      "module": "glyphs/fingerprint.mjs"
+    },
+    {
+      "id": "anonymous",
+      "title": "Anonymous",
+      "category": "accounts",
+      "tags": [
+        "incognito",
+        "privacy",
+        "guest"
+      ],
+      "svg": "svg/anonymous.svg",
+      "module": "glyphs/anonymous.mjs"
+    },
+    {
+      "id": "crown",
+      "title": "Crown",
+      "category": "accounts",
+      "tags": [
+        "owner",
+        "administrator",
+        "premium"
+      ],
+      "svg": "svg/crown.svg",
+      "module": "glyphs/crown.mjs"
+    },
+    {
+      "id": "graduation",
+      "title": "Graduation",
+      "category": "accounts",
+      "tags": [
+        "education",
+        "student",
+        "learning"
+      ],
+      "svg": "svg/graduation.svg",
+      "module": "glyphs/graduation.mjs"
+    },
+    {
+      "id": "handshake",
+      "title": "Handshake",
+      "category": "accounts",
+      "tags": [
+        "collaborate",
+        "agreement",
+        "partner"
+      ],
+      "svg": "svg/handshake.svg",
+      "module": "glyphs/handshake.mjs"
+    },
+    {
+      "id": "organization",
+      "title": "Organization",
+      "category": "accounts",
+      "tags": [
+        "team",
+        "hierarchy",
+        "roles"
+      ],
+      "svg": "svg/organization.svg",
+      "module": "glyphs/organization.mjs"
+    },
+    {
+      "id": "shield",
+      "title": "Shield",
+      "category": "security",
+      "tags": [
+        "protection",
+        "security"
+      ],
+      "svg": "svg/shield.svg",
+      "module": "glyphs/shield.mjs"
+    },
+    {
+      "id": "shield-check",
+      "title": "Shield Check",
+      "category": "security",
+      "tags": [
+        "verified",
+        "safe"
+      ],
+      "svg": "svg/shield-check.svg",
+      "module": "glyphs/shield-check.mjs"
+    },
+    {
+      "id": "shield-alert",
+      "title": "Shield Alert",
+      "category": "security",
+      "tags": [
+        "warning",
+        "threat"
+      ],
+      "svg": "svg/shield-alert.svg",
+      "module": "glyphs/shield-alert.mjs"
+    },
+    {
+      "id": "shield-cross",
+      "title": "Shield Cross",
+      "category": "security",
+      "tags": [
+        "unsafe",
+        "rejected"
+      ],
+      "svg": "svg/shield-cross.svg",
+      "module": "glyphs/shield-cross.mjs"
+    },
+    {
+      "id": "shield-key",
+      "title": "Shield Key",
+      "category": "security",
+      "tags": [
+        "authorization",
+        "access"
+      ],
+      "svg": "svg/shield-key.svg",
+      "module": "glyphs/shield-key.mjs"
+    },
+    {
+      "id": "padlock",
+      "title": "Padlock",
+      "category": "security",
+      "tags": [
+        "locked",
+        "password"
+      ],
+      "svg": "svg/padlock.svg",
+      "module": "glyphs/padlock.mjs"
+    },
+    {
+      "id": "padlock-open",
+      "title": "Padlock Open",
+      "category": "security",
+      "tags": [
+        "unlock",
+        "public"
+      ],
+      "svg": "svg/padlock-open.svg",
+      "module": "glyphs/padlock-open.mjs"
+    },
+    {
+      "id": "key",
+      "title": "Key",
+      "category": "security",
+      "tags": [
+        "secret",
+        "credential"
+      ],
+      "svg": "svg/key.svg",
+      "module": "glyphs/key.mjs"
+    },
+    {
+      "id": "key-card",
+      "title": "Key Card",
+      "category": "security",
+      "tags": [
+        "access",
+        "pass",
+        "swipe"
+      ],
+      "svg": "svg/key-card.svg",
+      "module": "glyphs/key-card.mjs"
+    },
+    {
+      "id": "password",
+      "title": "Password",
+      "category": "security",
+      "tags": [
+        "credentials",
+        "masked"
+      ],
+      "svg": "svg/password.svg",
+      "module": "glyphs/password.mjs"
+    },
+    {
+      "id": "scan-face",
+      "title": "Scan Face",
+      "category": "security",
+      "tags": [
+        "biometric",
+        "recognition"
+      ],
+      "svg": "svg/scan-face.svg",
+      "module": "glyphs/scan-face.mjs"
+    },
+    {
+      "id": "scan-code",
+      "title": "Scan Code",
+      "category": "security",
+      "tags": [
+        "barcode",
+        "scanner"
+      ],
+      "svg": "svg/scan-code.svg",
+      "module": "glyphs/scan-code.mjs"
+    },
+    {
+      "id": "captcha",
+      "title": "Captcha",
+      "category": "security",
+      "tags": [
+        "human",
+        "verification"
+      ],
+      "svg": "svg/captcha.svg",
+      "module": "glyphs/captcha.mjs"
+    },
+    {
+      "id": "firewall",
+      "title": "Firewall",
+      "category": "security",
+      "tags": [
+        "network",
+        "boundary",
+        "bricks"
+      ],
+      "svg": "svg/firewall.svg",
+      "module": "glyphs/firewall.mjs"
+    },
+    {
+      "id": "siren",
+      "title": "Siren",
+      "category": "security",
+      "tags": [
+        "alarm",
+        "incident"
+      ],
+      "svg": "svg/siren.svg",
+      "module": "glyphs/siren.mjs"
+    },
+    {
+      "id": "eye",
+      "title": "Eye",
+      "category": "security",
+      "tags": [
+        "visible",
+        "reveal"
+      ],
+      "svg": "svg/eye.svg",
+      "module": "glyphs/eye.mjs"
+    },
+    {
+      "id": "eye-off",
+      "title": "Eye Off",
+      "category": "security",
+      "tags": [
+        "hidden",
+        "conceal"
+      ],
+      "svg": "svg/eye-off.svg",
+      "module": "glyphs/eye-off.mjs"
+    },
+    {
+      "id": "audit-log",
+      "title": "Audit Log",
+      "category": "security",
+      "tags": [
+        "compliance",
+        "verification",
+        "record"
+      ],
+      "svg": "svg/audit-log.svg",
+      "module": "glyphs/audit-log.mjs"
+    },
+    {
+      "id": "certificate",
+      "title": "Certificate",
+      "category": "security",
+      "tags": [
+        "signed",
+        "trust",
+        "credential"
+      ],
+      "svg": "svg/certificate.svg",
+      "module": "glyphs/certificate.mjs"
+    },
+    {
+      "id": "two-factor",
+      "title": "Two Factor",
+      "category": "security",
+      "tags": [
+        "mfa",
+        "otp",
+        "authentication"
+      ],
+      "svg": "svg/two-factor.svg",
+      "module": "glyphs/two-factor.mjs"
+    },
+    {
+      "id": "envelope",
+      "title": "Envelope",
+      "category": "mail",
+      "tags": [
+        "email",
+        "message"
+      ],
+      "svg": "svg/envelope.svg",
+      "module": "glyphs/envelope.mjs"
+    },
+    {
+      "id": "envelope-open",
+      "title": "Envelope Open",
+      "category": "mail",
+      "tags": [
+        "read",
+        "email"
+      ],
+      "svg": "svg/envelope-open.svg",
+      "module": "glyphs/envelope-open.mjs"
+    },
+    {
+      "id": "mail-add",
+      "title": "Mail Add",
+      "category": "mail",
+      "tags": [
+        "new",
+        "email"
+      ],
+      "svg": "svg/mail-add.svg",
+      "module": "glyphs/mail-add.mjs"
+    },
+    {
+      "id": "mail-check",
+      "title": "Mail Check",
+      "category": "mail",
+      "tags": [
+        "delivered",
+        "verified"
+      ],
+      "svg": "svg/mail-check.svg",
+      "module": "glyphs/mail-check.mjs"
+    },
+    {
+      "id": "mail-lock",
+      "title": "Mail Lock",
+      "category": "mail",
+      "tags": [
+        "encrypted",
+        "private"
+      ],
+      "svg": "svg/mail-lock.svg",
+      "module": "glyphs/mail-lock.mjs"
+    },
+    {
+      "id": "mail-clock",
+      "title": "Mail Clock",
+      "category": "mail",
+      "tags": [
+        "scheduled",
+        "deferred"
+      ],
+      "svg": "svg/mail-clock.svg",
+      "module": "glyphs/mail-clock.mjs"
+    },
+    {
+      "id": "mail-warning",
+      "title": "Mail Warning",
+      "category": "mail",
+      "tags": [
+        "delivery",
+        "failed",
+        "alert"
+      ],
+      "svg": "svg/mail-warning.svg",
+      "module": "glyphs/mail-warning.mjs"
+    },
+    {
+      "id": "inbox-tray",
+      "title": "Inbox Tray",
+      "category": "mail",
+      "tags": [
+        "incoming",
+        "messages"
+      ],
+      "svg": "svg/inbox-tray.svg",
+      "module": "glyphs/inbox-tray.mjs"
+    },
+    {
+      "id": "outbox-tray",
+      "title": "Outbox Tray",
+      "category": "mail",
+      "tags": [
+        "outgoing",
+        "messages"
+      ],
+      "svg": "svg/outbox-tray.svg",
+      "module": "glyphs/outbox-tray.mjs"
+    },
+    {
+      "id": "paper-plane",
+      "title": "Paper Plane",
+      "category": "mail",
+      "tags": [
+        "send",
+        "submit"
+      ],
+      "svg": "svg/paper-plane.svg",
+      "module": "glyphs/paper-plane.mjs"
+    },
+    {
+      "id": "reply",
+      "title": "Reply",
+      "category": "mail",
+      "tags": [
+        "respond",
+        "message"
+      ],
+      "svg": "svg/reply.svg",
+      "module": "glyphs/reply.mjs"
+    },
+    {
+      "id": "reply-all",
+      "title": "Reply All",
+      "category": "mail",
+      "tags": [
+        "respond",
+        "everyone"
+      ],
+      "svg": "svg/reply-all.svg",
+      "module": "glyphs/reply-all.mjs"
+    },
+    {
+      "id": "forward-message",
+      "title": "Forward Message",
+      "category": "mail",
+      "tags": [
+        "redirect",
+        "message"
+      ],
+      "svg": "svg/forward-message.svg",
+      "module": "glyphs/forward-message.mjs"
+    },
+    {
+      "id": "attachment",
+      "title": "Attachment",
+      "category": "mail",
+      "tags": [
+        "paperclip",
+        "attach"
+      ],
+      "svg": "svg/attachment.svg",
+      "module": "glyphs/attachment.mjs"
+    },
+    {
+      "id": "mailbox",
+      "title": "Mailbox",
+      "category": "mail",
+      "tags": [
+        "post",
+        "delivery"
+      ],
+      "svg": "svg/mailbox.svg",
+      "module": "glyphs/mailbox.mjs"
+    },
+    {
+      "id": "newsletter",
+      "title": "Newsletter",
+      "category": "mail",
+      "tags": [
+        "digest",
+        "publication"
+      ],
+      "svg": "svg/newsletter.svg",
+      "module": "glyphs/newsletter.mjs"
+    },
+    {
+      "id": "conversation",
+      "title": "Conversation",
+      "category": "mail",
+      "tags": [
+        "thread",
+        "messages",
+        "chat"
+      ],
+      "svg": "svg/conversation.svg",
+      "module": "glyphs/conversation.mjs"
+    },
+    {
+      "id": "chat-bubble",
+      "title": "Chat Bubble",
+      "category": "mail",
+      "tags": [
+        "comment",
+        "message"
+      ],
+      "svg": "svg/chat-bubble.svg",
+      "module": "glyphs/chat-bubble.mjs"
+    },
+    {
+      "id": "chat-typing",
+      "title": "Chat Typing",
+      "category": "mail",
+      "tags": [
+        "writing",
+        "conversation"
+      ],
+      "svg": "svg/chat-typing.svg",
+      "module": "glyphs/chat-typing.mjs"
+    },
+    {
+      "id": "unsubscribe",
+      "title": "Unsubscribe",
+      "category": "mail",
+      "tags": [
+        "opt",
+        "out",
+        "stop",
+        "mail"
+      ],
+      "svg": "svg/unsubscribe.svg",
+      "module": "glyphs/unsubscribe.mjs"
+    },
+    {
+      "id": "document",
+      "title": "Document",
+      "category": "files",
+      "tags": [
+        "text",
+        "file"
+      ],
+      "svg": "svg/document.svg",
+      "module": "glyphs/document.mjs"
+    },
+    {
+      "id": "document-add",
+      "title": "Document Add",
+      "category": "files",
+      "tags": [
+        "new",
+        "file"
+      ],
+      "svg": "svg/document-add.svg",
+      "module": "glyphs/document-add.mjs"
+    },
+    {
+      "id": "document-check",
+      "title": "Document Check",
+      "category": "files",
+      "tags": [
+        "verified",
+        "saved"
+      ],
+      "svg": "svg/document-check.svg",
+      "module": "glyphs/document-check.mjs"
+    },
+    {
+      "id": "document-lock",
+      "title": "Document Lock",
+      "category": "files",
+      "tags": [
+        "protected",
+        "private"
+      ],
+      "svg": "svg/document-lock.svg",
+      "module": "glyphs/document-lock.mjs"
+    },
+    {
+      "id": "document-download",
+      "title": "Document Download",
+      "category": "files",
+      "tags": [
+        "save",
+        "export"
+      ],
+      "svg": "svg/document-download.svg",
+      "module": "glyphs/document-download.mjs"
+    },
+    {
+      "id": "document-upload",
+      "title": "Document Upload",
+      "category": "files",
+      "tags": [
+        "import",
+        "submit"
+      ],
+      "svg": "svg/document-upload.svg",
+      "module": "glyphs/document-upload.mjs"
+    },
+    {
+      "id": "document-code",
+      "title": "Document Code",
+      "category": "files",
+      "tags": [
+        "source",
+        "markup"
+      ],
+      "svg": "svg/document-code.svg",
+      "module": "glyphs/document-code.mjs"
+    },
+    {
+      "id": "document-image",
+      "title": "Document Image",
+      "category": "files",
+      "tags": [
+        "picture",
+        "asset"
+      ],
+      "svg": "svg/document-image.svg",
+      "module": "glyphs/document-image.mjs"
+    },
+    {
+      "id": "document-audio",
+      "title": "Document Audio",
+      "category": "files",
+      "tags": [
+        "sound",
+        "recording"
+      ],
+      "svg": "svg/document-audio.svg",
+      "module": "glyphs/document-audio.mjs"
+    },
+    {
+      "id": "document-zip",
+      "title": "Document Zip",
+      "category": "files",
+      "tags": [
+        "compressed",
+        "archive"
+      ],
+      "svg": "svg/document-zip.svg",
+      "module": "glyphs/document-zip.mjs"
+    },
+    {
+      "id": "folder-closed",
+      "title": "Folder Closed",
+      "category": "files",
+      "tags": [
+        "directory",
+        "projects"
+      ],
+      "svg": "svg/folder-closed.svg",
+      "module": "glyphs/folder-closed.mjs"
+    },
+    {
+      "id": "folder-open",
+      "title": "Folder Open",
+      "category": "files",
+      "tags": [
+        "directory",
+        "expanded"
+      ],
+      "svg": "svg/folder-open.svg",
+      "module": "glyphs/folder-open.mjs"
+    },
+    {
+      "id": "folder-add",
+      "title": "Folder Add",
+      "category": "files",
+      "tags": [
+        "new",
+        "directory"
+      ],
+      "svg": "svg/folder-add.svg",
+      "module": "glyphs/folder-add.mjs"
+    },
+    {
+      "id": "folder-locked",
+      "title": "Folder Locked",
+      "category": "files",
+      "tags": [
+        "private",
+        "directory"
+      ],
+      "svg": "svg/folder-locked.svg",
+      "module": "glyphs/folder-locked.mjs"
+    },
+    {
+      "id": "folder-download",
+      "title": "Folder Download",
+      "category": "files",
+      "tags": [
+        "export",
+        "directory"
+      ],
+      "svg": "svg/folder-download.svg",
+      "module": "glyphs/folder-download.mjs"
+    },
+    {
+      "id": "folder-checked",
+      "title": "Folder Checked",
+      "category": "files",
+      "tags": [
+        "synced",
+        "directory"
+      ],
+      "svg": "svg/folder-checked.svg",
+      "module": "glyphs/folder-checked.mjs"
+    },
+    {
+      "id": "archive-box",
+      "title": "Archive Box",
+      "category": "files",
+      "tags": [
+        "storage",
+        "package"
+      ],
+      "svg": "svg/archive-box.svg",
+      "module": "glyphs/archive-box.mjs"
+    },
+    {
+      "id": "trash-bin",
+      "title": "Trash Bin",
+      "category": "files",
+      "tags": [
+        "delete",
+        "garbage"
+      ],
+      "svg": "svg/trash-bin.svg",
+      "module": "glyphs/trash-bin.mjs"
+    },
+    {
+      "id": "hard-drive",
+      "title": "Hard Drive",
+      "category": "files",
+      "tags": [
+        "disk",
+        "volume"
+      ],
+      "svg": "svg/hard-drive.svg",
+      "module": "glyphs/hard-drive.mjs"
+    },
+    {
+      "id": "stack-documents",
+      "title": "Stack Documents",
+      "category": "files",
+      "tags": [
+        "multiple",
+        "files",
+        "batch"
+      ],
+      "svg": "svg/stack-documents.svg",
+      "module": "glyphs/stack-documents.mjs"
+    },
+    {
+      "id": "play",
+      "title": "Play",
+      "category": "media",
+      "tags": [
+        "start",
+        "video",
+        "audio"
+      ],
+      "svg": "svg/play.svg",
+      "module": "glyphs/play.mjs"
+    },
+    {
+      "id": "pause",
+      "title": "Pause",
+      "category": "media",
+      "tags": [
+        "hold",
+        "playback"
+      ],
+      "svg": "svg/pause.svg",
+      "module": "glyphs/pause.mjs"
+    },
+    {
+      "id": "stop",
+      "title": "Stop",
+      "category": "media",
+      "tags": [
+        "end",
+        "playback"
+      ],
+      "svg": "svg/stop.svg",
+      "module": "glyphs/stop.mjs"
+    },
+    {
+      "id": "record",
+      "title": "Record",
+      "category": "media",
+      "tags": [
+        "capture",
+        "recording"
+      ],
+      "svg": "svg/record.svg",
+      "module": "glyphs/record.mjs"
+    },
+    {
+      "id": "fast-forward",
+      "title": "Fast Forward",
+      "category": "media",
+      "tags": [
+        "seek",
+        "ahead"
+      ],
+      "svg": "svg/fast-forward.svg",
+      "module": "glyphs/fast-forward.mjs"
+    },
+    {
+      "id": "rewind",
+      "title": "Rewind",
+      "category": "media",
+      "tags": [
+        "seek",
+        "back"
+      ],
+      "svg": "svg/rewind.svg",
+      "module": "glyphs/rewind.mjs"
+    },
+    {
+      "id": "volume",
+      "title": "Volume",
+      "category": "media",
+      "tags": [
+        "sound",
+        "speaker",
+        "loud"
+      ],
+      "svg": "svg/volume.svg",
+      "module": "glyphs/volume.mjs"
+    },
+    {
+      "id": "volume-low",
+      "title": "Volume Low",
+      "category": "media",
+      "tags": [
+        "quiet",
+        "sound"
+      ],
+      "svg": "svg/volume-low.svg",
+      "module": "glyphs/volume-low.mjs"
+    },
+    {
+      "id": "volume-mute",
+      "title": "Volume Mute",
+      "category": "media",
+      "tags": [
+        "silent",
+        "sound",
+        "off"
+      ],
+      "svg": "svg/volume-mute.svg",
+      "module": "glyphs/volume-mute.mjs"
+    },
+    {
+      "id": "microphone",
+      "title": "Microphone",
+      "category": "media",
+      "tags": [
+        "record",
+        "voice"
+      ],
+      "svg": "svg/microphone.svg",
+      "module": "glyphs/microphone.mjs"
+    },
+    {
+      "id": "microphone-off",
+      "title": "Microphone Off",
+      "category": "media",
+      "tags": [
+        "mute",
+        "voice"
+      ],
+      "svg": "svg/microphone-off.svg",
+      "module": "glyphs/microphone-off.mjs"
+    },
+    {
+      "id": "camera",
+      "title": "Camera",
+      "category": "media",
+      "tags": [
+        "photo",
+        "capture"
+      ],
+      "svg": "svg/camera.svg",
+      "module": "glyphs/camera.mjs"
+    },
+    {
+      "id": "video-camera",
+      "title": "Video Camera",
+      "category": "media",
+      "tags": [
+        "film",
+        "capture",
+        "call"
+      ],
+      "svg": "svg/video-camera.svg",
+      "module": "glyphs/video-camera.mjs"
+    },
+    {
+      "id": "film-strip",
+      "title": "Film Strip",
+      "category": "media",
+      "tags": [
+        "movie",
+        "cinema"
+      ],
+      "svg": "svg/film-strip.svg",
+      "module": "glyphs/film-strip.mjs"
+    },
+    {
+      "id": "music-note",
+      "title": "Music Note",
+      "category": "media",
+      "tags": [
+        "song",
+        "audio"
+      ],
+      "svg": "svg/music-note.svg",
+      "module": "glyphs/music-note.mjs"
+    },
+    {
+      "id": "headphones",
+      "title": "Headphones",
+      "category": "media",
+      "tags": [
+        "listen",
+        "audio"
+      ],
+      "svg": "svg/headphones.svg",
+      "module": "glyphs/headphones.mjs"
+    },
+    {
+      "id": "image-landscape",
+      "title": "Image Landscape",
+      "category": "media",
+      "tags": [
+        "picture",
+        "gallery"
+      ],
+      "svg": "svg/image-landscape.svg",
+      "module": "glyphs/image-landscape.mjs"
+    },
+    {
+      "id": "crop",
+      "title": "Crop",
+      "category": "media",
+      "tags": [
+        "frame",
+        "resize"
+      ],
+      "svg": "svg/crop.svg",
+      "module": "glyphs/crop.mjs"
+    },
+    {
+      "id": "shuffle",
+      "title": "Shuffle",
+      "category": "media",
+      "tags": [
+        "random",
+        "playback"
+      ],
+      "svg": "svg/shuffle.svg",
+      "module": "glyphs/shuffle.mjs"
+    },
+    {
+      "id": "repeat",
+      "title": "Repeat",
+      "category": "media",
+      "tags": [
+        "loop",
+        "playback"
+      ],
+      "svg": "svg/repeat.svg",
+      "module": "glyphs/repeat.mjs"
+    },
+    {
+      "id": "cloud",
+      "title": "Cloud",
+      "category": "cloud",
+      "tags": [
+        "remote",
+        "online"
+      ],
+      "svg": "svg/cloud.svg",
+      "module": "glyphs/cloud.mjs"
+    },
+    {
+      "id": "cloud-upload",
+      "title": "Cloud Upload",
+      "category": "cloud",
+      "tags": [
+        "backup",
+        "remote"
+      ],
+      "svg": "svg/cloud-upload.svg",
+      "module": "glyphs/cloud-upload.mjs"
+    },
+    {
+      "id": "cloud-download",
+      "title": "Cloud Download",
+      "category": "cloud",
+      "tags": [
+        "restore",
+        "remote"
+      ],
+      "svg": "svg/cloud-download.svg",
+      "module": "glyphs/cloud-download.mjs"
+    },
+    {
+      "id": "cloud-check",
+      "title": "Cloud Check",
+      "category": "cloud",
+      "tags": [
+        "synced",
+        "available"
+      ],
+      "svg": "svg/cloud-check.svg",
+      "module": "glyphs/cloud-check.mjs"
+    },
+    {
+      "id": "cloud-off",
+      "title": "Cloud Off",
+      "category": "cloud",
+      "tags": [
+        "offline",
+        "disconnected"
+      ],
+      "svg": "svg/cloud-off.svg",
+      "module": "glyphs/cloud-off.mjs"
+    },
+    {
+      "id": "server",
+      "title": "Server",
+      "category": "cloud",
+      "tags": [
+        "host",
+        "compute"
+      ],
+      "svg": "svg/server.svg",
+      "module": "glyphs/server.mjs"
+    },
+    {
+      "id": "server-stack",
+      "title": "Server Stack",
+      "category": "cloud",
+      "tags": [
+        "rack",
+        "cluster"
+      ],
+      "svg": "svg/server-stack.svg",
+      "module": "glyphs/server-stack.mjs"
+    },
+    {
+      "id": "database",
+      "title": "Database",
+      "category": "cloud",
+      "tags": [
+        "data",
+        "storage"
+      ],
+      "svg": "svg/database.svg",
+      "module": "glyphs/database.mjs"
+    },
+    {
+      "id": "database-backup",
+      "title": "Database Backup",
+      "category": "cloud",
+      "tags": [
+        "snapshot",
+        "restore"
+      ],
+      "svg": "svg/database-backup.svg",
+      "module": "glyphs/database-backup.mjs"
+    },
+    {
+      "id": "container",
+      "title": "Container",
+      "category": "cloud",
+      "tags": [
+        "deploy",
+        "package"
+      ],
+      "svg": "svg/container.svg",
+      "module": "glyphs/container.mjs"
+    },
+    {
+      "id": "load-balancer",
+      "title": "Load Balancer",
+      "category": "cloud",
+      "tags": [
+        "traffic",
+        "distribution"
+      ],
+      "svg": "svg/load-balancer.svg",
+      "module": "glyphs/load-balancer.mjs"
+    },
+    {
+      "id": "replication",
+      "title": "Replication",
+      "category": "cloud",
+      "tags": [
+        "mirror",
+        "data",
+        "sync"
+      ],
+      "svg": "svg/replication.svg",
+      "module": "glyphs/replication.mjs"
+    },
+    {
+      "id": "deploy",
+      "title": "Deploy",
+      "category": "cloud",
+      "tags": [
+        "launch",
+        "rocket",
+        "release"
+      ],
+      "svg": "svg/deploy.svg",
+      "module": "glyphs/deploy.mjs"
+    },
+    {
+      "id": "service",
+      "title": "Service",
+      "category": "cloud",
+      "tags": [
+        "endpoint",
+        "process"
+      ],
+      "svg": "svg/service.svg",
+      "module": "glyphs/service.mjs"
+    },
+    {
+      "id": "snapshot",
+      "title": "Snapshot",
+      "category": "cloud",
+      "tags": [
+        "point",
+        "in",
+        "time",
+        "image"
+      ],
+      "svg": "svg/snapshot.svg",
+      "module": "glyphs/snapshot.mjs"
+    },
+    {
+      "id": "cloud-queue",
+      "title": "Cloud Queue",
+      "category": "cloud",
+      "tags": [
+        "jobs",
+        "messages",
+        "backlog"
+      ],
+      "svg": "svg/cloud-queue.svg",
+      "module": "glyphs/cloud-queue.mjs"
+    },
+    {
+      "id": "region",
+      "title": "Region",
+      "category": "cloud",
+      "tags": [
+        "geographic",
+        "data",
+        "center"
+      ],
+      "svg": "svg/region.svg",
+      "module": "glyphs/region.mjs"
+    },
+    {
+      "id": "edge-node",
+      "title": "Edge Node",
+      "category": "cloud",
+      "tags": [
+        "distributed",
+        "delivery"
+      ],
+      "svg": "svg/edge-node.svg",
+      "module": "glyphs/edge-node.mjs"
+    },
+    {
+      "id": "cloud-settings",
+      "title": "Cloud Settings",
+      "category": "cloud",
+      "tags": [
+        "remote",
+        "configuration"
+      ],
+      "svg": "svg/cloud-settings.svg",
+      "module": "glyphs/cloud-settings.mjs"
+    },
+    {
+      "id": "uptime",
+      "title": "Uptime",
+      "category": "cloud",
+      "tags": [
+        "availability",
+        "heartbeat"
+      ],
+      "svg": "svg/uptime.svg",
+      "module": "glyphs/uptime.mjs"
+    },
+    {
+      "id": "wifi",
+      "title": "Wifi",
+      "category": "network",
+      "tags": [
+        "wireless",
+        "connection"
+      ],
+      "svg": "svg/wifi.svg",
+      "module": "glyphs/wifi.mjs"
+    },
+    {
+      "id": "wifi-off",
+      "title": "Wifi Off",
+      "category": "network",
+      "tags": [
+        "wireless",
+        "disconnected"
+      ],
+      "svg": "svg/wifi-off.svg",
+      "module": "glyphs/wifi-off.mjs"
+    },
+    {
+      "id": "ethernet",
+      "title": "Ethernet",
+      "category": "network",
+      "tags": [
+        "wired",
+        "port",
+        "rj45"
+      ],
+      "svg": "svg/ethernet.svg",
+      "module": "glyphs/ethernet.mjs"
+    },
+    {
+      "id": "router",
+      "title": "Router",
+      "category": "network",
+      "tags": [
+        "gateway",
+        "wireless"
+      ],
+      "svg": "svg/router.svg",
+      "module": "glyphs/router.mjs"
+    },
+    {
+      "id": "switch-network",
+      "title": "Switch Network",
+      "category": "network",
+      "tags": [
+        "lan",
+        "ports"
+      ],
+      "svg": "svg/switch-network.svg",
+      "module": "glyphs/switch-network.mjs"
+    },
+    {
+      "id": "globe",
+      "title": "Globe",
+      "category": "network",
+      "tags": [
+        "internet",
+        "world"
+      ],
+      "svg": "svg/globe.svg",
+      "module": "glyphs/globe.mjs"
+    },
+    {
+      "id": "link-chain",
+      "title": "Link Chain",
+      "category": "network",
+      "tags": [
+        "url",
+        "connection"
+      ],
+      "svg": "svg/link-chain.svg",
+      "module": "glyphs/link-chain.mjs"
+    },
+    {
+      "id": "link-broken",
+      "title": "Link Broken",
+      "category": "network",
+      "tags": [
+        "unlink",
+        "disconnected"
+      ],
+      "svg": "svg/link-broken.svg",
+      "module": "glyphs/link-broken.mjs"
+    },
+    {
+      "id": "broadcast",
+      "title": "Broadcast",
+      "category": "network",
+      "tags": [
+        "radio",
+        "live",
+        "signal"
+      ],
+      "svg": "svg/broadcast.svg",
+      "module": "glyphs/broadcast.mjs"
+    },
+    {
+      "id": "antenna",
+      "title": "Antenna",
+      "category": "network",
+      "tags": [
+        "tower",
+        "radio"
+      ],
+      "svg": "svg/antenna.svg",
+      "module": "glyphs/antenna.mjs"
+    },
+    {
+      "id": "bluetooth",
+      "title": "Bluetooth",
+      "category": "network",
+      "tags": [
+        "wireless",
+        "pairing"
+      ],
+      "svg": "svg/bluetooth.svg",
+      "module": "glyphs/bluetooth.mjs"
+    },
+    {
+      "id": "vpn-tunnel",
+      "title": "Vpn Tunnel",
+      "category": "network",
+      "tags": [
+        "private",
+        "tunnel"
+      ],
+      "svg": "svg/vpn-tunnel.svg",
+      "module": "glyphs/vpn-tunnel.mjs"
+    },
+    {
+      "id": "dns",
+      "title": "Dns",
+      "category": "network",
+      "tags": [
+        "domain",
+        "names",
+        "resolver"
+      ],
+      "svg": "svg/dns.svg",
+      "module": "glyphs/dns.mjs"
+    },
+    {
+      "id": "signal-bars",
+      "title": "Signal Bars",
+      "category": "network",
+      "tags": [
+        "cellular",
+        "reception"
+      ],
+      "svg": "svg/signal-bars.svg",
+      "module": "glyphs/signal-bars.mjs"
+    },
+    {
+      "id": "network-upload",
+      "title": "Network Upload",
+      "category": "network",
+      "tags": [
+        "outbound",
+        "bandwidth"
+      ],
+      "svg": "svg/network-upload.svg",
+      "module": "glyphs/network-upload.mjs"
+    },
+    {
+      "id": "network-download",
+      "title": "Network Download",
+      "category": "network",
+      "tags": [
+        "inbound",
+        "bandwidth"
+      ],
+      "svg": "svg/network-download.svg",
+      "module": "glyphs/network-download.mjs"
+    },
+    {
+      "id": "bidirectional",
+      "title": "Bidirectional",
+      "category": "network",
+      "tags": [
+        "traffic",
+        "transfer",
+        "duplex"
+      ],
+      "svg": "svg/bidirectional.svg",
+      "module": "glyphs/bidirectional.mjs"
+    },
+    {
+      "id": "latency",
+      "title": "Latency",
+      "category": "network",
+      "tags": [
+        "ping",
+        "response",
+        "delay"
+      ],
+      "svg": "svg/latency.svg",
+      "module": "glyphs/latency.mjs"
+    },
+    {
+      "id": "satellite",
+      "title": "Satellite",
+      "category": "network",
+      "tags": [
+        "orbit",
+        "communications"
+      ],
+      "svg": "svg/satellite.svg",
+      "module": "glyphs/satellite.mjs"
+    },
+    {
+      "id": "connections",
+      "title": "Connections",
+      "category": "network",
+      "tags": [
+        "peers",
+        "topology"
+      ],
+      "svg": "svg/connections.svg",
+      "module": "glyphs/connections.mjs"
+    },
+    {
+      "id": "desktop",
+      "title": "Desktop",
+      "category": "devices",
+      "tags": [
+        "computer",
+        "display"
+      ],
+      "svg": "svg/desktop.svg",
+      "module": "glyphs/desktop.mjs"
+    },
+    {
+      "id": "laptop",
+      "title": "Laptop",
+      "category": "devices",
+      "tags": [
+        "notebook",
+        "computer"
+      ],
+      "svg": "svg/laptop.svg",
+      "module": "glyphs/laptop.mjs"
+    },
+    {
+      "id": "phone",
+      "title": "Phone",
+      "category": "devices",
+      "tags": [
+        "mobile",
+        "smartphone"
+      ],
+      "svg": "svg/phone.svg",
+      "module": "glyphs/phone.mjs"
+    },
+    {
+      "id": "tablet",
+      "title": "Tablet",
+      "category": "devices",
+      "tags": [
+        "mobile",
+        "slate"
+      ],
+      "svg": "svg/tablet.svg",
+      "module": "glyphs/tablet.mjs"
+    },
+    {
+      "id": "watch",
+      "title": "Watch",
+      "category": "devices",
+      "tags": [
+        "wearable",
+        "smartwatch"
+      ],
+      "svg": "svg/watch.svg",
+      "module": "glyphs/watch.mjs"
+    },
+    {
+      "id": "keyboard",
+      "title": "Keyboard",
+      "category": "devices",
+      "tags": [
+        "typing",
+        "input"
+      ],
+      "svg": "svg/keyboard.svg",
+      "module": "glyphs/keyboard.mjs"
+    },
+    {
+      "id": "mouse",
+      "title": "Mouse",
+      "category": "devices",
+      "tags": [
+        "pointer",
+        "input"
+      ],
+      "svg": "svg/mouse.svg",
+      "module": "glyphs/mouse.mjs"
+    },
+    {
+      "id": "printer",
+      "title": "Printer",
+      "category": "devices",
+      "tags": [
+        "paper",
+        "output"
+      ],
+      "svg": "svg/printer.svg",
+      "module": "glyphs/printer.mjs"
+    },
+    {
+      "id": "scanner",
+      "title": "Scanner",
+      "category": "devices",
+      "tags": [
+        "document",
+        "digitizer"
+      ],
+      "svg": "svg/scanner.svg",
+      "module": "glyphs/scanner.mjs"
+    },
+    {
+      "id": "usb-drive",
+      "title": "Usb Drive",
+      "category": "devices",
+      "tags": [
+        "flash",
+        "removable",
+        "storage"
+      ],
+      "svg": "svg/usb-drive.svg",
+      "module": "glyphs/usb-drive.mjs"
+    },
+    {
+      "id": "sd-card",
+      "title": "Sd Card",
+      "category": "devices",
+      "tags": [
+        "memory",
+        "card",
+        "storage"
+      ],
+      "svg": "svg/sd-card.svg",
+      "module": "glyphs/sd-card.mjs"
+    },
+    {
+      "id": "battery-full",
+      "title": "Battery Full",
+      "category": "devices",
+      "tags": [
+        "power",
+        "charged"
+      ],
+      "svg": "svg/battery-full.svg",
+      "module": "glyphs/battery-full.mjs"
+    },
+    {
+      "id": "battery-low",
+      "title": "Battery Low",
+      "category": "devices",
+      "tags": [
+        "power",
+        "remaining"
+      ],
+      "svg": "svg/battery-low.svg",
+      "module": "glyphs/battery-low.mjs"
+    },
+    {
+      "id": "battery-charging",
+      "title": "Battery Charging",
+      "category": "devices",
+      "tags": [
+        "charge",
+        "power"
+      ],
+      "svg": "svg/battery-charging.svg",
+      "module": "glyphs/battery-charging.mjs"
+    },
+    {
+      "id": "plug",
+      "title": "Plug",
+      "category": "devices",
+      "tags": [
+        "electric",
+        "connect"
+      ],
+      "svg": "svg/plug.svg",
+      "module": "glyphs/plug.mjs"
+    },
+    {
+      "id": "power-button",
+      "title": "Power Button",
+      "category": "devices",
+      "tags": [
+        "start",
+        "shutdown"
+      ],
+      "svg": "svg/power-button.svg",
+      "module": "glyphs/power-button.mjs"
+    },
+    {
+      "id": "processor",
+      "title": "Processor",
+      "category": "devices",
+      "tags": [
+        "cpu",
+        "chip"
+      ],
+      "svg": "svg/processor.svg",
+      "module": "glyphs/processor.mjs"
+    },
+    {
+      "id": "memory-module",
+      "title": "Memory Module",
+      "category": "devices",
+      "tags": [
+        "ram",
+        "dimm"
+      ],
+      "svg": "svg/memory-module.svg",
+      "module": "glyphs/memory-module.mjs"
+    },
+    {
+      "id": "game-controller",
+      "title": "Game Controller",
+      "category": "devices",
+      "tags": [
+        "gamepad",
+        "play"
+      ],
+      "svg": "svg/game-controller.svg",
+      "module": "glyphs/game-controller.mjs"
+    },
+    {
+      "id": "projector",
+      "title": "Projector",
+      "category": "devices",
+      "tags": [
+        "presentation",
+        "display"
+      ],
+      "svg": "svg/projector.svg",
+      "module": "glyphs/projector.mjs"
+    },
+    {
+      "id": "terminal",
+      "title": "Terminal",
+      "category": "developer",
+      "tags": [
+        "shell",
+        "console",
+        "cli"
+      ],
+      "svg": "svg/terminal.svg",
+      "module": "glyphs/terminal.mjs"
+    },
+    {
+      "id": "code-brackets",
+      "title": "Code Brackets",
+      "category": "developer",
+      "tags": [
+        "source",
+        "programming"
+      ],
+      "svg": "svg/code-brackets.svg",
+      "module": "glyphs/code-brackets.mjs"
+    },
+    {
+      "id": "braces",
+      "title": "Braces",
+      "category": "developer",
+      "tags": [
+        "json",
+        "object"
+      ],
+      "svg": "svg/braces.svg",
+      "module": "glyphs/braces.mjs"
+    },
+    {
+      "id": "git-branch",
+      "title": "Git Branch",
+      "category": "developer",
+      "tags": [
+        "version",
+        "source",
+        "control"
+      ],
+      "svg": "svg/git-branch.svg",
+      "module": "glyphs/git-branch.mjs"
+    },
+    {
+      "id": "git-merge",
+      "title": "Git Merge",
+      "category": "developer",
+      "tags": [
+        "combine",
+        "branch"
+      ],
+      "svg": "svg/git-merge.svg",
+      "module": "glyphs/git-merge.mjs"
+    },
+    {
+      "id": "git-commit",
+      "title": "Git Commit",
+      "category": "developer",
+      "tags": [
+        "revision",
+        "snapshot"
+      ],
+      "svg": "svg/git-commit.svg",
+      "module": "glyphs/git-commit.mjs"
+    },
+    {
+      "id": "pull-request",
+      "title": "Pull Request",
+      "category": "developer",
+      "tags": [
+        "review",
+        "change"
+      ],
+      "svg": "svg/pull-request.svg",
+      "module": "glyphs/pull-request.mjs"
+    },
+    {
+      "id": "bug",
+      "title": "Bug",
+      "category": "developer",
+      "tags": [
+        "defect",
+        "debug"
+      ],
+      "svg": "svg/bug.svg",
+      "module": "glyphs/bug.mjs"
+    },
+    {
+      "id": "wrench",
+      "title": "Wrench",
+      "category": "developer",
+      "tags": [
+        "repair",
+        "tools"
+      ],
+      "svg": "svg/wrench.svg",
+      "module": "glyphs/wrench.mjs"
+    },
+    {
+      "id": "hammer",
+      "title": "Hammer",
+      "category": "developer",
+      "tags": [
+        "build",
+        "construct"
+      ],
+      "svg": "svg/hammer.svg",
+      "module": "glyphs/hammer.mjs"
+    },
+    {
+      "id": "test-tube",
+      "title": "Test Tube",
+      "category": "developer",
+      "tags": [
+        "experiment",
+        "laboratory"
+      ],
+      "svg": "svg/test-tube.svg",
+      "module": "glyphs/test-tube.mjs"
+    },
+    {
+      "id": "binary",
+      "title": "Binary",
+      "category": "developer",
+      "tags": [
+        "bits",
+        "machine",
+        "data"
+      ],
+      "svg": "svg/binary.svg",
+      "module": "glyphs/binary.mjs"
+    },
+    {
+      "id": "api",
+      "title": "Api",
+      "category": "developer",
+      "tags": [
+        "integration",
+        "endpoint"
+      ],
+      "svg": "svg/api.svg",
+      "module": "glyphs/api.mjs"
+    },
+    {
+      "id": "webhook",
+      "title": "Webhook",
+      "category": "developer",
+      "tags": [
+        "callback",
+        "event"
+      ],
+      "svg": "svg/webhook.svg",
+      "module": "glyphs/webhook.mjs"
+    },
+    {
+      "id": "package-box",
+      "title": "Package Box",
+      "category": "developer",
+      "tags": [
+        "dependency",
+        "module"
+      ],
+      "svg": "svg/package-box.svg",
+      "module": "glyphs/package-box.mjs"
+    },
+    {
+      "id": "puzzle",
+      "title": "Puzzle",
+      "category": "developer",
+      "tags": [
+        "extension",
+        "plugin"
+      ],
+      "svg": "svg/puzzle.svg",
+      "module": "glyphs/puzzle.mjs"
+    },
+    {
+      "id": "regex",
+      "title": "Regex",
+      "category": "developer",
+      "tags": [
+        "pattern",
+        "match",
+        "expression"
+      ],
+      "svg": "svg/regex.svg",
+      "module": "glyphs/regex.mjs"
+    },
+    {
+      "id": "diff",
+      "title": "Diff",
+      "category": "developer",
+      "tags": [
+        "change",
+        "patch",
+        "compare"
+      ],
+      "svg": "svg/diff.svg",
+      "module": "glyphs/diff.mjs"
+    },
+    {
+      "id": "pipeline",
+      "title": "Pipeline",
+      "category": "developer",
+      "tags": [
+        "workflow",
+        "automation",
+        "ci"
+      ],
+      "svg": "svg/pipeline.svg",
+      "module": "glyphs/pipeline.mjs"
+    },
+    {
+      "id": "breakpoint",
+      "title": "Breakpoint",
+      "category": "developer",
+      "tags": [
+        "debug",
+        "pause",
+        "execution"
+      ],
+      "svg": "svg/breakpoint.svg",
+      "module": "glyphs/breakpoint.mjs"
+    },
+    {
+      "id": "calendar-grid",
+      "title": "Calendar Grid",
+      "category": "calendar",
+      "tags": [
+        "date",
+        "month"
+      ],
+      "svg": "svg/calendar-grid.svg",
+      "module": "glyphs/calendar-grid.mjs"
+    },
+    {
+      "id": "calendar-add",
+      "title": "Calendar Add",
+      "category": "calendar",
+      "tags": [
+        "new",
+        "event"
+      ],
+      "svg": "svg/calendar-add.svg",
+      "module": "glyphs/calendar-add.mjs"
+    },
+    {
+      "id": "calendar-check",
+      "title": "Calendar Check",
+      "category": "calendar",
+      "tags": [
+        "confirmed",
+        "scheduled"
+      ],
+      "svg": "svg/calendar-check.svg",
+      "module": "glyphs/calendar-check.mjs"
+    },
+    {
+      "id": "calendar-clock",
+      "title": "Calendar Clock",
+      "category": "calendar",
+      "tags": [
+        "appointment",
+        "time"
+      ],
+      "svg": "svg/calendar-clock.svg",
+      "module": "glyphs/calendar-clock.mjs"
+    },
+    {
+      "id": "calendar-remove",
+      "title": "Calendar Remove",
+      "category": "calendar",
+      "tags": [
+        "cancel",
+        "event"
+      ],
+      "svg": "svg/calendar-remove.svg",
+      "module": "glyphs/calendar-remove.mjs"
+    },
+    {
+      "id": "calendar-range",
+      "title": "Calendar Range",
+      "category": "calendar",
+      "tags": [
+        "duration",
+        "interval",
+        "dates"
+      ],
+      "svg": "svg/calendar-range.svg",
+      "module": "glyphs/calendar-range.mjs"
+    },
+    {
+      "id": "calendar-day",
+      "title": "Calendar Day",
+      "category": "calendar",
+      "tags": [
+        "today",
+        "single",
+        "date"
+      ],
+      "svg": "svg/calendar-day.svg",
+      "module": "glyphs/calendar-day.mjs"
+    },
+    {
+      "id": "calendar-week",
+      "title": "Calendar Week",
+      "category": "calendar",
+      "tags": [
+        "weekly",
+        "schedule"
+      ],
+      "svg": "svg/calendar-week.svg",
+      "module": "glyphs/calendar-week.mjs"
+    },
+    {
+      "id": "clock-face",
+      "title": "Clock Face",
+      "category": "calendar",
+      "tags": [
+        "time",
+        "watch"
+      ],
+      "svg": "svg/clock-face.svg",
+      "module": "glyphs/clock-face.mjs"
+    },
+    {
+      "id": "alarm-clock",
+      "title": "Alarm Clock",
+      "category": "calendar",
+      "tags": [
+        "reminder",
+        "wake"
+      ],
+      "svg": "svg/alarm-clock.svg",
+      "module": "glyphs/alarm-clock.mjs"
+    },
+    {
+      "id": "stopwatch",
+      "title": "Stopwatch",
+      "category": "calendar",
+      "tags": [
+        "timer",
+        "elapsed"
+      ],
+      "svg": "svg/stopwatch.svg",
+      "module": "glyphs/stopwatch.mjs"
+    },
+    {
+      "id": "hourglass",
+      "title": "Hourglass",
+      "category": "calendar",
+      "tags": [
+        "waiting",
+        "duration"
+      ],
+      "svg": "svg/hourglass.svg",
+      "module": "glyphs/hourglass.mjs"
+    },
+    {
+      "id": "history",
+      "title": "History",
+      "category": "calendar",
+      "tags": [
+        "past",
+        "activity",
+        "recent"
+      ],
+      "svg": "svg/history.svg",
+      "module": "glyphs/history.mjs"
+    },
+    {
+      "id": "sunrise",
+      "title": "Sunrise",
+      "category": "calendar",
+      "tags": [
+        "morning",
+        "start",
+        "day"
+      ],
+      "svg": "svg/sunrise.svg",
+      "module": "glyphs/sunrise.mjs"
+    },
+    {
+      "id": "sunset",
+      "title": "Sunset",
+      "category": "calendar",
+      "tags": [
+        "evening",
+        "end",
+        "day"
+      ],
+      "svg": "svg/sunset.svg",
+      "module": "glyphs/sunset.mjs"
+    },
+    {
+      "id": "night",
+      "title": "Night",
+      "category": "calendar",
+      "tags": [
+        "moon",
+        "overnight"
+      ],
+      "svg": "svg/night.svg",
+      "module": "glyphs/night.mjs"
+    },
+    {
+      "id": "deadline",
+      "title": "Deadline",
+      "category": "calendar",
+      "tags": [
+        "due",
+        "target",
+        "time"
+      ],
+      "svg": "svg/deadline.svg",
+      "module": "glyphs/deadline.mjs"
+    },
+    {
+      "id": "calendar-repeat",
+      "title": "Calendar Repeat",
+      "category": "calendar",
+      "tags": [
+        "recurring",
+        "event"
+      ],
+      "svg": "svg/calendar-repeat.svg",
+      "module": "glyphs/calendar-repeat.mjs"
+    },
+    {
+      "id": "time-zone",
+      "title": "Time Zone",
+      "category": "calendar",
+      "tags": [
+        "world",
+        "local",
+        "time"
+      ],
+      "svg": "svg/time-zone.svg",
+      "module": "glyphs/time-zone.mjs"
+    },
+    {
+      "id": "booking",
+      "title": "Booking",
+      "category": "calendar",
+      "tags": [
+        "reservation",
+        "schedule"
+      ],
+      "svg": "svg/booking.svg",
+      "module": "glyphs/booking.mjs"
+    },
+    {
+      "id": "success-circle",
+      "title": "Success Circle",
+      "category": "status",
+      "tags": [
+        "done",
+        "valid",
+        "complete"
+      ],
+      "svg": "svg/success-circle.svg",
+      "module": "glyphs/success-circle.mjs"
+    },
+    {
+      "id": "error-circle",
+      "title": "Error Circle",
+      "category": "status",
+      "tags": [
+        "failed",
+        "invalid"
+      ],
+      "svg": "svg/error-circle.svg",
+      "module": "glyphs/error-circle.mjs"
+    },
+    {
+      "id": "warning-triangle",
+      "title": "Warning Triangle",
+      "category": "status",
+      "tags": [
+        "caution",
+        "alert"
+      ],
+      "svg": "svg/warning-triangle.svg",
+      "module": "glyphs/warning-triangle.mjs"
+    },
+    {
+      "id": "information",
+      "title": "Information",
+      "category": "status",
+      "tags": [
+        "details",
+        "about"
+      ],
+      "svg": "svg/information.svg",
+      "module": "glyphs/information.mjs"
+    },
+    {
+      "id": "question",
+      "title": "Question",
+      "category": "status",
+      "tags": [
+        "help",
+        "unknown"
+      ],
+      "svg": "svg/question.svg",
+      "module": "glyphs/question.mjs"
+    },
+    {
+      "id": "pending",
+      "title": "Pending",
+      "category": "status",
+      "tags": [
+        "waiting",
+        "unresolved"
+      ],
+      "svg": "svg/pending.svg",
+      "module": "glyphs/pending.mjs"
+    },
+    {
+      "id": "loading",
+      "title": "Loading",
+      "category": "status",
+      "tags": [
+        "spinner",
+        "busy"
+      ],
+      "svg": "svg/loading.svg",
+      "module": "glyphs/loading.mjs"
+    },
+    {
+      "id": "progress",
+      "title": "Progress",
+      "category": "status",
+      "tags": [
+        "completion",
+        "portion"
+      ],
+      "svg": "svg/progress.svg",
+      "module": "glyphs/progress.mjs"
+    },
+    {
+      "id": "notification",
+      "title": "Notification",
+      "category": "status",
+      "tags": [
+        "bell",
+        "alerts"
+      ],
+      "svg": "svg/notification.svg",
+      "module": "glyphs/notification.mjs"
+    },
+    {
+      "id": "notification-off",
+      "title": "Notification Off",
+      "category": "status",
+      "tags": [
+        "silent",
+        "muted",
+        "bell"
+      ],
+      "svg": "svg/notification-off.svg",
+      "module": "glyphs/notification-off.mjs"
+    },
+    {
+      "id": "flag",
+      "title": "Flag",
+      "category": "status",
+      "tags": [
+        "report",
+        "milestone"
+      ],
+      "svg": "svg/flag.svg",
+      "module": "glyphs/flag.mjs"
+    },
+    {
+      "id": "bookmark",
+      "title": "Bookmark",
+      "category": "status",
+      "tags": [
+        "saved",
+        "read",
+        "later"
+      ],
+      "svg": "svg/bookmark.svg",
+      "module": "glyphs/bookmark.mjs"
+    },
+    {
+      "id": "heart-outline",
+      "title": "Heart Outline",
+      "category": "status",
+      "tags": [
+        "favorite",
+        "love"
+      ],
+      "svg": "svg/heart-outline.svg",
+      "module": "glyphs/heart-outline.mjs"
+    },
+    {
+      "id": "star-outline",
+      "title": "Star Outline",
+      "category": "status",
+      "tags": [
+        "rating",
+        "favorite"
+      ],
+      "svg": "svg/star-outline.svg",
+      "module": "glyphs/star-outline.mjs"
+    },
+    {
+      "id": "thumb-up",
+      "title": "Thumb Up",
+      "category": "status",
+      "tags": [
+        "approve",
+        "like"
+      ],
+      "svg": "svg/thumb-up.svg",
+      "module": "glyphs/thumb-up.mjs"
+    },
+    {
+      "id": "thumb-down",
+      "title": "Thumb Down",
+      "category": "status",
+      "tags": [
+        "disapprove",
+        "dislike"
+      ],
+      "svg": "svg/thumb-down.svg",
+      "module": "glyphs/thumb-down.mjs"
+    },
+    {
+      "id": "ban",
+      "title": "Ban",
+      "category": "status",
+      "tags": [
+        "forbidden",
+        "prohibited"
+      ],
+      "svg": "svg/ban.svg",
+      "module": "glyphs/ban.mjs"
+    },
+    {
+      "id": "offline-dot",
+      "title": "Offline Dot",
+      "category": "status",
+      "tags": [
+        "unavailable",
+        "disconnected"
+      ],
+      "svg": "svg/offline-dot.svg",
+      "module": "glyphs/offline-dot.mjs"
+    },
+    {
+      "id": "verified-seal",
+      "title": "Verified Seal",
+      "category": "status",
+      "tags": [
+        "certified",
+        "trusted"
+      ],
+      "svg": "svg/verified-seal.svg",
+      "module": "glyphs/verified-seal.mjs"
+    },
+    {
+      "id": "announcement",
+      "title": "Announcement",
+      "category": "status",
+      "tags": [
+        "megaphone",
+        "news"
+      ],
+      "svg": "svg/announcement.svg",
+      "module": "glyphs/announcement.mjs"
+    },
+    {
+      "id": "accessibility-person",
+      "title": "Accessibility Person",
+      "category": "accessibility",
+      "tags": [
+        "universal",
+        "access"
+      ],
+      "svg": "svg/accessibility-person.svg",
+      "module": "glyphs/accessibility-person.mjs"
+    },
+    {
+      "id": "wheelchair",
+      "title": "Wheelchair",
+      "category": "accessibility",
+      "tags": [
+        "mobility",
+        "accessible"
+      ],
+      "svg": "svg/wheelchair.svg",
+      "module": "glyphs/wheelchair.mjs"
+    },
+    {
+      "id": "hearing",
+      "title": "Hearing",
+      "category": "accessibility",
+      "tags": [
+        "ear",
+        "audio",
+        "support"
+      ],
+      "svg": "svg/hearing.svg",
+      "module": "glyphs/hearing.mjs"
+    },
+    {
+      "id": "hearing-off",
+      "title": "Hearing Off",
+      "category": "accessibility",
+      "tags": [
+        "deaf",
+        "muted"
+      ],
+      "svg": "svg/hearing-off.svg",
+      "module": "glyphs/hearing-off.mjs"
+    },
+    {
+      "id": "captions",
+      "title": "Captions",
+      "category": "accessibility",
+      "tags": [
+        "closed",
+        "caption",
+        "cc",
+        "subtitles"
+      ],
+      "svg": "svg/captions.svg",
+      "module": "glyphs/captions.mjs"
+    },
+    {
+      "id": "text-size",
+      "title": "Text Size",
+      "category": "accessibility",
+      "tags": [
+        "font",
+        "scale",
+        "type"
+      ],
+      "svg": "svg/text-size.svg",
+      "module": "glyphs/text-size.mjs"
+    },
+    {
+      "id": "contrast",
+      "title": "Contrast",
+      "category": "accessibility",
+      "tags": [
+        "high",
+        "contrast",
+        "brightness"
+      ],
+      "svg": "svg/contrast.svg",
+      "module": "glyphs/contrast.mjs"
+    },
+    {
+      "id": "focus",
+      "title": "Focus",
+      "category": "accessibility",
+      "tags": [
+        "keyboard",
+        "target"
+      ],
+      "svg": "svg/focus.svg",
+      "module": "glyphs/focus.mjs"
+    },
+    {
+      "id": "keyboard-key",
+      "title": "Keyboard Key",
+      "category": "accessibility",
+      "tags": [
+        "shortcut",
+        "input"
+      ],
+      "svg": "svg/keyboard-key.svg",
+      "module": "glyphs/keyboard-key.mjs"
+    },
+    {
+      "id": "hand",
+      "title": "Hand",
+      "category": "accessibility",
+      "tags": [
+        "touch",
+        "gesture",
+        "pan"
+      ],
+      "svg": "svg/hand.svg",
+      "module": "glyphs/hand.mjs"
+    },
+    {
+      "id": "touch-tap",
+      "title": "Touch Tap",
+      "category": "accessibility",
+      "tags": [
+        "pointer",
+        "press"
+      ],
+      "svg": "svg/touch-tap.svg",
+      "module": "glyphs/touch-tap.mjs"
+    },
+    {
+      "id": "voice",
+      "title": "Voice",
+      "category": "accessibility",
+      "tags": [
+        "speech",
+        "waveform"
+      ],
+      "svg": "svg/voice.svg",
+      "module": "glyphs/voice.mjs"
+    },
+    {
+      "id": "read-aloud",
+      "title": "Read Aloud",
+      "category": "accessibility",
+      "tags": [
+        "screen",
+        "reader",
+        "narration"
+      ],
+      "svg": "svg/read-aloud.svg",
+      "module": "glyphs/read-aloud.mjs"
+    },
+    {
+      "id": "braille",
+      "title": "Braille",
+      "category": "accessibility",
+      "tags": [
+        "tactile",
+        "reading"
+      ],
+      "svg": "svg/braille.svg",
+      "module": "glyphs/braille.mjs"
+    },
+    {
+      "id": "reduced-motion",
+      "title": "Reduced Motion",
+      "category": "accessibility",
+      "tags": [
+        "animation",
+        "preference"
+      ],
+      "svg": "svg/reduced-motion.svg",
+      "module": "glyphs/reduced-motion.mjs"
+    },
+    {
+      "id": "zoom-in",
+      "title": "Zoom In",
+      "category": "accessibility",
+      "tags": [
+        "magnify",
+        "increase"
+      ],
+      "svg": "svg/zoom-in.svg",
+      "module": "glyphs/zoom-in.mjs"
+    },
+    {
+      "id": "zoom-out",
+      "title": "Zoom Out",
+      "category": "accessibility",
+      "tags": [
+        "magnify",
+        "decrease"
+      ],
+      "svg": "svg/zoom-out.svg",
+      "module": "glyphs/zoom-out.mjs"
+    },
+    {
+      "id": "reading-mode",
+      "title": "Reading Mode",
+      "category": "accessibility",
+      "tags": [
+        "book",
+        "legibility"
+      ],
+      "svg": "svg/reading-mode.svg",
+      "module": "glyphs/reading-mode.mjs"
+    },
+    {
+      "id": "language",
+      "title": "Language",
+      "category": "accessibility",
+      "tags": [
+        "translate",
+        "locale"
+      ],
+      "svg": "svg/language.svg",
+      "module": "glyphs/language.mjs"
+    },
+    {
+      "id": "text-cursor",
+      "title": "Text Cursor",
+      "category": "accessibility",
+      "tags": [
+        "caret",
+        "selection",
+        "input"
+      ],
+      "svg": "svg/text-cursor.svg",
+      "module": "glyphs/text-cursor.mjs"
+    },
+    {
+      "id": "grid",
+      "title": "Grid",
+      "category": "layout",
+      "tags": [
+        "tiles",
+        "apps"
+      ],
+      "svg": "svg/grid.svg",
+      "module": "glyphs/grid.mjs"
+    },
+    {
+      "id": "list",
+      "title": "List",
+      "category": "layout",
+      "tags": [
+        "rows",
+        "items"
+      ],
+      "svg": "svg/list.svg",
+      "module": "glyphs/list.mjs"
+    },
+    {
+      "id": "table",
+      "title": "Table",
+      "category": "layout",
+      "tags": [
+        "spreadsheet",
+        "data"
+      ],
+      "svg": "svg/table.svg",
+      "module": "glyphs/table.mjs"
+    },
+    {
+      "id": "sidebar-left",
+      "title": "Sidebar Left",
+      "category": "layout",
+      "tags": [
+        "panel",
+        "navigation"
+      ],
+      "svg": "svg/sidebar-left.svg",
+      "module": "glyphs/sidebar-left.mjs"
+    },
+    {
+      "id": "sidebar-right",
+      "title": "Sidebar Right",
+      "category": "layout",
+      "tags": [
+        "inspector",
+        "panel"
+      ],
+      "svg": "svg/sidebar-right.svg",
+      "module": "glyphs/sidebar-right.mjs"
+    },
+    {
+      "id": "split-horizontal",
+      "title": "Split Horizontal",
+      "category": "layout",
+      "tags": [
+        "columns",
+        "panes"
+      ],
+      "svg": "svg/split-horizontal.svg",
+      "module": "glyphs/split-horizontal.mjs"
+    },
+    {
+      "id": "split-vertical",
+      "title": "Split Vertical",
+      "category": "layout",
+      "tags": [
+        "rows",
+        "panes"
+      ],
+      "svg": "svg/split-vertical.svg",
+      "module": "glyphs/split-vertical.mjs"
+    },
+    {
+      "id": "dashboard",
+      "title": "Dashboard",
+      "category": "layout",
+      "tags": [
+        "overview",
+        "widgets"
+      ],
+      "svg": "svg/dashboard.svg",
+      "module": "glyphs/dashboard.mjs"
+    },
+    {
+      "id": "align-left",
+      "title": "Align Left",
+      "category": "layout",
+      "tags": [
+        "text",
+        "start"
+      ],
+      "svg": "svg/align-left.svg",
+      "module": "glyphs/align-left.mjs"
+    },
+    {
+      "id": "align-center",
+      "title": "Align Center",
+      "category": "layout",
+      "tags": [
+        "text",
+        "middle"
+      ],
+      "svg": "svg/align-center.svg",
+      "module": "glyphs/align-center.mjs"
+    },
+    {
+      "id": "align-right",
+      "title": "Align Right",
+      "category": "layout",
+      "tags": [
+        "text",
+        "end"
+      ],
+      "svg": "svg/align-right.svg",
+      "module": "glyphs/align-right.mjs"
+    },
+    {
+      "id": "justify",
+      "title": "Justify",
+      "category": "layout",
+      "tags": [
+        "text",
+        "full",
+        "width"
+      ],
+      "svg": "svg/justify.svg",
+      "module": "glyphs/justify.mjs"
+    },
+    {
+      "id": "columns",
+      "title": "Columns",
+      "category": "layout",
+      "tags": [
+        "three",
+        "layout"
+      ],
+      "svg": "svg/columns.svg",
+      "module": "glyphs/columns.mjs"
+    },
+    {
+      "id": "rows",
+      "title": "Rows",
+      "category": "layout",
+      "tags": [
+        "three",
+        "layout"
+      ],
+      "svg": "svg/rows.svg",
+      "module": "glyphs/rows.mjs"
+    },
+    {
+      "id": "layers",
+      "title": "Layers",
+      "category": "layout",
+      "tags": [
+        "stack",
+        "depth"
+      ],
+      "svg": "svg/layers.svg",
+      "module": "glyphs/layers.mjs"
+    },
+    {
+      "id": "ruler",
+      "title": "Ruler",
+      "category": "layout",
+      "tags": [
+        "measure",
+        "dimensions"
+      ],
+      "svg": "svg/ruler.svg",
+      "module": "glyphs/ruler.mjs"
+    },
+    {
+      "id": "palette",
+      "title": "Palette",
+      "category": "layout",
+      "tags": [
+        "colors",
+        "theme"
+      ],
+      "svg": "svg/palette.svg",
+      "module": "glyphs/palette.mjs"
+    },
+    {
+      "id": "sliders",
+      "title": "Sliders",
+      "category": "layout",
+      "tags": [
+        "adjust",
+        "preferences",
+        "controls"
+      ],
+      "svg": "svg/sliders.svg",
+      "module": "glyphs/sliders.mjs"
+    },
+    {
+      "id": "window",
+      "title": "Window",
+      "category": "layout",
+      "tags": [
+        "browser",
+        "application"
+      ],
+      "svg": "svg/window.svg",
+      "module": "glyphs/window.mjs"
+    },
+    {
+      "id": "picture-in-picture",
+      "title": "Picture In Picture",
+      "category": "layout",
+      "tags": [
+        "floating",
+        "mini",
+        "player"
+      ],
+      "svg": "svg/picture-in-picture.svg",
+      "module": "glyphs/picture-in-picture.mjs"
+    },
+    {
+      "id": "cart",
+      "title": "Cart",
+      "category": "commerce",
+      "tags": [
+        "shopping",
+        "basket",
+        "checkout"
+      ],
+      "svg": "svg/cart.svg",
+      "module": "glyphs/cart.mjs"
+    },
+    {
+      "id": "basket",
+      "title": "Basket",
+      "category": "commerce",
+      "tags": [
+        "shop",
+        "purchase"
+      ],
+      "svg": "svg/basket.svg",
+      "module": "glyphs/basket.mjs"
+    },
+    {
+      "id": "credit-card",
+      "title": "Credit Card",
+      "category": "commerce",
+      "tags": [
+        "payment",
+        "billing"
+      ],
+      "svg": "svg/credit-card.svg",
+      "module": "glyphs/credit-card.mjs"
+    },
+    {
+      "id": "wallet",
+      "title": "Wallet",
+      "category": "commerce",
+      "tags": [
+        "funds",
+        "balance"
+      ],
+      "svg": "svg/wallet.svg",
+      "module": "glyphs/wallet.mjs"
+    },
+    {
+      "id": "receipt",
+      "title": "Receipt",
+      "category": "commerce",
+      "tags": [
+        "invoice",
+        "order"
+      ],
+      "svg": "svg/receipt.svg",
+      "module": "glyphs/receipt.mjs"
+    },
+    {
+      "id": "tag",
+      "title": "Tag",
+      "category": "commerce",
+      "tags": [
+        "label",
+        "price"
+      ],
+      "svg": "svg/tag.svg",
+      "module": "glyphs/tag.mjs"
+    },
+    {
+      "id": "gift",
+      "title": "Gift",
+      "category": "commerce",
+      "tags": [
+        "present",
+        "reward"
+      ],
+      "svg": "svg/gift.svg",
+      "module": "glyphs/gift.mjs"
+    },
+    {
+      "id": "storefront",
+      "title": "Storefront",
+      "category": "commerce",
+      "tags": [
+        "shop",
+        "market"
+      ],
+      "svg": "svg/storefront.svg",
+      "module": "glyphs/storefront.mjs"
+    },
+    {
+      "id": "truck",
+      "title": "Truck",
+      "category": "commerce",
+      "tags": [
+        "shipping",
+        "delivery"
+      ],
+      "svg": "svg/truck.svg",
+      "module": "glyphs/truck.mjs"
+    },
+    {
+      "id": "box-open",
+      "title": "Box Open",
+      "category": "commerce",
+      "tags": [
+        "unpack",
+        "order"
+      ],
+      "svg": "svg/box-open.svg",
+      "module": "glyphs/box-open.mjs"
+    },
+    {
+      "id": "percent",
+      "title": "Percent",
+      "category": "commerce",
+      "tags": [
+        "discount",
+        "rate"
+      ],
+      "svg": "svg/percent.svg",
+      "module": "glyphs/percent.mjs"
+    },
+    {
+      "id": "coins",
+      "title": "Coins",
+      "category": "commerce",
+      "tags": [
+        "currency",
+        "savings"
+      ],
+      "svg": "svg/coins.svg",
+      "module": "glyphs/coins.mjs"
+    },
+    {
+      "id": "bank",
+      "title": "Bank",
+      "category": "commerce",
+      "tags": [
+        "institution",
+        "finance"
+      ],
+      "svg": "svg/bank.svg",
+      "module": "glyphs/bank.mjs"
+    },
+    {
+      "id": "chart-line",
+      "title": "Chart Line",
+      "category": "commerce",
+      "tags": [
+        "analytics",
+        "growth"
+      ],
+      "svg": "svg/chart-line.svg",
+      "module": "glyphs/chart-line.mjs"
+    },
+    {
+      "id": "chart-bars",
+      "title": "Chart Bars",
+      "category": "commerce",
+      "tags": [
+        "metrics",
+        "statistics"
+      ],
+      "svg": "svg/chart-bars.svg",
+      "module": "glyphs/chart-bars.mjs"
+    },
+    {
+      "id": "chart-pie",
+      "title": "Chart Pie",
+      "category": "commerce",
+      "tags": [
+        "breakdown",
+        "distribution"
+      ],
+      "svg": "svg/chart-pie.svg",
+      "module": "glyphs/chart-pie.mjs"
+    },
+    {
+      "id": "target",
+      "title": "Target",
+      "category": "commerce",
+      "tags": [
+        "goal",
+        "objective"
+      ],
+      "svg": "svg/target.svg",
+      "module": "glyphs/target.mjs"
+    },
+    {
+      "id": "briefcase",
+      "title": "Briefcase",
+      "category": "commerce",
+      "tags": [
+        "business",
+        "work"
+      ],
+      "svg": "svg/briefcase.svg",
+      "module": "glyphs/briefcase.mjs"
+    },
+    {
+      "id": "building",
+      "title": "Building",
+      "category": "commerce",
+      "tags": [
+        "office",
+        "company"
+      ],
+      "svg": "svg/building.svg",
+      "module": "glyphs/building.mjs"
+    },
+    {
+      "id": "scale-balance",
+      "title": "Scale Balance",
+      "category": "commerce",
+      "tags": [
+        "fairness",
+        "legal",
+        "compare"
+      ],
+      "svg": "svg/scale-balance.svg",
+      "module": "glyphs/scale-balance.mjs"
+    }
+  ]
+}
