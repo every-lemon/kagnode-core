@@ -6,10 +6,10 @@
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.59858a18c8bbcee2.js",
-    "script": "core.6b0998fc1fec0542.js",
+    "script": "core.6ce31bd4f28c7908.js",
     "style": "core.a84db76692055a53.css"
   },
-  "source_commit": "4cb14f57e191054854c0922cb7c4e75cfdca8fc8",
+  "source_commit": "148f444e697f2f113212fb9cacc3b7b224a939f6",
   "repository": "every-lemon/kagnode-core",
   "icons": {
     "link": "<path d=\"m9 6 2-2a6 6 0 0 1 9 9l-2 2M6 9l-2 2a6 6 0 0 0 9 9l2-2M8 16l8-8\"/>",
@@ -99,7 +99,23 @@
     "list": "<path d=\"M8 5h14M8 12h14M8 19h14\"/><circle cx=\"3\" cy=\"5\" r=\"0.8\"/><circle cx=\"3\" cy=\"12\" r=\"0.8\"/><circle cx=\"3\" cy=\"19\" r=\"0.8\"/>",
     "check-circle": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m6 12 4 4 8-8\"/>",
     "alert": "<path d=\"m12 2 11 20H1ZM12 9v5m0 4h.01\"/>",
-    "arrow-up-right": "<path d=\"M14 3h7v7m0-7L10 14M10 4H3v17h17v-7\"/>"
+    "arrow-up-right": "<path d=\"M14 3h7v7m0-7L10 14M10 4H3v17h17v-7\"/>",
+    "shield": "<path d=\"M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6Z\"/>",
+    "key": "<circle cx=\"7\" cy=\"8\" r=\"5\"/><path d=\"m11 12 10 10m-4-4 3-3m-6 0 3-3\"/>",
+    "globe": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><ellipse cx=\"12\" cy=\"12\" rx=\"4\" ry=\"10\"/><path d=\"M2 12h20M4 6h16M4 18h16\"/>",
+    "play": "<path d=\"m7 3 14 9-14 9Z\"/>",
+    "pause": "<rect x=\"5\" y=\"3\" width=\"4\" height=\"18\" rx=\"0\"/><rect x=\"15\" y=\"3\" width=\"4\" height=\"18\" rx=\"0\"/>",
+    "waveform": "<path d=\"M9 18V5l12-3v13M9 9l12-3\"/><ellipse cx=\"6\" cy=\"19\" rx=\"3\" ry=\"2\"/><ellipse cx=\"18\" cy=\"16\" rx=\"3\" ry=\"2\"/>",
+    "fullscreen": "<path d=\"M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6\"/>",
+    "zoom-in": "<circle cx=\"10\" cy=\"10\" r=\"7\"/><path d=\"m15 15 7 7M6 10h8m-4-4v8\"/>",
+    "zoom-out": "<circle cx=\"10\" cy=\"10\" r=\"7\"/><path d=\"m15 15 7 7M6 10h8\"/>",
+    "rewind": "<path d=\"m12 5-10 7 10 7Zm10 0-10 7 10 7Z\"/>",
+    "fast-forward": "<path d=\"m2 5 10 7-10 7Zm10 0 10 7-10 7Z\"/>",
+    "volume": "<path d=\"M3 9h4l6-6v18l-6-6H3Zm14-2q5 5 0 10m3-13q5 8 0 16\"/>",
+    "volume-mute": "<path d=\"M3 9h4l6-6v18l-6-6H3Zm14 0 5 6m-5 0 5-6\"/>",
+    "music": "<path d=\"M9 18V5l12-3v13M9 9l12-3\"/><ellipse cx=\"6\" cy=\"19\" rx=\"3\" ry=\"2\"/><ellipse cx=\"18\" cy=\"16\" rx=\"3\" ry=\"2\"/>",
+    "image": "<rect x=\"2\" y=\"3\" width=\"20\" height=\"18\" rx=\"2\"/><circle cx=\"8\" cy=\"8\" r=\"2\"/><path d=\"m2 18 6-6 5 5 4-7 5 8\"/>",
+    "video": "<rect x=\"2\" y=\"5\" width=\"13\" height=\"14\" rx=\"2\"/><path d=\"m15 10 7-4v12l-7-4Z\"/>"
   },
   "icon_sources": {
     "link": "link-chain",
@@ -182,16 +198,32 @@
     "list": "list",
     "check-circle": "success-circle",
     "alert": "warning-triangle",
-    "arrow-up-right": "open-external"
+    "arrow-up-right": "open-external",
+    "shield": "shield",
+    "key": "key",
+    "globe": "globe",
+    "play": "play",
+    "pause": "pause",
+    "waveform": "music-note",
+    "fullscreen": "expand",
+    "zoom-in": "zoom-in",
+    "zoom-out": "zoom-out",
+    "rewind": "rewind",
+    "fast-forward": "fast-forward",
+    "volume": "volume",
+    "volume-mute": "volume-mute",
+    "music": "music-note",
+    "image": "image-landscape",
+    "video": "video-camera"
   },
   "files": {
     "theme.59858a18c8bbcee2.js": {
       "sha256": "59858a18c8bbcee204cf71ed2a62a41af316186766f9be5f1500e0702e6a4ecb",
       "size": 1402
     },
-    "core.6b0998fc1fec0542.js": {
-      "sha256": "6b0998fc1fec0542def6253f9069bcea7e2f003e9665a8812d269dbc06502696",
-      "size": 76354
+    "core.6ce31bd4f28c7908.js": {
+      "sha256": "6ce31bd4f28c7908f7759561e997fa8f751fab74b0a5bc50a232b04c8b33743b",
+      "size": 77978
     },
     "core.a84db76692055a53.css": {
       "sha256": "a84db76692055a53c629ba60b76516cc84b996b6f3f31af6da405b9e015d9544",
