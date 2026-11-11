@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.1
+
+- Honor reduced motion on the mobile drawer and avoid animating legacy panels during initial adoption.
+- Keep nested-label input typography identical across login adapters and provide shared inline password-reveal and field-group templates.
+- Preserve the existing right-facing disclosure-chevron alias when integrating original library glyphs.
+
 ## 5.0.0
 
 - Establish the coordinated stable Core UI/adapter contract; explicit major-version adoption is required.

@@ -94,3 +94,22 @@ test("canonical login owns the mark and selected original component icons", asyn
   assert.match(icon("copy"), /data-core-icon-name="copy"/);
   assert.doesNotMatch(icon('bad" onclick="bad'), / onclick="bad/);
 });
+
+test("field and secret templates preserve host controls and local handlers", async () => {
+  const { renderTemplate, iconSources } =
+    await import("../dist/node/kagnode-core.mjs");
+  const secret = renderTemplate("login-secret", {
+    control: '<input id="secret" name="password" type="password">',
+    action:
+      '<button type="button" data-reveal="secret" aria-label="Show password">Show</button>',
+  });
+  const field = renderTemplate("login-field", {
+    label: '<label for="secret">Password</label>',
+    control: secret,
+    help: "<small>Local unlock remains required.</small>",
+  });
+  assert.match(field, /class="kn-core-login-secret"/);
+  assert.match(field, /data-reveal="secret"/);
+  assert.match(field, /name="password" type="password"/);
+  assert.equal(iconSources.chevron, "chevron-right");
+});

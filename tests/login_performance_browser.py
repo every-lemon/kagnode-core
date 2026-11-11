@@ -50,7 +50,7 @@ class Handler(BaseHTTPRequestHandler):
                     "",
                 )
             html = (
-                '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body data-core-settings="/profile">'
+                '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body>main{max-width:760px;margin:auto;padding:24px}section{margin:18px 0}</style></head><body data-core-settings="/profile">'
                 + content
                 + "</body></html>"
             )
@@ -159,6 +159,52 @@ try:
             page.evaluate("KagNodeCore.refresh();KagNodeCore.refresh()")
             assert page.locator("#icon-fixture svg").count() == 1
             assert page.locator("#icon-fixture").get_attribute("aria-label") == "Copy"
+            page.evaluate("""() => {
+              const host=document.createElement('div');host.id='field-fixture';
+              host.innerHTML='<label>Nested<input id="nested-input"></label><div class="kn-core-login-field"><label for="secret-input">Password</label><div class="kn-core-login-secret"><input id="secret-input" type="password" autocomplete="current-password"><button type="button" aria-label="Show password"><span data-core-icon="eye"></span></button></div></div>';
+              document.querySelector('.kn-core-login-content').append(host);
+            }""")
+            assert (
+                page.locator("#nested-input").evaluate(
+                    "e=>getComputedStyle(e).fontWeight"
+                )
+                == "400"
+            )
+            assert (
+                page.locator("#user").evaluate("e=>getComputedStyle(e).fontWeight")
+                == "400"
+            )
+            assert page.locator(".kn-core-login-secret").evaluate(
+                "e=>{const [i,b]=[...e.children].map(n=>n.getBoundingClientRect());return Math.abs(i.top-b.top)<1&&Math.abs(i.height-b.height)<1&&b.width===44&&b.left>=i.right-1}"
+            )
+            assert (
+                page.locator(".kn-core-login-secret button").get_attribute("type")
+                == "button"
+            )
+            assert (
+                page.locator("[data-core-login]").evaluate(
+                    "e=>getComputedStyle(e).maxWidth"
+                )
+                == "none"
+            )
+            assert (
+                page.locator("[data-core-login]").evaluate(
+                    "e=>getComputedStyle(e).marginTop"
+                )
+                == "0px"
+            )
+            assert (
+                page.locator(".kn-core-login-card").evaluate(
+                    "e=>getComputedStyle(e).marginTop"
+                )
+                == "0px"
+            )
+            assert (
+                page.locator(".kn-core-login-card").evaluate(
+                    "e=>getComputedStyle(e).marginBottom"
+                )
+                == "0px"
+            )
             page.locator("[data-core-login-provider]").focus()
             assert page.locator("[data-core-login-provider]").evaluate(
                 "e=>e===document.activeElement"
@@ -215,10 +261,22 @@ try:
                 '!!document.querySelector("[data-core-account-trigger]")'
             )
             if width < 1024:
+                assert page.locator("#sidebar").evaluate(
+                    "e=>e.inert && e.getBoundingClientRect().right<=1"
+                )
+                assert (
+                    page.locator("#sidebar").evaluate(
+                        "e=>getComputedStyle(e).transitionDuration"
+                    )
+                    == "0s"
+                )
                 page.locator("[data-core-mobile]").click()
                 assert page.locator("html").get_attribute("data-core-drawer") == "true"
                 page.keyboard.press("Escape")
                 assert page.locator("html").get_attribute("data-core-drawer") == "false"
+                assert page.locator("#sidebar").evaluate(
+                    "e=>e.inert && e.getBoundingClientRect().right<=1"
+                )
             else:
                 page.evaluate(
                     """() => {window.layoutReads=0;for(const key of ['clientHeight','clientWidth','scrollHeight','scrollWidth']){const d=Object.getOwnPropertyDescriptor(Element.prototype,key);if(d?.get)Object.defineProperty(Element.prototype,key,{...d,get(){layoutReads++;return d.get.call(this)}})}}"""
