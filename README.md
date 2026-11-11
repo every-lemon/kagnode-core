@@ -8,13 +8,11 @@ Core provides the common interface for KagNode websites and independently hosted
 
 ## Release status
 
-**1.4.0 is an optional icon-library preview**, with [320 original UI icons](docs/ICONS.md), typed individual/category imports, local SVG downloads and a searchable gallery. It adds no bytes to the default UI script. The separate icon package requires explicit application integration.
+**5.0.0 is the coordinated KagNode stable UI contract.** It includes one branded login frame with shared form, provider, recovery and error presentation; viewport-safe account menus; native-motion scrolling; responsive navigation; and a selected set of the [320 original UI icons](docs/ICONS.md) used by actual components.
 
-The **1.3 UI line** adds the opt-in [login frame](docs/LOGIN.md), scoped scroll refresh and viewport-safe account menus. Application adoption requires explicit review; prereleases are excluded from automatic updates. After adoption, automatic stable UI patches remain limited to the configured minor line. Backend installation policies remain separate.
+The remaining icon library is optional, with typed individual/category imports, SVG downloads and a searchable gallery. Servers verify and serve Core locally; browsers do not load Core code from GitHub. Applications explicitly adopt this major version and retain compatible patch policies. Backend helpers require separate review and are never installed by an automatic UI patch.
 
-**1.2.8 is a backend-manager preview**, distributed as a GitHub prerelease for explicit local-administrator review. It repairs unsafe lock-file handling without changing browser components. Compatible stable UI channels remain separate; automatic UI patching does not install this preview or upgrade backend helpers.
-
-The initial 1.0 interface contract supports compatible stable UI patches. Application integrations are previews until their own checks and rollout are complete. Core release status does not qualify VPN networking, Mail delivery, Media codecs, HTTP Boot images or Bitwarden compatibility.
+Stable Core describes the component, adapter and signed-update contract. It does not qualify application business rules, VPN networking, Mail delivery, Media codecs, HTTP Boot images or Bitwarden compatibility. Earlier 1.x releases remain available for existing deployments.
 
 ## Features
 

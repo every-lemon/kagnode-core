@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.0
+
+- Establish the coordinated stable Core UI/adapter contract; explicit major-version adoption is required.
+- Own the complete shared login frame, canonical KagNode mark, form controls, notices and recovery links.
+- Use selected original 320-library glyphs in navigation and common actions, with a recorded alias-to-source map and optional remaining catalog.
+- Add browser and Python decorative icon rendering; preserve locally served signed assets, immutable old asset URLs and independently reviewed manager policy.
+
 ## 1.4.0 — optional icon library preview
 
 - Add 320 original outline UI icons in 16 searchable categories, each with a stable ID, title, tags and locally downloadable SVG.

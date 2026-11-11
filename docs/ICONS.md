@@ -1,6 +1,6 @@
 # Original Core icon library
 
-Core 1.4.0 previews **320 original UI icons in 16 categories**. Each category contains 20 symbols: actions, navigation, accounts, security, mail, files, media, cloud, network, devices, developer, calendar, status, accessibility, layout and commerce. Stable kebab-case IDs, English titles and search tags are in `dist/icons/catalog.json`. All icons use `viewBox="0 0 24 24"`, unfilled 1.7-unit strokes and rounded caps/joins. Review them at 16, 20 and 24 pixels in the responsive, searchable gallery at `dist/icons/index.html`.
+Core 5.0 includes **320 original UI icons in 16 categories**. Each category contains 20 symbols: actions, navigation, accounts, security, mail, files, media, cloud, network, devices, developer, calendar, status, accessibility, layout and commerce. Stable kebab-case IDs, English titles and search tags are in `dist/icons/catalog.json`. All icons use `viewBox="0 0 24 24"`, unfilled 1.7-unit strokes and rounded caps/joins. Review them at 16, 20 and 24 pixels in the responsive, searchable gallery at `dist/icons/index.html`.
 
 ## Optional local delivery
 
@@ -49,4 +49,8 @@ These UI symbols were drawn for Core and are licensed **AGPL-3.0-only**, like th
 
 ## Measured payload
 
-With the pinned esbuild 0.28.2, `node tools/icon-cost.mjs` measures a bundled `shield-check` plus accessible renderer at **1,124 bytes** (727 gzip bytes), whether imported directly or selected from the tree-shaken security category. The standalone glyph module is 297 bytes, renderer source is 1,364 bytes, and its SVG is 343 bytes. Catalog metadata is 75,224 bytes and is fetched only by the gallery or an application explicitly requesting it. These are this preview's measured examples, not a constant cost for every glyph. Default Core JS/CSS/theme/mark files are byte-identical to 1.3.1: **zero additional default browser bytes**.
+The selected component set is recorded in `assets/icon-aliases.json` and the signed bundle's `icon_sources`. Sidebar and common action aliases render those original library glyphs through `icon(name)` in Node/Python or `KagNodeCore.icon(name)` in the browser. Unknown names use the document fallback. Icons are decorative; their enclosing controls need an accessible name. The panel-divider toggle retains its animated divider geometry.
+
+Only selected component glyphs enter the default bundle; the full 320-glyph catalog is never imported by it. Additional application-specific icons can use individual modules plus `renderIcon`, preserving source provenance and excluding unrequested glyphs. Run `node tools/icon-cost.mjs` for the current measured individual/category cost; the old 1.4 optional-only zero-byte measurement is historical and does not describe 5.0's integrated component set.
+
+For explicit static or dynamically inserted controls use `<span data-core-icon="refresh" aria-hidden="true"></span>`. Core replaces its children with the canonical decorative glyph, observes changes to the name, and does not guess actions outside the sidebar. Unknown names use the document fallback. Do not put the marker on a button whose text or accessible name would be replaced; use a child span. Repeated refreshes do not stack SVG elements. Browser code can use `KagNodeCore.icon(alias)` to obtain the same SVG. Add an enclosing button label or visible text.

@@ -93,3 +93,12 @@ class AdapterTests(unittest.TestCase):
                 200,
             )
             self.assertEqual(manager.call_count, 2)
+
+
+class IconRenderingTests(unittest.TestCase):
+    def test_selected_original_icons_use_the_shared_safe_renderer(self):
+        self.assertEqual(sdk.BUNDLE["icon_sources"]["copy"], "copy")
+        self.assertIn('data-core-icon-name="copy"', sdk.icon("copy"))
+        self.assertIn('aria-hidden="true"', sdk.icon("copy"))
+        self.assertIn('data-core-icon-name="plan"', sdk.icon('bad" onclick="bad'))
+        self.assertNotIn('onclick="bad', sdk.icon('bad" onclick="bad'))

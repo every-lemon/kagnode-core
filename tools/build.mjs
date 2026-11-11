@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
+import { iconCatalog } from "../assets/icon-library/source.mjs";
+import { validateIcon } from "./icon-validation.mjs";
 const root = path.resolve(import.meta.dirname, ".."),
   out = path.join(root, "dist");
 fs.mkdirSync(out, { recursive: true });
@@ -47,10 +49,22 @@ entrypoints.theme = compile("theme", read("theme.js"), "js");
 const icons = JSON.parse(
   fs.readFileSync(path.join(root, "assets/icons.json"), "utf8"),
 );
+const iconSources = JSON.parse(
+  fs.readFileSync(path.join(root, "assets/icon-aliases.json"), "utf8"),
+);
+for (const [alias, id] of Object.entries(iconSources)) {
+  const glyph = iconCatalog.find((item) => item.id === id);
+  if (!/^[a-z][a-z0-9-]*$/.test(alias) || !glyph)
+    throw new Error("Unknown Core icon alias: " + alias);
+  validateIcon(glyph);
+  icons[alias] = glyph.body;
+}
 entrypoints.script = compile(
   "core",
   "window.KagNodeIcons=" +
     JSON.stringify(icons) +
+    ";window.KagNodeIconSources=" +
+    JSON.stringify(iconSources) +
     ";\n" +
     [
       "loading.js",
@@ -109,6 +123,7 @@ const bundle = {
   source_commit: source,
   repository: "every-lemon/kagnode-core",
   icons,
+  icon_sources: iconSources,
   files,
 };
 fs.writeFileSync(

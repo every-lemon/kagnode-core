@@ -67,21 +67,24 @@ test("decorative and titled rendering escapes labels and avoids duplicate IDs", 
   for (const size of [NaN, Infinity, 0, -1, 1025, "24"])
     assert.throws(() => renderIcon(icon, { size }));
 });
-test("expanded library adds zero default UI asset bytes", () => {
-  const baseline = JSON.parse(
-    fs.readFileSync(
-      path.join(root, "tests/fixtures/icons-default-assets.json"),
-    ),
-  );
+test("Core components use the selected original glyphs without importing the full catalog", () => {
   const current = JSON.parse(
     fs.readFileSync(path.join(root, "dist/manifest.json")),
   );
-  assert.deepEqual(current.files, baseline.files);
-  assert.deepEqual(current.entrypoints, baseline.entrypoints);
-  assert.deepEqual(current.icons, baseline.icons);
+  const aliases = JSON.parse(
+    fs.readFileSync(path.join(root, "assets/icon-aliases.json")),
+  );
+  assert.deepEqual(current.icon_sources, aliases);
+  assert.ok(Object.keys(aliases).length >= 50);
+  for (const [alias, id] of Object.entries(aliases)) {
+    assert.equal(
+      current.icons[alias],
+      iconCatalog.find((i) => i.id === id).body,
+    );
+  }
   assert.equal(Object.keys(current.files).length, 4);
   assert.doesNotMatch(
     fs.readFileSync(path.join(root, "dist/node/kagnode-core.mjs"), "utf8"),
-    /Small shapes|shield-check|person-verified/,
+    /shield-alert.*person-verified|catalog\.json/,
   );
 });

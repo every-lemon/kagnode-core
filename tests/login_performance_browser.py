@@ -119,6 +119,46 @@ try:
                 )
                 == "12px"
             )
+            assert page.locator(".kn-core-login-mark").count() == 1
+            assert (
+                page.locator("#user").evaluate("e=>getComputedStyle(e).borderRadius")
+                == "8px"
+            )
+            assert (
+                page.locator("#password").evaluate("e=>getComputedStyle(e).minHeight")
+                == "44px"
+            )
+            assert (
+                page.locator("form button").evaluate(
+                    "e=>getComputedStyle(e).backgroundColor"
+                )
+                == "rgb(37, 99, 235)"
+            )
+            assert (
+                page.locator("form button").evaluate(
+                    "e=>getComputedStyle(e).borderRadius"
+                )
+                == "8px"
+            )
+            assert page.evaluate(
+                "KagNodeCore.iconSources.copy === 'copy' && KagNodeCore.iconSources.community === 'people'"
+            )
+            assert 'data-core-icon-name="eye-off"' in page.evaluate(
+                "KagNodeCore.icon('eye-off')"
+            )
+            page.evaluate("""() => {
+              const button=document.createElement('button');button.id='icon-fixture';button.type='button';button.setAttribute('aria-label','Copy');
+              button.innerHTML='<span data-core-icon="copy" aria-hidden="true"></span>';
+              document.querySelector('.kn-core-login-content').append(button);
+            }""")
+            page.locator('#icon-fixture svg[data-core-icon-name="copy"]').wait_for()
+            page.evaluate(
+                "document.querySelector('#icon-fixture span').dataset.coreIcon='eye-off'"
+            )
+            page.locator('#icon-fixture svg[data-core-icon-name="eye-off"]').wait_for()
+            page.evaluate("KagNodeCore.refresh();KagNodeCore.refresh()")
+            assert page.locator("#icon-fixture svg").count() == 1
+            assert page.locator("#icon-fixture").get_attribute("aria-label") == "Copy"
             page.locator("[data-core-login-provider]").focus()
             assert page.locator("[data-core-login-provider]").evaluate(
                 "e=>e===document.activeElement"
