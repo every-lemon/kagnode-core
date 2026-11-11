@@ -25,7 +25,7 @@ LOGIN = core.render_template(
     },
 )
 SHELL = (
-    '<aside id="sidebar" class="sidebar"><a class="brand">KagNode</a><nav><details><summary>Products</summary><div><a href="#content">Example</a></div></details>'
+    '<aside id="sidebar" class="sidebar"><a class="brand">KagNode</a><nav><a id="nav-marker" href="#content"><span data-core-icon="help" aria-hidden="true"></span>Help</a><details><summary>Products</summary><div><a href="#content">Example</a></div></details>'
     + "".join('<a href="#content">Item %s</a>' % i for i in range(20))
     + '</nav></aside><div class="workspace"><header class="topbar" style="display:flex;justify-content:flex-end;padding:20px;height:60px"><div class="topbar-right"></div></header><main id="content">'
     + "".join("<p>Content %s</p>" % i for i in range(1000))
@@ -260,6 +260,18 @@ try:
             page.wait_for_function(
                 '!!document.querySelector("[data-core-account-trigger]")'
             )
+            page.wait_for_function(
+                "() => document.querySelector('#nav-marker [data-core-icon] svg')"
+            )
+            assert page.locator("#nav-marker svg").count() == 1
+            page.evaluate(
+                "document.querySelector('#nav-marker [data-core-icon]').dataset.coreIcon='settings';KagNodeCore.refresh();KagNodeCore.refresh()"
+            )
+            page.locator('#nav-marker svg[data-core-icon-name="settings"]').wait_for(
+                state="attached"
+            )
+            assert page.locator("#nav-marker svg").count() == 1
+            assert page.locator("#nav-marker [data-core-icon]").count() == 1
             if width < 1024:
                 assert page.locator("#sidebar").evaluate(
                     "e=>e.inert && e.getBoundingClientRect().right<=1"

@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.2
+
+- Preserve explicit Core icon hosts inside sidebar links, preventing a second automatic leading icon. Repeated normalization and dynamic icon changes retain one glyph.
+
 ## 5.0.1
 
 - Honor reduced motion on the mobile drawer and avoid animating legacy panels during initial adoption.
