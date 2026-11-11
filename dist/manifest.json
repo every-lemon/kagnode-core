@@ -7,9 +7,9 @@
   "entrypoints": {
     "theme": "theme.59858a18c8bbcee2.js",
     "script": "core.14bb65140e934573.js",
-    "style": "core.1a6ec75b26b81222.css"
+    "style": "core.41fa8f8a02726639.css"
   },
-  "source_commit": "2bb97dd66bd0d3a138908c4637da09a6c308c0b7",
+  "source_commit": "32554d8b46ce6a2be6a5dafadd1d5fc3bcd6b101",
   "repository": "every-lemon/kagnode-core",
   "icons": {
     "link": "<path d=\"m9 6 2-2a6 6 0 0 1 9 9l-2 2M6 9l-2 2a6 6 0 0 0 9 9l2-2M8 16l8-8\"/>",
@@ -225,9 +225,9 @@
       "sha256": "14bb65140e934573400d769669482b4933dd8d7473cc8d19f08c44800f437fd8",
       "size": 77979
     },
-    "core.1a6ec75b26b81222.css": {
-      "sha256": "1a6ec75b26b8122252ca799560c76bd089bfc797a26c37e6a6be2b76a5b64a24",
-      "size": 39038
+    "core.41fa8f8a02726639.css": {
+      "sha256": "41fa8f8a0272663925caf59104d5d8b314a8f557d70de2be8bcecf094cfceed5",
+      "size": 39140
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

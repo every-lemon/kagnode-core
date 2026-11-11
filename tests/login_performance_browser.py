@@ -50,7 +50,7 @@ class Handler(BaseHTTPRequestHandler):
                     "",
                 )
             html = (
-                '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body data-core-settings="/profile">'
+                '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body>main{max-width:760px;margin:auto;padding:24px}section{margin:18px 0}</style></head><body data-core-settings="/profile">'
                 + content
                 + "</body></html>"
             )
@@ -180,6 +180,30 @@ try:
             assert (
                 page.locator(".kn-core-login-secret button").get_attribute("type")
                 == "button"
+            )
+            assert (
+                page.locator("[data-core-login]").evaluate(
+                    "e=>getComputedStyle(e).maxWidth"
+                )
+                == "none"
+            )
+            assert (
+                page.locator("[data-core-login]").evaluate(
+                    "e=>getComputedStyle(e).marginTop"
+                )
+                == "0px"
+            )
+            assert (
+                page.locator(".kn-core-login-card").evaluate(
+                    "e=>getComputedStyle(e).marginTop"
+                )
+                == "0px"
+            )
+            assert (
+                page.locator(".kn-core-login-card").evaluate(
+                    "e=>getComputedStyle(e).marginBottom"
+                )
+                == "0px"
             )
             page.locator("[data-core-login-provider]").focus()
             assert page.locator("[data-core-login-provider]").evaluate(
