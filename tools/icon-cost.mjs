@@ -8,7 +8,13 @@ const root = path.resolve(import.meta.dirname, ".."),
 fs.mkdirSync(out, { recursive: true });
 const builder =
   process.env.ESBUILD || path.join(root, "node_modules/.bin/esbuild");
-const report = { defaultUIIncrementalBytes: 0, sourceIcons: 320 };
+const report = {
+  unrequestedCatalogBytes: 0,
+  sourceIcons: 320,
+  selectedComponentAliases: Object.keys(
+    JSON.parse(fs.readFileSync(path.join(root, "assets/icon-aliases.json"))),
+  ).length,
+};
 for (const [name, imports] of Object.entries({
   individual: "import icon from '../../dist/icons/glyphs/shield-check.mjs';",
   category:

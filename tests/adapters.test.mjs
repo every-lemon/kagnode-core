@@ -8,7 +8,7 @@ import {
 } from "../dist/node/kagnode-core.mjs";
 test("Core serves only integrity checked local assets", () => {
   const m = active("example");
-  assert.match(m.version, /^1\.\d+\.\d+$/);
+  assert.match(m.version, /^5\.0\.\d+$/);
   for (const file of Object.keys(m.files))
     assert.ok(asset("/kagnode-core/" + m.version + "/" + file));
   for (const p of [
@@ -75,4 +75,22 @@ test("JSON and plain text containing literal HTML are not rewritten by the serve
     assert.equal(actual, body);
     assert.deepEqual(JSON.parse(actual), JSON.parse(body));
   }
+});
+
+test("canonical login owns the mark and selected original component icons", async () => {
+  const { renderTemplate, icon, iconSources } =
+    await import("../dist/node/kagnode-core.mjs");
+  const frame = renderTemplate("login-frame", {
+    product: "KagNode Example",
+    heading: "Sign in",
+    description: "Local credentials remain required.",
+    content:
+      '<form method="post"><input name="csrf" type="hidden" value="fixture"><button data-core-login-submit>Sign in</button></form>',
+  });
+  assert.equal((frame.match(/class="kn-core-login-mark"/g) || []).length, 1);
+  assert.match(frame, /name="csrf" type="hidden" value="fixture"/);
+  assert.equal(iconSources.security, "shield");
+  assert.equal(iconSources["eye-off"], "eye-off");
+  assert.match(icon("copy"), /data-core-icon-name="copy"/);
+  assert.doesNotMatch(icon('bad" onclick="bad'), / onclick="bad/);
 });
