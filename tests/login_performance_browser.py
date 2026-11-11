@@ -159,6 +159,28 @@ try:
             page.evaluate("KagNodeCore.refresh();KagNodeCore.refresh()")
             assert page.locator("#icon-fixture svg").count() == 1
             assert page.locator("#icon-fixture").get_attribute("aria-label") == "Copy"
+            page.evaluate("""() => {
+              const host=document.createElement('div');host.id='field-fixture';
+              host.innerHTML='<label>Nested<input id="nested-input"></label><div class="kn-core-login-field"><label for="secret-input">Password</label><div class="kn-core-login-secret"><input id="secret-input" type="password" autocomplete="current-password"><button type="button" aria-label="Show password"><span data-core-icon="eye"></span></button></div></div>';
+              document.querySelector('.kn-core-login-content').append(host);
+            }""")
+            assert (
+                page.locator("#nested-input").evaluate(
+                    "e=>getComputedStyle(e).fontWeight"
+                )
+                == "400"
+            )
+            assert (
+                page.locator("#user").evaluate("e=>getComputedStyle(e).fontWeight")
+                == "400"
+            )
+            assert page.locator(".kn-core-login-secret").evaluate(
+                "e=>{const [i,b]=[...e.children].map(n=>n.getBoundingClientRect());return Math.abs(i.top-b.top)<1&&Math.abs(i.height-b.height)<1&&b.width===44&&b.left>=i.right-1}"
+            )
+            assert (
+                page.locator(".kn-core-login-secret button").get_attribute("type")
+                == "button"
+            )
             page.locator("[data-core-login-provider]").focus()
             assert page.locator("[data-core-login-provider]").evaluate(
                 "e=>e===document.activeElement"

@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "version": "5.0.0",
+  "version": "5.0.1",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.59858a18c8bbcee2.js",
-    "script": "core.6ce31bd4f28c7908.js",
-    "style": "core.a84db76692055a53.css"
+    "script": "core.14bb65140e934573.js",
+    "style": "core.1a6ec75b26b81222.css"
   },
-  "source_commit": "148f444e697f2f113212fb9cacc3b7b224a939f6",
+  "source_commit": "2bb97dd66bd0d3a138908c4637da09a6c308c0b7",
   "repository": "every-lemon/kagnode-core",
   "icons": {
     "link": "<path d=\"m9 6 2-2a6 6 0 0 1 9 9l-2 2M6 9l-2 2a6 6 0 0 0 9 9l2-2M8 16l8-8\"/>",
@@ -44,7 +44,7 @@
     "monetize": "<path d=\"M21 7V3H5a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h16V7H5a2 2 0 0 1 0-4M21 12h-6v5h6\"/><circle cx=\"17\" cy=\"14.5\" r=\"0.5\"/>",
     "delivery": "<path d=\"M2 4h12v13H2Zm12 5h5l3 5v3h-8M18 9v5h4\"/><circle cx=\"6\" cy=\"19\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/>",
     "search": "<circle cx=\"10.5\" cy=\"10.5\" r=\"7\"/><path d=\"m16 16 5 5\"/>",
-    "chevron": "<path d=\"m4 8 8 8 8-8\"/>",
+    "chevron": "<path d=\"m9 4 8 8-8 8\"/>",
     "chevrons": "<path d=\"M3 7h17m-5-5 5 5-5 5M21 17H4m5-5-5 5 5 5\"/>",
     "arrow": "<path d=\"M3 12h18m-7-7 7 7-7 7\"/>",
     "external": "<path d=\"M14 3h7v7m0-7L10 14M10 4H3v17h17v-7\"/>",
@@ -147,7 +147,7 @@
     "threats": "shield-alert",
     "monetize": "wallet",
     "delivery": "truck",
-    "chevron": "chevron-down",
+    "chevron": "chevron-right",
     "chevrons": "bidirectional",
     "arrow": "arrow-right",
     "external": "open-external",
@@ -221,13 +221,13 @@
       "sha256": "59858a18c8bbcee204cf71ed2a62a41af316186766f9be5f1500e0702e6a4ecb",
       "size": 1402
     },
-    "core.6ce31bd4f28c7908.js": {
-      "sha256": "6ce31bd4f28c7908f7759561e997fa8f751fab74b0a5bc50a232b04c8b33743b",
-      "size": 77978
+    "core.14bb65140e934573.js": {
+      "sha256": "14bb65140e934573400d769669482b4933dd8d7473cc8d19f08c44800f437fd8",
+      "size": 77979
     },
-    "core.a84db76692055a53.css": {
-      "sha256": "a84db76692055a53c629ba60b76516cc84b996b6f3f31af6da405b9e015d9544",
-      "size": 38338
+    "core.1a6ec75b26b81222.css": {
+      "sha256": "1a6ec75b26b8122252ca799560c76bd089bfc797a26c37e6a6be2b76a5b64a24",
+      "size": 39038
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

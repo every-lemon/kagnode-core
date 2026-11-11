@@ -124,8 +124,10 @@ html[data-kn-core] .kn-core-login-content label {
 }
 html[data-kn-core]
   .kn-core-login-content
-  :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not(
-    [type="hidden"]
+  :where(
+    input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+    select,
+    textarea
   ) {
   display: block;
   width: 100%;
@@ -223,4 +225,36 @@ html[data-kn-core] .kn-core-login-content :is([role="alert"], .error) {
     :is(input, select, textarea, button, .button) {
     border: 1px solid ButtonText;
   }
+}
+
+/* Nested labels and separate labels must produce the same input typography. */
+html[data-kn-core] .kn-core-login-content :is(input, select, textarea) {
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+html[data-kn-core] .kn-core-login-secret {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: stretch;
+  min-width: 0;
+}
+html[data-kn-core] .kn-core-login-content .kn-core-login-secret > input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+html[data-kn-core] .kn-core-login-content .kn-core-login-secret > button {
+  width: 44px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  border-inline-start: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+html[data-kn-core] .kn-core-login-content .kn-core-login-check {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-weight: 400;
 }
