@@ -261,10 +261,22 @@ try:
                 '!!document.querySelector("[data-core-account-trigger]")'
             )
             if width < 1024:
+                assert page.locator("#sidebar").evaluate(
+                    "e=>e.inert && e.getBoundingClientRect().right<=1"
+                )
+                assert (
+                    page.locator("#sidebar").evaluate(
+                        "e=>getComputedStyle(e).transitionDuration"
+                    )
+                    == "0s"
+                )
                 page.locator("[data-core-mobile]").click()
                 assert page.locator("html").get_attribute("data-core-drawer") == "true"
                 page.keyboard.press("Escape")
                 assert page.locator("html").get_attribute("data-core-drawer") == "false"
+                assert page.locator("#sidebar").evaluate(
+                    "e=>e.inert && e.getBoundingClientRect().right<=1"
+                )
             else:
                 page.evaluate(
                     """() => {window.layoutReads=0;for(const key of ['clientHeight','clientWidth','scrollHeight','scrollWidth']){const d=Object.getOwnPropertyDescriptor(Element.prototype,key);if(d?.get)Object.defineProperty(Element.prototype,key,{...d,get(){layoutReads++;return d.get.call(this)}})}}"""
