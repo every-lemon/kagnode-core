@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.4
+
+- Align sidebar quick-search controls, compact shortcuts and icon spacing.
+- Add opt-in contextual navigation folders with keyboard-operable Back controls and focus restoration.
+- Preserve explicit KagNode brand marks on website links.
+
 ## 5.0.3
 
 - Keep dedicated authentication pages free of public navigation sidebars.
