@@ -58,6 +58,9 @@ jobs:
       - run: python tests/search_reopen_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+      - run: python tests/login_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
       - run: python tests/login_performance_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}

@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "version": "5.0.2",
+  "version": "5.0.5",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
-    "theme": "theme.59858a18c8bbcee2.js",
-    "script": "core.dd5ec8f483938e61.js",
-    "style": "core.fd96e4249774ebfb.css"
+    "theme": "theme.f753df83b238f1c8.js",
+    "script": "core.23aeb61cfde9a871.js",
+    "style": "core.be6de67f57a6bd2f.css"
   },
-  "source_commit": "c1705a5010a37d872a167480bf1439405a841b39",
+  "source_commit": "6ca47b63d795ceebc2a3f5de717aa0d55d09bbe7",
   "repository": "every-lemon/kagnode-core",
   "icons": {
     "link": "<path d=\"m9 6 2-2a6 6 0 0 1 9 9l-2 2M6 9l-2 2a6 6 0 0 0 9 9l2-2M8 16l8-8\"/>",
@@ -217,17 +217,17 @@
     "video": "video-camera"
   },
   "files": {
-    "theme.59858a18c8bbcee2.js": {
-      "sha256": "59858a18c8bbcee204cf71ed2a62a41af316186766f9be5f1500e0702e6a4ecb",
-      "size": 1402
+    "theme.f753df83b238f1c8.js": {
+      "sha256": "f753df83b238f1c83f0e7297288cec9b787eb6fe01de1c6be7ae85313b87edda",
+      "size": 1831
     },
-    "core.dd5ec8f483938e61.js": {
-      "sha256": "dd5ec8f483938e616abe2f551c78b4da70e6b07e66af33b5958e99a7fc4fc9ba",
-      "size": 78022
+    "core.23aeb61cfde9a871.js": {
+      "sha256": "23aeb61cfde9a8715c34ad013606db41742ae76edf669d2550ee0c9875a362b9",
+      "size": 85008
     },
-    "core.fd96e4249774ebfb.css": {
-      "sha256": "fd96e4249774ebfb0a71099df21e5d0dc9c83738e35b7739e32717a096ed56dc",
-      "size": 39260
+    "core.be6de67f57a6bd2f.css": {
+      "sha256": "be6de67f57a6bd2f5d092ca555e6be30b3445e83edfd9aa9f890be0155d3ef4a",
+      "size": 42195
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

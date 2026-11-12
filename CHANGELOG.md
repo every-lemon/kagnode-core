@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.5
+
+- Add progressive identity/password login without changing native submission, autofill or existing MFA continuations.
+- Support same-tab KagNode authorization and clean, readiness-gated callback resumption alongside existing device-code login.
+- Preserve pending browser attempts during deliberate issuer navigation, with trusted-origin checks and stale-response isolation.
+
 ## 5.0.4
 
 - Align sidebar quick-search controls, compact shortcuts and icon spacing.

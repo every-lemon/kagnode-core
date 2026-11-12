@@ -83,6 +83,11 @@ write(
 );
 for (const file of ["index.html", "gallery.mjs", "gallery.css"])
   write(file, fs.readFileSync(path.join(root, "examples/icons", file)));
+write("mark.svg", fs.readFileSync(path.join(root, "assets/mark.svg")));
+write(
+  "ARTWORK-LICENSE",
+  fs.readFileSync(path.join(root, "assets/ARTWORK-LICENSE")),
+);
 write("LICENSE", fs.readFileSync(path.join(root, "LICENSE")));
 write("README.md", fs.readFileSync(path.join(root, "docs/ICONS.md")));
 write(
