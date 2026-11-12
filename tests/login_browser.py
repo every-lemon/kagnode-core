@@ -51,7 +51,9 @@ class Handler(BaseHTTPRequestHandler):
         if asset:
             return self.send(*asset)
         form = FORM
-        if path == "/key":
+        if path == "/novalidate":
+            form = FORM.replace('method="post"', 'method="post" novalidate')
+        elif path == "/key":
             form = '<form data-core-login-progressive><label for="key">Administrator key</label><input id="key" type="password" autocomplete="current-password"><button>Sign in</button></form>'
         elif path == "/combined":
             form = FORM.replace(
@@ -203,6 +205,15 @@ try:
                     """()=>{document.querySelector('#password').autocomplete='new-password';KagNodeLogin.refresh()}"""
                 )
             assert not page.locator("form").evaluate("e=>e.noValidate")
+            page.goto(origin + "/novalidate")
+            page.locator("#identity").fill("host-validates-this")
+            page.get_by_role("button", name="Continue", exact=True).click()
+            expect(page.locator("#password")).to_be_visible()
+            page.locator("#password").fill("fictional-password")
+            page.get_by_role("button", name="Sign in locally").click()
+            page.wait_for_url("**/local")
+            assert POSTS[-1]["email"] == ["host-validates-this"]
+            POSTS.clear()
             page.goto(origin + "/confirmation")
             expect(page.locator("#password")).to_be_hidden()
             assert page.get_by_role("button", name="Continue", exact=True).count() == 1

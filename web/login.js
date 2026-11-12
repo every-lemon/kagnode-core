@@ -456,7 +456,7 @@
           (password ? secret : identity).focus({ preventScroll: true });
       };
       const advance = (focus = true) => {
-        if (!identity.reportValidity()) return false;
+        if (!originalNoValidate && !identity.reportValidity()) return false;
         show("password", focus);
         return true;
       };
@@ -478,7 +478,7 @@
         (event) => {
           if (state.stage !== "identity") return;
           const filled = !!secret.value;
-          if (identity.reportValidity()) show("password");
+          if (originalNoValidate || identity.reportValidity()) show("password");
           if (
             !filled ||
             state.stage !== "password" ||
