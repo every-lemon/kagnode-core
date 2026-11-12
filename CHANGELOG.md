@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.3
+
+- Keep dedicated authentication pages free of public navigation sidebars.
+- Reserve the expanded sidebar footprint during hover/focus expansion, so it does not cover page content.
+- Include direct `#main` content wrappers in shared desktop and mobile layout rules.
+
 ## 5.0.2
 
 - Preserve explicit Core icon hosts inside sidebar links, preventing a second automatic leading icon. Repeated normalization and dynamic icon changes retain one glyph.

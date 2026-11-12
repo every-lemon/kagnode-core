@@ -50,7 +50,9 @@ class Handler(BaseHTTPRequestHandler):
                     "",
                 )
             html = (
-                '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body>main{max-width:760px;margin:auto;padding:24px}section{margin:18px 0}</style></head><body data-core-settings="/profile">'
+                '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body>main{max-width:760px;margin:auto;padding:24px}section{margin:18px 0}</style></head><body data-core-settings="/profile"'
+                + (" data-core-auth-page" if login else "")
+                + ">"
                 + content
                 + "</body></html>"
             )
@@ -60,6 +62,7 @@ class Handler(BaseHTTPRequestHandler):
                 {
                     "authenticated": not login,
                     "subject": "fixture",
+                    "publicNavigation": login,
                     "name": "Example",
                     "email": "before@example.test",
                 },
@@ -96,6 +99,7 @@ try:
             )
             page.goto(origin + "/login")
             page.wait_for_function("!!window.KagNodeCore")
+            assert page.locator("[data-core-sidebar]").count() == 0
             assert page.locator("form").get_attribute("action") == "/local-login"
             assert page.locator("[name=csrf]").input_value() == "fixture"
             assert (

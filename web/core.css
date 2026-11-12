@@ -383,6 +383,7 @@ html[data-kn-core][data-core-collapsed="true"]
       #dashboard > .main,
       .kn-ui > .main,
       body.site-body > main,
+      body.site-body > #main,
       .auth-body > .auth-main
     ) {
     margin-left: var(
@@ -617,7 +618,8 @@ html[data-kn-core] #loading.loading {
       .workspace:not(#workspace),
       #dashboard > .main,
       .kn-ui > .main,
-      body.site-body > main
+      body.site-body > main,
+      body.site-body > #main
     ) {
     margin-left: 0 !important;
     width: 100% !important;
@@ -797,7 +799,7 @@ html[data-core-shell="inactive"] .kn-core-mobile-toggle {
 }
 
 html[data-core-preview="true"] {
-  --kn-sidebar-reserved-size: 57px;
+  --kn-sidebar-reserved-size: var(--kn-sidebar-expanded);
 }
 html[data-core-preview="true"] [data-core-sidebar] {
   z-index: 13000 !important;

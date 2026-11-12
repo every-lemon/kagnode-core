@@ -64,3 +64,6 @@ jobs:
       - run: python tests/icons_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+      - run: python tests/auth_shell_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
