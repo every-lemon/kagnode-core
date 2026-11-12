@@ -26,6 +26,11 @@ class Handler(BaseHTTPRequestHandler):
             data, mime = found
         else:
             html = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body class="site-body" style="margin:0"><header class="site-header">Header</header><div id="main"><h1>Real content wrapper</h1><p>Keep this visible.</p></div><footer class="site-footer">Help</footer></body></html>'
+            if self.path == "/folders":
+                html = html.replace(
+                    '<header class="site-header">',
+                    '<aside class="sidebar" id="sidebar" data-core-nav-default="plan"><a class="brand" href="/dashboard">KagNode</a><div data-core-nav-root><button data-core-nav-open="plan"><span class="nav-label">Plan sections</span></button><button class="quick-search" data-command><svg viewBox="0 0 24 24"></svg><span class="nav-label">Quick search</span><kbd>Ctrl K</kbd></button></div><nav data-core-nav-folder="plan" hidden><button data-core-nav-back><span class="nav-label">Back to Developer</span></button><a href="/plan">Plan overview</a></nav></aside><header class="site-header">',
+                )
             data = core.inject(html, "public", {"publicNavigation": True}).encode()
             mime = "text/html"
         self.send_response(200)
@@ -66,6 +71,25 @@ try:
                 assert page.locator("#sidebar").bounding_box()["width"] >= 259
                 assert page.locator("#main").bounding_box()["x"] >= 259
             assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+1")
+            page.goto("http://127.0.0.1:" + str(server.server_port) + "/folders")
+            page.wait_for_function(
+                '()=>document.documentElement.dataset.coreReady==="true"'
+            )
+            if width < 1024:
+                page.evaluate("KagNodeCore.navigation.open()")
+            assert page.locator("[data-core-nav-root]").is_hidden()
+            page.locator("[data-core-nav-back]").focus()
+            page.keyboard.press("Enter")
+            assert page.locator("[data-core-nav-folder]").is_hidden()
+            assert page.locator("[data-core-nav-open]").evaluate(
+                "e=>e===document.activeElement"
+            )
+            assert page.locator(".quick-search").bounding_box()["width"] <= 242
+            page.keyboard.press("Enter")
+            assert page.locator("[data-core-nav-root]").is_hidden()
+            assert page.locator("[data-core-nav-back]").evaluate(
+                "e=>e===document.activeElement"
+            )
             page.close()
         browser.close()
 finally:

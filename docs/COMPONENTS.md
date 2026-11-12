@@ -13,3 +13,16 @@ Use semantic `date` or `datetime-local` fields with the application’s `min`, `
 ## Quick-search reopening
 
 The palette can be reopened immediately after dismissal without an artificial delay. Queued native close events from an earlier opening do not cancel the current query or move its focus. Normal dismissal still cancels pending work and restores focus. Applications continue supplying authorized destinations and provider results.
+
+### Contextual sidebar folders
+
+Applications may opt in with one `[data-core-nav-root]` wrapper and named
+`[data-core-nav-folder="plan"]` wrappers. Buttons with `data-core-nav-open="plan"`
+open a folder; a `data-core-nav-back` button restores the root and keyboard
+focus. Give open buttons `aria-controls` pointing to the folder's unique ID.
+Place `data-core-nav-default="plan"` on the sidebar when the current route
+belongs to that folder. Core manages visibility, focus and scroll measurement;
+applications still supply authorized destinations and labels. Include a normal
+reader/overview link for fallback navigation. Explicit website brand links use
+`data-core-brand-link`, preserving their artwork instead of substituting a home
+icon.
