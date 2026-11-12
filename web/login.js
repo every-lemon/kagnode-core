@@ -11,7 +11,7 @@
       url.searchParams.has("kagnode_attempt") ||
       url.searchParams.has("kagnode_error")
     ) {
-      resume = {
+      const returned = {
         attempt:
           url.searchParams.getAll("kagnode_attempt").length === 1
             ? url.searchParams.get("kagnode_attempt")
@@ -21,8 +21,11 @@
       url.searchParams.delete("kagnode_attempt");
       url.searchParams.delete("kagnode_error");
       history.replaceState(history.state, "", url);
+      resume = returned;
     }
-  } catch {}
+  } catch {
+    resume = null;
+  }
   const completed = new WeakSet();
   const progressive = new WeakMap();
   let current = null,
@@ -551,6 +554,8 @@
   refreshButtons();
   if (window.KagNodeLoginHost?.state?.()?.ready === true) refresh();
   addEventListener("pagehide", () => {
+    resume = null;
+    readyHost = null;
     generation++;
     cancelAttempt(current);
     clear();

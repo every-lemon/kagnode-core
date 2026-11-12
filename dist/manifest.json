@@ -5,11 +5,11 @@
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
-    "theme": "theme.cb4cb8b9703fd213.js",
-    "script": "core.4138342696dbfe47.js",
+    "theme": "theme.f753df83b238f1c8.js",
+    "script": "core.23aeb61cfde9a871.js",
     "style": "core.be6de67f57a6bd2f.css"
   },
-  "source_commit": "64a9aaaf9e0b7fef602480010ece952c6f56d994",
+  "source_commit": "6ca47b63d795ceebc2a3f5de717aa0d55d09bbe7",
   "repository": "every-lemon/kagnode-core",
   "icons": {
     "link": "<path d=\"m9 6 2-2a6 6 0 0 1 9 9l-2 2M6 9l-2 2a6 6 0 0 0 9 9l2-2M8 16l8-8\"/>",
@@ -217,13 +217,13 @@
     "video": "video-camera"
   },
   "files": {
-    "theme.cb4cb8b9703fd213.js": {
-      "sha256": "cb4cb8b9703fd213afcb10cded4a9696d602a4f70c6d036d77fb5832bae99814",
-      "size": 1821
+    "theme.f753df83b238f1c8.js": {
+      "sha256": "f753df83b238f1c83f0e7297288cec9b787eb6fe01de1c6be7ae85313b87edda",
+      "size": 1831
     },
-    "core.4138342696dbfe47.js": {
-      "sha256": "4138342696dbfe4701238ad4fbc6076108b33c023fc47da891d7fa7ce7382e97",
-      "size": 84978
+    "core.23aeb61cfde9a871.js": {
+      "sha256": "23aeb61cfde9a8715c34ad013606db41742ae76edf669d2550ee0c9875a362b9",
+      "size": 85008
     },
     "core.be6de67f57a6bd2f.css": {
       "sha256": "be6de67f57a6bd2f5d092ca555e6be30b3445e83edfd9aa9f890be0155d3ef4a",

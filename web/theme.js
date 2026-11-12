@@ -8,7 +8,7 @@
       url.searchParams.has("kagnode_attempt") ||
       url.searchParams.has("kagnode_error")
     ) {
-      window.__kagNodeLoginReturn = {
+      const returned = {
         attempt:
           url.searchParams.getAll("kagnode_attempt").length === 1
             ? url.searchParams.get("kagnode_attempt")
@@ -18,6 +18,7 @@
       url.searchParams.delete("kagnode_attempt");
       url.searchParams.delete("kagnode_error");
       history.replaceState(history.state, "", url);
+      window.__kagNodeLoginReturn = returned;
     }
   } catch {}
   if (window.KagNodeTheme) return;

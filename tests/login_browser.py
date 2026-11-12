@@ -325,6 +325,10 @@ try:
         assert page.evaluate("KagNodeLogin.hasPendingReturn")
         page.evaluate("KagNodeLogin.reset();fixtureReady()")
         assert not page.evaluate("calls.length")
+        page.goto(origin + "/login?case=leaving&kagnode_attempt=leave-attempt")
+        page.evaluate("dispatchEvent(new Event('pagehide'));fixtureReady()")
+        assert not page.evaluate("calls.length")
+        assert not page.evaluate("KagNodeLogin.hasPendingReturn")
         page.goto(
             origin
             + "/login?case=denied&kagnode_attempt=denied-attempt&kagnode_error=%3Cscript%3Eraw-error%3C%2Fscript%3E"
