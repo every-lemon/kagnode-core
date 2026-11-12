@@ -1,5 +1,25 @@
 /*! KagNode Core — AGPL-3.0-only. Appearance never contains vault data. */
 (() => {
+  // Runs synchronously in the head, before the deferred UI and its links.
+  // The opaque local attempt is kept only in this document, never storage.
+  try {
+    const url = new URL(location.href);
+    if (
+      url.searchParams.has("kagnode_attempt") ||
+      url.searchParams.has("kagnode_error")
+    ) {
+      window.__kagNodeLoginReturn = {
+        attempt:
+          url.searchParams.getAll("kagnode_attempt").length === 1
+            ? url.searchParams.get("kagnode_attempt")
+            : null,
+        failed: url.searchParams.has("kagnode_error"),
+      };
+      url.searchParams.delete("kagnode_attempt");
+      url.searchParams.delete("kagnode_error");
+      history.replaceState(history.state, "", url);
+    }
+  } catch {}
   if (window.KagNodeTheme) return;
   const root = document.documentElement;
   root.classList.add("js");

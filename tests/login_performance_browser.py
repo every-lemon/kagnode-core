@@ -133,13 +133,13 @@ try:
                 == "44px"
             )
             assert (
-                page.locator("form button").evaluate(
+                page.locator("form button:visible").evaluate(
                     "e=>getComputedStyle(e).backgroundColor"
                 )
                 == "rgb(37, 99, 235)"
             )
             assert (
-                page.locator("form button").evaluate(
+                page.locator("form button:visible").evaluate(
                     "e=>getComputedStyle(e).borderRadius"
                 )
                 == "8px"
