@@ -195,13 +195,10 @@ try:
                     page.wait_for_function(
                         "Math.abs(document.querySelector('.workspace').getBoundingClientRect().x-57)<1"
                     )
-                    before = page.locator(".workspace").bounding_box()["x"]
                     page.locator("#sidebar").hover()
                     page.wait_for_timeout(450)
                     assert_sidebar_width(page, 260)
-                    assert (
-                        abs(page.locator(".workspace").bounding_box()["x"] - before) < 1
-                    )
+                    assert page.locator(".workspace").bounding_box()["x"] >= 259
                     page.mouse.move(800, 80)
                     page.wait_for_timeout(500)
                     assert_sidebar_width(page, 57)

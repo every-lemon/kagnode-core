@@ -204,7 +204,8 @@
   }
   function installSidebar() {
     sidebar = $("#sidebar,.sidebar");
-    if (!sidebar && config.publicNavigation) sidebar = publicSidebar();
+    if (!sidebar && config.publicNavigation && !$("[data-core-auth-page]"))
+      sidebar = publicSidebar();
     if (!sidebar || sidebar.dataset.coreSidebar) return;
     sidebar.dataset.coreSidebar = "true";
     sidebar.setAttribute(
