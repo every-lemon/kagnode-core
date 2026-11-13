@@ -71,12 +71,10 @@
       overlay.setAttribute("aria-hidden", String(!active));
       if (!overlay.isConnected) document.body.append(overlay);
     }
-    if (
-      all.some((n) => n.mode === "topbar" || n.mode === "overlay") &&
-      !topbar
-    ) {
+    if (!topbar) {
       topbar = node("div", "kn-core-loading-topbar");
       topbar.setAttribute("aria-hidden", "true");
+      topbar.append(node("span", "kn-core-loading-runner"));
       document.body.append(topbar);
     }
     if (topbar)
