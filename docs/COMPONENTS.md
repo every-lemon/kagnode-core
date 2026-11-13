@@ -65,3 +65,14 @@ Mark account photographs with `data-core-avatar`. The authenticated
 `kagnode:avatar-changed` document event accepts `{subject,url}` only for the
 current subject and existing same-origin photo delivery. An empty URL restores
 initials. Avatar-only triggers are circular; menu rows retain their own shape.
+
+## Browser motion verification
+
+Core 5.0.6's motion acceptance uses pinned Playwright 1.64.1 Chromium and WebKit
+(WebKit revision 2370), matching the local and protected CI runtimes. Delayed
+native document GET/POST fixtures inspect multiple actual frames, including
+normal spinner/track movement and quiet reduced-motion breathing. The older
+Playwright 1.58 WebKit runtime failed the pending-document topbar motion gate;
+continuous motion on that engine is not certified by this release. Loading
+labels, native navigation and reduced-motion controls remain available; an
+animation is never used as proof that a request completed.
