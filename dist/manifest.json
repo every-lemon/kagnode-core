@@ -1,22 +1,22 @@
 {
   "schema": 1,
-  "version": "5.0.6",
+  "version": "5.0.7",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.f753df83b238f1c8.js",
-    "script": "core.6d4cbe688c7acbea.js",
-    "style": "core.89b4d8c2ed674a3e.css"
+    "script": "core.ee155d5f545f52ba.js",
+    "style": "core.e4a85768f1703a55.css"
   },
-  "source_commit": "a59388b1d0adf903f5a13b6e8cde8ca2e856d6e4",
+  "source_commit": "01010153018655c80a0ac3c3e705f03cd73341f0",
   "repository": "every-lemon/kagnode-core",
   "user_summary": {
-    "title": "A more consistent KagNode interface",
+    "title": "More reliable account controls",
     "items": [
-      "Switch views with clearer sliding controls and keyboard navigation.",
-      "Loading messages now follow the action and stay accurate when tasks overlap.",
-      "Navigation, account photos and mobile dialogs share the same controls."
+      "Ordinary actions leave your scrolling preference unchanged.",
+      "Background update notices pause safely during navigation and loading.",
+      "Update notices keep their dismissal state during background work."
     ]
   },
   "icons": {
@@ -229,13 +229,13 @@
       "sha256": "f753df83b238f1c83f0e7297288cec9b787eb6fe01de1c6be7ae85313b87edda",
       "size": 1831
     },
-    "core.6d4cbe688c7acbea.js": {
-      "sha256": "6d4cbe688c7acbea2a0106a8e496b36f6928fc1bc3f6d624b99f71f69e3f9d01",
-      "size": 98833
+    "core.ee155d5f545f52ba.js": {
+      "sha256": "ee155d5f545f52bacf89c323e453f0fdca007cfd1961f9ad6ffe603c63c14861",
+      "size": 100300
     },
-    "core.89b4d8c2ed674a3e.css": {
-      "sha256": "89b4d8c2ed674a3ed287bbea13dd6631e83825e68d462326d27dced4181c1299",
-      "size": 45977
+    "core.e4a85768f1703a55.css": {
+      "sha256": "e4a85768f1703a556308ba0879ddc52aa36eaa1a0b08dcf8b358bcaa11fd336c",
+      "size": 45979
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

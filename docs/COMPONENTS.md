@@ -76,3 +76,18 @@ Playwright 1.58 WebKit runtime failed the pending-document topbar motion gate;
 continuous motion on that engine is not certified by this release. Loading
 labels, native navigation and reduced-motion controls remain available; an
 animation is never used as proof that a request completed.
+
+## Preference actions and notice navigation (5.0.7)
+
+The root `data-core-scroll-state` attribute reports runtime presentation only.
+`button[data-core-scroll-mode]` is the explicit preference action; ordinary clicks
+and keyboard activation of other controls never save a preference. Do not place
+action attributes on page containers.
+
+Background update-summary reads abort before native links/forms leave a document,
+on pagehide/beforeunload, when hidden, and during active loading operations.
+Intercepted navigation resumes after the host prevents the native event; pageshow
+also resumes restored pages. Notice read generations are separate from session
+and dismissal state. The loading component emits `kagnode:loading-operation`
+with `{pending}` when its operation count changes, covering inline/topbar work as
+well as overlays. This event does not grant update or authentication authority.
