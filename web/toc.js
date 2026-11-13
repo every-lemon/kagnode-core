@@ -164,14 +164,17 @@
     }
     refresh();
   }
-  addEventListener("pointerup", () => {
+  const endPointer = () => {
     for (const state of instances.values()) {
       if (state.pointerActive) {
         state.pointerActive = false;
         state.interactingUntil = performance.now() + 800;
       }
     }
-  });
+  };
+  addEventListener("pointerup", endPointer);
+  addEventListener("pointercancel", endPointer);
+  addEventListener("blur", endPointer);
   addEventListener("scroll", refresh, { passive: true, capture: true });
   addEventListener("resize", refresh);
   addEventListener("hashchange", refresh);
