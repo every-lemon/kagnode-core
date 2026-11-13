@@ -16,7 +16,7 @@ spec = importlib.util.spec_from_file_location(
 )
 core = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(core)
-HTML = """<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><a href="/slow">Open page</a><form method="post" action="/slow"><input name="csrf" value="fixture" type="hidden"><button>Submit</button></form><script>addEventListener('click',e=>{if(e.target.closest('a'))KagNodeLoading.show('Opening page…')});addEventListener('submit',()=>KagNodeLoading.show('Submitting form…'));</script></body></html>"""
+HTML = """<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style><meta name="viewport" content="width=device-width,initial-scale=1"></head><body data-core-auth-page><a href="/slow">Open page</a><form method="post" action="/slow"><input name="csrf" value="fixture" type="hidden"><button>Submit</button></form><script>addEventListener('click',e=>{if(e.target.closest('a')){KagNodeCore.navigation.close();KagNodeLoading.show('Opening page…')}});addEventListener('submit',()=>{KagNodeCore.navigation.close();KagNodeLoading.show('Submitting form…')});</script></body></html>"""
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -75,6 +75,14 @@ try:
                 session = (
                     context.new_cdp_session(page) if engine == "chromium" else None
                 )
+                assert (
+                    page.locator("[data-core-sidebar],.kn-core-drawer-scrim").count()
+                    == 0
+                )
+                page.evaluate(
+                    "()=>{for(let n=0;n<3;n++){KagNodeCore.navigation.open();KagNodeCore.navigation.close()}}"
+                )
+                assert page.locator("html").get_attribute("data-core-drawer") == "false"
                 # The committed document and native form semantics own navigation.
                 page.evaluate(
                     "document.querySelector('a').click()"

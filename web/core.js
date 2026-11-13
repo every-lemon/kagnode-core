@@ -234,6 +234,13 @@
     window.KagNodeScroll?.refresh(sidebar);
   }
   function drawer(open, restore = true) {
+    if (!sidebar?.isConnected || !scrim?.isConnected) {
+      root.dataset.coreDrawer = "false";
+      all("[data-mobile],#mobile-menu,[data-core-mobile]").forEach((button) =>
+        button.setAttribute("aria-expanded", "false"),
+      );
+      return;
+    }
     root.dataset.coreDrawer = String(open);
     scrim.hidden = !open;
     sidebar.inert = mobile() && !open;
