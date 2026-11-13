@@ -60,11 +60,10 @@
       overlay.append(spinner(), node("span", "kn-core-loading-label"));
     }
     if (overlay) {
+      const parent =
+        [...document.querySelectorAll("dialog[open]")].at(-1) || document.body;
+      if (overlay.parentElement !== parent) parent.append(overlay);
       if (active) {
-        const parent =
-          [...document.querySelectorAll("dialog[open]")].at(-1) ||
-          document.body;
-        if (overlay.parentElement !== parent) parent.append(overlay);
         overlay.querySelector(".kn-core-loading-label").textContent =
           active.label;
       }
@@ -139,6 +138,7 @@
   }
   render();
   document.addEventListener("close", render, true);
+  document.addEventListener("kagnode:dialog-open", render);
   window.KagNodeLoading = {
     spinner,
     enhance,
