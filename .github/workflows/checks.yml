@@ -38,7 +38,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: npm ci && npm run build
-      - run: pip install playwright==1.58.0
+      - run: pip install playwright==1.64.1
       - run: playwright install --with-deps ${{ matrix.engine }}
       - run: python tests/browser.py
         env:
@@ -67,6 +67,33 @@ jobs:
       - run: python tests/icons_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+      - run: python tests/loading_navigation_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+      - run: python tests/panels_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
       - run: python tests/auth_shell_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+
+  older-webkit:
+    name: Older WebKit functional fallback
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24"
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+      - run: npm ci && npm run build
+      - run: pip install playwright==1.58.0
+      - run: playwright install --with-deps webkit
+      - run: python tests/loading_navigation_browser.py && python tests/login_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: webkit
+          KAGNODE_MOTION_REQUIRED: "0"
