@@ -16,7 +16,7 @@ spec = importlib.util.spec_from_file_location(
 )
 core = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(core)
-HTML = """<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><a href="/slow">Open page</a><form method="post" action="/slow"><input name="csrf" value="fixture" type="hidden"><button>Submit</button></form><script>addEventListener('click',e=>{if(e.target.closest('a'))KagNodeLoading.show('Opening page…')});addEventListener('submit',()=>KagNodeLoading.show('Submitting form…'));</script></body></html>"""
+HTML = """<!doctype html><html><head><meta charset="utf-8"><style>[hidden]{display:none!important}</style><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><a href="/slow">Open page</a><form method="post" action="/slow"><input name="csrf" value="fixture" type="hidden"><button>Submit</button></form><script>addEventListener('click',e=>{if(e.target.closest('a'))KagNodeLoading.show('Opening page…')});addEventListener('submit',()=>KagNodeLoading.show('Submitting form…'));</script></body></html>"""
 
 
 class Handler(BaseHTTPRequestHandler):

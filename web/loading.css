@@ -109,7 +109,7 @@ html[data-kn-core] [data-core-loading] {
 html[data-kn-core] .kn-core-loading {
   position: fixed;
   inset: 0;
-  z-index: 2147483000;
+  z-index: 2147483600;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -177,7 +177,7 @@ html[data-core-scroll-mode="custom"]
 
 /* Keep the compositor orbit alive before a native document handoff. */
 html[data-kn-core] .kn-core-loading[hidden] {
-  display: flex;
+  display: flex !important;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
