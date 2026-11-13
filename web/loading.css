@@ -119,7 +119,9 @@ html[data-kn-core] .kn-core-loading {
   gap: 20px;
 }
 html[data-kn-core] .kn-core-loading-topbar[hidden] {
-  display: none !important;
+  display: block !important;
+  opacity: 0;
+  pointer-events: none;
 }
 html[data-kn-core] .kn-core-loading-topbar {
   position: fixed;
