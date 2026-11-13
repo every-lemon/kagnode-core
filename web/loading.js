@@ -62,7 +62,8 @@
     if (overlay) {
       if (active) {
         const parent =
-          document.querySelector("dialog[open]:last-of-type") || document.body;
+          [...document.querySelectorAll("dialog[open]")].at(-1) ||
+          document.body;
         if (overlay.parentElement !== parent) parent.append(overlay);
         overlay.querySelector(".kn-core-loading-label").textContent =
           active.label;

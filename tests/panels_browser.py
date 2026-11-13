@@ -185,6 +185,11 @@ try:
             expect(
                 page.get_by_role("dialog", name="Details", exact=True)
             ).to_be_visible()
+            page.evaluate(
+                "()=>{document.body.append(document.createElement('dialog'));window.modalOp=KagNodeLoading.begin({label:'Reading details…',mode:'overlay'})}"
+            )
+            assert page.locator("#sheet > #kn-core-loading").count() == 1
+            page.evaluate("modalOp()")
             if width <= 700:
                 page.wait_for_function(
                     "Math.abs(document.querySelector('#sheet').getBoundingClientRect().bottom-innerHeight)<2"
