@@ -91,3 +91,18 @@ also resumes restored pages. Notice read generations are separate from session
 and dismissal state. The loading component emits `kagnode:loading-operation`
 with `{pending}` when its operation count changes, covering inline/topbar work as
 well as overlays. This event does not grant update or authentication authority.
+
+## Component-status reads (5.0.8)
+
+The background management-status request shares one cancellation context across
+its preliminary local CSRF/session read and final status read. Native navigation,
+pagehide and session changes invalidate the full chain; stale errors or results
+cannot overwrite a newer account. Hidden/loading pages defer background reads,
+and restored pages resume reads only. Background refresh never opens interactive
+reauthentication.
+
+Explicit administrator actions own their loading operation. Navigation/session
+interruption cancels their continuation and does not automatically replay check,
+apply, policy or rollback requests. A server may have accepted an interrupted
+request; inspect its persistent status before deliberately retrying. An explicit
+reauthentication continuation must still match the original session and signal.
