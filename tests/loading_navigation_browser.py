@@ -67,6 +67,9 @@ try:
                 page = context.new_page()
                 page.goto(f"http://127.0.0.1:{server.server_port}")
                 page.wait_for_function("!!window.KagNodeLoading")
+                session = (
+                    context.new_cdp_session(page) if engine == "chromium" else None
+                )
                 # The committed document and native form semantics own navigation.
                 page.evaluate(
                     "document.querySelector('a').click()"
@@ -80,7 +83,6 @@ try:
                     if engine == "chromium":
                         import base64
 
-                        session = context.new_cdp_session(page)
                         samples.append(
                             base64.b64decode(
                                 session.send(
@@ -89,7 +91,6 @@ try:
                                 )["data"]
                             )
                         )
-                        session.detach()
                     else:
                         samples.append(
                             page.screenshot(timeout=3000, animations="allow")
