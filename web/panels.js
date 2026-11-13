@@ -267,7 +267,12 @@
   document.addEventListener(
     "close",
     (event) => {
-      if (!(event.target instanceof HTMLDialogElement)) return;
+      if (
+        !(event.target instanceof HTMLDialogElement) ||
+        event.target.open ||
+        !dialogs.has(event.target)
+      )
+        return;
       const state = dialogs.get(event.target);
       dialogs.delete(event.target);
       if (

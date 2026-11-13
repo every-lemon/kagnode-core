@@ -181,6 +181,12 @@ try:
                 assert not page.locator(
                     '#sidebar [id="' + str(bar.get_attribute("aria-controls")) + '"]'
                 ).count()
+            page.evaluate(
+                "()=>{const d=document.createElement('dialog');d.id='unmanaged';d.innerHTML='<button>Native control</button>';document.body.append(d);d.showModal();d.close();document.querySelector('#field').focus()}"
+            )
+            expect(page.locator("#field")).to_be_focused()
+            page.wait_for_timeout(50)
+            expect(page.locator("#field")).to_be_focused()
             page.locator("#sheet-open").click()
             expect(
                 page.get_by_role("dialog", name="Details", exact=True)
@@ -194,6 +200,14 @@ try:
                 page.wait_for_function(
                     "Math.abs(document.querySelector('#sheet').getBoundingClientRect().bottom-innerHeight)<2"
                 )
+            page.evaluate(
+                "()=>{const d=document.querySelector('#sheet');KagNodeDialogs.close(d);KagNodeDialogs.open(d,{sheet:true,returnFocus:document.querySelector('#sheet-open')})}"
+            )
+            page.wait_for_timeout(50)
+            expect(page.locator("#sheet")).to_be_visible()
+            assert page.locator("#sheet").evaluate(
+                "e=>e.contains(document.activeElement)"
+            )
             page.keyboard.press("Escape")
             expect(page.locator("#sheet")).to_be_hidden()
             expect(page.locator("body > #kn-core-loading")).to_have_count(1)
