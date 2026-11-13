@@ -70,11 +70,13 @@ entrypoints.script = compile(
       "loading.js",
       "core.js",
       "login.js",
+      "panels.js",
       "scroll.js",
       "toc.js",
       "controls.js",
       "appearance.js",
       "updates.js",
+      "notices.js",
       "search.js",
     ]
       .map(read)
@@ -83,7 +85,9 @@ entrypoints.script = compile(
 );
 entrypoints.style = compile(
   "core",
-  read("login.css") +
+  read("panels.css") +
+    "\n" +
+    read("login.css") +
     "\n" +
     read("controls.css") +
     "\n" +
@@ -122,6 +126,7 @@ const bundle = {
   entrypoints,
   source_commit: source,
   repository: "every-lemon/kagnode-core",
+  user_summary: JSON.parse(read("release-notes.json")),
   icons,
   icon_sources: iconSources,
   files,

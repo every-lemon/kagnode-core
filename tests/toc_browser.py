@@ -104,6 +104,13 @@ try:
             )
             assert distance < 3, distance
             assert page.locator("#list .plan-toc-indicator").count() == 1
+            # A wheel gesture keeps the user's chosen list position while new
+            # content or page movement changes the current heading.
+            page.evaluate(
+                """()=>{const list=document.querySelector('#list');list.dispatchEvent(new WheelEvent('wheel',{deltaY:20,bubbles:true}));list.scrollTop=90;window.scrollTo(0,document.getElementById('s15').getBoundingClientRect().top+scrollY-70);KagNodeToc.refresh()}"""
+            )
+            page.wait_for_timeout(120)
+            assert abs(page.locator("#list").evaluate("e=>e.scrollTop") - 90) < 2
             records.append(
                 {
                     "engine": engine,

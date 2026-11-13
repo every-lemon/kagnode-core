@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.6
+
+- Add keyboard-operated sliding segments, native mobile sheets and composable contextual loading operations.
+- Correct circular account avatars and suppress redundant sidebar rails while preserving the native-scrolling preference.
+- Respect deliberate contents-list browsing during layout and fragment changes.
+- Add optional signed UI update summaries, local administrator policy and authenticated per-account dismissal adapters. The new backend helper requires explicit review and installation; automatic updates still replace UI assets only.
+
 ## 5.0.5
 
 - Add progressive identity/password login without changing native submission, autofill or existing MFA continuations.

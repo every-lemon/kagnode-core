@@ -37,3 +37,42 @@ This preview requires explicit local-administrator review and installation, sepa
 The operation and daemon locks use nonblocking, no-follow descriptors and validate regular type, single link, current ownership and absence of group/other write permissions. The descriptor is validated again after opening. New controls are created with mode 0600. Safe existing regular controls, including legacy 0644 files, keep their bytes, inode and permissions. Unsafe controls are rejected rather than replaced, truncated, chmodded or repaired. A lock file belongs in protected manager storage; this is recovery robustness, not a claim that an unprivileged remote user can alter that storage.
 
 A failed daemon startup closes its lock even while an exception traceback remains referenced. An unrecordable lock/state error is logged without writing state or terminating the scheduler, allowing a later retry after explicit repair. Existing exclusive contention stays busy; no lock is bypassed or broken. Do not remove an active lock to force an update. Tests use bounded disposable subprocesses for FIFOs and preserve existing targets, with no running manager or application changes.
+
+## Optional authenticated update summaries (5.0.6)
+
+This additive capability requires explicit installation of the reviewed 5.0.6
+manager and server adapter. A UI patch cannot install those backend files. Old
+helpers ignore optional signed metadata and show no invented update event.
+The signed manifest may contain `user_summary:{title,items}`: bounded plain text,
+never HTML. Only a successful changed automatic compatible UI patch records an
+activation. Initial bundles, manual application, failed/interrupted installs and
+rollback do not generate a new summary. Cached assets and signatures are
+rechecked before a summary is served.
+
+Local administrators may set `policy APP --summaries off` independently of
+`--automatic on|off`; summaries default on. Admin status advertises
+`capabilities.update_summaries`. The private socket's `summary` action returns
+only `{available,notice}`; no paths, errors, repository configuration or update
+authority are exposed to ordinary users.
+
+Authenticated hosts supply persistent per-local-subject receipt callbacks:
+Python `read_notice(app_id, subject, is_dismissed)` and
+`dismiss_notice(app_id, subject, id, save_dismissed)`; Node uses asynchronous
+`readNotice`/`dismissNotice` equivalents. Read callbacks receive `(subject,id)`;
+save callbacks receive the same pair. IDs are immutable local user IDs, not
+unverified email addresses. Preserve receipt data with account data. Flask
+`register_flask_api` accepts `notice_subject`, `notice_is_dismissed`,
+`notice_dismiss` and an optional `notice_write_guard`. Ordinary notice dismissal
+must use the host's CSRF boundary, not its separate administrator-only
+`write_guard`. Existing administrator actions retain their authorization.
+
+Expose GET `/api/v1/kagnode-core/whats-new` and CSRF-protected POST
+`/api/v1/kagnode-core/whats-new/dismiss` with `{id}`. Unavailable/static/embedded
+hosts return `{available:false,notice:null}` and do not invent accounts or policy
+controls. A malformed, stale or other activation ID cannot mark a new update as
+read. The browser opts in only when fully authenticated and unlocked:
+`KagNodeWhatsNewHost={ready:()=>true,headers:async()=>csrfHeaders}` followed by
+`KagNodeWhatsNew.refresh()`. Alternatively set `data-core-notices="enabled"` on
+body only while ready. No opt-in means no requests. Prompts wait for dialogs,
+loading and edited forms to finish; dispatch `kagnode:form-saved` from the saved
+form (or provide `detail.form`). Account switching cancels pending responses.

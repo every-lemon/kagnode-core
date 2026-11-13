@@ -2,7 +2,7 @@
 
 ## Loading spinner
 
-`KagNodeCore.loading.show("Opening your vault…")` and `hide()` control the full-screen loading surface. The split-orbit spinner keeps the canonical mark still. Reduced motion stops the orbit; the status label remains visible and announced. Do not use a loading state to imply measurable progress.
+`KagNodeCore.loading.show("Opening your vault…")` and `hide()` control the full-screen loading surface. The split-orbit spinner keeps the canonical mark still. Reduced motion replaces rotation with a quiet localized breathing ring; the status label remains visible and announced. Do not use a loading state to imply measurable progress.
 
 Use `KagNodeLoading.spinner()` for a decorative spinner node beside an accessible status label. Set `--kn-spinner-size` on its container to adjust the default 96px size. Add `data-core-loading` to an existing loading surface to adopt the shared spinner while preserving labels, retry buttons and dismissal controls. Core also recognizes the existing official, Passwords, Mail and Media loading surfaces. Existing operation controllers retain ownership of visibility and error recovery.
 
@@ -26,3 +26,42 @@ applications still supply authorized destinations and labels. Include a normal
 reader/overview link for fallback navigation. Explicit website brand links use
 `data-core-brand-link`, preserving their artwork instead of substituting a home
 icon.
+
+## Segmented views
+
+Use `data-core-segments` on a labelled group, `data-core-segment="value"` on
+buttons or real links, and matching `data-core-panel="value"` sections inside
+`data-core-panels`. Core supplies a sliding indicator, roving keyboard focus,
+Arrow/Home/End operation and reduced-motion behavior. Disabled controls are
+skipped. Preserve real `href` destinations for server fallback.
+
+A cancelable, bubbling `kagnode:segment-change` event carries
+`{value, previous, url}`. Cancel it when an application owns authorized partial
+navigation; Core does not fetch application content. Optional
+`data-core-url-param="view"` with `data-core-history="push"` updates local-panel
+query state and follows Back/Forward without replacing unrelated query/hash
+values. Real links without local panels retain normal navigation.
+`KagNodeSegments.refresh()` safely mounts dynamically added groups.
+
+## Contextual loading and sheets
+
+`const done = KagNodeLoading.begin({label:"Opening plan…", mode:"overlay"})`
+returns an idempotent completion function. Call `done.update("Rendering…")` (or
+`done.phase`) for a new phase and `done()` in `finally`. Independent operations
+cannot dismiss one another. `mode:"topbar"` is nonblocking; `mode:"inline"`
+requires a `target` element and restores its original `aria-busy` on completion.
+The existing `show/hide` API remains supported. Overlays cover custom rails and
+remain visible above a native open dialog. Keep labels specific to the work;
+do not claim numeric progress from an indeterminate spinner.
+
+`KagNodeDialogs.open(dialog,{sheet:true,returnFocus,initialFocus})` opens a native
+modal dialog, closes competing navigation surfaces and restores focus on close.
+Use `KagNodeDialogs.close(dialog)` or a button with `data-core-dismiss`. A button
+with `data-core-dialog-open="dialog-id"` provides declarative opening. Compact
+screens present `data-core-sheet` dialogs at the bottom; desktop uses the same
+content as a dialog. Native Escape and reduced motion remain available.
+
+Mark account photographs with `data-core-avatar`. The authenticated
+`kagnode:avatar-changed` document event accepts `{subject,url}` only for the
+current subject and existing same-origin photo delivery. An empty URL restores
+initials. Avatar-only triggers are circular; menu rows retain their own shape.

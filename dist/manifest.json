@@ -1,16 +1,24 @@
 {
   "schema": 1,
-  "version": "5.0.5",
+  "version": "5.0.6",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.f753df83b238f1c8.js",
-    "script": "core.23aeb61cfde9a871.js",
-    "style": "core.be6de67f57a6bd2f.css"
+    "script": "core.a88e9a39faf3fa17.js",
+    "style": "core.1e5b1af37fe6281f.css"
   },
-  "source_commit": "6ca47b63d795ceebc2a3f5de717aa0d55d09bbe7",
+  "source_commit": "b29d0a29576cecda6614bed295147f03e3611a72",
   "repository": "every-lemon/kagnode-core",
+  "user_summary": {
+    "title": "A more consistent KagNode interface",
+    "items": [
+      "Switch views with clearer sliding controls and keyboard navigation.",
+      "Loading messages now follow the action and stay accurate when tasks overlap.",
+      "Navigation, account photos and mobile dialogs share the same controls."
+    ]
+  },
   "icons": {
     "link": "<path d=\"m9 6 2-2a6 6 0 0 1 9 9l-2 2M6 9l-2 2a6 6 0 0 0 9 9l2-2M8 16l8-8\"/>",
     "account": "<circle cx=\"12\" cy=\"7\" r=\"4\"/><path d=\"M4 21v-2a8 8 0 0 1 16 0v2\"/>",
@@ -221,13 +229,13 @@
       "sha256": "f753df83b238f1c83f0e7297288cec9b787eb6fe01de1c6be7ae85313b87edda",
       "size": 1831
     },
-    "core.23aeb61cfde9a871.js": {
-      "sha256": "23aeb61cfde9a8715c34ad013606db41742ae76edf669d2550ee0c9875a362b9",
-      "size": 85008
+    "core.a88e9a39faf3fa17.js": {
+      "sha256": "a88e9a39faf3fa179294de01ac80ba164c8b446f5ba0d49cacfc231e7ae887fd",
+      "size": 98505
     },
-    "core.be6de67f57a6bd2f.css": {
-      "sha256": "be6de67f57a6bd2f5d092ca555e6be30b3445e83edfd9aa9f890be0155d3ef4a",
-      "size": 42195
+    "core.1e5b1af37fe6281f.css": {
+      "sha256": "1e5b1af37fe6281f2a54b4431f92a87f32b6996b7e39f0dbcfee83704590915b",
+      "size": 46063
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

@@ -41,7 +41,7 @@ html[data-kn-core]
     .k-select,
     .k-picker,
     .quick-search
-  ) {
+  ):not([data-core-account-trigger]) {
   border-radius: var(--kn-radius-control) !important;
 }
 html[data-kn-core]
@@ -907,4 +907,14 @@ html[data-kn-core] :is([data-core-nav-root], [data-core-nav-folder])[hidden] {
 
 [data-core-nav-back] > svg {
   transform: rotate(180deg);
+}
+/* Avatar-only triggers are circles; account rows and menu surfaces keep their own geometry. */
+html[data-kn-core]
+  :is(
+    [data-core-account-trigger].avatar,
+    [data-core-account-trigger][data-core-avatar],
+    [data-core-account-trigger][data-kn-account-avatar]
+  ) {
+  border-radius: 50% !important;
+  object-fit: cover;
 }

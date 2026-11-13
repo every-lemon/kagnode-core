@@ -273,17 +273,17 @@ try:
                     == "Opening example…"
                 )
                 assert (
-                    page.locator(".kn-core-spinner-rotor").evaluate(
+                    page.locator(".kn-core-spinner-layer").evaluate(
                         "e=>getComputedStyle(e).animationName"
                     )
                     == "kn-core-orbit"
                 )
                 page.emulate_media(reduced_motion="reduce")
                 assert (
-                    page.locator(".kn-core-spinner-rotor").evaluate(
+                    page.locator(".kn-core-spinner-layer").evaluate(
                         "e=>getComputedStyle(e).animationName"
                     )
-                    == "none"
+                    == "kn-core-breathe"
                 )
                 page.emulate_media(reduced_motion="no-preference")
                 page.evaluate("KagNodeCore.loading.hide()")
