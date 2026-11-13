@@ -104,30 +104,40 @@ try:
                 energy = [
                     region_digest(data, (440, 310, 560, 425), True) for data in samples
                 ]
-                if motion == "reduce":
-                    assert min(energy) / max(energy) < 0.95, (
-                        engine,
-                        motion,
-                        method,
-                        energy,
-                    )
                 bars = [region_digest(data, (0, 0, 1000, 4)) for data in samples]
-                assert (
-                    (len(set(bars)) > 1)
-                    if motion == "no-preference"
-                    else (len(set(bars)) == 1)
-                ), (engine, motion, method, "topbar")
                 fingerprints = [
                     region_digest(data, (440, 310, 560, 425)) for data in samples
                 ]
-                assert len(set(fingerprints)) > 1, (engine, motion, method)
+                motion_ok = len(set(fingerprints)) > 1 and (
+                    min(energy) / max(energy) < 0.95
+                    if motion == "reduce"
+                    else len(set(bars)) > 1
+                )
+                if os.environ.get("KAGNODE_MOTION_REQUIRED", "1") != "0":
+                    assert motion_ok, (
+                        engine,
+                        motion,
+                        method,
+                        "visible spinner/track motion",
+                        energy,
+                        bars,
+                    )
+                if motion == "reduce":
+                    assert len(set(bars)) == 1, (
+                        engine,
+                        motion,
+                        method,
+                        "quiet reduced track",
+                    )
                 page.wait_for_url("**/slow")
                 assert page.locator("p").inner_text() == "Finished"
                 rows.append(
                     {
                         "motion": motion,
                         "method": method,
-                        "visibleMotion": True,
+                        "visibleMotion": motion_ok,
+                        "motionRequired": os.environ.get("KAGNODE_MOTION_REQUIRED", "1")
+                        != "0",
                         "nativeNavigationCompleted": True,
                     }
                 )
