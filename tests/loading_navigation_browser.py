@@ -106,6 +106,12 @@ try:
                         method,
                         energy,
                     )
+                bars = [region_digest(data, (0, 0, 1000, 4)) for data in samples]
+                assert (
+                    (bars[0] != bars[1])
+                    if motion == "no-preference"
+                    else (bars[0] == bars[1])
+                ), (engine, motion, method, "topbar")
                 fingerprints = [
                     region_digest(data, (440, 310, 560, 425)) for data in samples
                 ]

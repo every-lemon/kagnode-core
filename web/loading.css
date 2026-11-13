@@ -124,7 +124,7 @@ html[data-kn-core] .kn-core-loading-topbar[hidden] {
 html[data-kn-core] .kn-core-loading-topbar {
   position: fixed;
   inset: 0 auto auto 0;
-  z-index: 2147483001;
+  z-index: 2147483601;
   width: 100%;
   height: 2px;
   pointer-events: none;
