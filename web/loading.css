@@ -127,6 +127,8 @@ html[data-kn-core] .kn-core-loading-topbar {
   position: fixed;
   inset: 0 auto auto 0;
   z-index: 2147483601;
+  will-change: opacity;
+  transform: translateZ(0);
   width: 100%;
   height: 2px;
   pointer-events: none;
@@ -151,10 +153,10 @@ html[data-kn-core] .kn-core-loading-topbar > .kn-core-loading-runner {
 }
 @keyframes kn-core-progress {
   from {
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
   }
   to {
-    transform: translateX(390%);
+    transform: translate3d(390%, 0, 0);
   }
 }
 @media (prefers-reduced-motion: reduce) {

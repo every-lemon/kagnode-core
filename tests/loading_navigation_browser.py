@@ -37,13 +37,13 @@ class Handler(BaseHTTPRequestHandler):
         if asset:
             return self.send(*asset)
         if self.path == "/slow":
-            time.sleep(6)
+            time.sleep(9)
             return self.send(b"<p>Finished</p>")
         self.send(core.inject(HTML, "fixture").encode())
 
     def do_POST(self):
         assert self.rfile.read(int(self.headers["Content-Length"])) == b"csrf=fixture"
-        time.sleep(6)
+        time.sleep(9)
         self.send(b"<p>Finished</p>")
 
 
@@ -66,7 +66,12 @@ try:
                 )
                 page = context.new_page()
                 page.goto(f"http://127.0.0.1:{server.server_port}")
-                page.wait_for_function("!!window.KagNodeLoading")
+                page.wait_for_function(
+                    "document.documentElement.dataset.coreReady === 'true'"
+                )
+                page.evaluate(
+                    "()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))"
+                )
                 session = (
                     context.new_cdp_session(page) if engine == "chromium" else None
                 )
@@ -78,7 +83,7 @@ try:
                 )
                 print(engine, motion, method, "pending", page.url, flush=True)
                 samples = []
-                for _ in range(2):
+                for _ in range(3):
                     page.wait_for_timeout(370)
                     if engine == "chromium":
                         import base64
@@ -108,14 +113,14 @@ try:
                     )
                 bars = [region_digest(data, (0, 0, 1000, 4)) for data in samples]
                 assert (
-                    (bars[0] != bars[1])
+                    (len(set(bars)) > 1)
                     if motion == "no-preference"
-                    else (bars[0] == bars[1])
+                    else (len(set(bars)) == 1)
                 ), (engine, motion, method, "topbar")
                 fingerprints = [
                     region_digest(data, (440, 310, 560, 425)) for data in samples
                 ]
-                assert fingerprints[0] != fingerprints[1], (engine, motion, method)
+                assert len(set(fingerprints)) > 1, (engine, motion, method)
                 page.wait_for_url("**/slow")
                 assert page.locator("p").inner_text() == "Finished"
                 rows.append(

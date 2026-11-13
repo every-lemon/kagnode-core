@@ -7,9 +7,9 @@
   "entrypoints": {
     "theme": "theme.f753df83b238f1c8.js",
     "script": "core.ec94fceeefebd2c1.js",
-    "style": "core.c56db4e75f39ad0f.css"
+    "style": "core.89b4d8c2ed674a3e.css"
   },
-  "source_commit": "e9bd9e71244c5dff39f3c6b93b08d5047c44c53c",
+  "source_commit": "a9cfe7bace68dc81c395f959666b9e055aa428b7",
   "repository": "every-lemon/kagnode-core",
   "user_summary": {
     "title": "A more consistent KagNode interface",
@@ -233,9 +233,9 @@
       "sha256": "ec94fceeefebd2c1d4c20ed82e3d6cf6055a688fae5880b77f83df1af617111a",
       "size": 98624
     },
-    "core.c56db4e75f39ad0f.css": {
-      "sha256": "c56db4e75f39ad0f6e33125352d7c34cd244c23a0dc9011758c897701362d1fe",
-      "size": 45921
+    "core.89b4d8c2ed674a3e.css": {
+      "sha256": "89b4d8c2ed674a3ed287bbea13dd6631e83825e68d462326d27dced4181c1299",
+      "size": 45977
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",
