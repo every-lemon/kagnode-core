@@ -221,6 +221,9 @@ try:
                 "document.querySelector('#edit').dispatchEvent(new CustomEvent('kagnode:form-saved',{bubbles:true}))"
             )
             expect(page.get_by_role("dialog", name="What's new")).to_be_visible()
+            page.evaluate(
+                "()=>{const finish=KagNodeLoading.begin({label:'Refreshing local state…',mode:'inline',target:document.querySelector('#inline')});finish()}"
+            )
             page.get_by_role("button", name="Got it", exact=True).click()
             expect(page.get_by_role("dialog", name="What's new")).to_have_count(0)
             assert DISMISSED[-1] == {"id": "a" * 64}

@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.7
+
+- Separate scroll runtime state from preference actions so ordinary clicks never persist a scroll setting.
+- Abort and defer background update-summary reads during navigation, hidden pages and loading; resume intercepted views and restored pages safely.
+- Preserve visible-notice dismissal across unrelated background loading operations.
+
 ## 5.0.6
 
 - Add keyboard-operated sliding segments, native mobile sheets and composable contextual loading operations.
