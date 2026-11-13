@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.8
+
+- Cancel both preliminary CSRF and component-status reads during real reload/navigation; prevent stale results from replacing current-session state.
+- Keep background status checks noninteractive and resume read-only refreshes after restored pages.
+- Give administrative actions independent loading handles and prevent interrupted check/apply or reauthentication continuations from replaying.
+
 ## 5.0.7
 
 - Separate scroll runtime state from preference actions so ordinary clicks never persist a scroll setting.
