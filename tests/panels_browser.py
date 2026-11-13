@@ -196,7 +196,7 @@ try:
                 )
             page.keyboard.press("Escape")
             expect(page.locator("#sheet")).to_be_hidden()
-            assert page.locator("body > #kn-core-loading").count() == 1
+            expect(page.locator("body > #kn-core-loading")).to_have_count(1)
             expect(page.locator("#sheet-open")).to_be_focused()
             page.locator("#field").fill("Unsaved work")
             page.evaluate("noticeReady=true;KagNodeWhatsNew.refresh()")
