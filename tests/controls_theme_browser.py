@@ -15,7 +15,7 @@ spec = importlib.util.spec_from_file_location(
 core = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(core)
 BODY = """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1">
-<style>:root{--panel:#fff;--text:#000;--border:#ddd}input{width:100%;min-height:44px}body{margin:0}</style>
+<style>:root{--panel:#fff;--text:#000;--border:#ddd}input{width:100%;min-height:44px;color:#000;background:#fff}body{margin:0}</style>
 </head><body><aside class="sidebar" id="sidebar"><a class="brand">KagNode</a><div data-core-nav-root>
 <button class="quick-search" data-core-search-open aria-label="Quick search"><svg viewBox="0 0 24 24"><path d="M4 4h16"/></svg>Quick search<kbd>Ctrl K</kbd></button>
 <button data-core-nav-open="settings"><span class="nav-label">Settings</span></button></div>
@@ -72,6 +72,9 @@ try:
                     "rgb(16, 16, 16)" if theme == "dark" else "rgb(255, 255, 255)"
                 )
                 assert actual == expected, (selector, theme, actual)
+            assert page.locator("#count").evaluate("e=>getComputedStyle(e).color") == (
+                "rgb(241, 241, 243)" if theme == "dark" else "rgb(23, 24, 27)"
+            )
             page.locator(".k-select").click()
             expect(page.locator(".k-options")).to_be_visible()
             assert (

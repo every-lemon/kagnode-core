@@ -13,6 +13,22 @@ html[data-kn-core] {
   --k-soft: var(--kn-panel);
   --k-accent: var(--kn-accent);
 }
+html[data-kn-core]
+  :is(
+    input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not(
+        [type="range"]
+      ):not([type="color"]),
+    textarea,
+    select,
+    .k-select,
+    .k-picker,
+    .k-number,
+    .k-date
+  ) {
+  color: var(--k-ink);
+  background-color: var(--k-field);
+  border-color: var(--k-line);
+}
 :where(
   input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not(
       [type="range"]
@@ -41,7 +57,7 @@ textarea:focus-visible,
 }
 input::placeholder,
 textarea::placeholder {
-  color: var(--muted, #7c8594);
+  color: var(--kn-muted, var(--muted, #7c8594));
   opacity: 0.8;
 }
 input:disabled,
@@ -274,7 +290,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .k-option-group {
   font-size: 10px;
-  color: var(--muted);
+  color: var(--kn-muted, var(--muted));
   padding: 10px 12px 5px;
   text-transform: capitalize;
 }
@@ -318,7 +334,7 @@ input[type="range"]::-webkit-slider-thumb {
   border: 0;
   border-left: 1px solid var(--k-line);
   background: transparent;
-  color: var(--muted);
+  color: var(--kn-muted, var(--muted));
   font: 18px/1 system-ui;
   cursor: pointer;
 }
@@ -341,7 +357,7 @@ input[type="range"]::-webkit-slider-thumb {
   border: 0;
   background: transparent;
   border-radius: 0 11px 11px 0;
-  color: var(--muted);
+  color: var(--kn-muted, var(--muted));
   cursor: pointer;
 }
 .k-calendar-toggle:hover {
@@ -391,7 +407,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .k-calendar-week {
   font-size: 10px;
-  color: var(--muted);
+  color: var(--kn-muted, var(--muted));
   margin-bottom: 7px;
 }
 .k-calendar-day {
@@ -500,7 +516,7 @@ input[type="range"]::-webkit-slider-thumb {
   align-items: center;
   gap: 7px;
   font-size: 10px;
-  color: var(--muted);
+  color: var(--kn-muted, var(--muted));
   padding: 7px 9px;
   border-radius: 10px;
   background: var(--k-soft);
@@ -565,7 +581,7 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 12px;
 }
 .k-wizard-review dt {
-  color: var(--muted);
+  color: var(--kn-muted, var(--muted));
 }
 .k-wizard-review dd {
   margin: 0;
