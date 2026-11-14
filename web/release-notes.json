@@ -1,8 +1,8 @@
 {
-  "title": "Shared login and update channels",
+  "title": "Controls that follow your theme",
   "items": [
-    "Applications can use the canonical Core login and navigation templates.",
-    "Administrators can independently choose Stable or Beta and automatic or manual Core UI updates.",
-    "Signed compatible UI updates retain offline fallback and rollback."
+    "Dropdowns, number fields and checkbox controls follow the active appearance.",
+    "Settings switches preserve keyboard and form behavior with restrained motion.",
+    "Folder navigation slides forward and back; collapsed search stays compact."
   ]
 }

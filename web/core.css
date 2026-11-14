@@ -25,8 +25,11 @@ html[data-theme="dark"] {
   --kn-muted: #a3a3aa;
 }
 html[data-kn-core] {
-  color-scheme: light dark;
+  color-scheme: light;
   scroll-padding-top: 100px;
+}
+html[data-kn-core][data-theme="dark"] {
+  color-scheme: dark;
 }
 html[data-kn-core][data-core-collapsed="true"] {
   --kn-sidebar-size: 57px;
@@ -876,6 +879,9 @@ html[data-kn-core][data-core-collapsed="true"]
   height: 38px;
   padding: 9px;
   gap: 0;
+  font-size: 0;
+  justify-content: center;
+  overflow: hidden;
 }
 html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-navigation
