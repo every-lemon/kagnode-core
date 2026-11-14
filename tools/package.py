@@ -246,6 +246,27 @@ def build(destination, signing_key=None):
         )
         + "\n"
     )
+    if signing_key:
+        subprocess.run(
+            [
+                "openssl",
+                "pkeyutl",
+                "-sign",
+                "-rawin",
+                "-inkey",
+                str(signing_key),
+                "-in",
+                str(destination / "release-manifest.json"),
+                "-out",
+                str(destination / "release-manifest.sig"),
+            ],
+            check=True,
+        )
+        for name in ("release-manifest.json", "release-manifest.sig"):
+            checks[name] = digest((destination / name).read_bytes())
+        (destination / "SHA256SUMS").write_text(
+            "".join(f"{sha}  {name}\n" for name, sha in sorted(checks.items()))
+        )
     print(f"Built {len(checks)} Core packages; signed={bool(signing_key)}")
 
 

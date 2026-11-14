@@ -1,22 +1,22 @@
 {
   "schema": 1,
-  "version": "5.0.9",
+  "version": "5.0.10",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.f753df83b238f1c8.js",
-    "script": "core.111e190a96f2cc2b.js",
+    "script": "core.2575af837d8386aa.js",
     "style": "core.e4a85768f1703a55.css"
   },
-  "source_commit": "202721c495431932ae7b7d88fecfd964f2aa2e12",
+  "source_commit": "e6e699b00281292b95027761c3926634afa1da8e",
   "repository": "every-lemon/kagnode-core",
   "user_summary": {
-    "title": "More reliable Core management",
+    "title": "Shared login and update channels",
     "items": [
-      "Background component status checks stop safely during reload and navigation.",
-      "Interrupted update actions are never replayed automatically.",
-      "Status refreshes resume without opening unexpected sign-in prompts."
+      "Applications can use the canonical Core login and navigation templates.",
+      "Administrators can independently choose Stable or Beta and automatic or manual Core UI updates.",
+      "Signed compatible UI updates retain offline fallback and rollback."
     ]
   },
   "icons": {
@@ -229,9 +229,9 @@
       "sha256": "f753df83b238f1c83f0e7297288cec9b787eb6fe01de1c6be7ae85313b87edda",
       "size": 1831
     },
-    "core.111e190a96f2cc2b.js": {
-      "sha256": "111e190a96f2cc2b6fcb49dd078fec70cc2659dcca2f45b15f5517849cf5f24d",
-      "size": 102324
+    "core.2575af837d8386aa.js": {
+      "sha256": "2575af837d8386aa9fdb6f6ad4337be504361628ac4b28e0f146bc067b49bc66",
+      "size": 102809
     },
     "core.e4a85768f1703a55.css": {
       "sha256": "e4a85768f1703a556308ba0879ddc52aa36eaa1a0b08dcf8b358bcaa11fd336c",

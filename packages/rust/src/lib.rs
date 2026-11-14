@@ -28,14 +28,24 @@ fn identifier(s: &str) -> bool {
             .all(|b| b.is_ascii_lowercase() || b.is_ascii_digit() || b == b'-')
 }
 fn version(s: &str) -> bool {
-    let p: Vec<_> = s.split('.').collect();
+    let (base, beta) = s
+        .split_once("-beta.")
+        .map_or((s, None), |(b, n)| (b, Some(n)));
+    let p: Vec<_> = base.split('.').collect();
     p.len() == 3
         && p[0] == "5"
         && p[1] == "0"
         && !p[2].is_empty()
-        && p[2].bytes().all(|b| b.is_ascii_digit())
         && p[2].len() <= 8
+        && p[2].bytes().all(|b| b.is_ascii_digit())
+        && beta.is_none_or(|n| {
+            !n.is_empty()
+                && !n.starts_with('0')
+                && n.len() <= 8
+                && n.bytes().all(|b| b.is_ascii_digit())
+        })
 }
+
 fn file(s: &str) -> bool {
     !s.is_empty()
         && s.len() <= 120
@@ -215,6 +225,32 @@ impl Core {
             entry("script")?
         ))
     }
+    /// Canonical markup. Text is escaped; only host-authored fragments belong in `html`.
+    pub fn template(
+        &self,
+        name: &str,
+        text: &[(&str, &str)],
+        html: &[(&str, &str)],
+    ) -> Result<String> {
+        let templates: Value = serde_json::from_str(include_str!("../fallback/templates.json"))?;
+        let source = templates[name].as_str().ok_or("Unknown Core template")?;
+        let mut result = String::new();
+        let mut remaining = source;
+        while let Some((before, rest)) = remaining.split_once("{{") {
+            result.push_str(before);
+            let (key, after) = rest.split_once("}}").ok_or("Invalid Core template")?;
+            if let Some((_, value)) = text.iter().find(|(k, _)| *k == key) {
+                result.push_str(&escape(value));
+            } else if let Some((_, value)) = html.iter().find(|(k, _)| *k == key) {
+                result.push_str(value);
+            } else {
+                return Err("Missing Core template parameter".into());
+            }
+            remaining = after;
+        }
+        result.push_str(remaining);
+        Ok(result)
+    }
     pub fn manager_request(&self, action: &str, parameters: Value) -> Result<Value> {
         if !matches!(
             action,
@@ -366,6 +402,28 @@ mod tests {
         ] {
             assert!(parse_response(invalid).is_err());
         }
+    }
+    #[test]
+    fn canonical_templates_escape_text_without_replacing_host_fragments() {
+        let c = Core::new("/nonexistent/core", "proxy-manager").unwrap();
+        let markup = c
+            .template(
+                "login-frame",
+                &[
+                    ("product", "<unsafe>"),
+                    ("heading", "Sign in"),
+                    ("description", "{{content}}"),
+                ],
+                &[("content", "<form></form>"), ("provider", "")],
+            )
+            .unwrap();
+        assert!(markup.contains("&lt;unsafe&gt;"));
+        assert!(markup.contains("<form></form>"));
+        assert!(markup.contains("{{content}}"));
+        assert!(!markup.contains("<unsafe>"));
+        assert!(c.template("login-frame", &[], &[]).is_err());
+        assert!(version("5.0.10-beta.1"));
+        assert!(!version("5.0.10-beta.01"));
     }
     #[test]
     fn fallback_is_local_and_checked() {
