@@ -131,6 +131,17 @@ def build(destination, signing_key=None):
     (destination / (prefix + "-node.tgz")).write_bytes(
         archive(node, "package", "tar.gz", epoch)
     )
+    rust = {
+        str(p.relative_to(ROOT / "packages/rust")): p.read_bytes()
+        for p in (ROOT / "packages/rust").rglob("*")
+        if p.is_file()
+        and not p.is_symlink()
+        and not {"target", "__pycache__", ".git"}.intersection(p.parts)
+    }
+    for kind in ["tar.gz", "tar.xz", "zip"]:
+        (destination / (prefix + "-rust." + kind)).write_bytes(
+            archive(rust, prefix + "-rust", kind, epoch)
+        )
     metadata = f"kagnode_core-{version}.dist-info"
     wheel = {
         "kagnode_core.py": (ROOT / "dist/python/kagnode_core.py").read_bytes(),
@@ -182,7 +193,17 @@ def build(destination, signing_key=None):
         "packaging",
     ]:
         for p in (ROOT / folder).rglob("*"):
-            if p.is_file() and not p.is_symlink() and "__pycache__" not in p.parts:
+            if (
+                p.is_file()
+                and not p.is_symlink()
+                and not {
+                    "target",
+                    "node_modules",
+                    "__pycache__",
+                    ".venv",
+                    ".cache",
+                }.intersection(p.parts)
+            ):
                 source[str(p.relative_to(ROOT))] = p.read_bytes()
     for name in [
         "LICENSE",

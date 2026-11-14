@@ -4,6 +4,8 @@ Core owns browser component markup and motion. Hosts render their existing autho
 
 Use `installCore` for Express or `register_flask` for Flask. Low-level Python/Node `inject` and `asset` functions support other servers. Serve `/kagnode-core/<version>/<file>` from the adapter, before application asset routes. Inject only HTML. The adapters retire legacy theme, scrolling and custom-input controllers so duplicate handlers do not compete.
 
+Native Rust servers can use `packages/rust` (`kagnode-core`), which provides framework-independent `Core::head(context)`, `Core::asset(version, filename)` and `Core::active()`. It embeds the same local fallback and accepts only protected, compatible Core cache files. The optional Unix-socket manager transport does not grant authorization: hosts still enforce local administrator roles and CSRF. Signed asset downloading stays in the existing manager. See the [Rust adapter guide](../packages/rust/README.md).
+
 Context includes `authenticated`, an application-local opaque `subject`, `issuer`, and optionally `publicNavigation`. Only official first-party services set `officialAccount: true`; independent applications use the consent-based appearance protocol. Never include credentials, private routes or hidden administrator settings in browser context.
 
 Render one `aside.sidebar` with a brand and authorized links. Core adopts it once. Submenus use `details > summary + container`; Core owns their measured animation. A manual toggle preserves desktop collapse state. Mobile drawer state is separate. Account triggers use `data-account-menu` or `data-core-account-trigger`; an existing `#account-menu` preserves its authorized actions and CSRF forms. Put identity inside the menu, not the trigger.

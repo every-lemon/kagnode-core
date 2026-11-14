@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.9
+
+- Add a framework-independent Rust server adapter with checksum-checked offline assets, protected compatible cache lookup and the existing authenticated Unix HTTP manager transport.
+- Publish readable Rust adapter source archives. Keep backend adapter adoption explicit; automatic patches still change UI assets only.
+- Exclude native build targets and dependency caches from corresponding-source packages and vendoring.
+
 ## 5.0.8
 
 - Cancel both preliminary CSRF and component-status reads during real reload/navigation; prevent stale results from replacing current-session state.

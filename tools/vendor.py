@@ -20,6 +20,22 @@ def vendor(name, directory, package):
         location = root / "assets" if name == "cli" else root / "vendor"
         location.mkdir(exist_ok=True)
         shutil.copyfile(ROOT / "dist/bundle.json", location / "core-bundle.json")
+    if name == "proxy-manager":
+        destination = root / "vendor/core-rust"
+        if destination.exists():
+            shutil.rmtree(destination)
+        shutil.copytree(
+            ROOT / "packages/rust",
+            destination,
+            ignore=shutil.ignore_patterns("target", "__pycache__", "*.pyc"),
+        )
+        assets = root / "vendor/core"
+        assets.mkdir(parents=True, exist_ok=True)
+        bundle = json.loads((ROOT / "dist/bundle.json").read_text())
+        import base64
+
+        for filename, item in bundle["files"].items():
+            (assets / filename).write_bytes(base64.b64decode(item["data"]))
     if name == "cli":
         shutil.copyfile(
             ROOT / "packages/python/manager.py", root / "assets/core_manager.py"
@@ -33,7 +49,9 @@ def vendor(name, directory, package):
         shutil.copytree(
             ROOT / folder,
             source / folder,
-            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+            ignore=shutil.ignore_patterns(
+                "target", "node_modules", "__pycache__", "*.pyc"
+            ),
         )
     shutil.copyfile(ROOT / "LICENSE", source / "LICENSE")
     lock = root / "core.lock.json"

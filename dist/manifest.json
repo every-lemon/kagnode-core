@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "5.0.8",
+  "version": "5.0.9",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
@@ -9,7 +9,7 @@
     "script": "core.111e190a96f2cc2b.js",
     "style": "core.e4a85768f1703a55.css"
   },
-  "source_commit": "c194c596ebb373d6deac7bdecc708587992df729",
+  "source_commit": "202721c495431932ae7b7d88fecfd964f2aa2e12",
   "repository": "every-lemon/kagnode-core",
   "user_summary": {
     "title": "More reliable Core management",

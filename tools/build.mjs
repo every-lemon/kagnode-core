@@ -195,3 +195,11 @@ for (const name of fs.readdirSync(out)) {
   )
     fs.unlinkSync(path.join(out, name));
 }
+
+// All adapters embed the canonical generated fallback; Rust never fetches assets
+// from a browser or a page request.
+fs.mkdirSync(path.join(root, "packages/rust/fallback"), { recursive: true });
+fs.copyFileSync(
+  path.join(out, "bundle.json"),
+  path.join(root, "packages/rust/fallback/bundle.json"),
+);
