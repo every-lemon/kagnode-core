@@ -99,10 +99,8 @@ try:
             page.locator('[data-core-nav-open="settings"]').click()
             expect(page.locator('[data-core-nav-folder="settings"]')).to_be_visible()
             page.locator("[data-core-nav-back]").click()
-        page.wait_for_timeout(250)
-        assert (
-            page.locator("[data-core-nav-root]").evaluate("e=>e.getAnimations().length")
-            == 0
+        page.wait_for_function(
+            "document.querySelector('[data-core-nav-root]').getAnimations().length === 0"
         )
         page.evaluate("KagNodeCore.navigation.collapse(true)")
         page.mouse.move(1000, 600)
