@@ -24,23 +24,24 @@ Stable Core describes the component, adapter and signed-update contract. It does
 
 ## Requirements
 
-Node.js 24 for Node hosts/builds; Python 3.10+ for Python adapters. Flask is optional for its adapter. The Linux asset manager requires OpenSSL, root-owned storage and Unix sockets. Browser functionality progressively enhances ordinary authorized HTML. Reduced motion, forced colors and native-scrolling preferences are supported.
+Node.js 24 for Node hosts/builds; Python 3.10+ for Python adapters; Rust 1.88+ for the Linux/Unix Rust adapter. Flask is optional for its adapter. The Linux asset manager requires OpenSSL, root-owned storage and Unix sockets. Browser functionality progressively enhances ordinary authorized HTML. Reduced motion, forced colors and native-scrolling preferences are supported.
 
 ## Installation and downloads
 
-| Package                                                   | Platform          | Purpose                                                             |
-| --------------------------------------------------------- | ----------------- | ------------------------------------------------------------------- |
-| `kagnode-core-V-node.tgz`                                 | Node.js 24        | npm-compatible local adapter and pinned fallback                    |
-| `kagnode_core-V-py3-none-any.whl`                         | Python 3.10+      | Python adapter, manager and pinned fallback                         |
-| `kagnode-core-V-ui.tar.gz`, `.tar.xz`, `.zip`             | Browser assets    | Versioned assets; only the signed tar.gz is installed automatically |
-| `kagnode-core-V-source.*`                                 | Any               | Editable source, tests, licenses and documentation                  |
-| `kagnode-core-V-icons.tgz`, `-icons.tar.gz`, `-icons.zip` | Optional UI icons | Typed glyph modules, individual SVGs and standalone local gallery   |
+| Package                                                   | Platform              | Purpose                                                             |
+| --------------------------------------------------------- | --------------------- | ------------------------------------------------------------------- |
+| `kagnode-core-V-node.tgz`                                 | Node.js 24            | npm-compatible local adapter and pinned fallback                    |
+| `kagnode_core-V-py3-none-any.whl`                         | Python 3.10+          | Python adapter, manager and pinned fallback                         |
+| `kagnode-core-V-ui.tar.gz`, `.tar.xz`, `.zip`             | Browser assets        | Versioned assets; only the signed tar.gz is installed automatically |
+| `kagnode-core-V-rust.tar.gz`, `.tar.xz`, `.zip`           | Rust 1.88+ Linux/Unix | Framework-independent local assets and manager transport            |
+| `kagnode-core-V-source.*`                                 | Any                   | Editable source, tests, licenses and documentation                  |
+| `kagnode-core-V-icons.tgz`, `-icons.tar.gz`, `-icons.zip` | Optional UI icons     | Typed glyph modules, individual SVGs and standalone local gallery   |
 
 Use [releases](https://github.com/every-lemon/kagnode-core/releases). Verify `SHA256SUMS`; the manager additionally verifies the detached Ed25519 signature on `core-manifest.json`. Never substitute a third-party repository or an unverified manifest.
 
 ## Usage
 
-Node: install the local npm archive, then call `installCore(app, {appId, context})` before routes. Python: install the wheel, then call `register_flask(app, app_id, context)` before request handling. See [integration](docs/INTEGRATION.md). Existing authorized navigation and content are adopted into the canonical browser shell; adapters do not grant access or build private navigation.
+Node: install the local npm archive, then call `installCore(app, {appId, context})` before routes. Python: install the wheel, then call `register_flask(app, app_id, context)` before request handling. Rust: vendor the versioned crate, construct `Core::new(root, application)` and expose its checked assets on the application origin. See [integration](docs/INTEGRATION.md). Existing authorized navigation and content are adopted into the canonical browser shell; adapters do not grant access or build private navigation.
 
 ## Configuration and storage
 

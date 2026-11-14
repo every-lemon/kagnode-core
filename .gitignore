@@ -5,3 +5,4 @@ __pycache__/
 test-artifacts/
 release/
 *.key
+**/target/
