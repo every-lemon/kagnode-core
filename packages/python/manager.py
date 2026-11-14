@@ -838,7 +838,10 @@ class Manager:
                     raise ValueError("Core policies must be true or false")
                 updates[key] = value
         with self.lock():
-            atomic(self.app(name) / "state.json", {**self.state(name), **updates})
+            previous = self.state(name)
+            atomic(self.app(name) / "state.json", {**previous, **updates})
+            if channel is not None and previous.get("channel", "stable") != channel:
+                atomic(self.app(name) / "candidate.json", None)
         return self.status(name)
 
     def adopt(self, name, lock_file, expected_baseline):

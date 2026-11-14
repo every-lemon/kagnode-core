@@ -268,9 +268,12 @@
       select.value = current.channel || "stable";
       select.addEventListener("change", async () => {
         const previous = current.channel || "stable";
+        abortRead();
+        const epoch = generation;
         select.disabled = true;
         try {
           const result = await request("policy", { channel: select.value });
+          if (epoch !== generation || navigating) return;
           current = result;
           render();
         } catch (error) {
