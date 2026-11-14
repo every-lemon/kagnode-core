@@ -41,7 +41,7 @@ Use [releases](https://github.com/every-lemon/kagnode-core/releases). Verify `SH
 
 ## Usage
 
-Node: install the local npm archive, then call `installCore(app, {appId, context})` before routes. Python: install the wheel, then call `register_flask(app, app_id, context)` before request handling. Rust: vendor the versioned crate, construct `Core::new(root, application)` and expose its checked assets on the application origin. See [integration](docs/INTEGRATION.md). Existing authorized navigation and content are adopted into the canonical browser shell; adapters do not grant access or build private navigation.
+Node: install the local npm archive, then call `installCore(app, {appId, context})` before routes. Python: install the wheel, then call `register_flask(app, app_id, context)` before request handling. Rust: vendor the versioned crate, construct `Core::new(root, application)` and expose its checked assets on the application origin. See [integration](docs/INTEGRATION.md). The [staged Rust manager](packages/manager-rust/README.md) provides a separately reviewed replacement for the current helper; it is not installed by a compatible UI patch. Existing authorized navigation and content are adopted into the canonical browser shell; adapters do not grant access or build private navigation.
 
 ## Configuration and storage
 

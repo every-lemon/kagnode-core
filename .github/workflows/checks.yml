@@ -14,6 +14,21 @@ jobs:
       - run: cargo fmt --manifest-path packages/rust/Cargo.toml --check
       - run: cargo clippy --locked --manifest-path packages/rust/Cargo.toml --all-targets -- -D warnings
       - run: cargo test --locked --manifest-path packages/rust/Cargo.toml
+  rust-manager:
+    name: Rust manager checks (${{ matrix.rust }})
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        rust: [stable, "1.88.0"]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - run: rustup toolchain install ${{ matrix.rust }} --profile minimal --component rustfmt,clippy
+      - run: cargo +${{ matrix.rust }} fmt --manifest-path packages/manager-rust/Cargo.toml --check
+      - run: cargo +${{ matrix.rust }} clippy --locked --manifest-path packages/manager-rust/Cargo.toml --all-targets -- -D warnings
+      - name: Exercise protected-root fixtures explicitly
+        run: sudo env "PATH=$PATH" "RUSTUP_HOME=$HOME/.rustup" "CARGO_HOME=$HOME/.cargo" "CARGO_TARGET_DIR=$PWD/packages/manager-rust/target" cargo +${{ matrix.rust }} test --locked --manifest-path packages/manager-rust/Cargo.toml
   core:
     name: Core checks
     runs-on: ubuntu-24.04
