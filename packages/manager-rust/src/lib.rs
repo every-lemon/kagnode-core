@@ -77,6 +77,9 @@ pub fn application(name: &str) -> Result<()> {
     );
     Ok(())
 }
+fn automatic_allowed(version: &str, channel: &str) -> bool {
+    Version::parse(version).is_ok() && !version.contains('-') && channel == "stable"
+}
 fn asset_name(name: &str) -> bool {
     name.len() <= 128
         && !name.is_empty()
@@ -428,6 +431,22 @@ impl Manager {
             "Core management requires root"
         );
         path_guard(&self.root)?;
+        if self.root.exists() {
+            ensure!(
+                self.root.metadata()?.mode() & 0o022 == 0,
+                "Core root cannot be a shared writable directory"
+            );
+            let names = std::fs::read_dir(&self.root)?
+                .map(|e| e.map(|e| e.file_name()))
+                .collect::<std::io::Result<Vec<_>>>()?;
+            ensure!(
+                names.iter().all(|n| matches!(
+                    n.to_str(),
+                    Some("apps" | "releases" | "run" | ".operation.lock" | ".daemon.lock")
+                )),
+                "Existing unrelated directory retained; choose a dedicated Core root"
+            );
+        }
         std::fs::create_dir_all(&self.root)?;
         std::fs::set_permissions(&self.root, std::fs::Permissions::from_mode(0o755))?;
         for name in ["apps", "releases", "run"] {
@@ -736,6 +755,10 @@ impl Manager {
             Value::Null,
         )?)?;
         ensure!(
+            !automatic || automatic_allowed(&c.version, &c.channel),
+            "Prerelease UI updates require administrator review; current assets retained"
+        );
+        ensure!(
             release_id.is_none_or(|id| id == c.release_id),
             "The reviewed release changed; check again"
         );
@@ -975,5 +998,17 @@ impl Manager {
             "rollback" => self.rollback(name),
             _ => unreachable!(),
         }
+    }
+}
+
+#[cfg(test)]
+mod safety_tests {
+    use super::*;
+    #[test]
+    fn automatic_policy_never_installs_prereleases_or_another_release_line() {
+        assert!(automatic_allowed("5.0.11", "stable"));
+        assert!(!automatic_allowed("5.0.12-beta.1", "beta"));
+        assert!(!automatic_allowed("5.0.12-beta.1", "stable"));
+        assert!(!automatic_allowed("5.1.0", "stable"));
     }
 }

@@ -177,3 +177,26 @@ fn public_status_does_not_expand_private_candidate_signature_payloads() {
         serde_json::from_slice::<Value>(MANIFEST).unwrap()["archive"]["sha256"]
     );
 }
+
+#[test]
+fn manager_does_not_adopt_unrelated_or_shared_root_directories() {
+    if unsafe { libc::geteuid() } != 0 {
+        return;
+    }
+    let dir = tempfile::tempdir().unwrap();
+    std::fs::write(dir.path().join("unrelated-file"), "retained").unwrap();
+    let manager = Manager::new(dir.path()).unwrap();
+    assert!(manager.bind("fixture", 0, 0, "5.0.11").is_err());
+    assert_eq!(
+        std::fs::read_to_string(dir.path().join("unrelated-file")).unwrap(),
+        "retained"
+    );
+    assert!(!dir.path().join("apps").exists());
+    std::fs::remove_file(dir.path().join("unrelated-file")).unwrap();
+    std::fs::set_permissions(dir.path(), std::fs::Permissions::from_mode(0o777)).unwrap();
+    assert!(Manager::new(dir.path()).is_err());
+    assert_eq!(
+        dir.path().metadata().unwrap().permissions().mode() & 0o777,
+        0o777
+    );
+}
