@@ -1,8 +1,8 @@
 {
-  "title": "More reliable Core management",
+  "title": "Shared login and update channels",
   "items": [
-    "Background component status checks stop safely during reload and navigation.",
-    "Interrupted update actions are never replayed automatically.",
-    "Status refreshes resume without opening unexpected sign-in prompts."
+    "Applications can use the canonical Core login and navigation templates.",
+    "Administrators can independently choose Stable or Beta and automatic or manual Core UI updates.",
+    "Signed compatible UI updates retain offline fallback and rollback."
   ]
 }
