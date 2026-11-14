@@ -1,3 +1,9 @@
+# 5.0.10
+
+- Expose canonical server-rendered login, sidebar and account templates in the Rust adapter.
+- Add independent Stable/Beta and Auto/Manual Core UI policy, signed beta validation and version ordering without downgrades.
+- Keep baseline and backend adapter changes under explicit application review.
+
 # Changelog
 
 ## 5.0.9

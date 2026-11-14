@@ -114,6 +114,10 @@ try {
     encoding: "utf8",
   }).trim();
 } catch {}
+fs.copyFileSync(
+  path.join(root, "packages/templates.json"),
+  path.join(root, "packages/rust/fallback/templates.json"),
+);
 const templates = JSON.parse(
   fs.readFileSync(path.join(root, "packages/templates.json"), "utf8"),
 );

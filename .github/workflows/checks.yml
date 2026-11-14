@@ -87,6 +87,9 @@ jobs:
       - run: python tests/updates_navigation_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
+      - run: python tests/channels_browser.py
+        env:
+          KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}
       - run: python tests/panels_browser.py
         env:
           KAGNODE_BROWSER_ENGINE: ${{ matrix.engine }}

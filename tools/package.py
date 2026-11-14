@@ -226,7 +226,9 @@ def build(destination, signing_key=None):
     checks = {
         p.name: digest(p.read_bytes())
         for p in sorted(destination.iterdir())
-        if p.is_file() and p.name not in ["SHA256SUMS", "release-manifest.json"]
+        if p.is_file()
+        and p.name
+        not in ["SHA256SUMS", "release-manifest.json", "release-manifest.sig"]
     }
     (destination / "SHA256SUMS").write_text(
         "".join(f"{sha}  {name}\n" for name, sha in checks.items())
@@ -236,7 +238,9 @@ def build(destination, signing_key=None):
             {
                 "schema": 1,
                 "version": version,
-                "source_commit": bundle["source_commit"],
+                "source_commit": subprocess.check_output(
+                    ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+                ).strip(),
                 "packages": [
                     {"name": n, "sha256": s, "size": (destination / n).stat().st_size}
                     for n, s in checks.items()
@@ -246,6 +250,27 @@ def build(destination, signing_key=None):
         )
         + "\n"
     )
+    if signing_key:
+        subprocess.run(
+            [
+                "openssl",
+                "pkeyutl",
+                "-sign",
+                "-rawin",
+                "-inkey",
+                str(signing_key),
+                "-in",
+                str(destination / "release-manifest.json"),
+                "-out",
+                str(destination / "release-manifest.sig"),
+            ],
+            check=True,
+        )
+        for name in ("release-manifest.json", "release-manifest.sig"):
+            checks[name] = digest((destination / name).read_bytes())
+        (destination / "SHA256SUMS").write_text(
+            "".join(f"{sha}  {name}\n" for name, sha in sorted(checks.items()))
+        )
     print(f"Built {len(checks)} Core packages; signed={bool(signing_key)}")
 
 

@@ -76,3 +76,9 @@ read. The browser opts in only when fully authenticated and unlocked:
 body only while ready. No opt-in means no requests. Prompts wait for dialogs,
 loading and edited forms to finish; dispatch `kagnode:form-saved` from the saved
 form (or provide `detail.form`). Account switching cancels pending responses.
+
+## Stable and Beta channels
+
+Each application's Core binding has an independent channel and update mode. Existing automatic settings are retained; channel defaults to Stable. Beta admits signed `5.0.N-beta.M` releases plus stable releases, within the declared patch range. Application baselines and backend adapters still require explicit review and stable versions. Changing channel never downgrades an installed release.
+
+Use `kagnode core policy APP --channel stable|beta --automatic on|off`. Local administrator controls expose the same policies after the reviewed manager upgrade. Old managers do not advertise channel controls. Automatic Core updates remain UI-only: no backend hooks, native package transactions or service restarts.
