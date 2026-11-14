@@ -106,3 +106,7 @@ interruption cancels their continuation and does not automatically replay check,
 apply, policy or rollback requests. A server may have accepted an interrupted
 request; inspect its persistent status before deliberately retrying. An explicit
 reauthentication continuation must still match the original session and signal.
+
+## Setting switches
+
+Use a native `input type="checkbox" data-core-switch` for binary preferences. Core adds switch semantics and restrained thumb motion. Keep selection, consent and confirmation as ordinary checkboxes. Native checked/disabled state, form serialization, reset and keyboard behavior remain authoritative.

@@ -1,3 +1,9 @@
+## 5.0.11
+
+- Bind custom fields and popovers to the active Core appearance, including legacy hosts.
+- Correct checkbox geometry and indeterminate state; add opt-in accessible animated setting switches.
+- Animate forward/back folder navigation and repair collapsed quick-search geometry.
+
 # 5.0.10
 
 - Expose canonical server-rendered login, sidebar and account templates in the Rust adapter.
