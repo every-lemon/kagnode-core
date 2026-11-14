@@ -81,7 +81,7 @@ fn automatic_allowed(version: &str, channel: &str) -> bool {
     Version::parse(version).is_ok() && !version.contains('-') && channel == "stable"
 }
 fn asset_name(name: &str) -> bool {
-    name.len() <= 128
+    name.len() <= 120
         && !name.is_empty()
         && !name.starts_with('.')
         && name
@@ -303,6 +303,7 @@ fn download(url: &str, limit: usize) -> Result<Vec<u8>> {
     let url = reqwest::Url::parse(url)?;
     ensure!(
         url.scheme() == "https"
+            && url.port_or_known_default() == Some(443)
             && url.username().is_empty()
             && url.password().is_none()
             && ((url.host_str() == Some("api.github.com")
@@ -316,14 +317,18 @@ fn download(url: &str, limit: usize) -> Result<Vec<u8>> {
         "Untrusted Core download location"
     );
     let client = reqwest::blocking::Client::builder()
-        .connect_timeout(Duration::from_secs(5))
-        .timeout(Duration::from_secs(20))
+        .connect_timeout(Duration::from_secs(4))
+        // Four bounded fetches fit inside the adapters' 45-second request timeout.
+        .timeout(Duration::from_secs(8))
         .redirect(reqwest::redirect::Policy::custom(|attempt| {
             if attempt.previous().len() > 5 {
                 return attempt.error("Too many Core redirects");
             }
             let u = attempt.url();
             if u.scheme() == "https"
+                && u.port_or_known_default() == Some(443)
+                && u.username().is_empty()
+                && u.password().is_none()
                 && matches!(
                     u.host_str(),
                     Some(
