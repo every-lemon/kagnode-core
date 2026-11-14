@@ -1,7 +1,7 @@
 """Copy generated pinned offline adapters; all editable UI stays in Core."""
 
 from pathlib import Path
-import hashlib, json, shutil, subprocess
+import hashlib, json, shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -77,9 +77,9 @@ def vendor(name, directory, package):
     value["fallback_manifest_sha256"] = hashlib.sha256(
         (ROOT / "dist/bundle.json").read_bytes()
     ).hexdigest()
-    value["source_commit"] = subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-    ).strip()
+    # Adoption validates the UI declaration against this signed UI manifest.
+    # A full package may be assembled from a later commit with unchanged UI.
+    value["source_commit"] = bundle["source_commit"]
     lock.write_text(json.dumps(value, indent=2) + "\n")
     print(name, "pinned local Core refreshed")
 
