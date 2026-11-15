@@ -40,6 +40,11 @@
     popup = null,
     accountTrigger = null,
     lastFocus;
+  // The visible label mirrors the accessible name so both always agree.
+  const syncToggleLabel = () => {
+    const label = toggle?.querySelector(".kn-core-toggle-label");
+    if (label) label.textContent = toggle.getAttribute("aria-label") || "";
+  };
   const groups = new WeakMap();
   let manualChoice = saved("kagnode.core.sidebar.choice"),
     desktopCollapsed = manualChoice
@@ -78,6 +83,7 @@
             ? "Expand sidebar"
             : "Collapse sidebar",
       );
+      syncToggleLabel();
     }
     window.KagNodeScroll?.refresh(sidebar);
   }
@@ -245,6 +251,7 @@
         value ? "Expand sidebar" : "Collapse sidebar",
       );
       toggle.title = value ? "Expand sidebar" : "Collapse sidebar";
+      syncToggleLabel();
     }
 
     if (value)
@@ -340,7 +347,8 @@
     toggle = element("button", "kn-core-sidebar-toggle");
     toggle.type = "button";
     toggle.dataset.coreToggle = "";
-    toggle.innerHTML = panelIcon;
+    toggle.innerHTML =
+      panelIcon + '<span class="kn-core-toggle-label">Collapse sidebar</span>';
     // The collapse control lives at the bottom of the dock and never moves
     // between expanded and collapsed states.
     footer.append(toggle);
