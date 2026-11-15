@@ -394,12 +394,6 @@ html[data-kn-core][data-core-collapsed="true"]
     margin: 0 !important;
   }
 }
-[data-core-collapsed="true"]
-  .kn-core-sidebar-navigation
-  :is(a, summary)
-  > span:not(:has(svg)):not(.ui-icon):not(.icon) {
-  display: none !important;
-}
 .kn-core-drawer-scrim,
 .kn-core-mobile-toggle {
   display: none;

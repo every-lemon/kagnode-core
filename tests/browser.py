@@ -238,7 +238,7 @@ try:
                     # Labels remain in the row and are clipped by its shrinking
                     # bounds; they must not wrap or be removed during motion.
                     assert page.locator(
-                        ".kn-core-sidebar-navigation .nav-label"
+                        ".kn-core-sidebar-navigation a .nav-label"
                     ).first.evaluate(
                         "e=>getComputedStyle(e).display!=='none' && getComputedStyle(e).whiteSpace==='nowrap'"
                     )
