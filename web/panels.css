@@ -144,11 +144,12 @@ html[data-kn-core] .kn-core-dialog-resize {
   position: sticky;
   display: block;
   bottom: -20px;
-  /* Overlap the bottom padding instead of adding an empty band below content. */
+  /* Overlap the bottom padding instead of adding an empty band below content.
+     Kept within the 20px corner inset so it never covers footer buttons. */
   margin: -12px -20px -20px auto;
-  width: 28px;
-  height: 28px;
-  padding: 4px;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
   border: 0;
   background: var(--kn-panel);
   color: var(--kn-muted);
@@ -157,8 +158,8 @@ html[data-kn-core] .kn-core-dialog-resize {
   z-index: 3;
 }
 .kn-core-dialog-resize svg {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   stroke: currentColor;
   fill: none;
   stroke-width: 1.5;
