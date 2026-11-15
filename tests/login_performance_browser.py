@@ -355,6 +355,9 @@ try:
                 == "after@example.test"
             )
             page.keyboard.press("Escape")
+            trigger.evaluate(
+                "node=>{window.accountFixtureParent=node.parentElement;document.body.append(node)}"
+            )
             for edge in ["left", "right"]:
                 trigger.evaluate(
                     "(node,edge)=>{node.style.position='fixed';node.style.top='80px';node.style.zIndex='13000';node.style.left=edge==='left'?'12px':'auto';node.style.right=edge==='right'?'12px':'auto'}",
@@ -368,7 +371,11 @@ try:
                 page.wait_for_function(
                     'document.querySelector("#kn-core-account-menu").hidden'
                 )
-            trigger.evaluate("node=>node.removeAttribute('style')")
+            trigger.evaluate(
+                "node=>{node.removeAttribute('style');window.accountFixtureParent.append(node)}"
+            )
+            if width < 1024:
+                page.evaluate("KagNodeCore.navigation.open()")
             trigger.click()
             page.evaluate(
                 """() => {const frame=document.createElement('iframe');frame.id='outside-frame';frame.title='Outside interaction fixture';frame.srcdoc='<button>Outside frame</button>';frame.style='position:fixed;left:12px;bottom:12px;width:160px;height:60px;z-index:14000';document.body.append(frame)}"""
