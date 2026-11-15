@@ -1010,27 +1010,28 @@ html[data-kn-core] .kn-core-sidebar-heading > .brand {
   flex: 1;
   overflow: hidden;
 }
-html[data-kn-core] .kn-core-sidebar-heading > .kn-core-sidebar-toggle {
-  flex: none;
-}
-html[data-kn-core][data-core-collapsed="true"]
-  .kn-core-sidebar-heading
-  > .brand {
-  visibility: hidden;
-}
-html[data-kn-core][data-core-collapsed="true"]
-  .kn-core-sidebar-heading
-  > .kn-core-sidebar-toggle {
-  position: absolute;
-  left: 12px;
-}
+/* Bottom dock: account row and inbox above the collapse control. The control
+   keeps the same bottom-left position whether the sidebar is open or closed. */
 html[data-kn-core] .kn-core-sidebar-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
   gap: 4px;
-  min-height: 60px;
+  min-height: 0;
   height: auto;
+  padding: 8px 9px 10px;
 }
-html[data-kn-core] .kn-core-sidebar-footer:empty {
-  display: none;
+html[data-kn-core] .kn-core-sidebar-footer > .kn-core-sidebar-toggle {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-inline-start: 3px;
+  margin-top: 2px;
+}
+/* Drawer layout has its own close control; no collapse control there. */
+@media (max-width: 1023px) {
+  html[data-kn-core] .kn-core-sidebar-footer > .kn-core-sidebar-toggle {
+    display: none;
+  }
 }
 html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger] {
   /* Full-width account row: avatar, name over email, selector chevron.
@@ -1127,7 +1128,13 @@ html[data-kn-core] .kn-core-sidebar-footer [data-inbox-toggle]:hover {
   color: var(--kn-text);
 }
 html[data-kn-core][data-core-collapsed="true"] .kn-core-sidebar-footer {
-  flex-direction: column;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+html[data-kn-core][data-core-collapsed="true"]
+  .kn-core-sidebar-footer
+  > .kn-core-sidebar-toggle {
+  justify-self: start;
 }
 html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-footer
