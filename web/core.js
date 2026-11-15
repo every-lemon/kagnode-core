@@ -341,7 +341,9 @@
     toggle.type = "button";
     toggle.dataset.coreToggle = "";
     toggle.innerHTML = panelIcon;
-    heading.append(toggle);
+    // The collapse control lives at the bottom of the dock and never moves
+    // between expanded and collapsed states.
+    footer.append(toggle);
     sidebar.replaceChildren(heading, nav, footer, legacy);
     scrim = element("button", "kn-core-drawer-scrim");
     scrim.type = "button";
@@ -584,6 +586,8 @@
     }
     const inbox = $(".header-inbox");
     if (inbox && inbox.parentElement !== footer) footer.append(inbox);
+    // Keep the collapse control last: account and inbox sit above it.
+    if (toggle && footer.lastElementChild !== toggle) footer.append(toggle);
   }
   function componentIcon(name) {
     const key = Object.hasOwn(window.KagNodeIcons, name) ? name : "plan";
