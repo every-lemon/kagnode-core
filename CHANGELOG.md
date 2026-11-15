@@ -1,3 +1,10 @@
+## 5.0.12
+
+- Keep the sidebar Quick Search icon centered within its collapsed rail, with an accessible name and tooltip.
+- Add shared dialog close controls, desktop header dragging, viewport constraints and dirty-form dismissal confirmation.
+- Preserve keyboard Escape, nested confirmations and focus restoration across browsers.
+- Use downward disclosure carets and current Daemon naming in manager messages.
+
 ## 5.0.11
 
 - Bind custom fields and popovers to the active Core appearance, including legacy hosts.

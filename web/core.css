@@ -280,7 +280,7 @@ html[data-kn-core]
   transition: transform 180ms;
 }
 .kn-core-nav-group[open] > summary > .chevron {
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 html[data-kn-core] .kn-core-nav-group > .submenu {
   position: static !important;
@@ -364,6 +364,43 @@ html[data-kn-core][data-core-collapsed="true"]
   gap: 12px !important;
   white-space: nowrap;
   font-size: 0 !important;
+}
+@media (min-width: 1024px) {
+  html[data-kn-core][data-core-collapsed="true"]
+    .sidebar[data-core-sidebar]
+    :is([data-core-search-open], [data-command], .quick-search) {
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+    height: 38px !important;
+    margin-inline: 0 !important;
+    padding: 9px !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    font-size: 0 !important;
+  }
+  html[data-kn-core][data-core-collapsed="true"]
+    .sidebar[data-core-sidebar]
+    :is([data-core-search-open], [data-command], .quick-search)
+    > :not(svg):not(.ui-icon):not(.icon):not([data-core-icon]):not(
+      [data-icon]
+    ) {
+    display: none !important;
+  }
+  html[data-kn-core][data-core-collapsed="true"]
+    .sidebar[data-core-sidebar]
+    :is([data-core-search-open], [data-command], .quick-search)
+    svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    flex: none !important;
+    margin: 0 !important;
+  }
 }
 [data-core-collapsed="true"]
   .kn-core-sidebar-navigation

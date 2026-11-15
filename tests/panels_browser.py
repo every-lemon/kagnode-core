@@ -105,6 +105,44 @@ try:
             page.on("pageerror", lambda e: errors.append(str(e)))
             page.goto(origin + "/?keep=1&view=activity#preserved")
             page.wait_for_function("!!window.KagNodeSegments")
+            page.evaluate(
+                """()=>{const d=document.createElement('dialog');d.id='drag-fixture';d.setAttribute('aria-label','Edit fixture');d.innerHTML='<header><h2>Edit fixture</h2></header><form><label>Title<input name="title"></label></form>';document.body.append(d);KagNodeDialogs.open(d);}"""
+            )
+            fixture = page.locator("#drag-fixture")
+            expect(fixture.get_by_role("button", name="Close dialog")).to_be_visible()
+            if width == 1440:
+                page.wait_for_timeout(200)
+                before = fixture.bounding_box()
+                header = fixture.locator("header").bounding_box()
+                page.mouse.move(header["x"] + 20, header["y"] + 12)
+                page.mouse.down()
+                page.mouse.move(header["x"] + 100, header["y"] + 65, steps=6)
+                page.mouse.up()
+                after = fixture.bounding_box()
+                assert after["x"] > before["x"] + 50 and after["y"] > before["y"] + 25
+                page.set_viewport_size({"width": 900, "height": 600})
+                page.wait_for_timeout(80)
+                rect = fixture.bounding_box()
+                assert rect["x"] >= 0 and rect["x"] + rect["width"] <= 900
+                page.set_viewport_size({"width": width, "height": 900})
+            fixture.locator("input").fill("Unsaved work")
+            fixture.get_by_role("button", name="Close dialog").click()
+            confirmation = page.get_by_role(
+                "dialog", name="Discard changes?", exact=True
+            )
+            expect(confirmation).to_be_visible()
+            confirmation.get_by_role("button", name="Keep editing").click()
+            expect(page.locator('dialog[aria-label="Discard changes?"]')).to_have_count(
+                0
+            )
+            expect(fixture).to_be_visible()
+            page.keyboard.press("Escape")
+            confirmation = page.get_by_role(
+                "dialog", name="Discard changes?", exact=True
+            )
+            confirmation.get_by_role("button", name="Discard changes").click()
+            expect(fixture).to_be_hidden()
+            page.evaluate("document.querySelector('#drag-fixture').remove()")
             assert page.locator('[data-core-panel="activity"]').is_visible()
             page.get_by_role("tab", name="Activity", exact=True).focus()
             page.keyboard.press("ArrowRight")

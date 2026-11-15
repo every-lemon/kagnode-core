@@ -628,6 +628,21 @@
       b.setAttribute("aria-label", "Open account menu");
       b.setAttribute("aria-haspopup", "true");
     });
+    if (sidebar) {
+      for (const button of all("[data-command]", sidebar)) {
+        button.setAttribute("aria-label", "Quick search");
+        button.dataset.coreTooltip = "Quick search";
+      }
+      for (const disclosure of all(
+        "summary .chevron, [data-disclosure-icon]",
+        sidebar,
+      )) {
+        const svg = disclosure.matches("svg")
+          ? disclosure
+          : disclosure.querySelector("svg");
+        if (svg) svg.innerHTML = window.KagNodeIcons.chevron;
+      }
+    }
     if (sidebar)
       for (const link of all(
         ".kn-core-sidebar-navigation a,.kn-core-sidebar-navigation summary",
