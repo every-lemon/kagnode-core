@@ -144,8 +144,11 @@ try:
                 page.locator(".kn-core-search").wait_for(state="hidden")
 
                 if width == 1440:
-                    page.evaluate("KagNodeCore.navigation.collapse(true)")
-                    page.wait_for_timeout(350)
+                    page.mouse.move(width - 20, 700)
+                    page.evaluate(
+                        "document.activeElement.blur(); KagNodeCore.navigation.collapse(true)"
+                    )
+                    assert_sidebar_width(page, 57)
                     search = page.locator("[data-command]")
                     box = search.bounding_box()
                     rail = page.locator("#sidebar").bounding_box()
