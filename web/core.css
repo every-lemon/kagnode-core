@@ -339,14 +339,7 @@ html[data-kn-core][data-core-collapsed="true"] .kn-core-sidebar-heading {
 [data-core-collapsed="true"] .kn-core-sidebar-heading :is(.brand-copy, strong),
 [data-core-collapsed="true"]
   .kn-core-sidebar-navigation
-  :is(
-    .nav-label,
-    .nav-heading,
-    .nav-section-title,
-    .chevron,
-    .website-link-arrow,
-    kbd
-  ),
+  :is(.nav-heading, .nav-section-title, .chevron, .website-link-arrow, kbd),
 [data-core-collapsed="true"]
   .kn-core-sidebar-navigation
   .kn-core-nav-group
@@ -356,13 +349,13 @@ html[data-kn-core][data-core-collapsed="true"] .kn-core-sidebar-heading {
 html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-navigation
   :is(a, summary) {
-  width: 38px !important;
+  width: 100% !important;
   height: 36px;
   min-width: 38px;
-  padding: 9px !important;
-  gap: 12px !important;
+  padding: 7px 10px !important;
+  gap: 11px !important;
   white-space: nowrap;
-  font-size: 0 !important;
+  font-size: 13px !important;
 }
 @media (min-width: 1024px) {
   html[data-kn-core][data-core-collapsed="true"]

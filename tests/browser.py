@@ -235,6 +235,16 @@ try:
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                     assert_sidebar_width(page, 57)
+                    # Labels remain in the row and are clipped by its shrinking
+                    # bounds; they must not wrap or be removed during motion.
+                    assert page.locator(
+                        ".kn-core-sidebar-navigation .nav-label"
+                    ).first.evaluate(
+                        "e=>getComputedStyle(e).display!=='none' && getComputedStyle(e).whiteSpace==='nowrap'"
+                    )
+                    assert page.locator(
+                        ".kn-core-sidebar-navigation svg"
+                    ).first.evaluate("e=>getComputedStyle(e).flexShrink==='0'")
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                     for _ in range(5):
