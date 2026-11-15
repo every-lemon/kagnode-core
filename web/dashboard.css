@@ -1,7 +1,7 @@
 /* Core home: compact reference composition with actual account activity. */
 .core-developer-home {
-  max-width: 1260px;
-  gap: 28px;
+  max-width: 1120px;
+  gap: 24px;
 }
 .core-developer-home .dev-home-heading h1 {
   font-size: clamp(28px, 3vw, 40px);
@@ -17,7 +17,7 @@
   padding: 8px;
   border: 1px solid var(--border, #343434);
   border-radius: 12px;
-  background: var(--surface, #191919);
+  background: var(--kn-panel);
 }
 .core-home-search > .ui-icon {
   margin-left: 10px;
@@ -40,17 +40,17 @@
 .core-home-action {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
   min-width: 0;
   padding: 14px 14px 20px;
   border: 1px solid var(--border, #343434);
   border-radius: 12px;
-  background: var(--surface, #191919);
+  background: var(--kn-panel);
 }
 .core-home-art {
-  height: 150px;
+  height: 68px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 18px;
@@ -60,8 +60,8 @@
   color: var(--kn-focus);
 }
 .core-home-art > .ui-icon {
-  width: 46px;
-  height: 46px;
+  width: 28px;
+  height: 28px;
   stroke-width: 1.2;
 }
 .core-home-art > span {
@@ -142,7 +142,7 @@
     gap: 12px;
   }
   .core-home-art {
-    height: 120px;
+    height: 68px;
   }
 }
 @media (max-width: 760px) {
@@ -207,5 +207,59 @@ a.core-home-search:focus-visible {
 @media (max-width: 480px) {
   a.core-home-search kbd {
     display: none;
+  }
+}
+
+html[data-kn-core] .core-developer-home .dev-home-heading {
+  padding: 24px 0 0;
+  align-items: center;
+}
+html[data-kn-core] .core-developer-home .dev-home-heading h1 {
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 550;
+}
+html[data-kn-core] .core-developer-home .dev-kicker {
+  color: var(--kn-muted);
+  letter-spacing: 0.06em;
+}
+html[data-kn-core] .core-home-search {
+  min-height: 64px;
+  padding: 12px 16px;
+  margin-bottom: 4px;
+}
+html[data-kn-core] .core-home-search:focus-visible {
+  outline: 2px solid var(--kn-focus);
+  outline-offset: 3px;
+}
+html[data-kn-core] .core-home-action {
+  transition:
+    border-color 160ms,
+    background-color 160ms;
+}
+html[data-kn-core] .core-home-action:hover {
+  border-color: var(--kn-muted);
+}
+html[data-kn-core] .core-home-art {
+  justify-content: flex-start;
+  padding: 16px;
+  gap: 12px;
+  color: var(--kn-muted);
+  border: 0;
+}
+html[data-kn-core] .core-home-action > .button {
+  min-height: 38px;
+}
+html[data-kn-core] .core-developer-home .dev-home-section {
+  background: var(--kn-panel);
+}
+@media (max-width: 760px) {
+  html[data-kn-core] .core-home-art {
+    justify-content: center;
+    padding: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-kn-core] .core-home-action {
+    transition: none;
   }
 }

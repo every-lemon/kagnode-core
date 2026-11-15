@@ -235,6 +235,16 @@ try:
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                     assert_sidebar_width(page, 57)
+                    # Labels remain in the row and are clipped by its shrinking
+                    # bounds; they must not wrap or be removed during motion.
+                    assert page.locator(
+                        ".kn-core-sidebar-navigation a .nav-label"
+                    ).first.evaluate(
+                        "e=>getComputedStyle(e).display!=='none' && getComputedStyle(e).whiteSpace==='nowrap'"
+                    )
+                    assert page.locator(
+                        ".kn-core-sidebar-navigation svg"
+                    ).first.evaluate("e=>getComputedStyle(e).flexShrink==='0'")
                     page.locator("[data-core-toggle]").click()
                     page.wait_for_timeout(300)
                     for _ in range(5):
@@ -264,10 +274,30 @@ try:
                     page.evaluate(
                         "KagNodeCore.setSession({authenticated:true,subject:'fixture'})"
                     )
+                if width < 1024:
+                    page.evaluate("KagNodeCore.navigation.open()")
+                assert (
+                    page.locator(".kn-core-sidebar-footer [data-account-menu]").count()
+                    == 1
+                )
+                assert (
+                    page.locator(".kn-core-sidebar-heading [data-core-toggle]").count()
+                    == 1
+                )
+                assert (
+                    page.locator(".kn-core-sidebar-navigation").evaluate(
+                        "e=>getComputedStyle(e).scrollbarWidth"
+                    )
+                    == "none"
+                )
                 page.locator("[data-account-menu]").click()
                 assert page.locator("#account-menu").is_visible()
+                bounds = page.locator("#account-menu").bounding_box()
+                assert bounds["y"] >= 0 and bounds["y"] + bounds["height"] <= 900
+                assert bounds["x"] >= 0 and bounds["x"] + bounds["width"] <= width
                 page.keyboard.press("Escape")
                 assert page.locator("#account-menu").is_hidden()
+                page.evaluate("KagNodeCore.navigation.close()")
                 page.locator("#nested").hover()
                 page.mouse.wheel(0, 400)
                 page.wait_for_function(

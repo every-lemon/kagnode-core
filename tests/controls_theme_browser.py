@@ -69,11 +69,11 @@ try:
                     "e=>getComputedStyle(e).backgroundColor"
                 )
                 expected = (
-                    "rgb(16, 16, 16)" if theme == "dark" else "rgb(255, 255, 255)"
+                    "rgb(25, 25, 25)" if theme == "dark" else "rgb(250, 249, 246)"
                 )
                 assert actual == expected, (selector, theme, actual)
             assert page.locator("#count").evaluate("e=>getComputedStyle(e).color") == (
-                "rgb(241, 241, 243)" if theme == "dark" else "rgb(23, 24, 27)"
+                "rgb(236, 235, 232)" if theme == "dark" else "rgb(23, 24, 27)"
             )
             page.locator(".k-select").click()
             expect(page.locator(".k-options")).to_be_visible()

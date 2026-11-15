@@ -112,6 +112,14 @@ try:
             expect(fixture.get_by_role("button", name="Close dialog")).to_be_visible()
             if width == 1440:
                 page.wait_for_timeout(200)
+                size_before = fixture.bounding_box()
+                assert abs(size_before["y"] + size_before["height"] / 2 - 450) < 2
+                fixture.get_by_role("button", name="Resize dialog").focus()
+                page.keyboard.press("Shift+ArrowRight")
+                page.keyboard.press("Shift+ArrowDown")
+                size_after = fixture.bounding_box()
+                assert size_after["width"] >= size_before["width"] + 39
+                assert size_after["height"] >= size_before["height"] + 39
                 before = fixture.bounding_box()
                 header = fixture.locator("header").bounding_box()
                 page.mouse.move(header["x"] + 20, header["y"] + 12)
@@ -199,7 +207,7 @@ try:
             assert page.locator("#inline").get_attribute("aria-busy") is None
             assert page.locator("[data-core-account-trigger]").count() == 1
             assert (
-                page.locator("[data-core-account-trigger]").evaluate(
+                page.locator("[data-core-account-trigger] img").evaluate(
                     "e=>getComputedStyle(e).borderRadius"
                 )
                 == "50%"
@@ -214,7 +222,10 @@ try:
                 "document.dispatchEvent(new CustomEvent('kagnode:avatar-changed',{detail:{subject:'user-a',url:''}}))"
             )
             expect(page.locator("#photo")).to_be_hidden()
+            if width < 1024:
+                page.evaluate("KagNodeCore.navigation.open()")
             expect(page.locator(".kn-core-avatar-fallback")).to_be_visible()
+            page.evaluate("KagNodeCore.navigation.close()")
             for bar in page.locator(".kn-core-rail").all():
                 assert not page.locator(
                     '#sidebar [id="' + str(bar.get_attribute("aria-controls")) + '"]'

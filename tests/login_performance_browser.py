@@ -332,6 +332,8 @@ try:
             page.wait_for_function(
                 "document.querySelector('.kn-core-rail[aria-controls=dynamic-scroll]')!==null"
             )
+            if width < 1024:
+                page.evaluate("KagNodeCore.navigation.open()")
             trigger = page.locator("[data-core-account-trigger]")
             trigger.click()
             assert (
@@ -353,20 +355,31 @@ try:
                 == "after@example.test"
             )
             page.keyboard.press("Escape")
+            # Keep the actual account trigger in its canonical footer. Exercise
+            # the shared positioning helper with an independent edge anchor;
+            # moving a managed trigger would correctly be undone by Core.
             for edge in ["left", "right"]:
-                trigger.evaluate(
-                    "(node,edge)=>{node.style.position='fixed';node.style.top='80px';node.style.zIndex='13000';node.style.left=edge==='left'?'12px':'auto';node.style.right=edge==='right'?'12px':'auto'}",
+                trigger.click()
+                page.evaluate(
+                    """edge=>{
+                      const anchor=document.createElement('button');
+                      anchor.id='edge-anchor';anchor.textContent='Position fixture';
+                      anchor.style=`position:fixed;top:80px;${edge}:12px`;
+                      document.body.append(anchor);
+                      KagNodeCore.positionPopover(document.querySelector('#kn-core-account-menu'),anchor);
+                    }""",
                     edge,
                 )
-                trigger.click()
                 box = page.locator("#kn-core-account-menu").bounding_box()
                 assert box["x"] >= 11, (width, edge, box)
                 assert box["x"] + box["width"] <= width - 11, (width, edge, box)
-                page.mouse.click(width // 2, 880)
+                page.keyboard.press("Escape")
                 page.wait_for_function(
                     'document.querySelector("#kn-core-account-menu").hidden'
                 )
-            trigger.evaluate("node=>node.removeAttribute('style')")
+                page.locator("#edge-anchor").evaluate("node=>node.remove()")
+            if width < 1024:
+                page.evaluate("KagNodeCore.navigation.open()")
             trigger.click()
             page.evaluate(
                 """() => {const frame=document.createElement('iframe');frame.id='outside-frame';frame.title='Outside interaction fixture';frame.srcdoc='<button>Outside frame</button>';frame.style='position:fixed;left:12px;bottom:12px;width:160px;height:60px;z-index:14000';document.body.append(frame)}"""
@@ -378,6 +391,7 @@ try:
                 'document.querySelector("#kn-core-account-menu").hidden'
             )
             assert page.evaluate("document.activeElement.tagName==='IFRAME'")
+            page.locator("#outside-frame").evaluate("e=>e.remove()")
             trigger.click()
             page.evaluate('document.querySelector("dialog").showModal()')
             page.wait_for_function(

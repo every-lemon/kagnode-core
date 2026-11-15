@@ -341,7 +341,7 @@
     toggle.type = "button";
     toggle.dataset.coreToggle = "";
     toggle.innerHTML = panelIcon;
-    footer.append(toggle);
+    heading.append(toggle);
     sidebar.replaceChildren(heading, nav, footer, legacy);
     scrim = element("button", "kn-core-drawer-scrim");
     scrim.type = "button";
@@ -504,13 +504,7 @@
     popup = menu;
     button.setAttribute("aria-controls", menu.id);
     button.setAttribute("aria-expanded", "true");
-    const box = button.getBoundingClientRect();
-    const maximumRight = Math.max(12, innerWidth - menu.offsetWidth - 12);
-    Object.assign(menu.style, {
-      top: Math.min(innerHeight - 100, box.bottom + 8) + "px",
-      right:
-        Math.min(maximumRight, Math.max(12, innerWidth - box.right)) + "px",
-    });
+    positionPopover(menu, button);
     if (!reduce.matches)
       menu.animate(
         [
@@ -520,6 +514,58 @@
         { duration: 160, easing: "ease-out" },
       );
     $("a,button", menu)?.focus({ preventScroll: true });
+  }
+  function positionPopover(menu, button) {
+    const box = button.getBoundingClientRect();
+    const view = window.visualViewport;
+    const left = view?.offsetLeft || 0,
+      top = view?.offsetTop || 0;
+    const width = view?.width || innerWidth,
+      height = view?.height || innerHeight;
+    menu.style.maxHeight = Math.max(120, height - 24) + "px";
+    const bounds = menu.getBoundingClientRect();
+    const below = box.bottom + 8;
+    const y =
+      below + bounds.height <= top + height - 12
+        ? below
+        : box.top - bounds.height - 8;
+    Object.assign(menu.style, {
+      position: "fixed",
+      right: "auto",
+      bottom: "auto",
+      left:
+        Math.max(
+          left + 12,
+          Math.min(box.left, left + width - bounds.width - 12),
+        ) + "px",
+      top:
+        Math.max(top + 12, Math.min(y, top + height - bounds.height - 12)) +
+        "px",
+    });
+  }
+  function footerControls() {
+    if (!sidebar) return;
+    const footer = $(".kn-core-sidebar-footer", sidebar);
+    if (!footer) return;
+    const button = $("[data-core-account-trigger]");
+    if (button && !button.closest("[data-core-account-menu]")) {
+      if (button.parentElement !== footer) footer.prepend(button);
+      let label = $(".kn-core-account-label", button);
+      if (!label) {
+        label = element("span", "kn-core-account-label");
+        const chevron = element("span", "kn-core-account-chevron");
+        chevron.innerHTML = componentIcon("chevron");
+        button.append(label, chevron);
+      }
+      const name =
+        config.name ||
+        $(".account-identity strong")?.textContent.trim() ||
+        $("[data-kn-account-name]")?.textContent.trim() ||
+        "Account";
+      if (label.textContent !== name) label.textContent = name;
+    }
+    const inbox = $(".header-inbox");
+    if (inbox && inbox.parentElement !== footer) footer.append(inbox);
   }
   function componentIcon(name) {
     const key = Object.hasOwn(window.KagNodeIcons, name) ? name : "plan";
@@ -647,6 +693,7 @@
       b.setAttribute("aria-label", "Open account menu");
       b.setAttribute("aria-haspopup", "true");
     });
+    footerControls();
     for (const icon of all(
       'svg[data-disclosure-icon],svg[data-core-icon-name="chevron"]',
     )) {
@@ -809,7 +856,9 @@
       if (popup) {
         e.preventDefault();
         closeAccount(true);
+        return;
       }
+      if (document.querySelector("#inbox-popover:not([hidden])")) return;
       if (root.dataset.coreDrawer === "true") {
         e.preventDefault();
         drawer(false);
@@ -831,7 +880,13 @@
               items.length
       ]?.focus();
     }
-    if (e.key === "Tab" && mobile() && root.dataset.coreDrawer === "true") {
+    if (
+      e.key === "Tab" &&
+      mobile() &&
+      root.dataset.coreDrawer === "true" &&
+      !popup &&
+      !document.querySelector("#inbox-popover:not([hidden])")
+    ) {
       const items = all(
         "a[href],button:not(:disabled),summary,input",
         sidebar,
@@ -975,6 +1030,7 @@
     icon: componentIcon,
     loading,
     closeAccount,
+    positionPopover,
     navigation: {
       open: () => drawer(true),
       close: () => drawer(false),

@@ -1,22 +1,22 @@
 {
   "schema": 1,
-  "version": "5.0.14",
+  "version": "5.0.15",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.f753df83b238f1c8.js",
-    "script": "core.646ce93aec6ef226.js",
-    "style": "core.6ce9782d3118e79e.css"
+    "script": "core.33222cfb1b6f3cbc.js",
+    "style": "core.db888e522aa254ee.css"
   },
-  "source_commit": "521adf9da823dcc60372ed3a06b9795f00008060",
+  "source_commit": "1fe266f3e9a0d15b92835548d21f001573cd332a",
   "repository": "every-lemon/kagnode-core",
   "user_summary": {
-    "title": "Clearer navigation and movable dialogs",
+    "title": "Calmer surfaces and smoother navigation",
     "items": [
-      "Collapsed Quick Search stays centered inside the sidebar.",
-      "Dialog forms have an accessible close control, viewport-bounded desktop dragging and unsaved-change confirmation.",
-      "Disclosure carets point down and animate upward when expanded."
+      "Sidebar labels stay on one line while collapsing; account and inbox controls sit at the bottom.",
+      "Dialogs support bounded desktop dragging and resizing, including keyboard resizing.",
+      "Warmer neutral surfaces, clearer login and home layouts, and better action spacing keep the blue KagNode accent."
     ]
   },
   "icons": {
@@ -229,13 +229,13 @@
       "sha256": "f753df83b238f1c83f0e7297288cec9b787eb6fe01de1c6be7ae85313b87edda",
       "size": 1831
     },
-    "core.646ce93aec6ef226.js": {
-      "sha256": "646ce93aec6ef2266bc3f2db0fcbb143a6ee79392d3b5af41a882dea35d0ff98",
-      "size": 107568
+    "core.33222cfb1b6f3cbc.js": {
+      "sha256": "33222cfb1b6f3cbc7e99e1f8f07400d6846520bf977c406a6ede72ea486cf35f",
+      "size": 110197
     },
-    "core.6ce9782d3118e79e.css": {
-      "sha256": "6ce9782d3118e79e2114e94d6463d5ceec08d35a4a7c9e1cb329cf85ea136ce8",
-      "size": 49891
+    "core.db888e522aa254ee.css": {
+      "sha256": "db888e522aa254eee42b94fa0533ec006e859c504c15f1757659afb47c120211",
+      "size": 56546
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

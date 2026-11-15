@@ -8,7 +8,7 @@ html[data-kn-core] [data-core-login] {
   padding: clamp(20px, 5vw, 64px) 20px;
   display: grid;
   place-items: center;
-  background: var(--kn-panel);
+  background: var(--kn-bg);
   color: var(--kn-text);
 }
 html[data-kn-core] [data-core-login][hidden] {
@@ -16,13 +16,13 @@ html[data-kn-core] [data-core-login][hidden] {
 }
 html[data-kn-core] .kn-core-login-card {
   box-sizing: border-box;
-  width: min(100%, 440px);
+  width: min(100%, 480px);
   min-width: 0;
   margin: 0;
-  padding: clamp(20px, 5vw, 36px);
+  padding: clamp(24px, 5vw, 40px);
   border: 1px solid var(--kn-line);
   border-radius: var(--kn-radius-panel);
-  background: var(--kn-bg);
+  background: var(--kn-panel);
   overflow-wrap: anywhere;
 }
 html[data-kn-core] .kn-core-login-heading {
@@ -311,5 +311,30 @@ html[data-kn-core] .kn-core-login-card {
 @media (prefers-reduced-motion: reduce) {
   html[data-kn-core] .kn-core-login-card {
     animation: none;
+  }
+}
+
+html[data-kn-core] .kn-core-login-heading {
+  margin-bottom: 30px;
+}
+html[data-kn-core] .kn-core-login-heading h1 {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 550;
+}
+html[data-kn-core] .kn-core-login-content input {
+  background: var(--kn-bg);
+}
+html[data-kn-core] [data-core-login-provider] {
+  background: var(--kn-bg);
+  min-height: 46px;
+}
+html[data-kn-core] .kn-core-login-card :is(button, input) {
+  transition:
+    background-color 160ms,
+    border-color 160ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-kn-core] .kn-core-login-card :is(button, input) {
+    transition: none;
   }
 }

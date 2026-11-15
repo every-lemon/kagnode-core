@@ -359,6 +359,85 @@
     };
     header.addEventListener("pointerup", finish);
     header.addEventListener("lostpointercapture", finish);
+    const grip = document.createElement("button");
+    grip.type = "button";
+    grip.className = "kn-core-dialog-resize";
+    grip.setAttribute("aria-label", "Resize dialog");
+    grip.setAttribute(
+      "aria-description",
+      "Drag to resize, or use arrow keys. Hold Shift for larger changes.",
+    );
+    grip.innerHTML =
+      '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 17 10-10m-4 10 4-4"/></svg>';
+    dialog.append(grip);
+    let sizing;
+    function size(width, height) {
+      const r = dialog.getBoundingClientRect();
+      const view = window.visualViewport;
+      const right = (view?.offsetLeft || 0) + (view?.width || innerWidth) - 8;
+      const bottom = (view?.offsetTop || 0) + (view?.height || innerHeight) - 8;
+      clamp(r.left, r.top);
+      dialog.style.width =
+        Math.max(
+          Math.min(340, right - r.left),
+          Math.min(width, right - r.left),
+        ) + "px";
+      dialog.style.height =
+        Math.max(
+          Math.min(180, bottom - r.top),
+          Math.min(height, bottom - r.top),
+        ) + "px";
+      dialog.style.maxWidth = "calc(100vw - 16px)";
+      window.KagNodeScroll?.refresh(dialog);
+    }
+    grip.addEventListener("pointerdown", (event) => {
+      if (innerWidth < 700 || event.button !== 0) return;
+      const r = dialog.getBoundingClientRect();
+      sizing = {
+        id: event.pointerId,
+        x: event.clientX,
+        y: event.clientY,
+        width: r.width,
+        height: r.height,
+      };
+      grip.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+    grip.addEventListener("pointermove", (event) => {
+      if (sizing?.id === event.pointerId)
+        size(
+          sizing.width + event.clientX - sizing.x,
+          sizing.height + event.clientY - sizing.y,
+        );
+    });
+    for (const event of ["pointerup", "pointercancel", "lostpointercapture"])
+      grip.addEventListener(event, () => {
+        sizing = null;
+      });
+    grip.addEventListener("keydown", (event) => {
+      if (
+        innerWidth < 700 ||
+        !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)
+      )
+        return;
+      event.preventDefault();
+      const r = dialog.getBoundingClientRect(),
+        delta = event.shiftKey ? 40 : 10;
+      size(
+        r.width +
+          (event.key === "ArrowRight"
+            ? delta
+            : event.key === "ArrowLeft"
+              ? -delta
+              : 0),
+        r.height +
+          (event.key === "ArrowDown"
+            ? delta
+            : event.key === "ArrowUp"
+              ? -delta
+              : 0),
+      );
+    });
     const resize = () => {
       if (!dialog.open || !dialog.style.left) return;
       if (innerWidth < 700) {
@@ -369,6 +448,9 @@
           "bottom",
           "left",
           "top",
+          "width",
+          "height",
+          "max-width",
         ])
           dialog.style.removeProperty(name);
         finish();
@@ -395,7 +477,17 @@
     if (!(dialog instanceof HTMLDialogElement))
       throw Error("A native dialog is required");
     if (dialog.open) return dialog;
-    for (const name of ["position", "margin", "right", "bottom", "left", "top"])
+    for (const name of [
+      "position",
+      "margin",
+      "right",
+      "bottom",
+      "left",
+      "top",
+      "width",
+      "height",
+      "max-width",
+    ])
       dialog.style.removeProperty(name);
     if (sheet) dialog.dataset.coreSheet = "";
     dialog.classList.add("kn-core-dialog");
