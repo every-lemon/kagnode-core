@@ -524,6 +524,18 @@
       "</svg>"
     );
   }
+  function normalizeDisclosure(svg) {
+    const shape = window.KagNodeIcons.chevron;
+    const path = shape.match(/\bd="([^"]+)"/)?.[1];
+    if (
+      svg.childElementCount !== 1 ||
+      svg.firstElementChild?.localName !== "path" ||
+      svg.firstElementChild.getAttribute("d") !== path
+    )
+      svg.innerHTML = shape;
+    if (!svg.hasAttribute("data-disclosure-icon"))
+      svg.dataset.disclosureIcon = "";
+  }
   function normalize() {
     for (const host of all("[data-core-icon]")) {
       const name = host.dataset.coreIcon;
@@ -628,6 +640,11 @@
       b.setAttribute("aria-label", "Open account menu");
       b.setAttribute("aria-haspopup", "true");
     });
+    for (const icon of all(
+      'svg[data-disclosure-icon],svg[data-core-icon-name="chevron"]',
+    )) {
+      normalizeDisclosure(icon);
+    }
     if (sidebar) {
       for (const button of all("[data-command]", sidebar)) {
         button.setAttribute("aria-label", "Quick search");
@@ -640,7 +657,7 @@
         const svg = disclosure.matches("svg")
           ? disclosure
           : disclosure.querySelector("svg");
-        if (svg) svg.innerHTML = window.KagNodeIcons.chevron;
+        if (svg) normalizeDisclosure(svg);
       }
     }
     if (sidebar)

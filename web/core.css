@@ -946,3 +946,25 @@ html[data-kn-core]
   border-radius: 50% !important;
   object-fit: cover;
 }
+
+/* Normalize disclosure motion even when markup comes from an older server adapter. */
+html[data-kn-core] [data-disclosure-icon] {
+  transform: none;
+  transition: transform 180ms var(--kn-easing);
+}
+html[data-kn-core]
+  :is(details[open] > summary, [aria-expanded="true"])
+  > [data-disclosure-icon] {
+  transform: rotate(180deg);
+}
+html[data-kn-core] summary .chevron:has([data-disclosure-icon]) {
+  transform: none !important;
+}
+html[data-kn-core] details[open] > summary .chevron [data-disclosure-icon] {
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-kn-core] [data-disclosure-icon] {
+    transition: none;
+  }
+}
