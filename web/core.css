@@ -509,6 +509,10 @@ html[data-kn-core][data-core-collapsed="true"]
     border-radius: 0 !important;
     touch-action: none;
   }
+  /* Touch layouts: comfortable 44px targets; desktop density is unchanged. */
+  html[data-kn-core] .kn-core-sidebar-navigation :is(a, summary) {
+    min-height: 44px !important;
+  }
   /* The open drawer is modal: keep the page behind it from scrolling. */
   html[data-core-drawer="true"],
   html[data-core-drawer="true"] body {
