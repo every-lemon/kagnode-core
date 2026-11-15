@@ -130,6 +130,14 @@ html[data-kn-core] .kn-core-login-content label {
   font-weight: 500;
   text-align: left;
 }
+/* A field nested in its label needs breathing room so the focus ring never
+   touches the label text. */
+html[data-kn-core]
+  .kn-core-login-content
+  label
+  > :is(input, select, textarea, .kn-core-login-secret) {
+  margin-top: 6px;
+}
 html[data-kn-core]
   .kn-core-login-content
   :where(

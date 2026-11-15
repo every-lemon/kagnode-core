@@ -1,4 +1,11 @@
-# 5.0.14
+# Changelog
+
+## 5.0.16
+
+- Refine sidebar footer controls, theme-aware avatars, dialog forms and dashboard spacing.
+- Clear stale passwords when changing sign-in identity, preserving native form and autofill behavior.
+- Track contents inside nested readers using their actual scroll viewport.
+- Share contextual loading labels and stop repeated denied update probes.
 
 ## 5.0.15
 
@@ -39,6 +46,13 @@
 - Keep baseline and backend adapter changes under explicit application review.
 
 # Changelog
+
+## 5.0.16
+
+- Refine sidebar footer controls, account avatars, dialog forms and dashboard spacing.
+- Clear stale passwords when changing sign-in identity, preserving native form and autofill behavior.
+- Track contents inside nested readers using their actual scroll viewport.
+- Share contextual loading labels and stop repeated denied update probes.
 
 ## 5.0.9
 

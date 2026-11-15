@@ -151,8 +151,14 @@ try:
             expect(page.locator(".kn-core-login-identity")).to_contain_text(
                 "fictional@example.test"
             )
+            page.locator("#password").fill("stale-password-for-first-identity")
             page.get_by_role("button", name="Change sign-in identity").click()
             expect(page.locator("#identity")).to_be_focused()
+            expect(page.locator("#password")).to_have_value("")
+            page.locator("#identity").fill("second@example.test")
+            expect(page.locator("#identity")).to_be_visible()
+            expect(page.locator("#password")).to_be_hidden()
+            page.locator("#identity").fill("fictional@example.test")
             page.get_by_role("button", name="Continue", exact=True).click()
             page.locator("#password").fill("fictional-password")
             page.evaluate("KagNodeLogin.reset(document.querySelector('form'))")

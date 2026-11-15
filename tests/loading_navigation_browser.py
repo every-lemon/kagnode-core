@@ -66,6 +66,30 @@ try:
                 )
                 page = context.new_page()
                 page.goto(f"http://127.0.0.1:{server.server_port}")
+                assert (
+                    page.evaluate(
+                        "KagNodeLoading.labelFor({action:'/settings',method:'post'})"
+                    )
+                    == "Saving changes…"
+                )
+                assert (
+                    page.evaluate(
+                        "KagNodeLoading.labelFor({action:'/search',method:'get'})"
+                    )
+                    == "Searching…"
+                )
+                assert (
+                    page.evaluate(
+                        "KagNodeLoading.labelFor({action:'/updates/apply',method:'post'})"
+                    )
+                    == "Updating…"
+                )
+                assert (
+                    page.evaluate(
+                        "KagNodeLoading.labelFor({action:'/unknown',method:'post'})"
+                    )
+                    == "Working…"
+                )
                 page.wait_for_function(
                     "document.documentElement.dataset.coreReady === 'true'"
                 )

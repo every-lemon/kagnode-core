@@ -104,6 +104,20 @@ try:
             )
             assert distance < 3, distance
             assert page.locator("#list .plan-toc-indicator").count() == 1
+            # A scrollable reader must use its own viewport, not document end.
+            page.evaluate(
+                """()=>{const m=document.querySelector('main');m.style.cssText='height:500px;overflow-y:auto;padding:100px 300px 0 20px';window.scrollTo(0,0);m.scrollTop=0;KagNodeToc.refresh()}"""
+            )
+            page.wait_for_function(
+                "()=>document.querySelector('#list [aria-current]')?.hash==='#s0'"
+            )
+            page.evaluate(
+                """()=>{const m=document.querySelector('main');m.scrollTop=document.getElementById('s12').getBoundingClientRect().top-m.getBoundingClientRect().top+m.scrollTop-70;KagNodeToc.refresh()}"""
+            )
+            page.wait_for_function(
+                "()=>document.querySelector('#list [aria-current]')?.hash==='#s12'"
+            )
+            page.evaluate("document.querySelector('main').removeAttribute('style')")
             # A wheel gesture keeps the user's chosen list position while new
             # content or page movement changes the current heading.
             page.evaluate(

@@ -357,7 +357,11 @@
     });
     sidebar.addEventListener("pointerleave", releasePreview);
     sidebar.addEventListener("focusin", (e) => {
+      // Preview only for keyboard focus. A pointer click also focuses its
+      // target; expanding then would reflow the footer between mousedown and
+      // mouseup and swallow the click (collapsed account avatar).
       if (
+        e.target.matches?.(":focus-visible") &&
         !e.target.closest("[data-core-toggle]") &&
         desktopCollapsed &&
         !mobile()
@@ -553,8 +557,14 @@
       let label = $(".kn-core-account-label", button);
       if (!label) {
         label = element("span", "kn-core-account-label");
+        label.append(
+          element("strong", "kn-core-account-name"),
+          element("small", "kn-core-account-email"),
+        );
         const chevron = element("span", "kn-core-account-chevron");
-        chevron.innerHTML = componentIcon("chevron");
+        // Compact up/down selector mark: the menu opens above the footer.
+        chevron.innerHTML =
+          '<svg class="ui-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 9 4-4 4 4M8 15l4 4 4-4"/></svg>';
         button.append(label, chevron);
       }
       const name =
@@ -562,7 +572,15 @@
         $(".account-identity strong")?.textContent.trim() ||
         $("[data-kn-account-name]")?.textContent.trim() ||
         "Account";
-      if (label.textContent !== name) label.textContent = name;
+      const email =
+        config.email || $(".account-identity small")?.textContent.trim() || "";
+      const nameNode = $(".kn-core-account-name", label),
+        emailNode = $(".kn-core-account-email", label);
+      if (nameNode && nameNode.textContent !== name)
+        nameNode.textContent = name;
+      if (emailNode && emailNode.textContent !== email)
+        emailNode.textContent = email;
+      if (emailNode) emailNode.hidden = !email;
     }
     const inbox = $(".header-inbox");
     if (inbox && inbox.parentElement !== footer) footer.append(inbox);
