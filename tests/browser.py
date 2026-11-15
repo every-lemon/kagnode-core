@@ -281,7 +281,7 @@ try:
                     == 1
                 )
                 assert (
-                    page.locator(".kn-core-sidebar-heading [data-core-toggle]").count()
+                    page.locator(".kn-core-sidebar-footer [data-core-toggle]").count()
                     == 1
                 )
                 assert (
