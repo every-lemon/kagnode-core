@@ -1056,7 +1056,9 @@ html[data-kn-core]
   [data-core-account-trigger]:is(:hover, [aria-expanded="true"]) {
   background: color-mix(in srgb, var(--kn-text) 7%, transparent);
 }
-html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger]:focus-visible {
+html[data-kn-core]
+  .kn-core-sidebar-footer
+  [data-core-account-trigger]:focus-visible {
   outline: 2px solid var(--kn-focus);
   outline-offset: -2px;
 }
@@ -1219,7 +1221,10 @@ html[data-kn-core]
 }
 @media (prefers-reduced-motion: reduce) {
   html[data-kn-core]
-    :is(.kn-core-sidebar-toggle, .kn-core-sidebar-footer [data-core-account-trigger]) {
+    :is(
+      .kn-core-sidebar-toggle,
+      .kn-core-sidebar-footer [data-core-account-trigger]
+    ) {
     transition: none;
   }
 }
@@ -1229,7 +1234,9 @@ html[data-kn-core] .kn-core-sidebar-toggle > svg {
   stroke-width: 1.6;
 }
 /* Circular avatar follows the theme: soft accent tint in light, deeper in dark. */
-html[data-kn-core] :is([data-core-account-trigger], [data-core-account-menu] .account-identity) :is(.avatar, .avatar-fallback, .account-avatar) {
+html[data-kn-core]
+  :is([data-core-account-trigger], [data-core-account-menu] .account-identity)
+  :is(.avatar, .avatar-fallback, .account-avatar) {
   width: 30px !important;
   height: 30px !important;
   border-radius: 50% !important;

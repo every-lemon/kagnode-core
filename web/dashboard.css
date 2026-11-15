@@ -210,7 +210,11 @@ html[data-kn-core] .core-developer-home .dev-section-heading > a {
 html[data-kn-core] .core-developer-home .dev-section-heading > a:hover {
   color: var(--kn-text);
 }
-html[data-kn-core] .core-developer-home .dev-section-heading > a > :is(svg, .ui-icon) {
+html[data-kn-core]
+  .core-developer-home
+  .dev-section-heading
+  > a
+  > :is(svg, .ui-icon) {
   width: 14px;
   height: 14px;
   flex-shrink: 0;
@@ -280,7 +284,8 @@ html[data-kn-core] .core-home-plan-update > .button {
   }
 }
 @media (forced-colors: active) {
-  html[data-kn-core] :is(.core-home-continue, .dev-home-section, a.core-home-search) {
+  html[data-kn-core]
+    :is(.core-home-continue, .dev-home-section, a.core-home-search) {
     border: 1px solid CanvasText;
   }
   html[data-kn-core] .core-home-list a:focus-visible {

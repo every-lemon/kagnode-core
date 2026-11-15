@@ -202,7 +202,13 @@ html[data-kn-core]
    wrap cleanly on narrow screens; the primary action stays last (right). */
 html[data-kn-core]
   .kn-core-dialog
-  :is(footer, menu, .dialog-actions, .form-actions, [data-core-dialog-actions]) {
+  :is(
+    footer,
+    menu,
+    .dialog-actions,
+    .form-actions,
+    [data-core-dialog-actions]
+  ) {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -234,10 +240,12 @@ html[data-kn-core]
 html[data-kn-core]
   .kn-core-dialog
   :is(footer, menu, .dialog-actions, .form-actions, [data-core-dialog-actions])
-  > :is(button, .button):is(:last-child, .primary, [data-primary], [type="submit"]:only-of-type):not(
-    [value="cancel"],
-    .secondary
-  ) {
+  > :is(button, .button):is(
+    :last-child,
+    .primary,
+    [data-primary],
+    [type="submit"]:only-of-type
+  ):not([value="cancel"], .secondary) {
   border-color: var(--kn-accent);
   background: var(--kn-accent);
   color: #fff;
@@ -252,7 +260,13 @@ html[data-kn-core]
 @media (forced-colors: active) {
   html[data-kn-core]
     .kn-core-dialog
-    :is(footer, menu, .dialog-actions, .form-actions, [data-core-dialog-actions])
+    :is(
+      footer,
+      menu,
+      .dialog-actions,
+      .form-actions,
+      [data-core-dialog-actions]
+    )
     > :is(button, .button) {
     border: 1px solid ButtonText;
     background: ButtonFace;

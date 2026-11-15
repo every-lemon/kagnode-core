@@ -576,7 +576,8 @@
         config.email || $(".account-identity small")?.textContent.trim() || "";
       const nameNode = $(".kn-core-account-name", label),
         emailNode = $(".kn-core-account-email", label);
-      if (nameNode && nameNode.textContent !== name) nameNode.textContent = name;
+      if (nameNode && nameNode.textContent !== name)
+        nameNode.textContent = name;
       if (emailNode && emailNode.textContent !== email)
         emailNode.textContent = email;
       if (emailNode) emailNode.hidden = !email;
