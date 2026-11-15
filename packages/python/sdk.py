@@ -176,7 +176,7 @@ def manager_request(app, action="status", data=None):
             return {
                 "enabled": False,
                 "version": active(app)["version"],
-                "message": "Enable Core management with KagNode CLI on this server.",
+                "message": "Enable Core management with KagNode Daemon on this server.",
             }
         raise ValueError("The local Core manager is unavailable")
     finally:

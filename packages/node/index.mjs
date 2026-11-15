@@ -250,7 +250,7 @@ export function managerRequest(appId, action = "status", data = {}) {
         resolve({
           enabled: false,
           version: active(appId).version,
-          message: "Enable Core management with KagNode CLI on this server.",
+          message: "Enable Core management with KagNode Daemon on this server.",
         });
       else reject(e);
     });
