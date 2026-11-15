@@ -280,7 +280,9 @@ try:
                     page.mouse.move(width - 6, 400)
                     page.mouse.wheel(0, 600)
                     page.wait_for_timeout(150)
-                    assert page.evaluate("scrollY") == 0, "page scrolled behind the open drawer"
+                    assert page.evaluate("scrollY") == 0, (
+                        "page scrolled behind the open drawer"
+                    )
                 assert (
                     page.locator(".kn-core-sidebar-footer [data-account-menu]").count()
                     == 1
