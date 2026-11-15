@@ -1,6 +1,6 @@
 # 5.0.14
 
-- Reset progressive sign-in presentation when an application returns to identity entry, including explicit Link/Create choices and local fallback. Preserve form values and provider cancellation boundaries.
+- Reset progressive sign-in presentation when an application returns to identity entry, including explicit Link/Create choices and local fallback. Preserve identity/CSRF values and provider cancellation boundaries; clear the previous password on explicit reset.
 
 ## 5.0.13
 

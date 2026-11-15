@@ -143,6 +143,8 @@ try:
             expect(page.locator("#identity")).to_be_visible()
             expect(page.locator("#password")).to_be_hidden()
             page.get_by_role("button", name="Continue", exact=True).click()
+            expect(page.locator("#password")).to_have_value("")
+            page.locator("#password").fill("fictional-password")
             expect(page.locator("#password")).to_be_hidden()
             assert not POSTS
             page.locator("#identity").fill("fictional@example.test")
