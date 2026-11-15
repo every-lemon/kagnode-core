@@ -342,6 +342,11 @@ try:
                     "getComputedStyle(document.querySelector('#legacy-disclosure svg')).transform==='matrix(-1, 0, 0, -1, 0, 0)'"
                 )
                 page.locator("#legacy-disclosure").evaluate("e=>e.remove()")
+                if width >= 1024:
+                    page.add_style_tag(content=".workspace{margin-left:284px}")
+                    assert page.evaluate(
+                        """()=>{const sidebar=document.querySelector('#sidebar');sidebar.hidden=true;KagNodeCore.refresh();sidebar.hidden=false;KagNodeCore.refresh();return document.querySelector('.workspace').getBoundingClientRect().right<=innerWidth+1;}"""
+                    ), "Shell adoption must not animate an old auto-width margin"
                 page.evaluate("KagNodeCore.setSession({authenticated:false})")
                 assert page.locator("html").get_attribute("data-theme") == scheme
                 page.close()
