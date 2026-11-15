@@ -155,6 +155,12 @@ try:
             expect(page.locator("#identity")).to_be_focused()
             page.get_by_role("button", name="Continue", exact=True).click()
             page.locator("#password").fill("fictional-password")
+            page.evaluate("KagNodeLogin.reset(document.querySelector('form'))")
+            expect(page.locator("#identity")).to_be_visible()
+            expect(page.locator("#password")).to_be_hidden()
+            page.get_by_role("button", name="Continue", exact=True).click()
+            expect(page.locator("#password")).to_have_value("")
+            page.locator("#password").fill("fictional-password")
             assert page.locator('input[name="csrf"]').input_value() == "fictional-csrf"
             assert not page.locator("#password").is_disabled()
             assert (

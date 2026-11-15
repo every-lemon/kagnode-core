@@ -215,8 +215,15 @@
       getComputedStyle(sidebar).display !== "none";
     const state = visible ? "active" : "inactive";
     if (root.dataset.coreShell !== state) {
+      // Adopting a newly visible legacy layout may change auto width to a
+      // calculated width. Do not animate only its old margin in that frame.
+      delete root.dataset.coreReady;
       root.dataset.coreShell = state;
-      requestAnimationFrame(() => window.KagNodeScroll?.refresh());
+      void document.body.offsetWidth;
+      requestAnimationFrame(() => {
+        if (root.dataset.coreShell === state) root.dataset.coreReady = "true";
+        window.KagNodeScroll?.refresh();
+      });
     }
   }
   function setCollapsed(value, persist = true) {
