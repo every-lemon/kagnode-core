@@ -46,6 +46,11 @@ html[data-kn-core] dialog.kn-core-search {
   font-size: 16px;
   outline-offset: 2px;
 }
+.kn-core-search .kn-core-search-input::-webkit-search-cancel-button {
+  /* The dialog has its own close control; two clear buttons were confusing. */
+  appearance: none;
+  display: none;
+}
 .kn-core-search .kn-core-search-close {
   position: absolute;
   right: 27px;
