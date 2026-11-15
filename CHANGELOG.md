@@ -1,3 +1,7 @@
+# 5.0.14
+
+- Reset progressive sign-in presentation when an application returns to identity entry, including explicit Link/Create choices and local fallback. Preserve form values and provider cancellation boundaries.
+
 ## 5.0.13
 
 - Avoid repeated SVG child rewrites during component refresh, preventing self-triggered observer redraws.

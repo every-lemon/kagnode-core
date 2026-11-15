@@ -324,6 +324,11 @@
     resumeReturn();
   }
   function reset(container = document) {
+    const forms = [
+      ...(container.matches?.("form") ? [container] : []),
+      ...(container.querySelectorAll?.("form") || []),
+    ];
+    for (const form of forms) progressive.get(form)?.show("identity", false);
     const buttons = [
       ...(container.matches?.("button[data-core-login-provider]")
         ? [container]
