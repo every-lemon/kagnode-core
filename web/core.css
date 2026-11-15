@@ -305,12 +305,18 @@ html[data-kn-core] .kn-core-nav-group > .submenu {
   padding: 8px 9px;
 }
 .kn-core-sidebar-toggle {
-  /* Quiet ghost icon button: no chrome until hovered or focused. */
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
+  /* Dock row like a navigation item: icon + label, no chrome until hovered. */
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 36px;
+  padding: 0 10px;
+  overflow: hidden;
+  font: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  white-space: nowrap;
   border: 0;
   border-radius: var(--kn-radius-control);
   background: transparent;
@@ -1030,9 +1036,12 @@ html[data-kn-core] .kn-core-sidebar-footer {
 }
 html[data-kn-core] .kn-core-sidebar-footer > .kn-core-sidebar-toggle {
   grid-column: 1 / -1;
-  justify-self: start;
-  margin-inline-start: 3px;
+  justify-self: stretch;
   margin-top: 2px;
+}
+.kn-core-sidebar-toggle .kn-core-toggle-label {
+  min-width: 0;
+  overflow: hidden;
 }
 /* Drawer layout has its own close control; no collapse control there. */
 @media (max-width: 1023px) {
@@ -1138,10 +1147,13 @@ html[data-kn-core][data-core-collapsed="true"] .kn-core-sidebar-footer {
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
 }
+/* Collapsed: the toggle stays a full-width row with the same inset as
+   navigation items, so its icon sits in the rail centre and the label is
+   clipped by the shrinking sidebar; nothing snaps during the animation. */
 html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-footer
   > .kn-core-sidebar-toggle {
-  justify-self: start;
+  justify-self: stretch;
 }
 html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-footer

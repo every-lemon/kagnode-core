@@ -291,6 +291,34 @@ try:
                     page.locator(".kn-core-sidebar-footer [data-core-toggle]").count()
                     == 1
                 )
+                if width >= 1024:
+                    # Cloudflare-style dock: account row above a full-width
+                    # collapse row that keeps its place in both states.
+                    toggle = page.locator(".kn-core-sidebar-footer [data-core-toggle]")
+                    account = page.locator(
+                        ".kn-core-sidebar-footer [data-account-menu]"
+                    )
+                    before = toggle.bounding_box()
+                    above = account.bounding_box()
+                    assert before["y"] >= above["y"] + above["height"] - 1, (
+                        "collapse control must sit below the account row"
+                    )
+                    assert toggle.locator("svg").count() == 1
+                    assert toggle.locator(".kn-core-toggle-label").count() == 1
+                    assert toggle.locator(
+                        ".kn-core-toggle-label"
+                    ).text_content() == toggle.get_attribute("aria-label")
+                    toggle.click()
+                    page.wait_for_timeout(450)
+                    after = toggle.bounding_box()
+                    assert abs(after["y"] - before["y"]) <= 1, (
+                        "collapse control moved between states"
+                    )
+                    assert toggle.locator(
+                        ".kn-core-toggle-label"
+                    ).text_content() == toggle.get_attribute("aria-label")
+                    toggle.click()
+                    page.wait_for_timeout(450)
                 assert (
                     page.locator(".kn-core-sidebar-navigation").evaluate(
                         "e=>getComputedStyle(e).scrollbarWidth"
