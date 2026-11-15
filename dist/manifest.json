@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "version": "5.0.13",
+  "version": "5.0.14",
   "ui_api": 1,
   "adapter_api": 1,
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.f753df83b238f1c8.js",
-    "script": "core.eb71bfe3eb094670.js",
+    "script": "core.98f08755ca483637.js",
     "style": "core.6ce9782d3118e79e.css"
   },
-  "source_commit": "d8d779dec6d2d1eac14b11a1bba9216558826922",
+  "source_commit": "310bcdc91f926750b8562aea77af891ceb9a470b",
   "repository": "every-lemon/kagnode-core",
   "user_summary": {
     "title": "Clearer navigation and movable dialogs",
@@ -229,9 +229,9 @@
       "sha256": "f753df83b238f1c83f0e7297288cec9b787eb6fe01de1c6be7ae85313b87edda",
       "size": 1831
     },
-    "core.eb71bfe3eb094670.js": {
-      "sha256": "eb71bfe3eb094670465d00e62c67ae66c5183bac375d2f23966243b2bff495cc",
-      "size": 107306
+    "core.98f08755ca483637.js": {
+      "sha256": "98f08755ca4836375063b9115096ec1ff291132ab28485b8dc23908a1748935c",
+      "size": 107429
     },
     "core.6ce9782d3118e79e.css": {
       "sha256": "6ce9782d3118e79e2114e94d6463d5ceec08d35a4a7c9e1cb329cf85ea136ce8",
