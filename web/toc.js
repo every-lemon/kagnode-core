@@ -11,6 +11,19 @@
       return null;
     }
   };
+  function scrollRoot(target) {
+    for (
+      let p = target?.parentElement;
+      p && p !== document.body;
+      p = p.parentElement
+    )
+      if (
+        /(auto|scroll)/.test(getComputedStyle(p).overflowY) &&
+        p.scrollHeight > p.clientHeight + 1
+      )
+        return p;
+    return document.scrollingElement || document.documentElement;
+  }
   function center(list, link) {
     const a = link.getBoundingClientRect(),
       b = list.getBoundingClientRect();
@@ -37,13 +50,15 @@
           .map((link) => ({ link, target: section(link) }))
           .filter((v) => v.target && v.target.getClientRects().length);
       let current = entries[0];
-      const toolbar = document.querySelector(
+      const scroller = scrollRoot(current?.target),
+        nested =
+          scroller !== document.scrollingElement &&
+          scroller !== document.documentElement,
+        viewportTop = nested ? scroller.getBoundingClientRect().top : 0,
+        toolbar = document.querySelector(
           ".plan-reading-toolbar,[data-core-reading-toolbar]",
         ),
-        padding =
-          parseFloat(
-            getComputedStyle(document.documentElement).scrollPaddingTop,
-          ) || 0,
+        padding = parseFloat(getComputedStyle(scroller).scrollPaddingTop) || 0,
         margin = entries[0]
           ? parseFloat(getComputedStyle(entries[0].target).scrollMarginTop) || 0
           : 0,
@@ -52,10 +67,16 @@
             toolbar.getBoundingClientRect().height +
             24
           : 80,
-        offset = Math.max(toolbarOffset, padding + margin + 2);
+        offset =
+          viewportTop +
+          Math.max(nested ? 80 : toolbarOffset, padding + margin + 2);
       for (const entry of entries)
         if (entry.target.getBoundingClientRect().top <= offset) current = entry;
-      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2)
+      if (
+        scroller.scrollHeight > scroller.clientHeight + 2 &&
+        scroller.scrollTop > 0 &&
+        scroller.clientHeight + scroller.scrollTop >= scroller.scrollHeight - 2
+      )
         current = entries.at(-1);
       for (const link of links)
         current?.link === link

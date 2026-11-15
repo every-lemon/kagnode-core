@@ -4,6 +4,42 @@
   const config = JSON.parse(
     document.querySelector('meta[name="kagnode-core"]')?.content || "{}",
   );
+  function labelFor({ action = "", method = "get", text = "" } = {}) {
+    let path;
+    try {
+      path = new URL(action || location.href, location.href).pathname;
+    } catch {
+      path = "";
+    }
+    if (String(method).toLowerCase() === "get")
+      return /search/.test(path) ? "Searching…" : "Loading…";
+    const rules = [
+      [/logout|signout/, "Signing out…"],
+      [/login|signin|mfa\/verify/, "Signing in…"],
+      [/signup|register/, "Creating account…"],
+      [/unsubscribe/, "Unsubscribing…"],
+      [/subscribe/, "Subscribing…"],
+      [/delete|remove/, "Removing…"],
+      [/restore/, "Restoring…"],
+      [/archive/, "Archiving…"],
+      [/publish/, "Publishing…"],
+      [/upload/, "Uploading…"],
+      [/download|export/, "Preparing download…"],
+      [/install/, "Installing…"],
+      [/update|upgrade/, "Updating…"],
+      [/refresh|check|verify/, "Checking…"],
+      [/messages|reply|send|invite/, "Sending…"],
+      [/reset/, "Resetting…"],
+      [/save|settings|preferences|profile|permissions|edit/, "Saving changes…"],
+      [/follow|star|rsvp/, "Updating…"],
+    ];
+    for (const [pattern, label] of rules) if (pattern.test(path)) return label;
+    const verb = String(text).trim();
+    if (/^(create|new|start)\b/i.test(verb)) return "Creating…";
+    if (/^save\b/i.test(verb)) return "Saving changes…";
+    if (/^(search|filter)\b/i.test(verb)) return "Searching…";
+    return "Working…";
+  }
   function spinner() {
     const frame = document.createElement("span");
     frame.className = "kn-core-spinner";
@@ -149,6 +185,7 @@
   document.addEventListener("close", render, true);
   document.addEventListener("kagnode:dialog-open", render);
   window.KagNodeLoading = {
+    labelFor,
     spinner,
     enhance,
     begin,

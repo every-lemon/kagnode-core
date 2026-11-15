@@ -305,24 +305,36 @@ html[data-kn-core] .kn-core-nav-group > .submenu {
   padding: 8px 9px;
 }
 .kn-core-sidebar-toggle {
+  /* Quiet ghost icon button: no chrome until hovered or focused. */
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
-  padding: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   border: 0;
+  border-radius: var(--kn-radius-control);
   background: transparent;
   color: var(--kn-muted);
   cursor: pointer;
+  transition:
+    background-color 150ms,
+    color 150ms;
 }
 .kn-core-sidebar-toggle:hover {
-  background: var(--kn-panel);
+  background: color-mix(in srgb, var(--kn-text) 7%, transparent);
   color: var(--kn-text);
+}
+.kn-core-sidebar-toggle:active {
+  background: color-mix(in srgb, var(--kn-text) 11%, transparent);
+}
+.kn-core-sidebar-toggle:focus-visible {
+  outline: 2px solid var(--kn-focus);
+  outline-offset: 1px;
 }
 .kn-core-sidebar-toggle svg,
 .kn-core-mobile-toggle svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   stroke: currentColor;
   stroke-width: 1.5;
 }
@@ -1010,7 +1022,7 @@ html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-heading
   > .kn-core-sidebar-toggle {
   position: absolute;
-  left: 9px;
+  left: 12px;
 }
 html[data-kn-core] .kn-core-sidebar-footer {
   gap: 4px;
@@ -1021,32 +1033,74 @@ html[data-kn-core] .kn-core-sidebar-footer:empty {
   display: none;
 }
 html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger] {
+  /* Full-width account row: avatar, name over email, selector chevron.
+     Must beat the global trigger `flex: none !important` and app max-widths,
+     otherwise the inbox control is pushed past the sidebar edge. */
   width: auto !important;
-  flex: 1;
+  flex: 1 1 auto !important;
   min-width: 0 !important;
-  height: 40px !important;
-  padding: 5px 6px !important;
+  max-width: none !important;
+  height: 48px !important;
+  padding: 6px 8px !important;
   justify-content: flex-start;
-  gap: 9px !important;
+  gap: 10px !important;
   background: transparent;
-  border: 0;
+  border: 0 !important;
   color: var(--kn-text);
-  border-radius: 8px !important;
+  border-radius: var(--kn-radius-control) !important;
+  text-align: left;
+  transition: background-color 150ms;
 }
-html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger]:hover {
-  background: var(--kn-panel);
+html[data-kn-core]
+  .kn-core-sidebar-footer
+  [data-core-account-trigger]:is(:hover, [aria-expanded="true"]) {
+  background: color-mix(in srgb, var(--kn-text) 7%, transparent);
+}
+html[data-kn-core]
+  .kn-core-sidebar-footer
+  [data-core-account-trigger]:focus-visible {
+  outline: 2px solid var(--kn-focus);
+  outline-offset: -2px;
 }
 .kn-core-account-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 auto;
   min-width: 0;
+  gap: 1px;
+  white-space: nowrap;
+}
+.kn-core-account-label > * {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 13px;
+}
+.kn-core-account-name {
+  font-size: 13.5px;
+  font-weight: 550;
+  line-height: 1.25;
+}
+.kn-core-account-email {
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--kn-muted);
+}
+.kn-core-account-email[hidden] {
+  display: none;
 }
 html[data-kn-core] .kn-core-sidebar-footer .kn-core-account-chevron {
-  width: 14px;
-  height: 14px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
   margin-left: auto;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .kn-core-sidebar-footer .kn-core-account-chevron svg {
+  width: 16px;
+  height: 16px;
 }
 html[data-kn-core]
   .kn-core-sidebar-footer
@@ -1060,9 +1114,17 @@ html[data-kn-core]
   flex: none;
 }
 html[data-kn-core] .kn-core-sidebar-footer [data-inbox-toggle] {
-  width: 36px;
-  height: 38px;
-  padding: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+  border: 0;
+  border-radius: var(--kn-radius-control);
+  background: transparent;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .kn-core-sidebar-footer [data-inbox-toggle]:hover {
+  background: color-mix(in srgb, var(--kn-text) 7%, transparent);
+  color: var(--kn-text);
 }
 html[data-kn-core][data-core-collapsed="true"] .kn-core-sidebar-footer {
   flex-direction: column;
@@ -1071,8 +1133,9 @@ html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-footer
   [data-core-account-trigger] {
   width: 38px !important;
-  flex: none;
+  flex: none !important;
   justify-content: center;
+  padding: 4px !important;
 }
 html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-footer
@@ -1155,4 +1218,30 @@ html[data-kn-core]
   .kn-core-sidebar-heading
   :is([data-dismiss-nav], #sidebar-close) {
   display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-kn-core]
+    :is(
+      .kn-core-sidebar-toggle,
+      .kn-core-sidebar-footer [data-core-account-trigger]
+    ) {
+    transition: none;
+  }
+}
+html[data-kn-core] .kn-core-sidebar-toggle > svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke-width: 1.6;
+}
+/* Circular avatar follows the theme: soft accent tint in light, deeper in dark. */
+html[data-kn-core]
+  :is([data-core-account-trigger], [data-core-account-menu] .account-identity)
+  :is(.avatar, .avatar-fallback, .account-avatar) {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  background: color-mix(in srgb, var(--kn-accent) 14%, var(--kn-bg)) !important;
+  color: var(--kn-link) !important;
+  border: 1px solid color-mix(in srgb, var(--kn-accent) 28%, transparent) !important;
+  font-weight: 600;
 }
