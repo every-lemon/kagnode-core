@@ -1,3 +1,11 @@
+## 5.0.13
+
+- Avoid repeated SVG child rewrites during component refresh, preventing self-triggered observer redraws.
+
+- Correct the canonical chevron alias to chevron-down; the older right-chevron alias overrode the default shape during bundling.
+- Normalize disclosure carets supplied by older server adapters across page content as well as sidebars.
+- Animate expanded disclosures upward while preserving directional navigation arrows and reduced motion.
+
 ## 5.0.12
 
 - Keep the sidebar Quick Search icon centered within its collapsed rail, with an accessible name and tooltip.

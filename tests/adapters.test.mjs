@@ -111,5 +111,5 @@ test("field and secret templates preserve host controls and local handlers", asy
   assert.match(field, /class="kn-core-login-secret"/);
   assert.match(field, /data-reveal="secret"/);
   assert.match(field, /name="password" type="password"/);
-  assert.equal(iconSources.chevron, "chevron-right");
+  assert.equal(iconSources.chevron, "chevron-down");
 });

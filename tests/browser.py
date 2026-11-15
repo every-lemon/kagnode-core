@@ -324,6 +324,24 @@ try:
                 assert "Retrying…" in page.locator("#loading").inner_text()
                 page.evaluate("document.querySelector('#loading').remove()")
                 assert page.locator("body").evaluate("(e)=>e.scrollWidth<=innerWidth+1")
+                page.evaluate(
+                    """()=>{const d=document.createElement('details');d.id='legacy-disclosure';d.innerHTML='<summary><svg data-disclosure-icon viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>Legacy disclosure</summary><p>Contents</p>';document.querySelector('main').append(d);KagNodeCore.refresh()}"""
+                )
+                assert (
+                    page.locator("#legacy-disclosure path").get_attribute("d")
+                    == "m4 8 8 8 8-8"
+                )
+                assert (
+                    page.evaluate(
+                        """async()=>{let mutations=0;const observer=new MutationObserver(records=>mutations+=records.length);observer.observe(document.querySelector('#legacy-disclosure svg'),{childList:true,subtree:true});for(let i=0;i<5;i++)KagNodeCore.refresh();await Promise.resolve();observer.disconnect();return mutations;}"""
+                    )
+                    == 0
+                )
+                page.locator("#legacy-disclosure summary").click()
+                page.wait_for_function(
+                    "getComputedStyle(document.querySelector('#legacy-disclosure svg')).transform==='matrix(-1, 0, 0, -1, 0, 0)'"
+                )
+                page.locator("#legacy-disclosure").evaluate("e=>e.remove()")
                 page.evaluate("KagNodeCore.setSession({authenticated:false})")
                 assert page.locator("html").get_attribute("data-theme") == scheme
                 page.close()
