@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.17
+
+- Fix the sidebar footer dock, mobile drawer scroll lock and 44px touch navigation.
+- Polish avatar initials, search clear controls and dialog resize-grip clearance.
+- Validate the complete tracked source inventory in CI.
+
 ## 5.0.16
 
 - Refine sidebar footer controls, theme-aware avatars, dialog forms and dashboard spacing.
