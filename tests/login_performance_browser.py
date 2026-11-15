@@ -332,6 +332,8 @@ try:
             page.wait_for_function(
                 "document.querySelector('.kn-core-rail[aria-controls=dynamic-scroll]')!==null"
             )
+            if width < 1024:
+                page.evaluate("KagNodeCore.navigation.open()")
             trigger = page.locator("[data-core-account-trigger]")
             trigger.click()
             assert (
@@ -378,6 +380,7 @@ try:
                 'document.querySelector("#kn-core-account-menu").hidden'
             )
             assert page.evaluate("document.activeElement.tagName==='IFRAME'")
+            page.locator("#outside-frame").evaluate("e=>e.remove()")
             trigger.click()
             page.evaluate('document.querySelector("dialog").showModal()')
             page.wait_for_function(

@@ -1,5 +1,12 @@
 # 5.0.14
 
+## 5.0.15
+
+- Keep sidebar labels on one line during motion, clip overflow, preserve icon sizes and hide navigation scrollbars.
+- Move account/inbox controls to the footer and collapse control to the brand heading; bound account popovers above their trigger.
+- Add keyboard and pointer resizing to shared desktop dialogs, preserving dirty-form protection and mobile sizing.
+- Refine neutral theme surfaces, home/login presentation and adjacent action-button spacing while retaining the blue accent.
+
 - Prevent transient content overflow when a hidden legacy dashboard adopts the shared sidebar layout.
 
 - Reset progressive sign-in presentation when an application returns to identity entry, including explicit Link/Create choices and local fallback. Preserve identity/CSRF values and provider cancellation boundaries; clear the previous password on explicit reset.

@@ -10,19 +10,19 @@
   --kn-accent: #2563eb;
   --kn-link: #1d4ed8;
   --kn-focus: #79a7ff;
-  --kn-bg: #fff;
-  --kn-panel: #f7f7f8;
+  --kn-bg: #faf9f6;
+  --kn-panel: #f0efeb;
   --kn-line: #dcdde1;
   --kn-text: #17181b;
   --kn-muted: #61636b;
 }
 html[data-theme="dark"] {
-  --kn-bg: #101010;
+  --kn-bg: #191919;
   --kn-link: #8ab4ff;
-  --kn-panel: #191919;
-  --kn-line: #303033;
-  --kn-text: #f1f1f3;
-  --kn-muted: #a3a3aa;
+  --kn-panel: #252524;
+  --kn-line: #3a3a38;
+  --kn-text: #ecebe8;
+  --kn-muted: #aaa9a5;
 }
 html[data-kn-core] {
   color-scheme: light;
@@ -105,15 +105,14 @@ html[data-kn-core] [data-core-account-trigger] > svg {
 html[data-kn-core] [data-core-account-menu] {
   box-sizing: border-box;
   position: fixed !important;
-  left: auto !important;
-  width: min(288px, calc(100vw - 24px)) !important;
+  width: min(304px, calc(100vw - 24px)) !important;
   padding: 8px !important;
   border: 1px solid var(--kn-line) !important;
   border-radius: 12px !important;
-  background: var(--kn-bg) !important;
+  background: var(--kn-panel) !important;
   color: var(--kn-text) !important;
   box-shadow: 0 12px 36px #0003 !important;
-  z-index: 12000 !important;
+  z-index: 14000 !important;
   max-height: calc(100dvh - 80px);
   overflow: auto;
   transform: none !important;
@@ -136,7 +135,7 @@ html[data-kn-core] [data-core-account-menu] :is(a, button) {
   border-radius: var(--kn-radius-control) !important;
 }
 html[data-kn-core] [data-core-account-menu] :is(a, button):hover {
-  background: var(--kn-panel);
+  background: color-mix(in srgb, var(--kn-text) 8%, var(--kn-panel));
 }
 .kn-core-account-identity,
 .account-identity {
@@ -161,7 +160,7 @@ html[data-kn-core] .sidebar[data-core-sidebar] {
   border-radius: 0 !important;
   background: var(--kn-bg) !important;
   color: var(--kn-text) !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   transform: none !important;
   transition: width var(--kn-motion) var(--kn-easing) !important;
   z-index: 120 !important;
@@ -967,4 +966,206 @@ html[data-kn-core] details[open] > summary .chevron [data-disclosure-icon] {
   html[data-kn-core] [data-disclosure-icon] {
     transition: none;
   }
+}
+
+/* Stable row geometry while the sidebar clips its labels during motion. */
+html[data-kn-core] .kn-core-sidebar-navigation :is(a, summary, button),
+html[data-kn-core]
+  .kn-core-sidebar-navigation
+  :is(.nav-label, .nav-section-title),
+html[data-kn-core] .kn-core-sidebar-heading .brand-copy {
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+}
+html[data-kn-core]
+  .kn-core-sidebar-navigation
+  :is(.nav-label, a > span, summary > span) {
+  flex-shrink: 0;
+}
+html[data-kn-core]
+  .sidebar[data-core-sidebar]
+  :is(svg, img, .ui-icon, .icon, [data-core-icon]) {
+  flex-shrink: 0 !important;
+}
+html[data-kn-core] .kn-core-sidebar-navigation {
+  scrollbar-width: none !important;
+}
+html[data-kn-core] .kn-core-sidebar-navigation::-webkit-scrollbar {
+  display: none !important;
+  width: 0;
+  height: 0;
+}
+html[data-kn-core] [data-core-brand-link] :is(svg, path) {
+  fill: currentColor !important;
+  color: var(--kn-muted) !important;
+}
+html[data-kn-core] [data-core-brand-link] img {
+  filter: grayscale(1);
+}
+html[data-kn-core] .kn-core-sidebar-heading {
+  position: relative;
+  gap: 8px;
+  padding-inline: 14px 8px;
+}
+html[data-kn-core] .kn-core-sidebar-heading > .brand {
+  flex: 1;
+  overflow: hidden;
+}
+html[data-kn-core] .kn-core-sidebar-heading > .kn-core-sidebar-toggle {
+  flex: none;
+}
+html[data-kn-core][data-core-collapsed="true"]
+  .kn-core-sidebar-heading
+  > .brand {
+  visibility: hidden;
+}
+html[data-kn-core][data-core-collapsed="true"]
+  .kn-core-sidebar-heading
+  > .kn-core-sidebar-toggle {
+  position: absolute;
+  left: 9px;
+}
+html[data-kn-core] .kn-core-sidebar-footer {
+  gap: 4px;
+  min-height: 60px;
+  height: auto;
+}
+html[data-kn-core] .kn-core-sidebar-footer:empty {
+  display: none;
+}
+html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger] {
+  width: auto !important;
+  flex: 1;
+  min-width: 0 !important;
+  height: 40px !important;
+  padding: 5px 6px !important;
+  justify-content: flex-start;
+  gap: 9px !important;
+  background: transparent;
+  border: 0;
+  color: var(--kn-text);
+  border-radius: 8px !important;
+}
+html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger]:hover {
+  background: var(--kn-panel);
+}
+.kn-core-account-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+html[data-kn-core] .kn-core-sidebar-footer .kn-core-account-chevron {
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+}
+html[data-kn-core]
+  .kn-core-sidebar-footer
+  [data-core-account-trigger]
+  > :is(.avatar, img) {
+  flex: none;
+}
+html[data-kn-core]
+  .kn-core-sidebar-footer
+  :is(.header-inbox, [data-inbox-toggle]) {
+  flex: none;
+}
+html[data-kn-core] .kn-core-sidebar-footer [data-inbox-toggle] {
+  width: 36px;
+  height: 38px;
+  padding: 8px;
+}
+html[data-kn-core][data-core-collapsed="true"] .kn-core-sidebar-footer {
+  flex-direction: column;
+}
+html[data-kn-core][data-core-collapsed="true"]
+  .kn-core-sidebar-footer
+  [data-core-account-trigger] {
+  width: 38px !important;
+  flex: none;
+  justify-content: center;
+}
+html[data-kn-core][data-core-collapsed="true"]
+  .kn-core-sidebar-footer
+  :is(.kn-core-account-label, .kn-core-account-chevron) {
+  display: none;
+}
+html[data-kn-core] [data-core-account-menu] :is(svg, .ui-icon) {
+  width: 19px;
+  height: 19px;
+  flex: none;
+}
+html[data-kn-core] [data-core-account-menu] .account-identity {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+html[data-kn-core]
+  [data-core-account-menu]
+  .account-identity
+  :is(strong, small) {
+  display: block;
+}
+html[data-kn-core] [data-core-account-menu] small {
+  color: var(--kn-muted);
+}
+html[data-kn-core] [data-core-account-menu] form {
+  border-top: 1px solid var(--kn-line);
+  margin-top: 6px;
+  padding-top: 6px;
+}
+html[data-kn-core] #page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+html[data-kn-core] #page-actions > :is(button, .button) {
+  min-height: 40px;
+  flex: 0 1 auto;
+}
+html[data-kn-core]
+  [data-core-account-trigger]
+  :is(.avatar, .account-avatar, img) {
+  border-radius: 50% !important;
+}
+html[data-kn-core] {
+  --bg: var(--kn-bg);
+  --panel: var(--kn-panel);
+  --surface: var(--kn-panel);
+  --text: var(--kn-text);
+  --muted: var(--kn-muted);
+  --border: var(--kn-line);
+}
+html[data-kn-core] body {
+  background-color: var(--kn-bg);
+  color: var(--kn-text);
+}
+
+html[data-kn-core] #inbox-popover {
+  position: fixed;
+  z-index: 14001;
+  background: var(--kn-panel);
+  color: var(--kn-text);
+  border-color: var(--kn-line);
+}
+html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger] > img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50% !important;
+}
+
+html[data-kn-core] .kn-core-sidebar-heading .brand-copy > strong {
+  flex-wrap: nowrap !important;
+}
+html[data-core-shell="active"] .top-actions > .top-divider {
+  display: none;
+}
+html[data-kn-core]
+  .kn-core-sidebar-heading
+  :is([data-dismiss-nav], #sidebar-close) {
+  display: none !important;
 }
