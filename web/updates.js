@@ -89,6 +89,10 @@
   }
   let current,
     checking = false,
+    // A local manager that denies or lacks status for this session will keep
+    // doing so; stop re-requesting on every focus/interval until the session
+    // changes (kagnode:core-session).
+    denied = false,
     checked = 0,
     panel;
   async function headers(signal) {
@@ -159,6 +163,7 @@
       if (!r.ok) {
         const e = Error(v.error || "Core request failed.");
         e.status = r.status;
+        e.code = v.code;
         throw e;
       }
       return v;
@@ -358,6 +363,7 @@
   async function refresh() {
     if (
       checking ||
+      denied ||
       blocked() ||
       Date.now() - checked < 5000 ||
       !window.KagNodeTheme.session.authenticated
@@ -383,6 +389,8 @@
         [401, 403, 404].includes(e.status)
       ) {
         current = null;
+        // Re-authentication is recoverable; only a plain denial is latched.
+        denied = e.code !== "reauth_required";
         panel?.remove();
         panel = null;
       }
@@ -395,6 +403,7 @@
   }
   document.addEventListener("kagnode:core-session", () => {
     generation++;
+    denied = false;
     abortRead();
     for (const controller of requests) controller.abort();
     current = null;

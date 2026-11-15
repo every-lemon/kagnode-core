@@ -1,265 +1,331 @@
-/* Core home: compact reference composition with actual account activity. */
-.core-developer-home {
-  max-width: 1120px;
-  gap: 24px;
+/* Core home: compact welcome, quick search, a "continue" list and real
+   account activity. One layer — the application supplies markup and data. */
+html[data-kn-core] .core-developer-home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1080px;
 }
-.core-developer-home .dev-home-heading h1 {
-  font-size: clamp(28px, 3vw, 40px);
-  letter-spacing: -0.035em;
+
+/* Welcome */
+html[data-kn-core] .core-developer-home .dev-home-heading {
+  display: block;
+  padding: 8px 0 0;
 }
-.core-developer-home .dev-home-heading p:not(.dev-kicker) {
-  margin-top: 8px;
+html[data-kn-core] .core-developer-home .dev-home-heading h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
 }
-.core-home-search {
+html[data-kn-core] .core-developer-home .dev-home-heading p:not(.dev-kicker) {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .core-developer-home .dev-kicker {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kn-muted);
+}
+
+/* Quick search entry: opens the same authorized search as Ctrl/Cmd+K. */
+html[data-kn-core] a.core-home-search {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px;
-  border: 1px solid var(--border, #343434);
-  border-radius: 12px;
-  background: var(--kn-panel);
-}
-.core-home-search > .ui-icon {
-  margin-left: 10px;
-  color: var(--muted);
-}
-.core-home-search input {
-  flex: 1;
-  min-width: 0;
-  border: 0;
-  background: transparent;
-  padding: 10px;
-  font: inherit;
-  color: inherit;
-}
-.core-home-actions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-.core-home-action {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  min-width: 0;
-  padding: 14px 14px 20px;
-  border: 1px solid var(--border, #343434);
-  border-radius: 12px;
-  background: var(--kn-panel);
-}
-.core-home-art {
-  height: 68px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  background: var(--kn-bg);
-  border: 1px solid var(--kn-line);
-  border-radius: 8px;
-  color: var(--kn-focus);
-}
-.core-home-art > .ui-icon {
-  width: 28px;
-  height: 28px;
-  stroke-width: 1.2;
-}
-.core-home-art > span {
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: var(--kn-muted);
-}
-.core-home-action > div:not(.core-home-art) {
-  padding: 0 8px;
-}
-.core-home-action h2 {
-  font-size: 18px;
-  letter-spacing: -0.02em;
-  margin: 0 0 10px;
-}
-.core-home-action p {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--muted);
-  margin: 0;
-}
-.core-home-action small {
-  display: block;
-  margin-top: 8px;
-  font-size: 11px;
-  color: var(--muted);
-}
-.core-home-action > .button {
-  align-self: flex-start;
-  margin: 0 8px;
-  margin-top: auto;
-}
-.core-home-activity {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 20px;
-}
-.core-developer-home .dev-home-section {
-  border: 1px solid var(--kn-line);
-  padding: 22px;
-  border-radius: 12px;
-}
-.core-developer-home .dev-section-heading h2 {
-  font-size: 18px;
-}
-.core-developer-home .dev-section-heading > a {
-  font-size: 12px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.core-home-empty {
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--muted);
-  margin: 18px 0;
-}
-.core-home-plan-update {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  justify-content: space-between;
-  border-top: 1px solid var(--kn-line);
-  padding-top: 28px;
-}
-.core-home-plan-update p {
-  max-width: 700px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
-.core-home-plan-update h2 {
-  font-size: 21px;
-  letter-spacing: -0.025em;
-}
-@media (max-width: 1150px) {
-  .core-home-actions {
-    gap: 12px;
-  }
-  .core-home-art {
-    height: 68px;
-  }
-}
-@media (max-width: 760px) {
-  .core-home-actions,
-  .core-home-activity {
-    grid-template-columns: 1fr;
-  }
-  .core-home-action {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 16px;
-    align-items: start;
-  }
-  .core-home-art {
-    height: 90px;
-    grid-row: span 2;
-  }
-  .core-home-art > span {
-    display: none;
-  }
-  .core-home-action > .button {
-    grid-column: 2;
-  }
-  .core-home-plan-update {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-  }
-}
-
-/* The home search opens the same authorized quick search as Ctrl/Cmd+K. */
-html[data-kn-core] a.core-home-search {
   width: 100%;
   box-sizing: border-box;
-  color: var(--kn-muted);
+  min-height: 52px;
+  padding: 0 14px 0 16px;
+  border: 1px solid var(--kn-line);
+  border-radius: var(--kn-radius-panel);
   background: var(--kn-panel);
-  border-color: var(--kn-line);
+  color: var(--kn-muted);
   text-decoration: none;
-  text-align: left;
-  min-height: 54px;
+  transition: border-color 160ms;
 }
-a.core-home-search > span {
+html[data-kn-core] a.core-home-search > .ui-icon,
+html[data-kn-core] a.core-home-search > svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+html[data-kn-core] a.core-home-search > span {
   flex: 1;
   min-width: 0;
-  padding: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
 }
-a.core-home-search kbd {
+html[data-kn-core] a.core-home-search kbd {
   flex: none;
-  margin: 0 10px;
+  padding: 2px 6px;
+  border: 1px solid var(--kn-line);
+  border-radius: 6px;
   font: inherit;
   font-size: 11px;
   white-space: nowrap;
 }
-a.core-home-search:hover {
+html[data-kn-core] a.core-home-search:hover {
   color: var(--kn-text);
   border-color: var(--kn-muted);
 }
-a.core-home-search:focus-visible {
+html[data-kn-core] a.core-home-search:focus-visible {
   outline: 2px solid var(--kn-focus);
-  outline-offset: 3px;
+  outline-offset: 2px;
+}
+
+/* Continue list: one compact panel of rows instead of decorative cards. */
+html[data-kn-core] .core-home-continue {
+  border: 1px solid var(--kn-line);
+  border-radius: var(--kn-radius-panel);
+  background: var(--kn-panel);
+  overflow: hidden;
+}
+html[data-kn-core] .core-home-continue > h2 {
+  margin: 0;
+  padding: 14px 18px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .core-home-list {
+  margin: 0;
+  padding: 0 6px 6px;
+  list-style: none;
+}
+html[data-kn-core] .core-home-list a {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--kn-radius-control);
+  color: var(--kn-text);
+  text-decoration: none;
+}
+html[data-kn-core] .core-home-list a:hover {
+  background: var(--kn-bg);
+}
+html[data-kn-core] .core-home-list a:focus-visible {
+  outline: 2px solid var(--kn-focus);
+  outline-offset: -2px;
+}
+html[data-kn-core] .core-home-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--kn-radius-control);
+  background: var(--kn-bg);
+  color: var(--kn-muted);
+}
+html[data-kn-core] .core-home-icon > :is(svg, .ui-icon) {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+html[data-kn-core] .core-home-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+html[data-kn-core] .core-home-copy strong {
+  font-size: 14px;
+  font-weight: 550;
+}
+html[data-kn-core] .core-home-copy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12.5px;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .core-home-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kn-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+html[data-kn-core] .core-home-meta > :is(svg, .ui-icon) {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+html[data-kn-core] .core-home-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--kn-accent) 16%, transparent);
+  color: var(--kn-link);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Activity panels */
+html[data-kn-core] .core-home-activity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+html[data-kn-core] .core-developer-home .dev-home-section {
+  min-width: 0;
+  padding: 16px 18px 18px;
+  border: 1px solid var(--kn-line);
+  border-radius: var(--kn-radius-panel);
+  background: var(--kn-panel);
+}
+/* The section already has padding; headings must align with their content. */
+html[data-kn-core] .core-developer-home .dev-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 0 10px;
+}
+html[data-kn-core] .core-developer-home .dev-section-heading h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+html[data-kn-core] .core-developer-home .dev-section-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--kn-muted);
+  text-decoration: none;
+}
+html[data-kn-core] .core-developer-home .dev-section-heading > a:hover {
+  color: var(--kn-text);
+}
+html[data-kn-core] .core-developer-home .dev-section-heading > a > :is(svg, .ui-icon) {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+html[data-kn-core] .core-home-empty {
+  margin: 4px 0 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .core-developer-home .dev-home-section > .button {
+  min-height: 34px;
+}
+
+/* Plan status */
+html[data-kn-core] .core-home-plan-update {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--kn-line);
+}
+html[data-kn-core] .core-home-plan-update h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+html[data-kn-core] .core-home-plan-update p {
+  max-width: 680px;
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .core-home-plan-update > .button {
+  flex: none;
+}
+
+@media (max-width: 760px) {
+  html[data-kn-core] .core-home-activity {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html[data-kn-core] .core-home-plan-update {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  html[data-kn-core] .core-home-list a {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  html[data-kn-core] .core-home-meta:not(:has(.core-home-badge)) {
+    display: none;
+  }
+  html[data-kn-core] .core-home-meta:has(.core-home-badge) {
+    grid-column: 2;
+  }
 }
 @media (max-width: 480px) {
-  a.core-home-search kbd {
+  html[data-kn-core] a.core-home-search kbd {
     display: none;
   }
 }
-
-html[data-kn-core] .core-developer-home .dev-home-heading {
-  padding: 24px 0 0;
-  align-items: center;
-}
-html[data-kn-core] .core-developer-home .dev-home-heading h1 {
-  font-size: clamp(28px, 3vw, 38px);
-  font-weight: 550;
-}
-html[data-kn-core] .core-developer-home .dev-kicker {
-  color: var(--kn-muted);
-  letter-spacing: 0.06em;
-}
-html[data-kn-core] .core-home-search {
-  min-height: 64px;
-  padding: 12px 16px;
-  margin-bottom: 4px;
-}
-html[data-kn-core] .core-home-search:focus-visible {
-  outline: 2px solid var(--kn-focus);
-  outline-offset: 3px;
-}
-html[data-kn-core] .core-home-action {
-  transition:
-    border-color 160ms,
-    background-color 160ms;
-}
-html[data-kn-core] .core-home-action:hover {
-  border-color: var(--kn-muted);
-}
-html[data-kn-core] .core-home-art {
-  justify-content: flex-start;
-  padding: 16px;
-  gap: 12px;
-  color: var(--kn-muted);
-  border: 0;
-}
-html[data-kn-core] .core-home-action > .button {
-  min-height: 38px;
-}
-html[data-kn-core] .core-developer-home .dev-home-section {
-  background: var(--kn-panel);
-}
-@media (max-width: 760px) {
-  html[data-kn-core] .core-home-art {
-    justify-content: center;
-    padding: 8px;
+@media (prefers-reduced-motion: reduce) {
+  html[data-kn-core] a.core-home-search {
+    transition: none;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  html[data-kn-core] .core-home-action {
-    transition: none;
+@media (forced-colors: active) {
+  html[data-kn-core] :is(.core-home-continue, .dev-home-section, a.core-home-search) {
+    border: 1px solid CanvasText;
+  }
+  html[data-kn-core] .core-home-list a:focus-visible {
+    outline: 2px solid Highlight;
+  }
+}
+
+/* Compatibility: pages rendered by an older application template (for
+   example during a staged rollout or an application rollback) keep a tidy
+   three-card layout without decorative art tiles. */
+html[data-kn-core] .core-home-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+html[data-kn-core] .core-home-action {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--kn-line);
+  border-radius: var(--kn-radius-panel);
+  background: var(--kn-panel);
+}
+html[data-kn-core] .core-home-art {
+  display: none;
+}
+html[data-kn-core] .core-home-action h2 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+html[data-kn-core] .core-home-action :is(p, small) {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--kn-muted);
+}
+html[data-kn-core] .core-home-action > .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+@media (max-width: 760px) {
+  html[data-kn-core] .core-home-actions {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
