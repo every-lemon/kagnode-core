@@ -1275,3 +1275,12 @@ html[data-kn-core]
   border: 1px solid color-mix(in srgb, var(--kn-accent) 28%, transparent) !important;
   font-weight: 600;
 }
+/* Fallback initials sit in the circle's centre (image avatars are untouched). */
+html[data-kn-core]
+  :is([data-core-account-trigger], [data-core-account-menu] .account-identity)
+  :is(.avatar, .avatar-fallback, .account-avatar):not(img) {
+  display: inline-grid;
+  place-items: center;
+  line-height: 1;
+  flex: none;
+}
