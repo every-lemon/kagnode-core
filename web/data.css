@@ -1,0 +1,188 @@
+/* Shared data presentation: table, badge, facts, meter, state and form dialog.
+   Tone is always carried by text as well as colour. No inline styles are needed,
+   so every component works under a strict style-src policy. */
+html {
+  --kn-ok: #1a7f4b;
+  --kn-warn: #9a6700;
+  --kn-bad: #c62f2f;
+}
+html[data-theme="dark"] {
+  --kn-ok: #4cc58a;
+  --kn-warn: #e6b34a;
+  --kn-bad: #ff8c8c;
+}
+.kn-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--kn-line);
+  border-radius: 12px;
+}
+.kn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.kn-table > caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.kn-table th,
+.kn-table td {
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--kn-line);
+}
+.kn-table th {
+  color: var(--kn-muted);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.kn-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.kn-table tbody tr:hover {
+  background: color-mix(in srgb, var(--kn-text) 4%, transparent);
+}
+.kn-table tbody tr[aria-selected="true"] {
+  background: color-mix(in srgb, var(--kn-accent) 10%, transparent);
+}
+.kn-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.kn-table .kn-actions {
+  justify-content: flex-end;
+}
+.kn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.kn-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--kn-tone, var(--kn-line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--kn-tone, transparent) 12%, transparent);
+  color: var(--kn-text);
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+.kn-badge[data-tone="ok"] {
+  --kn-tone: var(--kn-ok);
+}
+.kn-badge[data-tone="warn"] {
+  --kn-tone: var(--kn-warn);
+}
+.kn-badge[data-tone="bad"] {
+  --kn-tone: var(--kn-bad);
+}
+.kn-badge[data-tone="info"] {
+  --kn-tone: var(--kn-accent);
+}
+.kn-badge:not([data-tone]) {
+  color: var(--kn-muted);
+}
+.kn-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px 24px;
+  margin: 0;
+}
+.kn-facts dt {
+  color: var(--kn-muted);
+  font-size: 12px;
+}
+.kn-facts dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+progress.kn-meter {
+  appearance: none;
+  inline-size: 100%;
+  block-size: 8px;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--kn-text) 12%, transparent);
+  accent-color: var(--kn-accent);
+}
+progress.kn-meter::-webkit-progress-bar {
+  background: color-mix(in srgb, var(--kn-text) 12%, transparent);
+}
+progress.kn-meter::-webkit-progress-value {
+  border-radius: 999px;
+  background: var(--kn-tone, var(--kn-accent));
+}
+progress.kn-meter::-moz-progress-bar {
+  border-radius: 999px;
+  background: var(--kn-tone, var(--kn-accent));
+}
+progress.kn-meter[data-tone="ok"] {
+  --kn-tone: var(--kn-ok);
+}
+progress.kn-meter[data-tone="warn"] {
+  --kn-tone: var(--kn-warn);
+}
+progress.kn-meter[data-tone="bad"] {
+  --kn-tone: var(--kn-bad);
+}
+.kn-state {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  padding: 20px;
+  border: 1px dashed var(--kn-line);
+  border-radius: 12px;
+}
+.kn-state > * {
+  margin: 0;
+}
+.kn-state[data-tone="bad"] {
+  border-style: solid;
+  border-color: var(--kn-bad);
+}
+.kn-state[data-tone="bad"] > :first-child {
+  color: var(--kn-bad);
+}
+.kn-form-dialog {
+  display: grid;
+  gap: 14px;
+  min-width: min(440px, 80vw);
+}
+.kn-form-dialog > h2,
+.kn-form-dialog > p {
+  margin: 0;
+}
+.kn-form-dialog label {
+  display: grid;
+  gap: 6px;
+}
+.kn-form-dialog small {
+  color: var(--kn-muted);
+}
+.kn-form-error {
+  margin: 0;
+  color: var(--kn-bad);
+}
+.kn-form-error:empty {
+  display: none;
+}
+.kn-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.kn-form-actions .kn-danger {
+  color: var(--kn-bad);
+  border-color: var(--kn-bad);
+}
