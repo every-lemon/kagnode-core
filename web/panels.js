@@ -570,7 +570,87 @@
     },
     true,
   );
+  /* A modal form for confirmations (password, typed phrase). `onSubmit(values)`
+     may throw to show its message and keep the dialog open; typed values are
+     cleared from the DOM whenever the dialog closes. Resolves true after a
+     successful submit and false otherwise. */
+  function form(options) {
+    return new Promise((resolve) => {
+      const make = (tag, cls, text) => {
+        const node = document.createElement(tag);
+        if (cls) node.className = cls;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      };
+      const dialog = make("dialog"),
+        body = make("form", "kn-form-dialog"),
+        alert = make("p", "kn-form-error"),
+        actions = make("div", "kn-form-actions"),
+        cancel = make("button", "button", options.cancel || "Cancel"),
+        ok = make(
+          "button",
+          "button " + (options.danger ? "kn-danger" : "primary"),
+          options.submit || "Confirm",
+        ),
+        inputs = {};
+      let done = false;
+      dialog.setAttribute("aria-label", options.title);
+      alert.setAttribute("role", "alert");
+      cancel.type = "button";
+      body.append(make("h2", "", options.title));
+      if (options.intro) body.append(make("p", "", options.intro));
+      for (const field of options.fields || []) {
+        const row = make("label", "", field.label),
+          input = make("input");
+        input.name = field.name;
+        input.type = field.type || "text";
+        input.required = field.required !== false;
+        input.autocomplete = field.autocomplete || "off";
+        if (field.pattern) input.pattern = field.pattern;
+        if (field.placeholder) input.placeholder = field.placeholder;
+        if (field.spellcheck === false) input.spellcheck = false;
+        row.append(input);
+        if (field.hint) row.append(make("small", "", field.hint));
+        body.append(row);
+        inputs[field.name] = input;
+      }
+      actions.append(cancel, ok);
+      body.append(alert, actions);
+      body.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        ok.disabled = true;
+        alert.textContent = "";
+        try {
+          const values = {};
+          for (const [name, input] of Object.entries(inputs))
+            values[name] = input.value;
+          await options.onSubmit?.(values);
+          done = true;
+          close(dialog);
+        } catch (error) {
+          alert.textContent = error?.message || "The request failed";
+        } finally {
+          ok.disabled = false;
+        }
+      });
+      cancel.addEventListener("click", () => close(dialog));
+      dialog.addEventListener(
+        "close",
+        () => {
+          for (const input of Object.values(inputs)) input.value = "";
+          dialog.remove();
+          resolve(done);
+        },
+        { once: true },
+      );
+      dialog.append(body);
+      document.body.append(dialog);
+      open(dialog);
+      Object.values(inputs)[0]?.focus({ preventScroll: true });
+    });
+  }
   window.KagNodeDialogs = {
+    form,
     open,
     close,
     dismiss: (dialog) => dismissals.get(dialog)?.(),

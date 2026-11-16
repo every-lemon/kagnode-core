@@ -97,7 +97,9 @@ entrypoints.style = compile(
     "\n" +
     read("search.css") +
     "\n" +
-    read("loading.css"),
+    read("loading.css") +
+    "\n" +
+    read("data.css"),
   "css",
 );
 const mark = fs.readFileSync(path.join(root, "assets/mark.svg"));
