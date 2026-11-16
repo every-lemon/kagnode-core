@@ -1045,7 +1045,88 @@
     }
   });
   const loading = window.KagNodeLoading;
+  /* Administration folder: a disclosure group at the end of the sidebar that an
+     application (or its adapter) opts into for an authenticated administrator.
+     It carries only links; nothing is signed in or shared with the target. */
+  const safeHref = (value) => {
+    try {
+      const url = new URL(String(value), location.href);
+      return url.protocol === "https:" || url.protocol === "http:"
+        ? url.href
+        : "";
+    } catch {
+      return "";
+    }
+  };
+  function removeAdminFolder() {
+    $("[data-core-admin-folder]", sidebar || document)?.remove();
+    window.KagNodeScroll?.refresh(sidebar);
+  }
+  function setAdminFolder(spec) {
+    const nav = sidebar && $(".kn-core-sidebar-navigation", sidebar);
+    if (!nav) return false;
+    // Never present administration to a signed-out visitor, whatever the caller says.
+    if (
+      !spec ||
+      spec.enabled === false ||
+      window.KagNodeTheme?.session?.authenticated !== true
+    ) {
+      removeAdminFolder();
+      return false;
+    }
+    const entries = (
+      Array.isArray(spec.items) && spec.items.length
+        ? spec.items
+        : [{ label: "Daemon administration", href: spec.url }]
+    )
+      .slice(0, 8)
+      .map((item) => ({
+        label: String(item.label || "")
+          .trim()
+          .slice(0, 40),
+        href: safeHref(item.href),
+      }));
+    if (!entries.length || entries.some((e) => !e.label || !e.href)) {
+      removeAdminFolder();
+      return false;
+    }
+    removeAdminFolder();
+    const group = element("details", "kn-core-nav-group");
+    group.dataset.coreGroup = "admin";
+    group.dataset.coreAdminFolder = "";
+    const summary = element("summary");
+    summary.setAttribute("aria-expanded", "false");
+    const chevron = element("span", "chevron");
+    chevron.innerHTML = componentIcon("chevron");
+    summary.append(
+      element(
+        "span",
+        "nav-label",
+        String(spec.label || "Administration")
+          .trim()
+          .slice(0, 40),
+      ),
+      chevron,
+    );
+    const menu = element("div", "submenu");
+    menu.inert = true;
+    for (const entry of entries) {
+      const link = element("a");
+      link.href = entry.href;
+      link.textContent = entry.label;
+      menu.append(link);
+    }
+    group.append(summary, menu);
+    ($("[data-core-nav-root]", nav) || nav).append(group);
+    normalize();
+    window.KagNodeScroll?.refresh(sidebar);
+    return true;
+  }
+  document.addEventListener("kagnode:core-session", (event) => {
+    if (!event.detail?.authenticated) removeAdminFolder();
+  });
   window.KagNodeCore = {
+    setAdminFolder,
     version: config.version || "1.0.0",
     config,
     icons: window.KagNodeIcons,
@@ -1100,6 +1181,7 @@
     theme: root.dataset.accountTheme || undefined,
   });
   normalize();
+  if (config.adminFolder) setAdminFolder(config.adminFolder);
   void document.body.offsetWidth;
   requestAnimationFrame(() => (root.dataset.coreReady = "true"));
   document.dispatchEvent(new Event("kagnode:core-ready"));
