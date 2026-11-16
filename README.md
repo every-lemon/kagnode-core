@@ -6,6 +6,27 @@ Shared web components and local asset delivery for the KagNode ecosystem.
 
 Core provides the common interface for KagNode websites and independently hosted applications. Application servers serve a pinned local bundle; browsers never need GitHub to start the interface. Application authorization and business rules remain in the host project.
 
+### What it looks like
+
+These screenshots come from Core's own browser-test fixture with fictional example data. No real account, host or service is shown. The layout shown (account at the bottom of the sidebar, icon-only collapse control, inbox at the top right) belongs to the pending 5.0.18/5.0.19 source and is not the layout of the currently deployed release.
+
+| Light                                                                                                                              | Dark                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| ![A services page with the shared sidebar, table, status badges and load meters in light mode](docs/images/core-desktop-light.png) | ![The same page in dark mode with the full sidebar showing labels, search and the account row](docs/images/core-desktop-dark.png) |
+
+The sidebar is 260 px wide, or a 57 px icon rail when collapsed. On a phone it becomes a drawer:
+
+![The same page at phone width, with the navigation hidden behind a menu](docs/images/core-mobile.png)
+
+### How it works
+
+1. **Your application serves Core.** A small adapter (Node, Python or Rust) copies a pinned, verified bundle onto your own server. The browser loads Core from your origin and never needs GitHub to start the interface.
+2. **Core draws the shared parts.** It wraps your normal HTML in the common shell: sidebar, account menu, search, dialogs, form controls, loading states and login frame. You supply the links, the page content and what the signed-in person may see.
+3. **You keep the decisions.** Core does not grant access or invent navigation. Authorization, business rules and data stay in your application.
+4. **Updates are signed and limited.** A manager on the host checks the detached signature and checksums before it stores a new release. Only compatible UI patches are applied automatically, they cannot restart services, and the previous bundle is kept for rollback.
+5. **Components for data pages.** Tables with captions, status badges, fact lists and usage meters follow the same tokens, and a confirmation dialog collects a password without leaving the page. See [components](docs/COMPONENTS.md) and [dialogs](docs/DIALOGS.md).
+6. **Optional Administration folder.** A host can ask Core for an "Administration" folder in the sidebar. It appears only for a signed-in session, never on public pages, and every link must be http(s). Details are in [integration](docs/INTEGRATION.md).
+
 ## Release status
 
 **5.0.0 is the coordinated KagNode stable UI contract.** It includes one branded login frame with shared form, provider, recovery and error presentation; viewport-safe account menus; native-motion scrolling; responsive navigation; and a selected set of the [320 original UI icons](docs/ICONS.md) used by actual components.
