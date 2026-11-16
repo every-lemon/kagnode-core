@@ -40,11 +40,6 @@
     popup = null,
     accountTrigger = null,
     lastFocus;
-  // The visible label mirrors the accessible name so both always agree.
-  const syncToggleLabel = () => {
-    const label = toggle?.querySelector(".kn-core-toggle-label");
-    if (label) label.textContent = toggle.getAttribute("aria-label") || "";
-  };
   const groups = new WeakMap();
   let manualChoice = saved("kagnode.core.sidebar.choice"),
     desktopCollapsed = manualChoice
@@ -83,7 +78,6 @@
             ? "Expand sidebar"
             : "Collapse sidebar",
       );
-      syncToggleLabel();
     }
     window.KagNodeScroll?.refresh(sidebar);
   }
@@ -251,7 +245,6 @@
         value ? "Expand sidebar" : "Collapse sidebar",
       );
       toggle.title = value ? "Expand sidebar" : "Collapse sidebar";
-      syncToggleLabel();
     }
 
     if (value)
@@ -347,8 +340,7 @@
     toggle = element("button", "kn-core-sidebar-toggle");
     toggle.type = "button";
     toggle.dataset.coreToggle = "";
-    toggle.innerHTML =
-      panelIcon + '<span class="kn-core-toggle-label">Collapse sidebar</span>';
+    toggle.innerHTML = panelIcon;
     // The collapse control lives at the bottom of the dock and never moves
     // between expanded and collapsed states.
     footer.append(toggle);
@@ -543,15 +535,17 @@
       below + bounds.height <= top + height - 12
         ? below
         : box.top - bounds.height - 8;
+    // A trigger in the right half (the header inbox) anchors the popup's right
+    // edge to its own; a left-side trigger (the account row) keeps the left edge.
+    const rightSide = box.left + box.width / 2 > left + width / 2;
+    const x = rightSide ? box.right - bounds.width : box.left;
     Object.assign(menu.style, {
       position: "fixed",
       right: "auto",
       bottom: "auto",
       left:
-        Math.max(
-          left + 12,
-          Math.min(box.left, left + width - bounds.width - 12),
-        ) + "px",
+        Math.max(left + 12, Math.min(x, left + width - bounds.width - 12)) +
+        "px",
       top:
         Math.max(top + 12, Math.min(y, top + height - bounds.height - 12)) +
         "px",
@@ -592,9 +586,8 @@
         emailNode.textContent = email;
       if (emailNode) emailNode.hidden = !email;
     }
-    const inbox = $(".header-inbox");
-    if (inbox && inbox.parentElement !== footer) footer.append(inbox);
-    // Keep the collapse control last: account and inbox sit above it.
+    // The account row owns the footer; the inbox stays in the page header at
+    // the top right. Keep the collapse control last, below the account row.
     if (toggle && footer.lastElementChild !== toggle) footer.append(toggle);
   }
   function componentIcon(name) {
