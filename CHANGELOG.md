@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.18
+
+- Keep the inbox in the page header and dedicate the sidebar footer to the account row.
+- Use an icon-only collapse control with accessible tooltip text and navigation-style folder openers.
+- Retain local delivery, keyboard and mobile-drawer protections.
+
 ## 5.0.17
 
 - Fix the sidebar footer dock, mobile drawer scroll lock and 44px touch navigation.
