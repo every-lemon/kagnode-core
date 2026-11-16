@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.19
+
+- Add opt-in authenticated Administration folder support; existing applications do not enable it automatically.
+- Add shared accessible data components and password/typed-phrase form dialogs.
+- Preserve same-origin asset delivery, previous bundles and rollback policy.
+
 ## 5.0.18
 
 - Keep the inbox in the page header and dedicate the sidebar footer to the account row.

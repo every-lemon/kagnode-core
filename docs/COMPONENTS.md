@@ -110,3 +110,43 @@ reauthentication continuation must still match the original session and signal.
 ## Setting switches
 
 Use a native `input type="checkbox" data-core-switch` for binary preferences. Core adds switch semantics and restrained thumb motion. Keep selection, consent and confirmation as ordinary checkboxes. Native checked/disabled state, form serialization, reset and keyboard behavior remain authoritative.
+
+## Administration folder
+
+An application that wants to offer administration to a signed-in administrator
+adds `adminFolder: {url, label?, items?}` to the adapter context (or calls
+`KagNodeCore.setAdminFolder(spec)`). Core appends one disclosure group, labelled
+"Administration" by default, to the end of the sidebar. It holds up to eight
+links (a single "Daemon administration" link to `url` when `items` is omitted);
+labels are limited to 40 characters and only `http:` and `https:` destinations
+are accepted. Core renders it **only** while the session is authenticated and
+removes it on sign-out; passing `null` or `enabled:false` removes it. The folder
+carries links only: it signs nobody in and shares no credentials, so the target
+application authenticates the visitor itself. The application still decides who
+is an administrator.
+
+## Data components
+
+Plain classes, no inline styles, so they work under a strict `style-src`:
+
+- `kn-table-wrap` + `kn-table`: horizontally scrolling table with a visually
+  hidden `<caption>` (always provide one), tabular numbers with `class="num"`,
+  hover and `aria-selected="true"` row states.
+- `kn-badge` with `data-tone="ok|warn|bad|info"`: tone is always paired with
+  text; contrast is tested at 4.5:1 in both themes.
+- `kn-facts`: a responsive `<dl>` of short label and value pairs.
+- `progress.kn-meter` with an optional `data-tone`: a thin usage meter; give it
+  an `aria-label`.
+- `kn-state` with optional `data-tone="bad"` and `role="alert"`: an empty or
+  error panel with a retry action.
+
+## Confirmation form dialog
+
+`KagNodeDialogs.form({title, intro, fields, submit, cancel, danger, onSubmit})`
+returns a promise that resolves `true` after a successful submit and `false`
+otherwise. `fields` are `{name, label, type, autocomplete, pattern, hint,
+required, spellcheck, placeholder}`. `onSubmit(values)` may throw; its message is
+shown in an alert and the dialog stays open. Typed values are cleared from the
+DOM when the dialog closes, and focus returns to the opener like any Core dialog.
+Use it for password re-entry and typed confirmations; never log or persist the
+values.
