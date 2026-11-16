@@ -305,18 +305,12 @@ html[data-kn-core] .kn-core-nav-group > .submenu {
   padding: 8px 9px;
 }
 .kn-core-sidebar-toggle {
-  /* Dock row like a navigation item: icon + label, no chrome until hovered. */
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  width: 100%;
-  min-height: 36px;
-  padding: 0 10px;
-  overflow: hidden;
-  font: inherit;
-  font-size: 13px;
-  line-height: 20px;
-  white-space: nowrap;
+  /* Quiet icon-only button; the label lives in the tooltip and accessible name. */
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 36px;
+  padding: 0;
   border: 0;
   border-radius: var(--kn-radius-control);
   background: transparent;
@@ -1027,25 +1021,21 @@ html[data-kn-core] .kn-core-sidebar-heading > .brand {
   flex: 1;
   overflow: hidden;
 }
-/* Bottom dock: account row and inbox above the collapse control. The control
-   keeps the same bottom-left position whether the sidebar is open or closed. */
+/* Bottom dock: the account row owns the footer and the icon-only collapse
+   control sits below it. Their icons share one centre line (28px), so nothing
+   moves sideways when the sidebar opens or closes. The inbox stays in the page
+   header at the top right. */
 html[data-kn-core] .kn-core-sidebar-footer {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   min-height: 0;
   height: auto;
   padding: 8px 9px 10px;
 }
 html[data-kn-core] .kn-core-sidebar-footer > .kn-core-sidebar-toggle {
-  grid-column: 1 / -1;
-  justify-self: stretch;
-  margin-top: 2px;
-}
-.kn-core-sidebar-toggle .kn-core-toggle-label {
-  min-width: 0;
-  overflow: hidden;
+  justify-self: start;
 }
 /* Drawer layout has its own close control; no collapse control there. */
 @media (max-width: 1023px) {
@@ -1055,14 +1045,14 @@ html[data-kn-core] .kn-core-sidebar-footer > .kn-core-sidebar-toggle {
 }
 html[data-kn-core] .kn-core-sidebar-footer [data-core-account-trigger] {
   /* Full-width account row: avatar, name over email, selector chevron.
-     Must beat the global trigger `flex: none !important` and app max-widths,
-     otherwise the inbox control is pushed past the sidebar edge. */
+     Must beat the global trigger `flex: none !important` and app max-widths
+     so it fills the footer. */
   width: auto !important;
   flex: 1 1 auto !important;
   min-width: 0 !important;
   max-width: none !important;
   height: 48px !important;
-  padding: 6px 8px !important;
+  padding: 6px 8px 6px 4px !important;
   justify-content: flex-start;
   gap: 10px !important;
   background: transparent;
@@ -1129,35 +1119,8 @@ html[data-kn-core]
   > :is(.avatar, img) {
   flex: none;
 }
-html[data-kn-core]
-  .kn-core-sidebar-footer
-  :is(.header-inbox, [data-inbox-toggle]) {
-  flex: none;
-}
-html[data-kn-core] .kn-core-sidebar-footer [data-inbox-toggle] {
-  width: 32px;
-  height: 32px;
-  padding: 7px;
-  border: 0;
-  border-radius: var(--kn-radius-control);
-  background: transparent;
-  color: var(--kn-muted);
-}
-html[data-kn-core] .kn-core-sidebar-footer [data-inbox-toggle]:hover {
-  background: color-mix(in srgb, var(--kn-text) 7%, transparent);
-  color: var(--kn-text);
-}
 html[data-kn-core][data-core-collapsed="true"] .kn-core-sidebar-footer {
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-}
-/* Collapsed: the toggle stays a full-width row with the same inset as
-   navigation items, so its icon sits in the rail centre and the label is
-   clipped by the shrinking sidebar; nothing snaps during the animation. */
-html[data-kn-core][data-core-collapsed="true"]
-  .kn-core-sidebar-footer
-  > .kn-core-sidebar-toggle {
-  justify-self: stretch;
+  justify-items: start;
 }
 html[data-kn-core][data-core-collapsed="true"]
   .kn-core-sidebar-footer

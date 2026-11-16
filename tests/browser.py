@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 s = importlib.util.spec_from_file_location("core", ROOT / "dist/python/kagnode_core.py")
 core = importlib.util.module_from_spec(s)
 s.loader.exec_module(core)
-HTML = """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0" data-authenticated="true"><aside id="sidebar" class="sidebar"><a class="brand" href="/"><img src="/kagnode-core/1.0.0/mark.svg"><span class="brand-copy"><strong>KagNode.</strong><small>Example</small></span></a><nav class="sidebar-nav"><a href="/" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Overview</span></a><details class="nav-group" data-group="products"><summary><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Products</span></summary><div class="submenu"><a href="#section">A long section title that should wrap rather than change the width</a></div></details></nav></aside><div class="workspace"><header style="display:flex;justify-content:flex-end;height:60px;align-items:center;padding:12px"><button data-account-menu><span class="avatar">C</span><span class="header-account-name">Example Person</span></button><div id="account-menu" class="account-menu hidden" hidden inert><div class="account-identity"><strong>Example Person</strong></div><a href="/settings">Manage account</a><button>Sign out</button></div></header><main style="padding:24px"><h1>Shared components</h1><label for="choice">Choose</label><select id="choice"><option>First</option><option>Second</option></select><label for="number">Number</label><input id="number" type="number" min="1" max="9" value="2"><label for="date">Date</label><input id="date" type="date"><div id="nested" aria-label="Nested example" style="height:140px;overflow:auto"><div style="height:800px">Nested content</div></div><div style="height:1500px"></div><section id="section">Destination</section></main></div></body></html>"""
+HTML = """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0" data-authenticated="true"><aside id="sidebar" class="sidebar"><a class="brand" href="/"><img src="/kagnode-core/1.0.0/mark.svg"><span class="brand-copy"><strong>KagNode.</strong><small>Example</small></span></a><nav class="sidebar-nav"><a href="/" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Overview</span></a><details class="nav-group" data-group="products"><summary><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg><span class="nav-label">Products</span></summary><div class="submenu"><a href="#section">A long section title that should wrap rather than change the width</a></div></details></nav></aside><div class="workspace"><header style="display:flex;justify-content:flex-end;height:60px;align-items:center;padding:12px"><div class="header-inbox"><a href="/inbox" class="inbox-trigger" data-inbox-toggle aria-controls="inbox-popover" aria-expanded="false" aria-label="Inbox" style="display:inline-block;width:32px;height:32px">&#9993;</a></div><button data-account-menu><span class="avatar">C</span><span class="header-account-name">Example Person</span></button><div id="account-menu" class="account-menu hidden" hidden inert><div class="account-identity"><strong>Example Person</strong></div><a href="/settings">Manage account</a><button>Sign out</button></div></header><main style="padding:24px"><h1>Shared components</h1><label for="choice">Choose</label><select id="choice"><option>First</option><option>Second</option></select><label for="number">Number</label><input id="number" type="number" min="1" max="9" value="2"><label for="date">Date</label><input id="date" type="date"><div id="nested" aria-label="Nested example" style="height:140px;overflow:auto"><div style="height:800px">Nested content</div></div><div style="height:1500px"></div><section id="section">Destination</section></main></div></body></html>"""
 
 HTML = HTML.replace(
     '<nav class="sidebar-nav">',
@@ -291,9 +291,29 @@ try:
                     page.locator(".kn-core-sidebar-footer [data-core-toggle]").count()
                     == 1
                 )
+                # The inbox stays in the page header at the top right.
+                inbox = page.locator("header .header-inbox")
+                assert inbox.count() == 1
+                assert (
+                    page.locator(".kn-core-sidebar-footer .header-inbox").count() == 0
+                )
+                box = inbox.bounding_box()
+                assert box["y"] < 80 and box["x"] + box["width"] <= width + 1
                 if width >= 1024:
-                    # Cloudflare-style dock: account row above a full-width
-                    # collapse row that keeps its place in both states.
+                    assert box["x"] > width / 2, "inbox must be on the right"
+                    # Inbox popup anchors its right edge to the trigger.
+                    popup = page.evaluate(
+                        """()=>{const p=document.createElement('section');p.id='inbox-popover';
+                        p.style.cssText='width:320px;height:120px;position:fixed';document.body.append(p);
+                        const t=document.querySelector('[data-inbox-toggle]');
+                        KagNodeCore.positionPopover(p,t);
+                        const a=p.getBoundingClientRect(),b=t.getBoundingClientRect();p.remove();
+                        return {right:a.right,left:a.left,top:a.top,tr:b.right,tb:b.bottom,w:innerWidth}}"""
+                    )
+                    assert popup["right"] <= popup["tr"] + 1, popup
+                    assert popup["left"] >= 12 and popup["top"] >= popup["tb"], popup
+                    # Account row owns the footer; the icon-only collapse
+                    # control sits below it and keeps its place in both states.
                     toggle = page.locator(".kn-core-sidebar-footer [data-core-toggle]")
                     account = page.locator(
                         ".kn-core-sidebar-footer [data-account-menu]"
@@ -304,19 +324,19 @@ try:
                         "collapse control must sit below the account row"
                     )
                     assert toggle.locator("svg").count() == 1
-                    assert toggle.locator(".kn-core-toggle-label").count() == 1
-                    assert toggle.locator(
-                        ".kn-core-toggle-label"
-                    ).text_content() == toggle.get_attribute("aria-label")
+                    assert toggle.inner_text().strip() == "", "toggle must be icon-only"
+                    assert toggle.get_attribute("aria-label")
+                    assert toggle.get_attribute("title")
+                    assert before["width"] <= 40
                     toggle.click()
                     page.wait_for_timeout(450)
                     after = toggle.bounding_box()
                     assert abs(after["y"] - before["y"]) <= 1, (
                         "collapse control moved between states"
                     )
-                    assert toggle.locator(
-                        ".kn-core-toggle-label"
-                    ).text_content() == toggle.get_attribute("aria-label")
+                    assert abs(after["x"] - before["x"]) <= 1, (
+                        "collapse control moved sideways between states"
+                    )
                     toggle.click()
                     page.wait_for_timeout(450)
                 assert (
