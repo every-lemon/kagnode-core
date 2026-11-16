@@ -978,6 +978,19 @@ html[data-kn-core] details[open] > summary .chevron [data-disclosure-icon] {
   }
 }
 
+/* A folder opener ("Plan sections") reads as a navigation item, not a card;
+   search and the back control keep their bordered geometry. */
+html[data-kn-core] .kn-core-sidebar-navigation [data-core-nav-open] {
+  margin: 2px 0;
+  min-height: 36px;
+  border-color: transparent;
+  background: transparent;
+  font-size: 13px;
+}
+html[data-kn-core] .kn-core-sidebar-navigation [data-core-nav-open]:hover {
+  border-color: transparent;
+  background: var(--kn-panel);
+}
 /* Stable row geometry while the sidebar clips its labels during motion. */
 html[data-kn-core] .kn-core-sidebar-navigation :is(a, summary, button),
 html[data-kn-core]
