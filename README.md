@@ -8,7 +8,7 @@ Core provides the common interface for KagNode websites and independently hosted
 
 ### What it looks like
 
-These screenshots come from Core's own browser-test fixture with fictional example data. No real account, host or service is shown. The layout shown (account at the bottom of the sidebar, icon-only collapse control, inbox at the top right) belongs to the pending 5.0.18/5.0.19 source and is not the layout of the currently deployed release.
+These screenshots come from Core's own browser-test fixture with fictional example data. No real account, host or service is shown. The layout shown (account at the bottom of the sidebar, icon-only collapse control, inbox at the top right) is implemented in published and deployed Core 5.0.19; the screenshots are fixture examples, not authenticated production captures. The optional Administration folder requires an application-supplied authorized adapter and is not thereby enabled in deployed products.
 
 | Light                                                                                                                              | Dark                                                                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
