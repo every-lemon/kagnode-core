@@ -839,7 +839,6 @@ html[data-core-preview="true"] {
 }
 html[data-core-preview="true"] [data-core-sidebar] {
   z-index: 13000 !important;
-  box-shadow: 8px 0 28px #0003;
 }
 html[data-core-shell="inactive"]
   :is([data-mobile], #mobile-menu, .kn-core-mobile-toggle) {
@@ -886,12 +885,12 @@ html[data-kn-core]
   min-height: 38px;
   margin: 4px 0;
   padding: 8px 10px;
-  border: 1px solid var(--kn-line);
+  border: 0;
   border-radius: var(--kn-radius-control);
   color: var(--kn-muted);
-  background: var(--kn-panel);
+  background: transparent;
   font: inherit;
-  font-size: 12px;
+  font-size: 13px;
   text-align: left;
   line-height: 20px;
   cursor: pointer;
@@ -900,7 +899,7 @@ html[data-kn-core]
   .kn-core-sidebar-navigation
   :is(.quick-search, [data-core-nav-open], [data-core-nav-back]):hover {
   color: var(--kn-text);
-  border-color: var(--kn-muted);
+  background: color-mix(in srgb, var(--kn-text) 6%, transparent);
 }
 .kn-core-sidebar-navigation .quick-search .nav-label:not(kbd) {
   flex: 1;

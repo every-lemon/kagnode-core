@@ -13,8 +13,7 @@ html[data-theme="dark"] {
 }
 .kn-table-wrap {
   overflow-x: auto;
-  border: 1px solid var(--kn-line);
-  border-radius: 12px;
+  border-block: 1px solid var(--kn-line);
 }
 .kn-table {
   width: 100%;
@@ -31,7 +30,7 @@ html[data-theme="dark"] {
 }
 .kn-table th,
 .kn-table td {
-  padding: 10px 14px;
+  padding: 10px 14px 10px 0;
   text-align: left;
   vertical-align: middle;
   border-bottom: 1px solid var(--kn-line);
@@ -39,7 +38,7 @@ html[data-theme="dark"] {
 .kn-table th {
   color: var(--kn-muted);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   white-space: nowrap;
 }
 .kn-table tbody tr:last-child td {
@@ -65,15 +64,21 @@ html[data-theme="dark"] {
   align-items: center;
 }
 .kn-badge {
-  display: inline-block;
-  padding: 2px 10px;
-  border: 1px solid var(--kn-tone, var(--kn-line));
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--kn-tone, transparent) 12%, transparent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--kn-text);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 20px;
   white-space: nowrap;
+}
+.kn-badge::before {
+  content: "";
+  flex: none;
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: var(--kn-tone, var(--kn-muted));
 }
 .kn-badge[data-tone="ok"] {
   --kn-tone: var(--kn-ok);
@@ -94,7 +99,7 @@ html[data-theme="dark"] {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 12px 24px;
-  margin: 0;
+  margin: 24px 0 0;
 }
 .kn-facts dt {
   color: var(--kn-muted);
@@ -102,15 +107,15 @@ html[data-theme="dark"] {
 }
 .kn-facts dd {
   margin: 2px 0 0;
-  font-weight: 600;
+  font-weight: 500;
   overflow-wrap: anywhere;
 }
 progress.kn-meter {
   appearance: none;
   inline-size: 100%;
-  block-size: 8px;
+  block-size: 4px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 2px;
   overflow: hidden;
   background: color-mix(in srgb, var(--kn-text) 12%, transparent);
   accent-color: var(--kn-accent);
@@ -119,11 +124,11 @@ progress.kn-meter::-webkit-progress-bar {
   background: color-mix(in srgb, var(--kn-text) 12%, transparent);
 }
 progress.kn-meter::-webkit-progress-value {
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--kn-tone, var(--kn-accent));
 }
 progress.kn-meter::-moz-progress-bar {
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--kn-tone, var(--kn-accent));
 }
 progress.kn-meter[data-tone="ok"] {
@@ -140,14 +145,12 @@ progress.kn-meter[data-tone="bad"] {
   justify-items: start;
   gap: 8px;
   padding: 20px;
-  border: 1px dashed var(--kn-line);
-  border-radius: 12px;
+  border-block: 1px solid var(--kn-line);
 }
 .kn-state > * {
   margin: 0;
 }
 .kn-state[data-tone="bad"] {
-  border-style: solid;
   border-color: var(--kn-bad);
 }
 .kn-state[data-tone="bad"] > :first-child {
