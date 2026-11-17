@@ -1,5 +1,4 @@
-/* Core home: compact welcome, quick search, a "continue" list and real
-   account activity. One layer — the application supplies markup and data. */
+/* Added for 1.0.0. Changed for 5.0.20. */
 html[data-kn-core] .core-developer-home {
   display: flex;
   flex-direction: column;
@@ -7,7 +6,6 @@ html[data-kn-core] .core-developer-home {
   max-width: 1080px;
 }
 
-/* Welcome */
 html[data-kn-core] .core-developer-home .dev-home-heading {
   display: block;
   padding: 8px 0 0;
@@ -33,7 +31,6 @@ html[data-kn-core] .core-developer-home .dev-kicker {
   color: var(--kn-muted);
 }
 
-/* Quick search entry: opens the same authorized search as Ctrl/Cmd+K. */
 html[data-kn-core] a.core-home-search {
   display: flex;
   align-items: center;
@@ -81,7 +78,6 @@ html[data-kn-core] a.core-home-search:focus-visible {
   outline-offset: 2px;
 }
 
-/* Continue list: one compact panel of rows instead of decorative cards. */
 html[data-kn-core] .core-home-continue {
   border: 1px solid var(--kn-line);
   border-radius: var(--kn-radius-panel);
@@ -172,7 +168,6 @@ html[data-kn-core] .core-home-badge {
   font-weight: 600;
 }
 
-/* Activity panels */
 html[data-kn-core] .core-home-activity {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -185,7 +180,7 @@ html[data-kn-core] .core-developer-home .dev-home-section {
   border-radius: var(--kn-radius-panel);
   background: var(--kn-panel);
 }
-/* The section already has padding; headings must align with their content. */
+
 html[data-kn-core] .core-developer-home .dev-section-heading {
   display: flex;
   align-items: center;
@@ -229,7 +224,6 @@ html[data-kn-core] .core-developer-home .dev-home-section > .button {
   min-height: 34px;
 }
 
-/* Plan status */
 html[data-kn-core] .core-home-plan-update {
   display: flex;
   align-items: center;
@@ -293,9 +287,6 @@ html[data-kn-core] .core-home-plan-update > .button {
   }
 }
 
-/* Compatibility: pages rendered by an older application template (for
-   example during a staged rollout or an application rollback) keep a tidy
-   three-card layout without decorative art tiles. */
 html[data-kn-core] .core-home-actions {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

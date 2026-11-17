@@ -1,7 +1,6 @@
 /*! KagNode Core — AGPL-3.0-only. Appearance never contains vault data. */
+/* Added for 1.0.0. Changed for 5.0.20. */
 (() => {
-  // Runs synchronously in the head, before the deferred UI and its links.
-  // The opaque local attempt is kept only in this document, never storage.
   try {
     const url = new URL(location.href);
     if (

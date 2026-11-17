@@ -1,4 +1,5 @@
 /*! KagNode Core — current section and overflow-safe contents navigation. */
+/* Added for 1.0.0. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeToc) return;
   const instances = new Map(),

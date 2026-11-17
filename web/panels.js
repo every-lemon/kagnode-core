@@ -1,4 +1,5 @@
 /*! KagNode Core — local panel controls and accessible dialog surfaces. */
+/* Added for 5.0.6. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeSegments) return;
   const mounted = new Map();
@@ -125,8 +126,6 @@
           event.altKey
         )
           return;
-        // Real destinations retain native fallback. Authorized partial navigation
-        // is owned by a host listening to the cancelable event.
         if (c.matches("a[href]") && !host.dataset.coreUrlParam && !tabbed) {
           if (!select(c.dataset.coreSegment, { notify: true }))
             event.preventDefault();
@@ -276,8 +275,6 @@
             () => resolve(confirmation.returnValue === "discard"),
             { once: true },
           );
-          // Let the dismissal gesture finish before adding another modal to
-          // the top layer; its keyup/default must not dismiss the new surface.
           requestAnimationFrame(() => {
             if (!dialog.open) {
               resolve(false);
@@ -297,8 +294,6 @@
     dialog.addEventListener("keydown", (event) => {
       if (event.key !== "Escape" || event.defaultPrevented || event.isComposing)
         return;
-      // Cancel the keyboard default before opening a nested confirmation;
-      // some engines otherwise dismiss the newly opened top-layer dialog.
       event.preventDefault();
       event.stopPropagation();
       dismissUser();
@@ -570,10 +565,6 @@
     },
     true,
   );
-  /* A modal form for confirmations (password, typed phrase). `onSubmit(values)`
-     may throw to show its message and keep the dialog open; typed values are
-     cleared from the DOM whenever the dialog closes. Resolves true after a
-     successful submit and false otherwise. */
   function form(options) {
     return new Promise((resolve) => {
       const make = (tag, cls, text) => {

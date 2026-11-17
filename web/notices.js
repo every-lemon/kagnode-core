@@ -1,4 +1,5 @@
 /*! KagNode Core — authenticated, host-opted-in summaries without admin data. */
+/* Added for 5.0.6. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeWhatsNew) return;
   const dirty = new Set(),

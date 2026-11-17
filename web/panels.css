@@ -1,4 +1,5 @@
 /*! KagNode Core — segmented panels and restrained dialog surfaces. */
+/* Added for 5.0.6. Changed for 5.0.20. */
 html[data-kn-core] .kn-core-segments {
   position: relative;
   display: flex;
@@ -144,8 +145,7 @@ html[data-kn-core] .kn-core-dialog-resize {
   position: sticky;
   display: block;
   bottom: -20px;
-  /* Overlap the bottom padding instead of adding an empty band below content.
-     Kept within the 20px corner inset so it never covers footer buttons. */
+
   margin: -12px -20px -20px auto;
   width: 18px;
   height: 18px;
@@ -172,8 +172,7 @@ html[data-kn-core] .kn-core-dialog-close {
 html[data-kn-core] .kn-core-dialog-close:hover {
   background: var(--kn-bg);
 }
-/* Dialog content: stacked fields with consistent rhythm. A field nested in
-   its label keeps a small gap so focus rings never touch the label text. */
+
 html[data-kn-core] .kn-core-dialog form {
   display: flex;
   flex-direction: column;
@@ -198,9 +197,7 @@ html[data-kn-core]
   box-sizing: border-box;
   margin-top: 6px;
 }
-/* Action row. Apps' page-footer styles must not leak into a dialog footer, so
-   the row resets borders/padding and owns its spacing. Buttons never touch and
-   wrap cleanly on narrow screens; the primary action stays last (right). */
+
 html[data-kn-core]
   .kn-core-dialog
   :is(

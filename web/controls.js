@@ -1,3 +1,4 @@
+/* Added for 1.0.0. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeControls?.core) return;
   const seen = new WeakSet(),
@@ -331,8 +332,6 @@
         el.setCustomValidity("");
         return;
       }
-      // Preserve the browser's date, precision and step-base rules after the
-      // visible field becomes text. Invalid constraints retain native semantics.
       validationInput.min = el.min;
       validationInput.max = el.max;
       validationInput.step = el.step;
@@ -445,8 +444,6 @@
           const buttons = [...grid.querySelectorAll("button")],
             i = buttons.indexOf(b);
           let index = Math.max(0, Math.min(buttons.length - 1, i + jump));
-          // Disabled dates cannot receive focus. Keep the current enabled tab stop
-          // when the requested direction reaches the allowed range boundary.
           while (buttons[index]?.disabled) index += Math.sign(jump);
           const target = buttons[index];
           if (!target) return;

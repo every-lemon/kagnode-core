@@ -1,3 +1,4 @@
+/* Added for 1.0.0. Changed for 5.0.20. */
 :root {
   --k-field: var(--panel, var(--surface, #fff));
   --k-ink: var(--text, var(--ink, #16181d));
@@ -5,7 +6,7 @@
   --k-soft: var(--raised, var(--surface-alt, #f6f7f9));
   --k-accent: var(--accent, #2563eb);
 }
-/* Resolve against the active Core theme, including legacy application hosts. */
+
 html[data-kn-core] {
   --k-field: var(--kn-bg);
   --k-ink: var(--kn-text);

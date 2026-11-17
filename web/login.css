@@ -1,4 +1,5 @@
 /*! KagNode Core — shared, host-authorized login presentation. */
+/* Added for 1.3.0. Changed for 5.0.20. */
 html[data-kn-core] [data-core-login] {
   box-sizing: border-box;
   min-height: 100svh;
@@ -87,7 +88,6 @@ html[data-kn-core] [data-core-login-status] {
   overflow-wrap: anywhere;
 }
 
-/* Core owns the entire authentication frame; hosts supply behavior, not skins. */
 html[data-kn-core] [data-core-login] {
   font-family: var(
     --kn-font,
@@ -130,8 +130,7 @@ html[data-kn-core] .kn-core-login-content label {
   font-weight: 500;
   text-align: left;
 }
-/* A field nested in its label needs breathing room so the focus ring never
-   touches the label text. */
+
 html[data-kn-core]
   .kn-core-login-content
   label
@@ -243,7 +242,6 @@ html[data-kn-core] .kn-core-login-content :is([role="alert"], .error) {
   }
 }
 
-/* Nested labels and separate labels must produce the same input typography. */
 html[data-kn-core] .kn-core-login-content :is(input, select, textarea) {
   font-weight: 400;
   letter-spacing: normal;

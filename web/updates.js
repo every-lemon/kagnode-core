@@ -1,4 +1,5 @@
 /*! Local-administrator Core status and reviewed UI actions. */
+/* Added for 1.0.0. Changed for 5.0.20. */
 (() => {
   const core = window.KagNodeCore;
   if (!core) return;
@@ -89,9 +90,6 @@
   }
   let current,
     checking = false,
-    // A local manager that denies or lacks status for this session will keep
-    // doing so; stop re-requesting on every focus/interval until the session
-    // changes (kagnode:core-session).
     denied = false,
     checked = 0,
     panel;
@@ -389,7 +387,6 @@
         [401, 403, 404].includes(e.status)
       ) {
         current = null;
-        // Re-authentication is recoverable; only a plain denial is latched.
         denied = e.code !== "reauth_required";
         panel?.remove();
         panel = null;

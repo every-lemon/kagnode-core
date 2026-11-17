@@ -1,4 +1,5 @@
 /*! KagNode Core — shared shell and component lifecycle, AGPL-3.0-only. */
+/* Added for 1.0.0. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeCore) return;
   const root = document.documentElement,
@@ -215,8 +216,6 @@
       getComputedStyle(sidebar).display !== "none";
     const state = visible ? "active" : "inactive";
     if (root.dataset.coreShell !== state) {
-      // Adopting a newly visible legacy layout may change auto width to a
-      // calculated width. Do not animate only its old margin in that frame.
       delete root.dataset.coreReady;
       root.dataset.coreShell = state;
       void document.body.offsetWidth;
@@ -341,8 +340,6 @@
     toggle.type = "button";
     toggle.dataset.coreToggle = "";
     toggle.innerHTML = panelIcon;
-    // The collapse control lives at the bottom of the dock and never moves
-    // between expanded and collapsed states.
     footer.append(toggle);
     sidebar.replaceChildren(heading, nav, footer, legacy);
     scrim = element("button", "kn-core-drawer-scrim");
@@ -359,9 +356,6 @@
     });
     sidebar.addEventListener("pointerleave", releasePreview);
     sidebar.addEventListener("focusin", (e) => {
-      // Preview only for keyboard focus. A pointer click also focuses its
-      // target; expanding then would reflow the footer between mousedown and
-      // mouseup and swallow the click (collapsed account avatar).
       if (
         e.target.matches?.(":focus-visible") &&
         !e.target.closest("[data-core-toggle]") &&
@@ -535,8 +529,6 @@
       below + bounds.height <= top + height - 12
         ? below
         : box.top - bounds.height - 8;
-    // A trigger in the right half (the header inbox) anchors the popup's right
-    // edge to its own; a left-side trigger (the account row) keeps the left edge.
     const rightSide = box.left + box.width / 2 > left + width / 2;
     const x = rightSide ? box.right - bounds.width : box.left;
     Object.assign(menu.style, {
@@ -566,7 +558,6 @@
           element("small", "kn-core-account-email"),
         );
         const chevron = element("span", "kn-core-account-chevron");
-        // Compact up/down selector mark: the menu opens above the footer.
         chevron.innerHTML =
           '<svg class="ui-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 9 4-4 4 4M8 15l4 4 4-4"/></svg>';
         button.append(label, chevron);
@@ -586,8 +577,6 @@
         emailNode.textContent = email;
       if (emailNode) emailNode.hidden = !email;
     }
-    // The account row owns the footer; the inbox stays in the page header at
-    // the top right. Keep the collapse control last, below the account row.
     if (toggle && footer.lastElementChild !== toggle) footer.append(toggle);
   }
   function componentIcon(name) {
@@ -788,7 +777,6 @@
           link,
         );
         if (previous?.matches("[data-icon],[data-core-icon]")) {
-          // Dynamic applications redraw these hosts; keep one leading icon.
           previous.dataset.coreIconHost = "true";
           previous.replaceChildren(svg);
         } else if (previous) previous.replaceWith(svg);
@@ -927,8 +915,6 @@
     if (popup && !popup.contains(e.target) && e.target !== accountTrigger)
       closeAccount();
   });
-  // Pointer events inside embedded documents do not reach this document.
-  // Dismiss without taking focus back from the frame or another window.
   addEventListener("blur", () => closeAccount());
   let layoutWidth = innerWidth;
   addEventListener("resize", () => {
@@ -1045,9 +1031,6 @@
     }
   });
   const loading = window.KagNodeLoading;
-  /* Administration folder: a disclosure group at the end of the sidebar that an
-     application (or its adapter) opts into for an authenticated administrator.
-     It carries only links; nothing is signed in or shared with the target. */
   const safeHref = (value) => {
     try {
       const url = new URL(String(value), location.href);
@@ -1065,7 +1048,6 @@
   function setAdminFolder(spec) {
     const nav = sidebar && $(".kn-core-sidebar-navigation", sidebar);
     if (!nav) return false;
-    // Never present administration to a signed-out visitor, whatever the caller says.
     if (
       !spec ||
       spec.enabled === false ||

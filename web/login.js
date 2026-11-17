@@ -1,8 +1,7 @@
 /*! KagNode Core — optional host-owned login connection presentation. */
+/* Added for 1.3.0. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeLogin) return;
-  // Usually captured by the synchronous head bootstrap. This fallback also
-  // covers applications that only embed the deferred UI entrypoint.
   let resume = window.__kagNodeLoginReturn || null;
   delete window.__kagNodeLoginReturn;
   try {

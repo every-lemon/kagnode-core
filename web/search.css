@@ -1,4 +1,4 @@
-/* KagNode Core quick search; component rules do not affect other dialogs. */
+/* Added for 1.1.0. Changed for 5.0.20. */
 html[data-kn-core] dialog.kn-core-search {
   position: fixed;
   inset: 0;
@@ -47,7 +47,6 @@ html[data-kn-core] dialog.kn-core-search {
   outline-offset: 2px;
 }
 .kn-core-search .kn-core-search-input::-webkit-search-cancel-button {
-  /* The dialog has its own close control; two clear buttons were confusing. */
   appearance: none;
   display: none;
 }

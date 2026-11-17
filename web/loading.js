@@ -1,4 +1,5 @@
 /*! KagNode Core — split-orbit loading mark. AGPL-3.0-only. */
+/* Added for 1.1.4. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeLoading) return;
   const config = JSON.parse(
@@ -44,8 +45,6 @@
     const frame = document.createElement("span");
     frame.className = "kn-core-spinner";
     frame.setAttribute("aria-hidden", "true");
-    // Static, trusted geometry. The canonical mark stays still and readable
-    // while its separated accent travels around the outside.
     frame.innerHTML =
       '<span class="kn-core-spinner-layer"><svg class="kn-core-spinner-orbit" viewBox="0 0 96 96" fill="none" focusable="false" aria-hidden="true">' +
       '<circle class="kn-core-spinner-track" cx="48" cy="48" r="39"/>' +

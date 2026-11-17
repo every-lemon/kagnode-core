@@ -1,4 +1,5 @@
 /*! Browser-to-KagNode appearance only. No profile, vault or server credentials. */
+/* Added for 1.0.0. Changed for 5.0.20. */
 (() => {
   const core = window.KagNodeCore;
   if (!core || window.KagNodeAppearance) return;
@@ -151,9 +152,7 @@
     if (!session.authenticated) return;
     try {
       await request();
-    } catch {
-      /* Keep the last valid preference offline. */
-    }
+    } catch {}
   }
   async function connect() {
     if (!session.authenticated) return;

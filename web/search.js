@@ -1,4 +1,5 @@
 /*! KagNode Core — scoped, accessible quick search. AGPL-3.0-only. */
+/* Added for 1.1.0. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeSearch) return;
   let host,
@@ -219,8 +220,6 @@
     input.addEventListener("input", () => {
       cancel();
       const term = input.value.trim();
-      // Invalidate both selection and navigation before the debounce delay.
-      // Enter must never use the results or full-search URL of an old query.
       more.href = "/search?q=" + encodeURIComponent(term);
       more.hidden = !term || !endpoint;
       retry.hidden = true;
@@ -248,8 +247,6 @@
     });
     dialog.addEventListener("keydown", (e) => {
       if (e.isComposing || e.keyCode === 229) {
-        // WebKit can still run the dialog's native Escape dismissal even
-        // when our close handler returns during composition.
         if (e.key === "Escape") e.preventDefault();
         return;
       }
@@ -272,7 +269,6 @@
       }
     });
     dialog.addEventListener("close", () => {
-      // Native close events can arrive after another showModal().
       if (dialog.open) return;
       cancel();
       input.removeAttribute("aria-busy");

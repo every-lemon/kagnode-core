@@ -1,4 +1,5 @@
 /*! KagNode Core — native scrolling with accessible overlay rails. */
+/* Added for 1.0.0. Changed for 5.0.20. */
 (() => {
   if (window.KagNodeScroll?.core) return;
   const regions = new Map(),

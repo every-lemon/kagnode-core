@@ -1,6 +1,4 @@
-/* Shared data presentation: table, badge, facts, meter, state and form dialog.
-   Tone is always carried by text as well as colour. No inline styles are needed,
-   so every component works under a strict style-src policy. */
+/* Added for 5.0.19. Changed for 5.0.20. */
 html {
   --kn-ok: #1a7f4b;
   --kn-warn: #9a6700;

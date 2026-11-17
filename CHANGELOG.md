@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.20 (unreleased)
+
+- Flat data components: status dots instead of pills, hairline tables, thinner meters.
+- Quieter sidebar search row; no preview shadow.
+- Source files carry a one-line Added/Changed marker; explanatory comments removed.
+
 ## 5.0.19
 
 - Add opt-in authenticated Administration folder support; existing applications do not enable it automatically.

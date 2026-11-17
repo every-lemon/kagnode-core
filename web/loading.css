@@ -1,4 +1,5 @@
 /*! KagNode Core — loading presentation, AGPL-3.0-only. */
+/* Added for 1.1.4. Changed for 5.0.20. */
 html[data-kn-core] .kn-core-spinner {
   position: relative;
   display: inline-grid;
@@ -59,7 +60,7 @@ html[data-kn-core] .kn-core-spinner > .kn-core-spinner-mark {
   animation: none;
   transform: none;
 }
-/* Keep each application's status text, retry and dismissal controls intact. */
+
 html[data-kn-core]
   [data-core-loading]
   > :is(
@@ -179,7 +180,6 @@ html[data-core-scroll-state="custom"]
   display: none;
 }
 
-/* Keep the compositor orbit alive before a native document handoff. */
 html[data-kn-core] .kn-core-loading[hidden] {
   display: flex !important;
   visibility: hidden;
