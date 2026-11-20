@@ -1,6 +1,7 @@
 # Changelog
 
 ## 5.0.20 (unreleased)
+- Smart placement: menus, pickers, tooltips and dialogs that open partly off screen are moved back by the smallest amount; ones already inside the screen are never touched.
 - Collapsed sidebar: navigation groups no longer show the first letter of their label.
 - New licence: the KagNode. Core License applies to 5.0.20 and later (community and business editions). Releases up to 5.0.19 stay AGPL-3.0-only. README and docs are removed; a NOTICE file and a one-line header in every source file are added.
 
