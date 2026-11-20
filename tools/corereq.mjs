@@ -238,7 +238,7 @@ function cli(args) {
     );
   } else {
     process.stderr.write(
-      "usage: corereq.mjs make|index|plan --help-in docs/CORE-DELIVERY.md\n",
+      "usage: corereq.mjs make|index|plan\n",
     );
     process.exit(2);
   }

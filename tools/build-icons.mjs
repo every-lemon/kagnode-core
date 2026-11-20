@@ -89,7 +89,6 @@ write(
   fs.readFileSync(path.join(root, "assets/ARTWORK-LICENSE")),
 );
 write("LICENSE", fs.readFileSync(path.join(root, "LICENSE")));
-write("README.md", fs.readFileSync(path.join(root, "docs/ICONS.md")));
 write(
   "package.json",
   JSON.stringify(

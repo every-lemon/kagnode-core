@@ -113,7 +113,6 @@ def build(destination, signing_key=None):
         "index.d.mts": (ROOT / "dist/node/kagnode-core.d.mts").read_bytes(),
         "LICENSE": (ROOT / "LICENSE").read_bytes(),
         "ARTWORK-LICENSE": (ROOT / "assets/ARTWORK-LICENSE").read_bytes(),
-        "README.md": (ROOT / "README.md").read_bytes(),
         "package.json": json.dumps(
             {
                 "name": "@kagnode/core",
@@ -207,7 +206,6 @@ def build(destination, signing_key=None):
                 source[str(p.relative_to(ROOT))] = p.read_bytes()
     for name in [
         "LICENSE",
-        "README.md",
         "CHANGELOG.md",
         "package.json",
         "package-lock.json",
@@ -220,7 +218,6 @@ def build(destination, signing_key=None):
     for filename, source in [
         ("LICENSE.txt", "LICENSE"),
         ("ARTWORK-LICENSE.txt", "assets/ARTWORK-LICENSE"),
-        ("INSTALL.md", "docs/OPERATIONS.md"),
     ]:
         (destination / filename).write_bytes((ROOT / source).read_bytes())
     checks = {
