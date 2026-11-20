@@ -1181,6 +1181,16 @@
     theme: root.dataset.accountTheme || undefined,
   });
   normalize();
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (/^(Tab|Arrow|Home|End|PageUp|PageDown| )/.test(e.key))
+        root.dataset.knKeys = "1";
+    },
+    true,
+  );
+  for (const type of ["pointerdown", "mousedown", "touchstart"])
+    document.addEventListener(type, () => delete root.dataset.knKeys, true);
   if (config.adminFolder) setAdminFolder(config.adminFolder);
   void document.body.offsetWidth;
   requestAnimationFrame(() => (root.dataset.coreReady = "true"));

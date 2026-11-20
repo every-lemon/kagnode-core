@@ -294,7 +294,8 @@
     document.addEventListener("keydown", (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        open();
+        if (dialog?.open) dialog.close();
+        else open();
       }
     });
     document

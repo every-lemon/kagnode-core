@@ -743,7 +743,8 @@ html[data-kn-core] .topbar [data-kn-account-name] {
 }
 html[data-kn-core] [data-core-toc-links] {
   position: relative;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   max-height: calc(100dvh - 180px);
 }
 html[data-kn-core] [data-core-toc] a {
@@ -1259,4 +1260,22 @@ html[data-kn-core]
   place-items: center;
   line-height: 1;
   flex: none;
+}
+
+html[data-kn-core]:not([data-kn-keys])
+  :is(
+    button,
+    a,
+    summary,
+    [role="button"],
+    [role="radio"],
+    label,
+    input[type="range"],
+    input[type="checkbox"],
+    input[type="radio"]
+  ):focus-visible {
+  outline: none;
+}
+html {
+  touch-action: manipulation;
 }

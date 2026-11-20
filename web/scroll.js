@@ -12,10 +12,7 @@
     mode = "custom",
     covered = false;
   try {
-    mode =
-      localStorage.getItem("kagnode.scrollMode") === "native"
-        ? "native"
-        : "custom";
+    localStorage.removeItem("kagnode.scrollMode");
   } catch {}
   const active = () => mode === "custom" && !forced.matches;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -358,10 +355,7 @@
       return mode;
     },
     setMode(value) {
-      mode = value === "native" ? "native" : "custom";
-      try {
-        localStorage.setItem("kagnode.scrollMode", mode);
-      } catch {}
+      mode = "custom";
       scan();
       document.dispatchEvent(
         new CustomEvent("kagnode:scroll-preference", { detail: mode }),
