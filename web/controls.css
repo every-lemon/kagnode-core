@@ -804,3 +804,22 @@ input[type="range"]::-webkit-slider-thumb {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
 }
+html[data-kn-core]
+  :is(
+    input:not(
+      [type="checkbox"],
+      [type="radio"],
+      [type="range"],
+      [type="color"],
+      [type="file"],
+      [type="button"],
+      [type="submit"],
+      [type="reset"]
+    ),
+    textarea,
+    .k-select
+  ):not(.k-date > input, .k-number > input):is(:focus, :focus-visible) {
+  outline: 0;
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--k-accent) 14%, transparent);
+}
