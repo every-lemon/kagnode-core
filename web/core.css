@@ -1,4 +1,5 @@
-/*! KagNode Core — AGPL-3.0-only. */
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
+/*! KagNode Core. */
 :root {
   --kn-radius-control: 8px;
   --kn-radius-panel: 12px;
@@ -1278,4 +1279,11 @@ html[data-kn-core]:not([data-kn-keys])
 }
 html {
   touch-action: manipulation;
+}
+html[data-kn-core][data-core-collapsed="true"]
+  .kn-core-sidebar-navigation
+  .kn-core-nav-group {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }

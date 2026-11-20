@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Administration folder, shared data components and the confirmation form dialog.
 Fixture page only; no live account or application data."""
 

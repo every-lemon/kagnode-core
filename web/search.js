@@ -1,4 +1,5 @@
-/*! KagNode Core — scoped, accessible quick search. AGPL-3.0-only. */
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
+/*! KagNode Core — scoped, accessible quick search. */
 (() => {
   if (window.KagNodeSearch) return;
   let host,

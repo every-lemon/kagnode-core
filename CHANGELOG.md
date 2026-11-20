@@ -1,6 +1,8 @@
 # Changelog
 
 ## 5.0.20 (unreleased)
+- Collapsed sidebar: navigation groups no longer show the first letter of their label.
+- New licence: the KagNode. Core License applies to 5.0.20 and later (community and business editions). Releases up to 5.0.19 stay AGPL-3.0-only. README and docs are removed; a NOTICE file and a one-line header in every source file are added.
 
 - Scrolling always uses the KagNode rails; the native-scrolling choice is removed.
 - Ctrl or Cmd K opens search and a second press closes it.

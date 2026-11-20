@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 [Unit]
 Description=KagNode shared UI patch manager
 After=network-online.target

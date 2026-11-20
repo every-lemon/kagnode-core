@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Copy generated pinned offline adapters; all editable UI stays in Core."""
 
 from pathlib import Path

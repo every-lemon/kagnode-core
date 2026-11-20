@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -28,7 +29,7 @@ for (const icon of iconCatalog) {
   );
   write(
     `glyphs/${icon.id}.mjs`,
-    "// AGPL-3.0-only; original KagNode Core geometry.\nexport default Object.freeze(" +
+    "// Original KagNode Core geometry.\nexport default Object.freeze(" +
       JSON.stringify(definition).replace(
         '"tags":' + JSON.stringify(definition.tags),
         '"tags":Object.freeze(' + JSON.stringify(definition.tags) + ")",
@@ -70,7 +71,7 @@ write(
       grid: 24,
       strokeWidth: 1.7,
       count: metadata.length,
-      license: "AGPL-3.0-only",
+      license: "SEE LICENSE IN LICENSE",
       icons: metadata,
     },
     null,
@@ -97,7 +98,7 @@ write(
       version: JSON.parse(fs.readFileSync(path.join(root, "package.json")))
         .version,
       type: "module",
-      license: "AGPL-3.0-only",
+      license: "SEE LICENSE IN LICENSE",
       sideEffects: false,
       exports: {
         "./render": { types: "./render.d.mts", import: "./render.mjs" },

@@ -1,4 +1,5 @@
-/*! KagNode Core — AGPL-3.0-only. Appearance never contains vault data. */
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
+/*! KagNode Core. Appearance never contains vault data. */
 (() => {
   // Runs synchronously in the head, before the deferred UI and its links.
   // The opaque local attempt is kept only in this document, never storage.

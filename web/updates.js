@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! Local-administrator Core status and reviewed UI actions. */
 (() => {
   const core = window.KagNodeCore;

@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Controls inherit Core appearance despite conflicting host tokens and layouts."""
 
 import importlib.util

@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! KagNode Core — local panel controls and accessible dialog surfaces. */
 (() => {
   if (window.KagNodeSegments) return;

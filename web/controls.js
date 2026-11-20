@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 (() => {
   if (window.KagNodeControls?.core) return;
   const seen = new WeakSet(),

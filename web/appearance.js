@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! Browser-to-KagNode appearance only. No profile, vault or server credentials. */
 (() => {
   const core = window.KagNodeCore;

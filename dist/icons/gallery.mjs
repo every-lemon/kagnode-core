@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 const search = document.querySelector("#search"),
   category = document.querySelector("#category"),
   grid = document.querySelector("#grid"),

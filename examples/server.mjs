@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 // Run after npm run build. Requires Express in the surrounding example project.
 import express from "express";
 import { installCore } from "../dist/node/kagnode-core.mjs";

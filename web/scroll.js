@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! KagNode Core — native scrolling with accessible overlay rails. */
 (() => {
   if (window.KagNodeScroll?.core) return;

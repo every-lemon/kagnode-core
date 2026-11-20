@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Public summaries require real verified automatic activation and local subjects."""
 
 import importlib.util

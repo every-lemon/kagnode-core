@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";

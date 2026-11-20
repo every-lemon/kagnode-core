@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 /** Original Core UI icon rendering. No catalog or glyphs are imported here. */
 const escape = (value) =>
   String(value).replace(

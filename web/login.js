@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! KagNode Core — optional host-owned login connection presentation. */
 (() => {
   if (window.KagNodeLogin) return;

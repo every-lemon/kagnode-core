@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Actual Core policy controls: channel and mode remain independent."""
 
 import importlib.util

@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Real reload during both Core status read stages; mutations never replay."""
 
 import importlib.util

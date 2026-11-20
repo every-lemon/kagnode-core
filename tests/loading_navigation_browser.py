@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Composited visible animation while real document GET/POST is pending."""
 
 import importlib.util

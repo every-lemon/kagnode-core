@@ -1,4 +1,5 @@
-/*! KagNode Core — shared shell and component lifecycle, AGPL-3.0-only. */
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
+/*! KagNode Core — shared shell and component lifecycle. */
 (() => {
   if (window.KagNodeCore) return;
   const root = document.documentElement,

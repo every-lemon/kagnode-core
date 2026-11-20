@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Local, signed, UI-only Core patch manager. No application hooks or restarts."""
 
 from __future__ import annotations

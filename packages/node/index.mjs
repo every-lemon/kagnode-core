@@ -1,4 +1,5 @@
-/** KagNode Core local assets and Express adapter. AGPL-3.0-only. */
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
+/** KagNode Core local assets and Express adapter. */
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
