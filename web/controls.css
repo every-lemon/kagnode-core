@@ -823,3 +823,21 @@ html[data-kn-core]
   border-color: var(--k-accent);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--k-accent) 14%, transparent);
 }
+.k-time-label {
+  display: block;
+  margin: 4px 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--kn-muted, #6e6e73);
+}
+.k-time-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.k-time-grid .k-calendar-choice {
+  min-height: 34px;
+  padding: 0;
+  font-variant-numeric: tabular-nums;
+}

@@ -6,10 +6,10 @@
   "kind": "ui",
   "entrypoints": {
     "theme": "theme.8eeab48da06294c6.js",
-    "script": "core.7916bbafb2d1b69b.js",
-    "style": "core.0dcb366f8f1bf113.css"
+    "script": "core.a072ace8ea08bdaf.js",
+    "style": "core.c5d1388859a3247e.css"
   },
-  "source_commit": "bcd0000c552cacdcc1be6ea72a732f3ed9129b76",
+  "source_commit": "ce99de5bf8bdf3d95d16eba58c285cea85249ad2",
   "repository": "every-lemon/kagnode-core",
   "user_summary": {
     "title": "Calmer surfaces and smoother navigation",
@@ -229,13 +229,13 @@
       "sha256": "8eeab48da06294c6024574dce574d402d0a1c6cb75b618fec680a42a705d352f",
       "size": 1928
     },
-    "core.7916bbafb2d1b69b.js": {
-      "sha256": "7916bbafb2d1b69b89787282dfc065f80aa9b5822be363541df5ee7da32284ee",
-      "size": 122340
+    "core.a072ace8ea08bdaf.js": {
+      "sha256": "a072ace8ea08bdaf3a83db57cc7722e5bf9cda06391b5542c20821464eacb833",
+      "size": 125854
     },
-    "core.0dcb366f8f1bf113.css": {
-      "sha256": "0dcb366f8f1bf113e7ffd5a10ab0af08eef681ae352ce3440f490f68b7dee8cb",
-      "size": 69319
+    "core.c5d1388859a3247e.css": {
+      "sha256": "c5d1388859a3247e242a04e55ec4559258531395c4ebf1046789a47895c75b5c",
+      "size": 69609
     },
     "mark.svg": {
       "sha256": "442e9ef8606c1e326b2fc097df770faf1dcfe6a4f0f55e28070c0c9ae04eb9e9",

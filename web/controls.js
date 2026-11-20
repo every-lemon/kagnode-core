@@ -761,6 +761,153 @@
     syncers.set(el, valid);
     valid();
   }
+  function time(el) {
+    el.type = "text";
+    el.dataset.kTime = "1";
+    el.placeholder = "HH:mm";
+    el.setAttribute("inputmode", "numeric");
+    el.setAttribute("autocomplete", "off");
+    const shape = /^(\d{2}):(\d{2})$/;
+    el.addEventListener("input", (event) => {
+      if (event.inputType === "insertReplacementText") return;
+      const raw = el.value,
+        caret = el.selectionStart ?? raw.length;
+      const parts = raw.split(/\D+/);
+      const digits =
+        parts.length > 1
+          ? parts.map((x, i) => (i === 0 && x.length === 1 ? "0" + x : x)).join("")
+          : raw.replace(/\D/g, "");
+      const d = digits.slice(0, 4);
+      const formatted = d.length > 2 ? d.slice(0, 2) + ":" + d.slice(2) : d;
+      if (formatted === raw) return;
+      el.value = formatted;
+      const pos = caret >= raw.length ? formatted.length : Math.min(caret, formatted.length);
+      el.setSelectionRange(pos, pos);
+    });
+    el.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
+      const m = shape.exec(el.value);
+      if (!m) return;
+      event.preventDefault();
+      const dir = event.key === "ArrowUp" ? 1 : -1,
+        hour = (el.selectionStart ?? 0) <= 2;
+      let h = +m[1],
+        min = +m[2];
+      if (hour) h = (h + dir + 24) % 24;
+      else min = (min + dir + 60) % 60;
+      el.value = pad(h) + ":" + pad(min);
+      hour ? el.setSelectionRange(0, 2) : el.setSelectionRange(3, 5);
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+    const wrap = document.createElement("span");
+    wrap.className = "k-date k-time";
+    el.before(wrap);
+    wrap.append(el);
+    const owner = button("", "k-calendar-toggle");
+    owner.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
+    owner.setAttribute("aria-label", "Choose " + title(el));
+    owner.setAttribute("aria-haspopup", "dialog");
+    owner.setAttribute("aria-expanded", "false");
+    wrap.append(owner);
+    const popup = makePopup("k-calendar k-time-picker");
+    popup.setAttribute("role", "dialog");
+    popup.setAttribute("aria-label", "Choose " + title(el));
+    owner.setAttribute("aria-controls", popup.id);
+    function valid() {
+      owner.disabled = el.disabled || el.readOnly;
+      const value = el.value,
+        m = shape.exec(value);
+      let message = "";
+      if (value) {
+        if (!m || +m[1] > 23 || +m[2] > 59) message = "Enter a time as hours and minutes, for example 09:30.";
+        else if ((el.min && value < el.min) || (el.max && value > el.max))
+          message = "Choose a time within the allowed range.";
+      }
+      el.setCustomValidity(message);
+    }
+    function commit(h, min) {
+      el.value = pad(h) + ":" + pad(min);
+      valid();
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+      draw();
+    }
+    function draw() {
+      popup.replaceChildren();
+      const m = shape.exec(el.value);
+      const h = m ? +m[1] : null,
+        min = m ? +m[2] : null;
+      const label = (text) => {
+        const e = document.createElement("span");
+        e.className = "k-time-label";
+        e.textContent = text;
+        return e;
+      };
+      const grid = (values, current, set) => {
+        const g = document.createElement("div");
+        g.className = "k-calendar-choices k-time-grid";
+        for (const v of values) {
+          const b = button(pad(v), "k-calendar-choice");
+          b.setAttribute("aria-pressed", String(current === v));
+          b.onclick = () => set(v);
+          g.append(b);
+        }
+        return g;
+      };
+      popup.append(
+        label("Hour"),
+        grid(Array.from({ length: 24 }, (_, i) => i), h, (v) => commit(v, min ?? 0)),
+        label("Minute"),
+        grid(Array.from({ length: 12 }, (_, i) => i * 5), min, (v) => commit(h ?? 9, v)),
+      );
+      const presets = document.createElement("div");
+      presets.className = "k-time-presets";
+      for (const [text, hh, mm] of [["Morning", 9, 0], ["Noon", 12, 0], ["Evening", 18, 0]]) {
+        const b = button(text);
+        b.onclick = () => commit(hh, mm);
+        presets.append(b);
+      }
+      popup.append(presets);
+      const actions = document.createElement("div");
+      actions.className = "k-calendar-actions";
+      const now = button("Now"),
+        clear = button("Clear"),
+        done = button("Done", "k-calendar-done");
+      now.onclick = () => {
+        const d = new Date();
+        commit(d.getHours(), d.getMinutes());
+      };
+      clear.onclick = () => {
+        el.value = "";
+        valid();
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+        close(true);
+      };
+      done.onclick = () => close(true);
+      actions.append(now, clear);
+      popup.append(actions, done);
+      place();
+    }
+    owner.onclick = () => {
+      if (el.disabled || el.readOnly) return;
+      if (active?.owner === owner) return close();
+      draw();
+      open(owner, popup);
+      (popup.querySelector("[aria-pressed=true]") || popup.querySelector(".k-calendar-choice"))?.focus();
+    };
+    el.addEventListener("input", valid);
+    el.addEventListener("change", valid);
+    el.form?.addEventListener("reset", () => setTimeout(valid, 0));
+    new MutationObserver(valid).observe(el, {
+      attributes: true,
+      attributeFilter: ["disabled", "readonly", "min", "max", "value"],
+    });
+    syncers.set(el, valid);
+    valid();
+  }
   const fieldContainer = (el) =>
     el.closest(".k-number,.k-date")?.parentElement || el.parentElement;
   function errors(el) {
@@ -788,6 +935,7 @@
       if (el.tagName === "SELECT") select(el);
       else if (el.type === "number") number(el);
       else if (["date", "datetime-local"].includes(el.type)) date(el);
+      else if (el.type === "time") time(el);
       else if (el.type === "checkbox" && el.hasAttribute("data-core-switch"))
         el.setAttribute("role", "switch");
       el.addEventListener("invalid", (e) => {
