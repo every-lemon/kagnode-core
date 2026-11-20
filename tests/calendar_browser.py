@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Keyboard range boundaries preserve an enabled calendar tab stop; no user data."""
 
 import importlib.util

@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """KagNode Core local assets and framework adapters. Never downloads on requests."""
 
 import base64

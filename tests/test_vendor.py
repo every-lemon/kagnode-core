@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Pinned fallback metadata must describe the adapter copied during review."""
 
 import contextlib

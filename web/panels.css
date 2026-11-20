@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! KagNode Core — segmented panels and restrained dialog surfaces. */
 html[data-kn-core] .kn-core-segments {
   position: relative;
@@ -60,6 +61,7 @@ html[data-kn-core] .kn-core-dialog {
   margin: auto;
   box-sizing: border-box;
   width: min(540px, calc(100% - 32px));
+  height: fit-content;
   max-height: calc(100svh - 32px);
   overflow: auto;
   border: 1px solid var(--kn-line);

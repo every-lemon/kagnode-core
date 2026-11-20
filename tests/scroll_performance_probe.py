@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Manual frame-paced navigation profile; run before and after on the same host."""
 
 import json, os, time

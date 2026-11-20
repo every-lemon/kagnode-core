@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Quick-search intent races and IME behavior in actual browser engines."""
 
 import json

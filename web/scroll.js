@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! KagNode Core — native scrolling with accessible overlay rails. */
 (() => {
   if (window.KagNodeScroll?.core) return;
@@ -12,10 +13,7 @@
     mode = "custom",
     covered = false;
   try {
-    mode =
-      localStorage.getItem("kagnode.scrollMode") === "native"
-        ? "native"
-        : "custom";
+    localStorage.removeItem("kagnode.scrollMode");
   } catch {}
   const active = () => mode === "custom" && !forced.matches;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -358,10 +356,7 @@
       return mode;
     },
     setMode(value) {
-      mode = value === "native" ? "native" : "custom";
-      try {
-        localStorage.setItem("kagnode.scrollMode", mode);
-      } catch {}
+      mode = "custom";
       scan();
       document.dispatchEvent(
         new CustomEvent("kagnode:scroll-preference", { detail: mode }),

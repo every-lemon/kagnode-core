@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Notice navigation cancellation and preference actions never affect ordinary clicks."""
 
 import importlib.util
@@ -99,14 +100,8 @@ try:
             page.keyboard.press("Enter")
             assert page.evaluate("Object.keys(localStorage)") == []
             assert page.locator("html").get_attribute("aria-pressed") is None
-            page.locator("button[data-core-scroll-mode=native]").click()
-            assert (
-                page.evaluate("localStorage.getItem('kagnode.scrollMode')") == "native"
-            )
-            page.locator("button[data-core-scroll-mode=custom]").click()
-            assert (
-                page.evaluate("localStorage.getItem('kagnode.scrollMode')") == "custom"
-            )
+            assert page.locator("button[data-core-scroll-mode]").count() == 0
+            assert page.evaluate("window.KagNodeScroll.mode") == "custom"
             for method in ["GET", "POST"]:
                 before = len(reads)
                 page.goto(origin + "/source")

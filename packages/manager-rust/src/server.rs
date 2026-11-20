@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 use crate::{Manager, atomic, file_lock, now};
 use anyhow::{Result, ensure};
 use serde_json::{Value, json};

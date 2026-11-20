@@ -1,5 +1,23 @@
 # Changelog
 
+## 5.0.20 (unreleased)
+- Text fields, text areas and selects use the same focus frame as the date field.
+- Dialogs no longer stretch to full height when their content is short.
+- Time fields use the shared Core control with a mask, arrow-key stepping and a chooser, instead of the browser clock picker.
+- Smart placement: menus, pickers, tooltips and dialogs that open partly off screen are moved back by the smallest amount; ones already inside the screen are never touched.
+- Collapsed sidebar: navigation groups no longer show the first letter of their label.
+- New licence: the KagNode. Core License applies to 5.0.20 and later (community and business editions). Releases up to 5.0.19 stay AGPL-3.0-only. README and docs are removed; a NOTICE file and a one-line header in every source file are added.
+
+- Scrolling always uses the KagNode rails; the native-scrolling choice is removed.
+- Ctrl or Cmd K opens search and a second press closes it.
+- Clicking outside a dialog or sheet closes it through the normal close path, with the unsaved-changes check.
+- Focus rings show only after keyboard use; mouse and touch no longer leave a frame on controls.
+- Calendar: popups always stay inside the screen; the title opens a month and year chooser; the time chooser has hour and minute steppers and Morning, Noon and Evening shortcuts.
+- Date fields accept digits only and add the separators; Up and Down arrows change the part under the cursor.
+- Number fields use a minus, value, plus layout and repeat while a button is held.
+- The "On this page" list never scrolls sideways; the page has no double-tap delay on touch devices.
+- Add the corereq.txt reference tool and notes for community and business Core delivery.
+
 ## 5.0.19
 
 - Add opt-in authenticated Administration folder support; existing applications do not enable it automatically.

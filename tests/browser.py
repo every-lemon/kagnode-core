@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Shared component acceptance tests; no live account or application data."""
 
 import importlib.util, json, os, threading

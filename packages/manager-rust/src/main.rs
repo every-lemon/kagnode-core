@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 use clap::Parser;
 #[derive(Parser)]
 #[command(version, about = "KagNode signed local Core UI manager")]

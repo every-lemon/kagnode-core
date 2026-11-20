@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 // Reproduce optional-load cost without including the catalog in an application.
 import fs from "node:fs";
 import path from "node:path";

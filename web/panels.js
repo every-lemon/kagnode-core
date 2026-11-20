@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! KagNode Core — local panel controls and accessible dialog surfaces. */
 (() => {
   if (window.KagNodeSegments) return;
@@ -294,6 +295,24 @@
     }
     dismissals.set(dialog, dismissUser);
     dismiss.addEventListener("click", dismissUser);
+    let pressedOutside = false;
+    const outside = (event) => {
+      const r = dialog.getBoundingClientRect();
+      return (
+        event.clientX < r.left ||
+        event.clientX > r.right ||
+        event.clientY < r.top ||
+        event.clientY > r.bottom
+      );
+    };
+    dialog.addEventListener("pointerdown", (event) => {
+      pressedOutside = event.target === dialog && outside(event);
+    });
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog || !pressedOutside || !outside(event)) return;
+      pressedOutside = false;
+      dismissUser();
+    });
     dialog.addEventListener("keydown", (event) => {
       if (event.key !== "Escape" || event.defaultPrevented || event.isComposing)
         return;

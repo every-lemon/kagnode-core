@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 (() => {
   if (window.KagNodeControls?.core) return;
   const seen = new WeakSet(),
@@ -49,23 +50,29 @@
       below = top + vh - r.bottom,
       above = r.top - top,
       down = below >= 170 || below >= above,
+      calendar = popup.classList.contains("k-calendar"),
       maxHeight = Math.max(
         40,
-        Math.min(340, (down ? below : above) - 18, vh - 24),
+        calendar
+          ? vh - 24
+          : Math.min(340, (down ? below : above) - 18, vh - 24),
       );
     popup.style.width = width + "px";
-    popup.style.left =
-      Math.max(left + 12, Math.min(r.left, left + vw - width - 12)) + "px";
     popup.style.maxHeight = maxHeight + "px";
-    const height = Math.min(popup.scrollHeight, maxHeight);
+    popup.style.overflowY = "auto";
+    const w = popup.offsetWidth || width,
+      height = Math.min(
+        popup.scrollHeight,
+        popup.offsetHeight || maxHeight,
+        maxHeight,
+      );
+    popup.style.left =
+      Math.max(left + 12, Math.min(r.left, left + vw - w - 12)) + "px";
+    let y = down ? r.bottom + 6 : r.top - height - 6;
+    if (calendar && y + height > top + vh - 12)
+      y = r.top - height - 6 >= top + 12 ? r.top - height - 6 : y;
     popup.style.top =
-      Math.max(
-        top + 12,
-        Math.min(
-          down ? r.bottom + 6 : r.top - height - 6,
-          top + vh - height - 12,
-        ),
-      ) + "px";
+      Math.max(top + 12, Math.min(y, top + vh - height - 12)) + "px";
   }
   function open(owner, popup) {
     close();
@@ -252,10 +259,41 @@
           el.max !== "" &&
           Number(el.value) >= Number(el.max));
     };
+    let suppressClick = false;
     for (const [b, d] of [
       [minus, -1],
       [plus, 1],
-    ])
+    ]) {
+      let holdTimer = 0,
+        repeatTimer = 0;
+      const stop = () => {
+        clearTimeout(holdTimer);
+        clearInterval(repeatTimer);
+      };
+      b.addEventListener("pointerdown", (e) => {
+        if (e.button > 0 || b.disabled) return;
+        stop();
+        holdTimer = setTimeout(() => {
+          suppressClick = true;
+          repeatTimer = setInterval(() => {
+            if (b.disabled) return stop();
+            b.click();
+          }, 70);
+        }, 420);
+      });
+      for (const type of ["pointerup", "pointerleave", "pointercancel"])
+        b.addEventListener(type, stop);
+      b.addEventListener(
+        "click",
+        (e) => {
+          if (suppressClick && e.detail > 0) {
+            suppressClick = false;
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        },
+        true,
+      );
       b.onclick = () => {
         if (!el.disabled && !el.readOnly) {
           if (el.step === "any") {
@@ -282,6 +320,7 @@
           sync();
         }
       };
+    }
     el.addEventListener("input", sync);
     el.addEventListener("change", sync);
     new MutationObserver(sync).observe(el, {
@@ -305,7 +344,73 @@
     el.dataset.kDate = mode;
     el.placeholder =
       mode === "datetime-local" ? "YYYY-MM-DDTHH:mm" : "YYYY-MM-DD";
-    el.setAttribute("inputmode", "text");
+    el.setAttribute("inputmode", "numeric");
+    el.setAttribute("autocomplete", "off");
+    const withTime = mode === "datetime-local";
+    const format = (digits) => {
+      const d = digits.slice(0, withTime ? 12 : 8);
+      let out = d.slice(0, 4);
+      if (d.length > 4) out += "-" + d.slice(4, 6);
+      if (d.length > 6) out += "-" + d.slice(6, 8);
+      if (withTime && d.length > 8) out += "T" + d.slice(8, 10);
+      if (withTime && d.length > 10) out += ":" + d.slice(10, 12);
+      return out;
+    };
+    el.addEventListener("input", (event) => {
+      if (event.inputType === "insertReplacementText") return;
+      const raw = el.value,
+        caret = el.selectionStart ?? raw.length;
+      const before = raw.slice(0, caret).replace(/\D/g, "").length;
+      const parts = raw.split(/\D+/);
+      const digits =
+        parts.length > 1
+          ? parts
+              .map((x, i) =>
+                i > 0 && i < parts.length - 1 && x.length === 1 ? "0" + x : x,
+              )
+              .join("")
+          : raw.replace(/\D/g, "");
+      const formatted = format(digits);
+      if (formatted === raw) return;
+      el.value = formatted;
+      let seen = 0,
+        pos = 0;
+      if (caret >= raw.length) pos = formatted.length;
+      while (pos < formatted.length && seen < before && caret < raw.length) {
+        if (/\d/.test(formatted[pos])) seen++;
+        pos++;
+      }
+      el.setSelectionRange(pos, pos);
+    });
+    el.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
+      const m = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?$/.exec(el.value);
+      if (!m) return;
+      event.preventDefault();
+      const dir = event.key === "ArrowUp" ? 1 : -1,
+        at = el.selectionStart ?? 0;
+      const part = at <= 4 ? 0 : at <= 7 ? 1 : at <= 10 ? 2 : at <= 13 ? 3 : 4;
+      const d = new Date(+m[1], +m[2] - 1, +m[3], +(m[4] ?? 9), +(m[5] ?? 0));
+      if (part === 0) d.setFullYear(d.getFullYear() + dir);
+      else if (part === 1) d.setMonth(d.getMonth() + dir);
+      else if (part === 2) d.setDate(d.getDate() + dir);
+      else if (part === 3 && withTime) d.setHours(d.getHours() + dir);
+      else if (withTime) d.setMinutes(d.getMinutes() + dir);
+      else d.setDate(d.getDate() + dir);
+      el.value =
+        iso(d) +
+        (withTime ? "T" + pad(d.getHours()) + ":" + pad(d.getMinutes()) : "");
+      const range = [
+        [0, 4],
+        [5, 7],
+        [8, 10],
+        [11, 13],
+        [14, 16],
+      ][part];
+      el.setSelectionRange(range[0], range[1]);
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+    });
     const wrap = document.createElement("span");
     wrap.className = "k-date";
     el.before(wrap);
@@ -321,7 +426,8 @@
     popup.setAttribute("role", "dialog");
     popup.setAttribute("aria-label", "Choose " + title(el));
     owner.setAttribute("aria-controls", popup.id);
-    let view = new Date();
+    let view = new Date(),
+      pick = "days";
     const validationInput = document.createElement("input");
     validationInput.type = mode;
     function valid() {
@@ -355,27 +461,117 @@
       const prev = button("‹", "k-calendar-nav"),
         next = button("›", "k-calendar-nav"),
         heading = document.createElement("strong");
-      heading.textContent = view.toLocaleDateString(undefined, {
-        month: "long",
-        year: "numeric",
-      });
+      const year = view.getFullYear(),
+        page = Math.floor(year / 12) * 12,
+        titleText =
+          pick === "years"
+            ? page + " \u2013 " + (page + 11)
+            : pick === "months"
+              ? String(year)
+              : view.toLocaleDateString(undefined, {
+                  month: "long",
+                  year: "numeric",
+                });
+      const titleButton = button(titleText, "k-calendar-title");
+      titleButton.setAttribute(
+        "aria-label",
+        pick === "days"
+          ? titleText + ", choose month or year"
+          : titleText + ", go back",
+      );
+      titleButton.onclick = () => {
+        pick =
+          pick === "days" ? "months" : pick === "months" ? "years" : "days";
+        draw();
+        popup.querySelector(".k-calendar-title").focus();
+      };
+      heading.append(titleButton);
       heading.setAttribute("aria-live", "polite");
-      prev.setAttribute("aria-label", "Previous month");
-      next.setAttribute("aria-label", "Next month");
-      prev.onclick = () => {
+      const step = (dir) => {
         view.setDate(1);
-        view.setMonth(view.getMonth() - 1);
+        if (pick === "days") view.setMonth(view.getMonth() + dir);
+        else if (pick === "months") view.setFullYear(year + dir);
+        else view.setFullYear(year + dir * 12);
+      };
+      prev.setAttribute(
+        "aria-label",
+        pick === "days"
+          ? "Previous month"
+          : pick === "months"
+            ? "Previous year"
+            : "Previous years",
+      );
+      next.setAttribute(
+        "aria-label",
+        pick === "days"
+          ? "Next month"
+          : pick === "months"
+            ? "Next year"
+            : "Next years",
+      );
+      prev.onclick = () => {
+        step(-1);
         draw();
         popup.querySelector(".k-calendar-nav").focus();
       };
       next.onclick = () => {
-        view.setDate(1);
-        view.setMonth(view.getMonth() + 1);
+        step(1);
         draw();
         popup.querySelectorAll(".k-calendar-nav")[1].focus();
       };
       header.append(prev, heading, next);
       popup.append(header);
+      if (pick !== "days") {
+        const choices = document.createElement("div");
+        choices.className = "k-calendar-choices";
+        choices.setAttribute("role", "group");
+        const minD = el.min ? el.min.slice(0, 10) : "",
+          maxD = el.max ? el.max.slice(0, 10) : "";
+        for (let i = 0; i < 12; i++) {
+          const y = pick === "years" ? page + i : year,
+            m = pick === "years" ? view.getMonth() : i,
+            first = iso(new Date(y, m, 1)),
+            last = iso(
+              new Date(
+                pick === "years" ? y + 1 : y,
+                pick === "years" ? 0 : m + 1,
+                0,
+              ),
+            ),
+            b = button(
+              pick === "years"
+                ? String(y)
+                : new Date(y, i, 1).toLocaleDateString(undefined, {
+                    month: "short",
+                  }),
+              "k-calendar-choice",
+            );
+          b.setAttribute(
+            "aria-pressed",
+            String(pick === "years" ? y === year : i === view.getMonth()),
+          );
+          b.disabled = !!(
+            (minD && last < minD) ||
+            (maxD && (pick === "years" ? iso(new Date(y, 0, 1)) : first) > maxD)
+          );
+          b.onclick = () => {
+            view.setDate(1);
+            if (pick === "years") {
+              view.setFullYear(y);
+              pick = "months";
+            } else {
+              view.setMonth(i);
+              pick = "days";
+            }
+            draw();
+            popup.querySelector(".k-calendar-title").focus();
+          };
+          choices.append(b);
+        }
+        popup.append(choices);
+        if (active && active.popup === popup) place();
+        return;
+      }
       const weekdays = document.createElement("div");
       weekdays.className = "k-calendar-week";
       for (const name of ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]) {
@@ -461,6 +657,11 @@
         label.textContent = "Time";
         time.append(label);
         const current = el.value.split("T")[1] || "09:00";
+        const fields = document.createElement("div");
+        fields.className = "k-time-fields";
+        const sep = document.createElement("span");
+        sep.className = "k-time-sep";
+        sep.textContent = ":";
         for (const [name, value, max] of [
           ["Hour", current.slice(0, 2), 23],
           ["Minute", current.slice(3, 5), 59],
@@ -483,8 +684,26 @@
             el.dispatchEvent(new Event("change", { bubbles: true }));
           };
           box.append(input);
-          time.append(box);
+          fields.append(box);
+          if (name === "Hour") fields.append(sep);
         }
+        const presets = document.createElement("div");
+        presets.className = "k-time-presets";
+        for (const [text, h, m] of [
+          ["Morning", 9, 0],
+          ["Noon", 12, 0],
+          ["Evening", 18, 0],
+        ]) {
+          const b = button(text);
+          b.onclick = () => {
+            const [hh, mm] = fields.querySelectorAll("input");
+            hh.value = String(h);
+            mm.value = String(m);
+            mm.oninput();
+          };
+          presets.append(b);
+        }
+        time.append(fields, presets);
         popup.append(time);
         const done = button("Done", "k-calendar-done");
         done.onclick = () => close(true);
@@ -521,6 +740,7 @@
       );
       view = Number.isNaN(date.getTime()) ? new Date() : date;
       view.setDate(1);
+      pick = "days";
       draw();
       open(owner, popup);
       (
@@ -537,6 +757,153 @@
     new MutationObserver(valid).observe(el, {
       attributes: true,
       attributeFilter: ["disabled", "readonly", "min", "max", "step", "value"],
+    });
+    syncers.set(el, valid);
+    valid();
+  }
+  function time(el) {
+    el.type = "text";
+    el.dataset.kTime = "1";
+    el.placeholder = "HH:mm";
+    el.setAttribute("inputmode", "numeric");
+    el.setAttribute("autocomplete", "off");
+    const shape = /^(\d{2}):(\d{2})$/;
+    el.addEventListener("input", (event) => {
+      if (event.inputType === "insertReplacementText") return;
+      const raw = el.value,
+        caret = el.selectionStart ?? raw.length;
+      const parts = raw.split(/\D+/);
+      const digits =
+        parts.length > 1
+          ? parts.map((x, i) => (i === 0 && x.length === 1 ? "0" + x : x)).join("")
+          : raw.replace(/\D/g, "");
+      const d = digits.slice(0, 4);
+      const formatted = d.length > 2 ? d.slice(0, 2) + ":" + d.slice(2) : d;
+      if (formatted === raw) return;
+      el.value = formatted;
+      const pos = caret >= raw.length ? formatted.length : Math.min(caret, formatted.length);
+      el.setSelectionRange(pos, pos);
+    });
+    el.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
+      const m = shape.exec(el.value);
+      if (!m) return;
+      event.preventDefault();
+      const dir = event.key === "ArrowUp" ? 1 : -1,
+        hour = (el.selectionStart ?? 0) <= 2;
+      let h = +m[1],
+        min = +m[2];
+      if (hour) h = (h + dir + 24) % 24;
+      else min = (min + dir + 60) % 60;
+      el.value = pad(h) + ":" + pad(min);
+      hour ? el.setSelectionRange(0, 2) : el.setSelectionRange(3, 5);
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+    const wrap = document.createElement("span");
+    wrap.className = "k-date k-time";
+    el.before(wrap);
+    wrap.append(el);
+    const owner = button("", "k-calendar-toggle");
+    owner.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
+    owner.setAttribute("aria-label", "Choose " + title(el));
+    owner.setAttribute("aria-haspopup", "dialog");
+    owner.setAttribute("aria-expanded", "false");
+    wrap.append(owner);
+    const popup = makePopup("k-calendar k-time-picker");
+    popup.setAttribute("role", "dialog");
+    popup.setAttribute("aria-label", "Choose " + title(el));
+    owner.setAttribute("aria-controls", popup.id);
+    function valid() {
+      owner.disabled = el.disabled || el.readOnly;
+      const value = el.value,
+        m = shape.exec(value);
+      let message = "";
+      if (value) {
+        if (!m || +m[1] > 23 || +m[2] > 59) message = "Enter a time as hours and minutes, for example 09:30.";
+        else if ((el.min && value < el.min) || (el.max && value > el.max))
+          message = "Choose a time within the allowed range.";
+      }
+      el.setCustomValidity(message);
+    }
+    function commit(h, min) {
+      el.value = pad(h) + ":" + pad(min);
+      valid();
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+      draw();
+    }
+    function draw() {
+      popup.replaceChildren();
+      const m = shape.exec(el.value);
+      const h = m ? +m[1] : null,
+        min = m ? +m[2] : null;
+      const label = (text) => {
+        const e = document.createElement("span");
+        e.className = "k-time-label";
+        e.textContent = text;
+        return e;
+      };
+      const grid = (values, current, set) => {
+        const g = document.createElement("div");
+        g.className = "k-calendar-choices k-time-grid";
+        for (const v of values) {
+          const b = button(pad(v), "k-calendar-choice");
+          b.setAttribute("aria-pressed", String(current === v));
+          b.onclick = () => set(v);
+          g.append(b);
+        }
+        return g;
+      };
+      popup.append(
+        label("Hour"),
+        grid(Array.from({ length: 24 }, (_, i) => i), h, (v) => commit(v, min ?? 0)),
+        label("Minute"),
+        grid(Array.from({ length: 12 }, (_, i) => i * 5), min, (v) => commit(h ?? 9, v)),
+      );
+      const presets = document.createElement("div");
+      presets.className = "k-time-presets";
+      for (const [text, hh, mm] of [["Morning", 9, 0], ["Noon", 12, 0], ["Evening", 18, 0]]) {
+        const b = button(text);
+        b.onclick = () => commit(hh, mm);
+        presets.append(b);
+      }
+      popup.append(presets);
+      const actions = document.createElement("div");
+      actions.className = "k-calendar-actions";
+      const now = button("Now"),
+        clear = button("Clear"),
+        done = button("Done", "k-calendar-done");
+      now.onclick = () => {
+        const d = new Date();
+        commit(d.getHours(), d.getMinutes());
+      };
+      clear.onclick = () => {
+        el.value = "";
+        valid();
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+        close(true);
+      };
+      done.onclick = () => close(true);
+      actions.append(now, clear);
+      popup.append(actions, done);
+      place();
+    }
+    owner.onclick = () => {
+      if (el.disabled || el.readOnly) return;
+      if (active?.owner === owner) return close();
+      draw();
+      open(owner, popup);
+      (popup.querySelector("[aria-pressed=true]") || popup.querySelector(".k-calendar-choice"))?.focus();
+    };
+    el.addEventListener("input", valid);
+    el.addEventListener("change", valid);
+    el.form?.addEventListener("reset", () => setTimeout(valid, 0));
+    new MutationObserver(valid).observe(el, {
+      attributes: true,
+      attributeFilter: ["disabled", "readonly", "min", "max", "value"],
     });
     syncers.set(el, valid);
     valid();
@@ -568,6 +935,7 @@
       if (el.tagName === "SELECT") select(el);
       else if (el.type === "number") number(el);
       else if (["date", "datetime-local"].includes(el.type)) date(el);
+      else if (el.type === "time") time(el);
       else if (el.type === "checkbox" && el.hasAttribute("data-core-switch"))
         el.setAttribute("role", "switch");
       el.addEventListener("invalid", (e) => {

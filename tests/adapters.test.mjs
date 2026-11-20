@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 import test from "node:test";
 import assert from "node:assert/strict";
 import {

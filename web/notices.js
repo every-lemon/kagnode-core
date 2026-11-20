@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! KagNode Core — authenticated, host-opted-in summaries without admin data. */
 (() => {
   if (window.KagNodeWhatsNew) return;

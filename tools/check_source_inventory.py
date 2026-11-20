@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Check the committed source inventory without modifying the worktree."""
 
 import json

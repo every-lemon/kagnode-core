@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Shared login and repeated navigation checks using local assets and fake sessions."""
 
 import importlib.util

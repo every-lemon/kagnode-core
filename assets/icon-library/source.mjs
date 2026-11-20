@@ -1,4 +1,5 @@
-// Original KagNode Core UI symbols. AGPL-3.0-only. Geometry is a 24-unit grid.
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
+// Original KagNode Core UI symbols. Geometry is a 24-unit grid.
 // Keep this source editable; tools/build-icons.mjs emits validated, optional assets.
 const p = (d) => `<path d="${d}"/>`;
 const r = (x, y, w, h, rx = 2) =>

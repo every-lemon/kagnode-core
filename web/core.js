@@ -1,4 +1,5 @@
-/*! KagNode Core — shared shell and component lifecycle, AGPL-3.0-only. */
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
+/*! KagNode Core — shared shell and component lifecycle. */
 (() => {
   if (window.KagNodeCore) return;
   const root = document.documentElement,
@@ -1135,6 +1136,7 @@
     loading,
     closeAccount,
     positionPopover,
+    keepInView,
     navigation: {
       open: () => drawer(true),
       close: () => drawer(false),
@@ -1181,6 +1183,105 @@
     theme: root.dataset.accountTheme || undefined,
   });
   normalize();
+  /* Smart placement: a floating surface that opens partly off screen is moved back by the
+     smallest amount. A surface that is already inside the screen is never touched. */
+  const floatingSelector = [
+    ".k-picker",
+    '[role="menu"]',
+    '[role="listbox"]',
+    ".account-menu",
+    ".kn-core-tooltip",
+    "[data-core-popover]",
+    "dialog[open]:not([data-core-sheet])",
+  ].join(",");
+  const fitMemory = new WeakMap();
+  const fitPending = new Set();
+  let fitQueued = false;
+  const fitMargin = 8;
+  function keepInView(el) {
+    if (!(el instanceof HTMLElement) || el.dataset.coreKeep === "off") return;
+    const style = el.style;
+    const earlier = fitMemory.get(el);
+    if (earlier) {
+      style.translate = earlier.prev;
+      fitMemory.delete(el);
+    }
+    if (el.hidden || el.inert || el.matches('[aria-hidden="true"]')) return;
+    if (getComputedStyle(el).translate !== "none") return;
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const v = window.visualViewport;
+    const left = v ? v.offsetLeft : 0,
+      top = v ? v.offsetTop : 0;
+    const width = v ? v.width : innerWidth,
+      height = v ? v.height : innerHeight;
+    const axis = (a, b, min, size) => {
+      if (b - a > size - 2 * fitMargin) return a < min + fitMargin ? min + fitMargin - a : 0;
+      if (a < min + fitMargin) return min + fitMargin - a;
+      if (b > min + size - fitMargin) return min + size - fitMargin - b;
+      return 0;
+    };
+    const dx = axis(r.left, r.right, left, width),
+      dy = axis(r.top, r.bottom, top, height);
+    if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+    fitMemory.set(el, { prev: style.translate });
+    style.translate = `${Math.round(dx)}px ${Math.round(dy)}px`;
+  }
+  function fitFlush() {
+    fitQueued = false;
+    const list = [...fitPending];
+    fitPending.clear();
+    for (const el of list) {
+      if (!el.isConnected) continue;
+      const moving = el.getAnimations?.().filter((a) => a.playState === "running");
+      if (moving?.length) {
+        Promise.allSettled(moving.map((a) => a.finished)).then(() => {
+          keepInView(el);
+          fitWatcher.takeRecords();
+        });
+      } else keepInView(el);
+    }
+    fitWatcher.takeRecords();
+  }
+  function fitSchedule(el) {
+    if (!el?.matches?.(floatingSelector)) return;
+    fitPending.add(el);
+    if (fitQueued) return;
+    fitQueued = true;
+    requestAnimationFrame(() => requestAnimationFrame(fitFlush));
+  }
+  const fitWatcher = new MutationObserver((records) => {
+    for (const record of records) {
+      if (record.type === "attributes") fitSchedule(record.target);
+      else
+        for (const node of record.addedNodes)
+          if (node.nodeType === 1) {
+            fitSchedule(node);
+            node.querySelectorAll?.(floatingSelector).forEach(fitSchedule);
+          }
+    }
+  });
+  fitWatcher.observe(document.documentElement, {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    attributeFilter: ["open", "hidden", "aria-expanded", "class", "style", "inert"],
+  });
+  const fitAll = () =>
+    document.querySelectorAll(floatingSelector).forEach(fitSchedule);
+  addEventListener("resize", fitAll);
+  window.visualViewport?.addEventListener("resize", fitAll);
+  window.visualViewport?.addEventListener("scroll", fitAll);
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (/^(Tab|Arrow|Home|End|PageUp|PageDown| )/.test(e.key))
+        root.dataset.knKeys = "1";
+    },
+    true,
+  );
+  for (const type of ["pointerdown", "mousedown", "touchstart"])
+    document.addEventListener(type, () => delete root.dataset.knKeys, true);
   if (config.adminFolder) setAdminFolder(config.adminFolder);
   void document.body.offsetWidth;
   requestAnimationFrame(() => (root.dataset.coreReady = "true"));

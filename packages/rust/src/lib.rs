@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 //! Framework-independent, locally served UI. Host authorization stays in the host.
 use base64::Engine;
 use serde_json::{Value, json};

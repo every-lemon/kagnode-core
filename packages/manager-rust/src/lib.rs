@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 //! UI-only patch management. No backend hooks, service restarts or arbitrary repositories.
 pub mod cli;
 pub mod server;

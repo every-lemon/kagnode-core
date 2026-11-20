@@ -1,3 +1,4 @@
+// Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 //! Shared CLI entry point for the standalone manager and KagNode Daemon.
 use crate::{Manager, server};
 use anyhow::{Result, ensure};

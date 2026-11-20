@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Build deterministic Core UI, Node, Python and source archives. Sign offline."""
 
 import argparse
@@ -112,14 +113,14 @@ def build(destination, signing_key=None):
         "index.mjs": (ROOT / "dist/node/kagnode-core.mjs").read_bytes(),
         "index.d.mts": (ROOT / "dist/node/kagnode-core.d.mts").read_bytes(),
         "LICENSE": (ROOT / "LICENSE").read_bytes(),
+        "NOTICE": (ROOT / "NOTICE").read_bytes(),
         "ARTWORK-LICENSE": (ROOT / "assets/ARTWORK-LICENSE").read_bytes(),
-        "README.md": (ROOT / "README.md").read_bytes(),
         "package.json": json.dumps(
             {
                 "name": "@kagnode/core",
                 "version": version,
                 "type": "module",
-                "license": "AGPL-3.0-only",
+                "license": "SEE LICENSE IN LICENSE",
                 "main": "index.mjs",
                 "types": "index.d.mts",
                 "engines": {"node": ">=24"},
@@ -147,7 +148,7 @@ def build(destination, signing_key=None):
         "kagnode_core.py": (ROOT / "dist/python/kagnode_core.py").read_bytes(),
         "kagnode_core_manager.py": (ROOT / "packages/python/manager.py").read_bytes(),
         metadata
-        + "/METADATA": f"Metadata-Version: 2.4\nName: kagnode-core\nVersion: {version}\nRequires-Python: >=3.10\nLicense-Expression: AGPL-3.0-only\nSummary: Local KagNode UI adapters and signed asset manager\n\n".encode(),
+        + "/METADATA": f"Metadata-Version: 2.4\nName: kagnode-core\nVersion: {version}\nRequires-Python: >=3.10\nLicense-Expression: LicenseRef-KagNode-Core-1\nLicense-File: LICENSE\nSummary: Local KagNode UI adapters and signed asset manager\n\n".encode(),
         metadata
         + "/WHEEL": b"Wheel-Version: 1.0\nGenerator: KagNode Core\nRoot-Is-Purelib: true\nTag: py3-none-any\n",
         metadata + "/licenses/LICENSE": (ROOT / "LICENSE").read_bytes(),
@@ -207,7 +208,7 @@ def build(destination, signing_key=None):
                 source[str(p.relative_to(ROOT))] = p.read_bytes()
     for name in [
         "LICENSE",
-        "README.md",
+        "NOTICE",
         "CHANGELOG.md",
         "package.json",
         "package-lock.json",
@@ -219,8 +220,8 @@ def build(destination, signing_key=None):
         )
     for filename, source in [
         ("LICENSE.txt", "LICENSE"),
+        ("NOTICE.txt", "NOTICE"),
         ("ARTWORK-LICENSE.txt", "assets/ARTWORK-LICENSE"),
-        ("INSTALL.md", "docs/OPERATIONS.md"),
     ]:
         (destination / filename).write_bytes((ROOT / source).read_bytes())
     checks = {

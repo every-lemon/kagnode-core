@@ -1,3 +1,4 @@
+# Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE.
 """Actual browser coverage for panels, loading, avatar, sheets and safe summaries."""
 
 import importlib.util
@@ -259,6 +260,16 @@ try:
             )
             page.keyboard.press("Escape")
             expect(page.locator("#sheet")).to_be_hidden()
+            page.locator("#sheet-open").click()
+            expect(page.locator("#sheet")).to_be_visible()
+            box = page.locator("#sheet").bounding_box()
+            outside_y = 4 if box["y"] > 12 else None
+            if outside_y is not None:
+                page.mouse.click(4, outside_y)
+                expect(page.locator("#sheet")).to_be_hidden()
+            else:
+                page.keyboard.press("Escape")
+                expect(page.locator("#sheet")).to_be_hidden()
             expect(page.locator("body > #kn-core-loading")).to_have_count(1)
             expect(page.locator("#sheet-open")).to_be_focused()
             page.locator("#field").fill("Unsaved work")

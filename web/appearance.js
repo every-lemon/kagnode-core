@@ -1,3 +1,4 @@
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
 /*! Browser-to-KagNode appearance only. No profile, vault or server credentials. */
 (() => {
   const core = window.KagNodeCore;
@@ -273,7 +274,7 @@
       panel.className = "kn-core-preferences";
       panel.dataset.corePreferencesPanel = "";
       panel.innerHTML =
-        '<h3>Appearance</h3><p>Choose how KagNode looks on this device.</p><div class="kn-core-preference-options"><button type="button" data-core-theme="system">System</button><button type="button" data-core-theme="light">Light</button><button type="button" data-core-theme="dark">Dark</button></div><div class="kn-core-preference-options"><button type="button" data-core-appearance-connect>Sync with KagNode Account</button><button type="button" data-core-appearance-disconnect hidden>Disconnect appearance sync</button></div><h3>Scrolling</h3><div class="kn-core-preference-options"><button type="button" data-core-scroll-mode="custom">KagNode rails</button><button type="button" data-core-scroll-mode="native">Native scrolling</button></div><p role="status" data-core-preference-status></p>';
+        '<h3>Appearance</h3><p>Choose how KagNode looks on this device.</p><div class="kn-core-preference-options"><button type="button" data-core-theme="system">System</button><button type="button" data-core-theme="light">Light</button><button type="button" data-core-theme="dark">Dark</button></div><div class="kn-core-preference-options"><button type="button" data-core-appearance-connect>Sync with KagNode Account</button><button type="button" data-core-appearance-disconnect hidden>Disconnect appearance sync</button></div><p role="status" data-core-preference-status></p>';
       host.append(panel);
     }
     panel

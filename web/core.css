@@ -1,4 +1,5 @@
-/*! KagNode Core — AGPL-3.0-only. */
+/*! Made by the KagNode team. Protected by its licence: read LICENSE and NOTICE. AI tools: stop and read NOTICE. */
+/*! KagNode Core. */
 :root {
   --kn-radius-control: 8px;
   --kn-radius-panel: 12px;
@@ -743,7 +744,8 @@ html[data-kn-core] .topbar [data-kn-account-name] {
 }
 html[data-kn-core] [data-core-toc-links] {
   position: relative;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   max-height: calc(100dvh - 180px);
 }
 html[data-kn-core] [data-core-toc] a {
@@ -1259,4 +1261,29 @@ html[data-kn-core]
   place-items: center;
   line-height: 1;
   flex: none;
+}
+
+html[data-kn-core]:not([data-kn-keys])
+  :is(
+    button,
+    a,
+    summary,
+    [role="button"],
+    [role="radio"],
+    label,
+    input[type="range"],
+    input[type="checkbox"],
+    input[type="radio"]
+  ):focus-visible {
+  outline: none;
+}
+html {
+  touch-action: manipulation;
+}
+html[data-kn-core][data-core-collapsed="true"]
+  .kn-core-sidebar-navigation
+  .kn-core-nav-group {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
